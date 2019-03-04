@@ -11,3 +11,5 @@ https://medium.com/swlh/django-angular-4-a-powerful-web-application-60b6fb39ef34
 ## testing
 `coverage run --source='.' manage.py test tallyhq`
 `coverage report`
+
+tep.tallyhq@gmail.com
