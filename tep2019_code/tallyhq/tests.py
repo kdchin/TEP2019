@@ -2,6 +2,7 @@ from django.test import TestCase
 from .models import *
 from django.core.exceptions import ValidationError
 from contextlib import contextmanager
+from datetime import date
 
 
 class ValidationErrorTestMixin(object):
@@ -21,15 +22,31 @@ class ValidationErrorTestMixin(object):
 
 
 class ItemModelTests(ValidationErrorTestMixin, TestCase):
-    def test_max_quantity(self):
-        pencils = Item(name='pencils', max_units=0,
-                       qty_per_unit=10, unit_label_name='Packs')
+    def test_min_val_validations(self):
+        pencils = Item.objects.create(name='pencils', max_units=0,
+                                      qty_per_unit=10, unit_label_name='Packs')
+        # testing validations: in this case, we expect max_units to
+        # throw an error, since its max_units is 0
         with self.assertValidationErrors(['max_units']):
             pencils.full_clean()
-        other_pencils = Item(name='other_pencils', max_units=10,
-                             qty_per_unit=0, unit_label_name='Packs')
+        other_pencils = Item.objects.create(name='other_pencils', max_units=10,
+                                            qty_per_unit=0, unit_label_name='Packs')
         with self.assertValidationErrors(['qty_per_unit']):
             other_pencils.full_clean()
-        no_name = Item(max_units=10, qty_per_unit=8, unit_label_name='Packs')
+        no_name = Item.objects.create(
+            max_units=10, qty_per_unit=8, unit_label_name='Packs')
         with self.assertValidationErrors(['name']):
             no_name.full_clean()
+
+    def test_order_association(self):
+        pencils = Item.objects.create(name='pencils', max_units=8,
+                                      qty_per_unit=10, unit_label_name='Packs')
+        pens = Item.objects.create(
+            name='pens', max_units=4, qty_per_unit=12, unit_label_name='Packs')
+        order = Order.objects.create(shopping_date=date.today())
+
+        OrderItem.objects.create(item=pencils, order=order, unit_quantity=4)
+        OrderItem.objects.create(item=pens, order=order, unit_quantity=3)
+
+        items = Item.objects.filter(orders=order)
+        self.assertEqual(set(items), set([pens, pencils]))

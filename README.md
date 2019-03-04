@@ -79,4 +79,6 @@ And to view a coverage report, run `coverage report`
 
 Note: every time you change a model, you need to migrate the database again.
 
+[Many to many example](https://gist.github.com/jacobian/827937)
 
+[Heroku](https://www.codementor.io/jamesezechukwu/how-to-deploy-django-app-on-heroku-dtsee04d4)

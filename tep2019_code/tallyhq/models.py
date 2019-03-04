@@ -15,6 +15,8 @@ class Item(models.Model):
     # number of the item per unit (e.g. 8 (pencils per pack))
     qty_per_unit = models.IntegerField(validators=[MinValueValidator(1)])
 
+    # also has attribute: 'orders' as defined by ManyToMany in Order
+
     # whether or not the item is active
     active = models.BooleanField(default=True)
 
@@ -29,7 +31,7 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    school = models.ForeignKey(School, on_delete=models.SET_NULL)
+    school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True)
     active = models.BooleanField(default=True)
 
 
@@ -45,7 +47,22 @@ class Order(models.Model):
     waiver_signed = models.BooleanField(default=False)
 
     # teacher associated with the order
-    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL)
+    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
+
+    # each order has many items, and many items are in many orders
+    items = models.ManyToManyField(
+        Item, through='OrderItem', related_name='orders')
+
+
+# Associative entity for order and item
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order, related_name='order_items', on_delete=models.SET_NULL, null=True)
+    item = models.ForeignKey(
+        Item, related_name='order_items', on_delete=models.SET_NULL, null=True)
+
+    # how many units of an item a teacher took (e.g. 8 (packs))
+    unit_quantity = models.IntegerField(validators=[MinValueValidator(0)])
 
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
