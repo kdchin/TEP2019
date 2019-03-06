@@ -54,6 +54,9 @@ export TEP_DB_PWD="<YOUR DB PASSWORD>"
 Also, I made an email for an admin user: tep.tallyhq@gmail.com
 
  You shouldn't need it since you'll be running it locally, so feel free to use your own email. I know the password for the TEP email so let me know!
+```
+pip install django-cors-headers
+```
 
 ##### Running the project
 Now, we need to set up the project:
@@ -70,14 +73,23 @@ python3 manage.py runserver
 (haven't done this yet)
 https://medium.com/swlh/django-angular-4-a-powerful-web-application-60b6fb39ef34
 
+[Django RESTful Framework](https://www.django-rest-framework.org/tutorial/quickstart/)
+```
+pip3 install djangorestframework
+```
+
 ## Testing
 All tests are in `tallyhq/tests.py`. To run all tests, run:
 ```
 coverage run --source='.' manage.py test tallyhq
 ```
 And to view a coverage report, run `coverage report`
-
 Note: every time you change a model, you need to migrate the database again.
+
+To get into a shell:
+```
+python3 manage.py shell
+```
 
 [Many to many example](https://gist.github.com/jacobian/827937)
 
