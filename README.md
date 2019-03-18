@@ -58,8 +58,25 @@ Also, I made an email for an admin user: tep.tallyhq@gmail.com
 pip install django-cors-headers
 ```
 
-##### Running the project
-Now, we need to set up the project:
+We also need a rest framework for the api. Run
+```
+pip3 install djangorestframework
+pip3 install djangorestframework-jwt
+```
+[Django RESTful Framework](https://www.django-rest-framework.org/tutorial/quickstart/)
+
+#### Django + Angular
+(haven't done this yet)
+https://medium.com/swlh/django-angular-4-a-powerful-web-application-60b6fb39ef34
+
+## Running the project
+First, if you are using a virtualenv, locate the environment (should be named `env`) and run
+```
+source env/bin/activate
+```
+so that python can find the right django and other python packages.
+
+Now, we need to run the project's backend (django). Within `/backend` run
 ```
 python3 manage.py makemigrations
 python3 manage.py migrate
@@ -69,14 +86,12 @@ Then try running the server:
 python3 manage.py runserver
 ```
 
-#### Django + Angular
-(haven't done this yet)
-https://medium.com/swlh/django-angular-4-a-powerful-web-application-60b6fb39ef34
+Now we need to run the frontend. Within `/djangular` run
+```
+ng serve
+```
+It should compile and you should visit `localhost:4200` to view the webapp.
 
-[Django RESTful Framework](https://www.django-rest-framework.org/tutorial/quickstart/)
-```
-pip3 install djangorestframework
-```
 
 ## Testing
 All tests are in `tallyhq/tests.py`. To run all tests, run:
