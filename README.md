@@ -92,6 +92,8 @@ ng serve
 ```
 It should compile and you should visit `localhost:4200` to view the webapp.
 
+## CSS
+We're using [Bulma CSS](https://bulma.io/) for styling
 
 ## Testing
 All tests are in `tallyhq/tests.py`. To run all tests, run:
