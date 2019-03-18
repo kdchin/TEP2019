@@ -1,28 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { APIService } from '../api.service';
+import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-item-create',
   templateUrl: './item-create.component.html',
   styleUrls: ['./item-create.component.css']
 })
-export class ItemCreateComponent implements OnInit {
-  constructor(private apiService: APIService) { }
+export class ItemCreateComponent {
+  constructor(private apiService: ApiService) { }
+  new_item = new Item('', '', null, null, true);
 
-  ngOnInit() {
+  public onSubmit() {
+    this.createItem();
+    // TODO: reload page
+    this.new_item = new Item('', '', null, null, true);
   }
 
-  createContact() {
-
-    var item = {
-      name: "pens",
-      unit_label_name: "packs",
-      max_units: 8,
-      qty_per_unit: 10,
-      active: true,
-    };
-    this.apiService.createItem(item).subscribe((response) => {
+  public createItem() {
+    this.apiService.create("items", this.new_item).subscribe((response) => {
       console.log(response);
     });
-  };
+  }
 }

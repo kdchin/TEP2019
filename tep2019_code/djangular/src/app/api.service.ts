@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    // 'Access-Control-Allow-Origin': '*',
+    // 'Authorization': 'my-auth-token'
+    'Accept': 'application/json',
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class APIService {
-  constructor(httpClient: HttpClient) {
-    this.httpClient = httpClient;
-    this.API_URL = 'http://localhost:8000/api';
-  }
-
-  // items methods
+export class ApiService {
+  // private API_URL: string = 'http://localhost:8000/api';
+  private API_URL = 'http://127.0.0.1:8000/api';
+  constructor(private httpClient: HttpClient) { }
   fetchAll(type) {
     return this.httpClient.get(`${this.API_URL}/${type}`);
   }
-
-  createRecord(type, jsonData) {
-    return this.httpClient.post(`${this.API_URL}/type/`, jsonData);
+  create(type, jsonData) {
+    return this.httpClient.post(`${this.API_URL}/${type}/`, jsonData, httpOptions);
+    // return this.httpClient.post(`${this.API_URL}/${type}/`, jsonData);
   }
 }

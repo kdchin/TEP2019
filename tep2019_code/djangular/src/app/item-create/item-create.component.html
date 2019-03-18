@@ -1,6 +1,39 @@
-<h1>
+<h1 class="title">
   Create Item
 </h1>
-<button (click)="createItem()">
-  Create Item
-</button>
+<form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input id="name" class="input" type="text" placeholder="pencils" required [(ngModel)]="new_item.name" name="name">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Label Name</label>
+    <div class="control">
+      <input id="unit_label_name" class="input" type="text" placeholder="packs" required
+        [(ngModel)]="new_item.unit_label_name" name="unit_label_name">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Max Units</label>
+    <div class="control">
+      <input id="max_units" class="input" type="text" placeholder="10" required [(ngModel)]="new_item.max_units"
+        name="max_units">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Quantity Per Unit</label>
+    <div class="control">
+      <input id="qty_per_unit" class="input" type="text" placeholder="10" required [(ngModel)]="new_item.qty_per_unit"
+        name="qty_per_unit">
+    </div>
+  </div>
+
+  <div class="control">
+    <button type="submit" class="button is-primary">Create Item</button>
+  </div>
+</form>

@@ -9,9 +9,17 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'first_name', 'last_name')
 
 
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ('shopping_date', 'uploaded',
+                  'waiver_signed', 'teacher', 'items')
+
+
+# TODO: make one-way serializers for Order and Item
+
 class ItemSerializer(serializers.ModelSerializer):
-    # TODO: do this for the orders class
-    # user = serializers.StringRelatedField(many=False)
+    orders = OrderSerializer(many=True, read_only=True)
 
     class Meta:
         model = Item

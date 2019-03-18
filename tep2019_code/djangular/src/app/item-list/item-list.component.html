@@ -1,8 +1,9 @@
-<h1>
+<h1 class="title">
   Items
 </h1>
 <div>
-  <table style="width:100%">
+  <button class="button is-info" (click)="toggleShowCreate()">New Item</button>
+  <table class="table is-hoverable is-fullwidth">
     <tr>
       <th>Name</th>
       <th>Label Name</th>
@@ -18,4 +19,7 @@
       <td> {{ item.active }} </td>
     </tr>
   </table>
+  <div [hidden]="!shouldShowCreate">
+    <app-item-create></app-item-create>
+  </div>
 </div>

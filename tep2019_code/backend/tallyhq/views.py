@@ -15,7 +15,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -24,7 +24,8 @@ class ItemViewSet(viewsets.ModelViewSet):
     """
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    # TODO: authenticate with admin user (cat)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(user=self.request.user)
