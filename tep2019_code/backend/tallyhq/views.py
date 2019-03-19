@@ -34,3 +34,10 @@ class ItemViewSet(viewsets.ModelViewSet):
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
+    
+class SchoolViewSet(viewsets.ModelViewSet):
+    """
+    Provides basic CRUD functions for the Item model
+    """
+    queryset = School.objects.all()
+    serializer_class = SchoolSerializer

@@ -21,7 +21,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ('id', 'name', 'unit_label_name',
-                  'max_units', 'qty_per_unit', 'active')
+                  'max_units', 'qty_per_unit', 'orders', 'active')
 
 
 # TODO incorporate school serializer
@@ -30,3 +30,8 @@ class TeacherSerializer(serializers.ModelSerializer):
         model = Teacher
         fields = ('id', 'first_name', 'last_name',
                   'email', 'phone', 'school', 'active')
+
+class SchoolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = School
+        fields = ('id', 'name', 'active')

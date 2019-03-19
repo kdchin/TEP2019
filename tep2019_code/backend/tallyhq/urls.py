@@ -16,9 +16,15 @@ teacher_list = TeacherViewSet.as_view({
     'post': 'create'
 })
 
+school_list = SchoolViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
 urlpatterns = [
     path(r'api/', include(router.urls)),
     path(r'api/items/', item_list, name='item-list'),
     path(r'api/teachers/', teacher_list, name='teacher-list'),
+    path(r'api/schools/', school_list, name='school-list'),
     # path(r'', index, name='index')
 ]

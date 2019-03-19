@@ -10,6 +10,8 @@ import { ItemCreateComponent } from './item-create/item-create.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { PhonePipe } from './phone.pipe';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
+import { SchoolListComponent } from './school-list/school-list.component';
+import { SchoolCreateComponent } from './school-create/school-create.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { TeacherCreateComponent } from './teacher-create/teacher-create.componen
     TeacherListComponent,
     PhonePipe,
     TeacherCreateComponent,
+    SchoolListComponent,
+    SchoolCreateComponent
   ],
   imports: [
     BrowserModule,
