@@ -7,12 +7,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
+import { SchoolListComponent } from './school-list/school-list.component';
+import { SchoolCreateComponent } from './school-create/school-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
-    ItemCreateComponent
+    ItemCreateComponent,
+    SchoolListComponent,
+    SchoolCreateComponent
   ],
   imports: [
     BrowserModule,

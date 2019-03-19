@@ -25,3 +25,8 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = ('id', 'name', 'unit_label_name',
                   'max_units', 'qty_per_unit', 'orders', 'active')
+
+class SchoolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = School
+        fields = ('id', 'name', 'active')

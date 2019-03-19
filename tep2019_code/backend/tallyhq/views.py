@@ -29,3 +29,10 @@ class ItemViewSet(viewsets.ModelViewSet):
 
     # def perform_create(self, serializer):
     #     serializer.save(user=self.request.user)
+
+class SchoolViewSet(viewsets.ModelViewSet):
+    """
+    Provides basic CRUD functions for the Item model
+    """
+    queryset = School.objects.all()
+    serializer_class = SchoolSerializer
