@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Item } from '../models';
 
@@ -8,11 +8,14 @@ import { Item } from '../models';
   styleUrls: ['./item-create.component.css']
 })
 export class ItemCreateComponent {
+  @Output() itemChange = new EventEmitter<Item>();
+
   constructor(private apiService: ApiService) { }
   new_item = new Item('', '', null, null, true);
 
   public onSubmit() {
     this.createItem();
+    this.itemChange.emit(this.new_item);
     // TODO: reload page
     this.new_item = new Item('', '', null, null, true);
   }

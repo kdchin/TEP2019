@@ -17,6 +17,11 @@ export class ItemListComponent implements OnInit {
     this.getItems();
   }
 
+  public onNewItem(newItem: Item) {
+    this.items.push(newItem);
+    this.toggleShowCreate();
+  }
+
   public toggleShowCreate() {
     this.shouldShowCreate = !this.shouldShowCreate;
   }
