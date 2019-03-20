@@ -22,6 +22,11 @@ export class TeacherListComponent implements OnInit {
     this.shouldShowCreate = !this.shouldShowCreate;
   }
 
+  public onNewTeacher(newTeacher: Teacher) {
+    this.teachers.push(newTeacher);
+    this.toggleShowCreate();
+  }
+
   public getTeachers() {
     this.apiService.fetchAll("teachers").subscribe((data: Array<Teacher>) => {
       this.teachers = data;
