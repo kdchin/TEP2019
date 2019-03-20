@@ -23,5 +23,5 @@
   </table>
 </div>
 <div [hidden]="!shouldShowCreate">
-  <app-teacher-create></app-teacher-create>
+  <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
 </div>
