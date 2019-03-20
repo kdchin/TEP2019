@@ -17,11 +17,16 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 # TODO: make one-way serializers for Order and Item
-
 class ItemSerializer(serializers.ModelSerializer):
-    orders = OrderSerializer(many=True, read_only=True)
-
     class Meta:
         model = Item
         fields = ('id', 'name', 'unit_label_name',
-                  'max_units', 'qty_per_unit', 'orders', 'active')
+                  'max_units', 'qty_per_unit', 'active')
+
+
+# TODO incorporate school serializer
+class TeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        fields = ('id', 'first_name', 'last_name',
+                  'email', 'phone', 'school', 'active')
