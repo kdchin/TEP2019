@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Item } from '../models';
 
 @Component({
   selector: 'app-item-list',
@@ -8,7 +9,7 @@ import { ApiService } from '../api.service';
 })
 export class ItemListComponent implements OnInit {
 
-  private items: Array<object> = [];
+  private items: Array<Item> = [];
   shouldShowCreate = false;
   constructor(private apiService: ApiService) { }
 
@@ -21,7 +22,7 @@ export class ItemListComponent implements OnInit {
   }
 
   public getItems() {
-    this.apiService.fetchAll("items").subscribe((data: Array<object>) => {
+    this.apiService.fetchAll("items").subscribe((data: Array<Item>) => {
       this.items = data;
     });
   }

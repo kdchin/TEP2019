@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Item } from '../item';
+import { Item } from '../models';
 
 @Component({
   selector: 'app-item-create',

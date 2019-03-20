@@ -1,0 +1,24 @@
+<h1 class="title">
+  Teachers
+</h1>
+<div>
+  <button class="button is-info">New School</button>
+  <table class="table is-hoverable is-fullwidth">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>School</th>
+      <th>Active</th>
+    </tr>
+    <tr *ngFor="let teacher of teachers">
+      <td> {{ teacher.first_name }} </td>
+      <td> {{ teacher.last_name }} </td>
+      <td> {{ teacher.email }} </td>
+      <td> {{ teacher.phone | phone}} </td>
+      <td> {{ teacher.school }} </td>
+      <td> {{ teacher.active }} </td>
+    </tr>
+  </table>
+</div>
