@@ -27,3 +27,12 @@ export class Order {
         public teacher: Teacher,
     ) { }
 }
+
+export class OrderItem {
+    constructor(
+        public item: Item,
+        public order: Order,
+        public units_taken: number,
+    ) { }
+}
+

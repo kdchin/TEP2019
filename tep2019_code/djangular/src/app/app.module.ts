@@ -11,6 +11,7 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { PhonePipe } from './phone.pipe';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { OrderItemListComponent } from './order-item-list/order-item-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { OrderListComponent } from './order-list/order-list.component';
     PhonePipe,
     TeacherCreateComponent,
     OrderListComponent,
+    OrderItemListComponent,
   ],
   imports: [
     BrowserModule,

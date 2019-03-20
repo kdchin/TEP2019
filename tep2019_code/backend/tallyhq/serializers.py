@@ -22,7 +22,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('shopping_date', 'uploaded',
+        fields = ('id', 'shopping_date', 'uploaded',
                   'waiver_signed', 'teacher')
 
 
@@ -32,3 +32,12 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = ('id', 'name', 'unit_label_name',
                   'max_units', 'qty_per_unit', 'active')
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    item = ItemSerializer(many=False, read_only=True)
+    order = OrderSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = OrderItem
+        fields = ('id', 'item', 'order', 'units_taken')

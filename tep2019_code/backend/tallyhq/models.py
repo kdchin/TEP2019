@@ -56,13 +56,14 @@ class Order(models.Model):
 
 # Associative entity for order and item
 class OrderItem(models.Model):
+    # TODO: guarantee uniqueness of order/item pair
     order = models.ForeignKey(
         Order, related_name='order_items', on_delete=models.SET_NULL, null=True)
     item = models.ForeignKey(
         Item, related_name='order_items', on_delete=models.SET_NULL, null=True)
 
     # how many units of an item a teacher took (e.g. 8 (packs))
-    unit_quantity = models.IntegerField(validators=[MinValueValidator(0)])
+    units_taken = models.IntegerField(validators=[MinValueValidator(0)])
 
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
