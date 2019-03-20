@@ -10,7 +10,7 @@ import { Item } from '../models';
 export class ItemListComponent implements OnInit {
 
   private items: Array<Item> = [];
-  shouldShowCreate = false;
+  private shouldShowCreate = false;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {

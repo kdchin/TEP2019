@@ -11,11 +11,15 @@ export class TeacherListComponent implements OnInit {
 
 
   private teachers: Array<Teacher> = [];
-  shouldShowCreate = false;
+  private shouldShowCreate = false;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.getTeachers();
+  }
+
+  public toggleShowCreate() {
+    this.shouldShowCreate = !this.shouldShowCreate;
   }
 
   public getTeachers() {
