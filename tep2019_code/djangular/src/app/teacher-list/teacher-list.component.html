@@ -1,8 +1,8 @@
 <h1 class="title">
   Teachers
 </h1>
-<div>
-  <button class="button is-info">New School</button>
+<div class="container">
+  <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
   <table class="table is-hoverable is-fullwidth">
     <tr>
       <th>First Name</th>
@@ -21,4 +21,7 @@
       <td> {{ teacher.active }} </td>
     </tr>
   </table>
+</div>
+<div [hidden]="!shouldShowCreate">
+  <app-teacher-create></app-teacher-create>
 </div>
