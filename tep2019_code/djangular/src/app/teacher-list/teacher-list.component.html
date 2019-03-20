@@ -21,7 +21,7 @@
       <td> {{ teacher.active }} </td>
     </tr>
   </table>
-</div>
-<div [hidden]="!shouldShowCreate">
-  <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
+  <div [hidden]="!shouldShowCreate">
+    <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
+  </div>
 </div>
