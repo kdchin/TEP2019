@@ -20,6 +20,6 @@
     </tr>
   </table>
   <div [hidden]="!shouldShowCreate">
-    <app-item-create></app-item-create>
+    <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
   </div>
 </div>
