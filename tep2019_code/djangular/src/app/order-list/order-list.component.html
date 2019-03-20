@@ -1,0 +1,21 @@
+<h1 class="title">
+  Orders
+</h1>
+<div>
+  <!-- TODO: link this to the normal form page -->
+  <button class="button is-info">New Order</button>
+  <table class="table is-hoverable is-fullwidth">
+    <tr>
+      <th>Date</th>
+      <th>Teacher</th>
+      <th>Uploaded</th>
+      <th>Waiver Signed</th>
+    </tr>
+    <tr *ngFor="let order of orders">
+      <td> {{ order.shopping_date | date }} </td>
+      <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
+      <td> {{ order.uploaded }} </td>
+      <td> {{ order.waiver_signed }} </td>
+    </tr>
+  </table>
+</div>

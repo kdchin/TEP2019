@@ -18,3 +18,12 @@ export class Teacher {
         public active: boolean
     ) { }
 }
+
+export class Order {
+    constructor(
+        public shopping_date: Date,
+        public uploaded: boolean,
+        public waiver_signed: boolean,
+        public teacher: Teacher,
+    ) { }
+}
