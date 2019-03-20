@@ -8,3 +8,13 @@ export class Item {
         public active: boolean
     ) { }
 }
+
+export class Teacher {
+    constructor(
+        public first_name: string,
+        public last_name: string,
+        public email: number,
+        public phone: number,
+        public active: boolean
+    ) { }
+}

@@ -7,12 +7,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
+import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { PhonePipe } from './phone.pipe';
+import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
-    ItemCreateComponent
+    ItemCreateComponent,
+    TeacherListComponent,
+    PhonePipe,
+    TeacherCreateComponent,
   ],
   imports: [
     BrowserModule,
