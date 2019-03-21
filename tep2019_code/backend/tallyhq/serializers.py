@@ -16,7 +16,7 @@ class OrderSerializer(serializers.ModelSerializer):
                   'waiver_signed', 'teacher', 'items')
 
 
-# TODO: make one-way serializers for Order and Item
+# TODO: make one-way serializers for Order and Item fhg
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
