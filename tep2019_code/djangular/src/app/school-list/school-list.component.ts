@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { School } from '../models';
 
 @Component({
   selector: 'app-school-list',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchoolListComponent implements OnInit {
 
-  constructor() { }
+  private schools: Array<School> = [];
+  private shouldShowCreate = false;
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.getSchools();
+  }
+
+  public onNewSchool(newSchool: School) {
+    this.schools.push(newSchool);
+    this.toggleShowCreate();
+  }
+
+  public toggleShowCreate() {
+    this.shouldShowCreate = !this.shouldShowCreate;
+  }
+
+  public getSchools() {
+    this.apiService.fetchAll("schools").subscribe((data: Array<School>) => {
+      this.schools = data;
+    });
   }
 
 }

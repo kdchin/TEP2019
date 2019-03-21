@@ -70,3 +70,5 @@ class ValidationPassword(models.Model):
     digest = models.CharField(max_length=30)
     date = models.DateField()
     current = models.BooleanField(default=True)
+
+     
