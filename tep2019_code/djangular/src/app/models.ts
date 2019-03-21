@@ -18,3 +18,10 @@ export class Teacher {
         public active: boolean
     ) { }
 }
+
+export class School {
+    constructor(
+        public name: string,
+        public active: boolean
+    ) { }
+}
