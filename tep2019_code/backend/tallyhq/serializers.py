@@ -35,3 +35,5 @@ class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
         fields = ('id', 'name', 'active')
+
+
