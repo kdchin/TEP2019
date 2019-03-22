@@ -1,0 +1,28 @@
+.navbar {
+    background-color: #494949;
+    min-height: 80px;
+  }
+  
+  .navbar-item {
+    color: white;
+    font-size: 22px;
+  }
+
+  .navbar-item2 {
+    position: relative;
+    float: right;
+  }
+
+  a.navbar-logout {
+    text-align: right;
+  }
+
+  .leftlogo {
+    min-height: 50px;
+    padding-left: 40px;
+  }
+
+  .rightlogo {
+    min-height: 50px;
+    padding-left: 20px;
+  }
