@@ -26,12 +26,12 @@ class OrderSerializer(serializers.ModelSerializer):
                   'waiver_signed', 'teacher')
 
 
-# TODO: make one-way serializers for Order and Item
+# TODO: make one-way serializers for Order and Item fhg
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ('id', 'name', 'unit_label_name',
-                  'max_units', 'qty_per_unit', 'active')
+                  'max_units', 'qty_per_unit', 'orders', 'active')
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -41,3 +41,9 @@ class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = ('id', 'item', 'order', 'units_taken')
+
+
+class SchoolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = School
+        fields = ('id', 'name', 'active')

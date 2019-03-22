@@ -44,3 +44,11 @@ class OrderViewSet(viewsets.ModelViewSet):
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
+
+
+class SchoolViewSet(viewsets.ModelViewSet):
+    """
+    Provides basic CRUD functions for the Item model
+    """
+    queryset = School.objects.all()
+    serializer_class = SchoolSerializer

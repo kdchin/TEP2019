@@ -10,14 +10,14 @@ class Item(models.Model):
     unit_label_name = models.CharField(max_length=15)
 
     # maximum number of units that can be taken for this item
-    max_units = models.IntegerField(validators=[MinValueValidator(1)])
+    max_units = models.IntegerField(validators=[MinValueValidator(1)]) 
 
     # number of the item per unit (e.g. 8 (pencils per pack))
     qty_per_unit = models.IntegerField(validators=[MinValueValidator(1)])
 
     # also has attribute: 'orders' as defined by ManyToMany in Order
 
-    # whether or not the item is active
+    # whether or not the item is active.
     active = models.BooleanField(default=True)
 
 
@@ -71,3 +71,5 @@ class ValidationPassword(models.Model):
     digest = models.CharField(max_length=30)
     date = models.DateField()
     current = models.BooleanField(default=True)
+
+     
