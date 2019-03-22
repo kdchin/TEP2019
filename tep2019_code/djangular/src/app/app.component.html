@@ -1,19 +1,14 @@
-<nav class="navbar">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="">
-      <img src="../assets/tep_logo.png" class = "leftlogo"/>
-      <img src="../assets/shopping_cart.png" class = "rightlogo"/>
+<nav class="header">
+  <div class="header-items">
+    <a href="" class="logo">
+        <img width="70" src="../assets/shopping_cart.png" />
     </a>
+    <a [routerLink]="'/items'"> Items </a>
+    <a [routerLink]="'/teachers'"> Teachers </a>
+    <a [routerLink]="'/orders'"> Orders </a>
+    <a [routerLink]="'/order-items'"> All Ordered Items </a>
+    <a [routerLink]="'/schools'"> Schools </a>
   </div>
-  <a [routerLink]="'/items'" class="navbar-item"> Items </a>
-  <a [routerLink]="'/teachers'" class="navbar-item"> Teachers </a>
-  <a [routerLink]="'/orders'" class="navbar-item"> Orders </a>
-  <a [routerLink]="'/order-items'" class="navbar-item"> All Ordered Items </a>
-  <a [routerLink]="'/schools'" class="navbar-item"> Schools </a>
-
-
-  <a class="navbar-logout"> Logout </a>
-
 </nav>
 <section class="section">
   <div class="container">
@@ -23,5 +18,6 @@
   </div>
 </section>
 <div class="footer">
-  <p>© 2019 <a class="footer-link" href="https://theeducationpartnership.org">The Education Partnership.</a> All Rights Reserved.</p>
+    <a href="https://theeducationpartnership.org/"><img width="125" src="../assets/tep_logo.png" /></a>
+  <p>© 2019 The Education Partnership. All Rights Reserved.</p>
 </div>

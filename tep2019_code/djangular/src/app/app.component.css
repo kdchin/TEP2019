@@ -1,18 +1,48 @@
-.navbar {
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
     background-color: #494949;
-    min-height: 80px;
+    padding: 5px 0;
   }
   
-  .navbar-item {
-    color: white;
-    font-size: 22px;
-  }
+.header-items {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+    align-items: center;
+    justify-items: center;
+}
 
-<<<<<<< HEAD
-a.footer-link {
-    color: #8D8D8D;
-    font-size: 14px;
-}  
+.header a {
+    color: white;
+    font-size: 20px;
+}
+
+.section {
+    padding-top: 100px;
+}
+
+.header a:after {
+    display:block;
+    content: '';
+    border-bottom: solid 3px #EC9C2E;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+}
+.header a:hover:after { transform: scaleX(1); }
+
+@media screen and (max-width: 650px) {
+    .header {
+        padding: 15px 0;
+    }
+
+    .header-items {
+        grid-template-columns: repeat(4, auto);
+    }
+}
 
 .footer {
     position: fixed;
@@ -21,26 +51,11 @@ a.footer-link {
     background-color: #494949;
     padding: 20px 0px;
     color: #8D8D8D;
-    font-size: 14px;
+    font-size: 10px;
     text-align: center;
 }
-=======
-  .navbar-item2 {
-    position: relative;
-    float: right;
-  }
 
-  a.navbar-logout {
-    text-align: right;
-  }
-
-  .leftlogo {
-    min-height: 50px;
-    padding-left: 40px;
-  }
-
-  .rightlogo {
-    min-height: 50px;
-    padding-left: 20px;
-  }
->>>>>>> c56c03fda18e153b2d1aece754dc4605e7feadd8
+a.footer-link {
+    color: #8D8D8D;
+    font-size: 14px;
+}  
