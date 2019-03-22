@@ -7,6 +7,11 @@ a {
     font-size: 20px;
   }  
 
+a.footer-link {
+    color: #8D8D8D;
+    font-size: 14px;
+}  
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -14,5 +19,6 @@ a {
     background-color: #494949;
     padding: 20px 0px;
     color: #8D8D8D;
+    font-size: 14px;
     text-align: center;
 }
