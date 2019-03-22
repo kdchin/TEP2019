@@ -24,7 +24,8 @@
       <td>{{order_item.item.max_units}}</td>
       <td>{{order_item.item.qty_per_unit}}</td>
       <td>{{order_item.item.qty_per_unit * order_item.units_taken}} {{order_item.item.unit_label_name}}</td>
-      <td><button class="button is-danger" (click)="deleteOrderItem(order_item)">delete</button></td>
+      <td><button class=" button is-danger" (click)="deleteOrderItem(order_item)">delete</button>
+      </td>
     </tr>
   </table>
 </div>

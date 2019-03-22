@@ -1,11 +1,18 @@
-<div (click)="beginEdit(value)" (focus)="beginEdit(value)" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+<div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
   <div *ngIf="editing">
-    <input [required]="required" (blur)="onBlur($event)" [name]="value" [(ngModel)]="value" [placeholder]="label" />
+    <div class="field">
+      <div class="control">
+        <input class="input is-small" [required]="required" (blur)="onBlur($event)" [name]="value" [(ngModel)]="value"
+          [placeholder]="label" />
+      </div>
+    </div>
   </div>
   <div *ngIf="!editing">
-    <span href="#" tabindex="0">{{value}}</span>
+    <span (click)="onTextClick()">
+      <span href="#" tabindex="0">{{value}}</span>
+    </span>
     &nbsp;
-    <span [hidden]="!showEditIcon">
+    <span [hidden]="!showEditIcon" (click)="beginEdit(value)" (focus)="beginEdit(value)">
       <span class="icon is-small"><a><i class="material-icons" style="font-size:1em;">edit</i></a></span>
     </span>
   </div>

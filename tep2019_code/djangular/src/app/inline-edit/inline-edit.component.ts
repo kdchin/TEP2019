@@ -17,6 +17,7 @@ const VALUE_ACCESSOR = {
 export class InlineEditComponent implements ControlValueAccessor {
   @Input() label: string = "Enter value here";
   @Input() onChange: any = Function.prototype;
+  @Input() onTextClick: any = Function.prototype;
   @Input() required: boolean = true;
   private _value: string = '';
   private preValue: string = '';
