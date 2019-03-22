@@ -1,12 +1,14 @@
 .navbar {
     background-color: #494949;
-}
-
-a {
+    min-height: 80px;
+  }
+  
+  .navbar-item {
     color: white;
-    font-size: 20px;
-  }  
+    font-size: 22px;
+  }
 
+<<<<<<< HEAD
 a.footer-link {
     color: #8D8D8D;
     font-size: 14px;
@@ -22,3 +24,23 @@ a.footer-link {
     font-size: 14px;
     text-align: center;
 }
+=======
+  .navbar-item2 {
+    position: relative;
+    float: right;
+  }
+
+  a.navbar-logout {
+    text-align: right;
+  }
+
+  .leftlogo {
+    min-height: 50px;
+    padding-left: 40px;
+  }
+
+  .rightlogo {
+    min-height: 50px;
+    padding-left: 20px;
+  }
+>>>>>>> c56c03fda18e153b2d1aece754dc4605e7feadd8

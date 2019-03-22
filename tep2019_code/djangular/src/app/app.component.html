@@ -1,7 +1,8 @@
 <nav class="navbar">
   <div class="navbar-brand">
     <a class="navbar-item" href="">
-      <img src="../assets/tep_logo.png" />
+      <img src="../assets/tep_logo.png" class = "leftlogo"/>
+      <img src="../assets/shopping_cart.png" class = "rightlogo"/>
     </a>
   </div>
   <a [routerLink]="'/items'" class="navbar-item"> Items </a>
@@ -9,6 +10,10 @@
   <a [routerLink]="'/orders'" class="navbar-item"> Orders </a>
   <a [routerLink]="'/order-items'" class="navbar-item"> All Ordered Items </a>
   <a [routerLink]="'/schools'" class="navbar-item"> Schools </a>
+
+
+  <a class="navbar-logout"> Logout </a>
+
 </nav>
 <section class="section">
   <div class="container">
