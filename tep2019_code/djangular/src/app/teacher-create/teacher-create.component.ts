@@ -13,16 +13,18 @@ export class TeacherCreateComponent {
 
   constructor(private apiService: ApiService) { }
 
-  new_teacher = new Teacher('', '', '', '', true);
+  new_teacher = new Teacher(null, '', '', '', '', true);
 
   public onSubmit() {
     this.createTeacher();
     this.teacherChange.emit(this.new_teacher);
     // TODO: reload page
-    this.new_teacher = new Teacher('', '', '', '', true);
+    this.new_teacher = new Teacher(null, '', '', '', '', true);
   }
 
   public createTeacher() {
+    // TODO: validation
+    if (this.new_teacher.id === null) return;
     this.apiService.create("teachers", this.new_teacher).subscribe((response) => {
       console.log(response);
     });

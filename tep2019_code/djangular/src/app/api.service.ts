@@ -23,8 +23,17 @@ export class ApiService {
   fetchAll(type) {
     return this.httpClient.get(`${this.API_URL}/${type}`);
   }
+
   create(type, jsonData) {
     return this.httpClient.post(`${this.API_URL}/${type}/`, jsonData, httpOptions);
     // return this.httpClient.post(`${this.API_URL}/${type}/`, jsonData);
+  }
+
+  delete(type, id) {
+    return this.httpClient.delete(`${this.API_URL}/${type}/${id}`);
+  }
+
+  update(type, jsonData) {
+    return this.httpClient.put(`${this.API_URL}/${type}/${jsonData.id}`, jsonData);
   }
 }
