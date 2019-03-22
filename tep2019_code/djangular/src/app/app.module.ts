@@ -15,6 +15,8 @@ import { OrderItemListComponent } from './order-item-list/order-item-list.compon
 import { InlineEditComponent } from './inline-edit/inline-edit.component';
 import { SchoolListComponent } from './school-list/school-list.component';
 import { SchoolCreateComponent } from './school-create/school-create.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SchoolCreateComponent } from './school-create/school-create.component';
     OrderItemListComponent,
     InlineEditComponent,
     SchoolListComponent,
-    SchoolCreateComponent
+    SchoolCreateComponent,
+    OrderDetailComponent,
+    TeacherDetailComponent
   ],
   imports: [
     BrowserModule,
