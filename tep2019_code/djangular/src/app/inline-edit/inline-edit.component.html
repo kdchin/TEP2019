@@ -1,7 +1,13 @@
 <div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
   <div *ngIf="editing">
     <div class="field">
-      <div class="control">
+      <div *ngIf="fieldType === 'checkbox'">
+        <label type="checkbox">
+          <input [required]="required" (blur)="onBlur($event)" [name]="value" [(ngModel)]="value" [placeholder]="label"
+            type="checkbox" />
+        </label>
+      </div>
+      <div *ngIf="fieldType === 'text'" class="control">
         <input class="input is-small" [required]="required" (blur)="onBlur($event)" [name]="value" [(ngModel)]="value"
           [placeholder]="label" />
       </div>
@@ -9,7 +15,7 @@
   </div>
   <div *ngIf="!editing">
     <span (click)="onTextClick()">
-      <span href="#" tabindex="0">{{value}}</span>
+      <span href="#" tabindex="0">{{displayValue(value)}}</span>
     </span>
     &nbsp;
     <span [hidden]="!showEditIcon" (click)="beginEdit(value)" (focus)="beginEdit(value)">

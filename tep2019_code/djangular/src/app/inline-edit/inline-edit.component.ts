@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, Renderer, forwardRef } from '@angular/core';
+import { Component, Input, ViewChild, Renderer, forwardRef, PipeTransform } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const VALUE_ACCESSOR = {
@@ -17,10 +17,12 @@ const VALUE_ACCESSOR = {
 export class InlineEditComponent implements ControlValueAccessor {
   @Input() label: string = "Enter value here";
   @Input() onChange: any = Function.prototype;
+  @Input() displayPipe: PipeTransform;
   @Input() onTextClick: any = Function.prototype;
+  @Input() fieldType: string = "text"; // right now only supports "text" and "checkbox"
   @Input() required: boolean = true;
-  private _value: string = '';
-  private preValue: string = '';
+  private _value: any = null;
+  private preValue: any = null;
   private editing: boolean = false;
   private showEditIcon: boolean = false;
   public onTouched: any = Function.prototype;
@@ -33,6 +35,10 @@ export class InlineEditComponent implements ControlValueAccessor {
     if (v !== this._value) {
       this._value = v;
     }
+  }
+
+  public displayValue(v) {
+    return this.displayPipe ? this.displayPipe.transform(v) : v;
   }
 
   writeValue(value: any) {
@@ -49,7 +55,7 @@ export class InlineEditComponent implements ControlValueAccessor {
 
   onBlur($event: Event) {
     this.editing = false;
-    if (this._value == "") {
+    if (this._value === "") {
       this._value = this.preValue;
     } else {
       this.onChange(this.value);

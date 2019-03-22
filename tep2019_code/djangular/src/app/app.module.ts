@@ -9,6 +9,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { PhonePipe } from './phone.pipe';
+import { BoolPipe } from './bool.pipe';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderItemListComponent } from './order-item-list/order-item-list.component';
@@ -19,16 +20,17 @@ import { SchoolCreateComponent } from './school-create/school-create.component';
 @NgModule({
   declarations: [
     AppComponent,
+    PhonePipe,
+    BoolPipe,
     ItemListComponent,
     ItemCreateComponent,
     TeacherListComponent,
-    PhonePipe,
     TeacherCreateComponent,
     OrderListComponent,
     OrderItemListComponent,
     InlineEditComponent,
     SchoolListComponent,
-    SchoolCreateComponent
+    SchoolCreateComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,13 +12,27 @@
       <th>School</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let teacher of teachers">
-      <td> {{ teacher.first_name }} </td>
-      <td> {{ teacher.last_name }} </td>
-      <td> {{ teacher.email }} </td>
-      <td> {{ teacher.phone | phone}} </td>
+    <tr *ngFor="let teacher of teachers; let i = index">
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher(i, 'first_name')"></app-inline-edit>
+      </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher(i, 'last_name')"></app-inline-edit>
+      </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.email" [onChange]="updateTeacher(i, 'email')"></app-inline-edit>
+      </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher(i, 'phone')" [displayPipe]="phonePipe">
+        </app-inline-edit>
+      </td>
+      <!-- <td> {{ teacher.phone | phone}} </td> -->
       <td> {{ teacher.school }} </td>
-      <td> {{ teacher.active }} </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher(i, 'active')" [fieldType]="'checkbox'"
+          [displayPipe]="activePipe">
+        </app-inline-edit>
+      </td>
     </tr>
   </table>
   <div [hidden]="!shouldShowCreate">
