@@ -28,7 +28,7 @@
     transition: transform 200ms ease-in-out;
 }
 .header a.items:hover:after { transform: scaleX(1); }
-.header a.items:hover:after {  transform-origin:  0% 50%; }
+/* .header a.items:hover:after {  transform-origin:  0% 50%; } */
 
 .header a.logout {
     position: fixed;
