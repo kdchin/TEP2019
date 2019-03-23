@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Teacher } from '../models';
+import { PhonePipe } from '../phone.pipe';
+import { BoolPipe } from '../bool.pipe';
 
 @Component({
   selector: 'app-teacher-list',
@@ -12,6 +14,8 @@ export class TeacherListComponent implements OnInit {
 
   private teachers: Array<Teacher> = [];
   private shouldShowCreate = false;
+  private phonePipe = new PhonePipe();
+  private activePipe = new BoolPipe();
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -20,6 +24,15 @@ export class TeacherListComponent implements OnInit {
 
   public toggleShowCreate() {
     this.shouldShowCreate = !this.shouldShowCreate;
+  }
+
+  public updateTeacher(i: number, attr: string) {
+    return (new_value) => {
+      // TODO check validity of email/phone?
+      let teacher = this.teachers[i];
+      teacher[attr] = new_value;
+      this.apiService.update("teachers", teacher).subscribe();
+    }
   }
 
   public onNewTeacher(newTeacher: Teacher) {
