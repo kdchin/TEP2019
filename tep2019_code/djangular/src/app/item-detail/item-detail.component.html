@@ -1,9 +1,18 @@
 <div *ngIf="item">
-  <h2>{{item.name}} Details</h2>
-  <!-- <div><span>id: </span>{{teacher.id}}</div>
+  <h1>{{item.name}} Details</h1>
+  <div><span>id: </span>{{item.id}}</div>
   <div>
-    <label>first name:
-      <input [(ngModel)]="teacher.first_name" placeholder="first name"/>
+    <label>Name:
+      <input [(ngModel)]="item.name" placeholder="name"/>
     </label>
-  </div> -->
+    <label>Label Name:
+        <input [(ngModel)]="item.unit_label_name" placeholder="Units"/>
+    </label>
+    <label>Max Units:
+        <input [(ngModel)]="item.max_units" placeholder="8"/>
+    </label>
+    <label>Quantity Per Unit:
+        <input [(ngModel)]="item.qty_per_unit" placeholder="8"/>
+    </label>
+  </div>
 </div>
