@@ -22,6 +22,10 @@ export class ItemListComponent implements OnInit {
     this.toggleShowCreate();
   }
 
+  public onSelect(item: Item) {
+    this.selectedItem = item;
+  }
+
   public toggleShowCreate() {
     this.shouldShowCreate = !this.shouldShowCreate;
   }

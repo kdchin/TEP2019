@@ -18,6 +18,7 @@ import { SchoolListComponent } from './school-list/school-list.component';
 import { SchoolCreateComponent } from './school-create/school-create.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +34,9 @@ import { TeacherDetailComponent } from './teacher-detail/teacher-detail.componen
     InlineEditComponent,
     SchoolListComponent,
     SchoolCreateComponent,
-<<<<<<< HEAD
     OrderDetailComponent,
-    TeacherDetailComponent
-=======
->>>>>>> 8ee5a59bc11aaca45dd1b04fbe87be503d56191d
+    TeacherDetailComponent,
+    ItemDetailComponent
   ],
   imports: [
     BrowserModule,

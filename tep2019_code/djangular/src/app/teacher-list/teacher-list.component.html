@@ -12,7 +12,7 @@
       <th>School</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let teacher of teachers; let i = index">
+    <tr *ngFor="let teacher of teachers; let i = index" [class.selected]="teacher === selectedTeacher" (click)="onSelect(teacher)">
       <td>
         <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher(i, 'first_name')"></app-inline-edit>
       </td>

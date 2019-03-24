@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Teacher } from '../models';
 
 @Component({
   selector: 'app-teacher-detail',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teacher-detail.component.css']
 })
 export class TeacherDetailComponent implements OnInit {
-
+  @Input() teacher: Teacher;
+ 
   constructor() { }
-
+ 
   ngOnInit() {
   }
 

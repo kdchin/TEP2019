@@ -11,7 +11,7 @@
       <th>Quantity Per Unit</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let item of items">
+    <tr *ngFor="let item of items" [class.selected]="item === selectedItem" (click)="onSelect(item)">
       <td> {{ item.name }} </td>
       <td> {{ item.unit_label_name }} </td>
       <td> {{ item.max_units }} </td>
@@ -19,6 +19,7 @@
       <td> {{ item.active }} </td>
     </tr>
   </table>
+  <app-item-detail [item]="selectedItem"></app-item-detail>
   <div [hidden]="!shouldShowCreate">
     <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
   </div>
