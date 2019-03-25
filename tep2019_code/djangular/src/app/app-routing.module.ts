@@ -6,18 +6,18 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderItemListComponent } from './order-item-list/order-item-list.component';
 import { SchoolListComponent } from './school-list/school-list.component';
 import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
-
-
-
-
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
 
 const routes: Routes = [
   { path: 'items', component: ItemListComponent },
+  { path: 'items/:id', component: ItemDetailComponent },
   { path: 'teachers', component: TeacherListComponent },
+  { path: 'teachers/:id', component: TeacherDetailComponent },
   { path: 'order-items', component: OrderItemListComponent },
   { path: 'orders', component: OrderListComponent },
-  { path: 'schools', component: SchoolListComponent },
-  { path: 'teacher-detail', component: TeacherDetailComponent}
+  { path: 'orders/:id', component: OrderDetailComponent },
+  { path: 'schools', component: SchoolListComponent }
 ];
 
 @NgModule({

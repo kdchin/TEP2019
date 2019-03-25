@@ -11,10 +11,13 @@
       <th>Waiver Signed</th>
     </tr>
     <tr *ngFor="let order of orders">
-      <td> {{ order.shopping_date | date }} </td>
+      <a routerLink="/orders/{{order.id}}">
+        <td> {{ order.shopping_date | date }} </td>
+      </a>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>
       <td> {{ order.waiver_signed }} </td>
     </tr>
   </table>
+  <app-order-detail [order]="selectedOrder"></app-order-detail>
 </div>
