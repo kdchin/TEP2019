@@ -35,6 +35,7 @@
       </td>
     </tr>
   </table>
+  <app-teacher-detail [teacher]="selectedTeacher"></app-teacher-detail>
   <div [hidden]="!shouldShowCreate">
     <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
   </div>
