@@ -8,6 +8,7 @@ import { Item } from '../models';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
+  selectedItem: Item;
 
   private items: Array<Item> = [];
   private shouldShowCreate = false;
