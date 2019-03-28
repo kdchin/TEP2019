@@ -34,7 +34,7 @@
         </app-inline-edit>
       </td>
       <!-- <td> {{ teacher.phone | phone}} </td> -->
-      <td> {{ teacher.school }} </td>
+      <td> {{ teacher.school.name }} </td>
       <td>
         <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher(i, 'active')" [fieldType]="'checkbox'"
           [displayPipe]="activePipe">
