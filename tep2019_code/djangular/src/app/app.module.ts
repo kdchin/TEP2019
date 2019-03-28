@@ -19,6 +19,7 @@ import { SchoolCreateComponent } from './school-create/school-create.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { TeacherDetailComponent } from './teacher-detail/teacher-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { FilterPipe} from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
     SchoolCreateComponent,
     OrderDetailComponent,
     TeacherDetailComponent,
-    ItemDetailComponent
+    ItemDetailComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

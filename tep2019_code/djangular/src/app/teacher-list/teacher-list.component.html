@@ -3,6 +3,11 @@
 </h1>
 <div class="container">
   <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
+
+  <!-- search by teacher -->
+  <input [(ngModel)]="searchText" placeholder="search teachers">
+
+
   <table class="table is-hoverable is-fullwidth">
     <tr>
       <th>First Name</th>
@@ -12,7 +17,9 @@
       <th>School</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let teacher of teachers; let i = index" [class.selected]="teacher === selectedTeacher" (click)="onSelect(teacher)">
+
+    
+    <tr *ngFor="let teacher of teachers | filter : searchText; let i = index" [class.selected]="teacher === selectedTeacher" (click)="onSelect(teacher)">
       <a routerLink="/teachers/{{teacher.id}}">
         <td> {{ teacher.first_name }} </td>
       </a>
@@ -39,4 +46,8 @@
   <div [hidden]="!shouldShowCreate">
     <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
   </div>
+
+  
+
+
 </div>
