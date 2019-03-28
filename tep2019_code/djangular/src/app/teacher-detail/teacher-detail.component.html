@@ -1,0 +1,24 @@
+<div *ngIf="teacher">
+    <h2>{{teacher.first_name }} Details</h2>
+    <div><span>id: </span>{{teacher.id}}</div>
+    <div>
+      <label>First Name:
+          <input [(ngModel)]="teacher.first_name" placeholder="Cat"/>
+      </label>
+      <label>Last Name:
+          <input [(ngModel)]="teacher.last_name" placeholder="Price"/>
+      </label>
+      <label>Email:
+          <input [(ngModel)]="teacher.email" placeholder="cprce@example.com"/>
+      </label>
+      <label>Phone Number:
+          <input [(ngModel)]="teacher.phone" placeholder="4128888888"/>
+      </label>
+      <label>School:
+          <td> {{ teacher.school }} </td>
+      </label>
+      <label>Active:
+          <input [(ngModel)]="teacher.active" placeholder="false"/>
+      </label>
+    </div>
+  </div>

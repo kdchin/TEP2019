@@ -3,7 +3,6 @@
 </h1>
 <div>
   <!-- TODO: link this to the normal form page -->
-  <button class="button is-info">New Order</button>
   <table class="table is-hoverable is-fullwidth">
     <tr>
       <th>Date</th>
@@ -11,11 +10,14 @@
       <th>Uploaded</th>
       <th>Waiver Signed</th>
     </tr>
-    <tr *ngFor="let order of orders">
-      <td> {{ order.shopping_date | date }} </td>
+    <tr *ngFor="let order of orders" [class.selected]="order === selectedOrder" (click)="onSelect(order)">
+      <a routerLink="/orders/{{order.id}}">
+        <td> {{ order.shopping_date | date }} </td>
+      </a>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>
       <td> {{ order.waiver_signed }} </td>
     </tr>
   </table>
+  <app-order-detail [order]="selectedOrder"></app-order-detail>
 </div>

@@ -8,12 +8,17 @@ import { Order } from '../models';
   styleUrls: ['./order-list.component.css']
 })
 export class OrderListComponent implements OnInit {
+  selectedOrder: Order;
 
   private orders: Array<Order> = [];
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.getOrders();
+  }
+
+  public onSelect(order: Order) {
+    this.selectedOrder = order;
   }
 
   public getOrders() {

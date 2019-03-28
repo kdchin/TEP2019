@@ -11,15 +11,19 @@
       <th>Quantity Per Unit</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let item of items">
-      <td> {{ item.name }} </td>
+    <tr *ngFor="let item of items" [class.selected]="item === selectedItem" (click)="onSelect(item)">
+      <a routerLink="/items/{{item.id}}">
+        <td> {{ item.name }} </td>
+      </a>
       <td> {{ item.unit_label_name }} </td>
       <td> {{ item.max_units }} </td>
       <td> {{ item.qty_per_unit }} </td>
       <td> {{ item.active }} </td>
     </tr>
   </table>
+  <app-item-detail [item]="selectedItem"></app-item-detail>
   <div [hidden]="!shouldShowCreate">
     <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
   </div>
 </div>
+

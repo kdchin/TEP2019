@@ -1,15 +1,15 @@
-<nav class="navbar">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="">
-      <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
-      <img src="../assets/tep_logo.png" />
+<nav class="header">
+  <div class="header-content">
+    <a href="" class="logo">
+        <img width="70" src="../assets/shopping_cart.png" />
     </a>
+    <a [routerLink]="'/items'" class="items"> Items </a>
+    <a [routerLink]="'/teachers'" class="items"> Teachers </a>
+    <a [routerLink]="'/orders'" class="items"> Orders </a>
+    <a [routerLink]="'/order-items'" class="items"> All Ordered Items </a>
+    <a [routerLink]="'/schools'" class="items"> Schools </a>
+    <a class="logout"> Log out </a>
   </div>
-  <a [routerLink]="'/items'" class="navbar-item"> Items </a>
-  <a [routerLink]="'/teachers'" class="navbar-item"> Teachers </a>
-  <a [routerLink]="'/orders'" class="navbar-item"> Orders </a>
-  <a [routerLink]="'/order-items'" class="navbar-item"> All Ordered Items </a>
-  <a [routerLink]="'/schools'" class="navbar-item"> Schools </a>
 </nav>
 <section class="section">
   <div class="container">
@@ -18,3 +18,7 @@
     </div>
   </div>
 </section>
+<div class="footer">
+    <a href="https://theeducationpartnership.org/"><img width="100" src="../assets/tep_logo.png" /></a>
+  <p>© 2019 The Education Partnership. All Rights Reserved.</p>
+</div>

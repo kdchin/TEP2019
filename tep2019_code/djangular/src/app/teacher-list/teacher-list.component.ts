@@ -4,13 +4,15 @@ import { Teacher } from '../models';
 import { PhonePipe } from '../phone.pipe';
 import { BoolPipe } from '../bool.pipe';
 
+
 @Component({
   selector: 'app-teacher-list',
   templateUrl: './teacher-list.component.html',
   styleUrls: ['./teacher-list.component.css']
 })
 export class TeacherListComponent implements OnInit {
-
+  selectedTeacher: Teacher;
+  
 
   private teachers: Array<Teacher> = [];
   private shouldShowCreate = false;
@@ -24,6 +26,10 @@ export class TeacherListComponent implements OnInit {
 
   public toggleShowCreate() {
     this.shouldShowCreate = !this.shouldShowCreate;
+  }
+
+  public onSelect(teacher: Teacher) {
+    this.selectedTeacher = teacher;
   }
 
   public updateTeacher(i: number, attr: string) {

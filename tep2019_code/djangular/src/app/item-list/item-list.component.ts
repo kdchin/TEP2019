@@ -8,6 +8,7 @@ import { Item } from '../models';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
+  selectedItem: Item;
 
   private items: Array<Item> = [];
   private shouldShowCreate = false;
@@ -20,6 +21,10 @@ export class ItemListComponent implements OnInit {
   public onNewItem(newItem: Item) {
     this.items.push(newItem);
     this.toggleShowCreate();
+  }
+
+  public onSelect(item: Item) {
+    this.selectedItem = item;
   }
 
   public toggleShowCreate() {
