@@ -1,6 +1,6 @@
 <!-- TODO: new school option -->
 <div *ngIf="pages[current_page] === 'welcome'">
-  <h1 class="title">Welcome Teachers</h1>
+  <h1 class="title">Welcome Teachers!</h1>
   <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
     <div class="field">
       <label class="label">First Name</label>
@@ -52,44 +52,71 @@
       </label>
     </div>
   </form>
-  <button class="button is-primary" (click)=processTeacher()>Next</button>
+  <div class="has-text-centered">
+    <button class="button is-medium is-primary" (click)=processTeacher()>Next</button>
+  </div>
 </div>
+
+
+<!-- Waiver Page -->
+
 
 <div *ngIf="pages[current_page] === 'waiver'">
   <h1 class="title">Waiver</h1>
-  <img src="../../assets/temp_waiver.png">
-  <div class="columns">
+  <img src="../../assets/temp_waiver.png" class="center">
+  <div class="has-text-centered">
     <div class="column">
-      <button class="button is-primary" (click)=backPage()>Back</button>
-    </div>
-    <div class="column">
-      <button class="button is-primary" (click)=agreeToWaiver()>I Agree</button>
+      <button class="button is-medium is-primary" (click)=backPage()>Back</button>
+      <div class="divider"></div>
+      <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Agree</button>
     </div>
   </div>
 </div>
 
+
+<!-- Reminders Page -->
+
+
 <div *ngIf="pages[current_page] === 'reminders'">
   <h1 class="title">Shopping Reminders</h1>
+<<<<<<< HEAD
   <div class="section" id= "success">
     Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
   </div>
   <br>
 
   <div class="section" id= "success">
+=======
+  <div class="text section">
+    Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
+  </div>
+  <br>
+  <div class="text section">
+>>>>>>> e10f37228006f6e31e25f900281aa2e8eec91327
     Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
     any
     questions, please talk to a TEP employee.
   </div>
+<<<<<<< HEAD
   <br>
   <div class="columns">
     <div class="column">
       <button class="button is-primary" (click)=backPage()>Back</button>
     </div>
+=======
+  <div class="has-text-centered">
+>>>>>>> e10f37228006f6e31e25f900281aa2e8eec91327
     <div class="column">
-      <button class="button is-primary" (click)=advancePage()>I Understand</button>
+      <button class="button is-medium is-primary" (click)=backPage()>Back</button>
+      <div class="divider"></div>
+      <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Understand</button>
     </div>
   </div>
 </div>
+
+
+<!-- Checkout Page -->
+
 
 <div *ngIf="pages[current_page] === 'checkout'">
   <h1 class="title">Checkout Sheet</h1>
@@ -140,6 +167,10 @@
     </div>
   </div>
 </div>
+
+
+<!-- Success Page -->
+
 
 <div *ngIf="pages[current_page] === 'success'">
   <h1 class="title">Success!</h1>

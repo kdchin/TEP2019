@@ -17,12 +17,10 @@
       <th>School</th>
       <th>Active</th>
     </tr>
-
-    
-    <tr *ngFor="let teacher of teachers | filter : searchText; let i = index" [class.selected]="teacher === selectedTeacher" (click)="onSelect(teacher)">
-      <a routerLink="/teachers/{{teacher.id}}">
-        <td> {{ teacher.first_name }} </td>
-      </a>
+    <tr *ngFor="let teacher of teachers" routerLink="/teachers/{{teacher.id}}">
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher(i, 'first_name')"></app-inline-edit>
+      </td>
       <td>
         <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher(i, 'last_name')"></app-inline-edit>
       </td>
@@ -42,7 +40,6 @@
       </td>
     </tr>
   </table>
-  <app-teacher-detail [teacher]="selectedTeacher"></app-teacher-detail>
   <div [hidden]="!shouldShowCreate">
     <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
   </div>

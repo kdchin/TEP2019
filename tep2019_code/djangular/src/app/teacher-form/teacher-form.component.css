@@ -45,3 +45,27 @@ div.columns{
     text-indent: 10px;
 }
 
+div.has-text-centered{
+    padding: 35px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.divider{
+    width:100px;
+    height:auto;
+    display:inline-block;
+}
+
+div.text.section{
+    background-color: #FEEED6;
+    color: black;
+    font-size: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
