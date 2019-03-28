@@ -21,7 +21,6 @@ export class ItemCreateComponent {
 
   public createItem() {
     // TODO: validation
-    if (this.new_item.id === null) return;
     this.apiService.create("items", this.new_item).subscribe((response) => {
       console.log(response);
     });

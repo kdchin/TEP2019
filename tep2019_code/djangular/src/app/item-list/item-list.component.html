@@ -11,16 +11,25 @@
       <th>Quantity Per Unit</th>
       <th>Active</th>
     </tr>
+<<<<<<< HEAD
     <tr *ngFor="let item of items" routerLink="/items/{{item.id}}">
       <td> {{ item.name }} </td>
+=======
+    <tr *ngFor="let item of items; let i = index" [class.selected]="item === selectedItem" (click)="onSelect(item)">
+      <a routerLink="/items/{{item.id}}">
+        <td> {{ item.name }} </td>
+      </a>
+>>>>>>> d5e570279f2a29b318dcf6973ad56cf0ed51ae7f
       <td> {{ item.unit_label_name }} </td>
       <td> {{ item.max_units }} </td>
       <td> {{ item.qty_per_unit }} </td>
-      <td> {{ item.active }} </td>
+      <!-- TODO: this displays kind of weirdly -->
+      <app-inline-edit [(ngModel)]="item.active" [onChange]="updateItem(i, 'active')" [fieldType]="'checkbox'"
+        [displayPipe]="activePipe"></app-inline-edit>
+      <!-- <td> {{ item.active }} </td> -->
     </tr>
   </table>
   <div [hidden]="!shouldShowCreate">
     <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
   </div>
 </div>
-

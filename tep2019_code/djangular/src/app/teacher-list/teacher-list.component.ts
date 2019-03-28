@@ -4,6 +4,7 @@ import { Teacher } from '../models';
 import { PhonePipe } from '../phone.pipe';
 import { BoolPipe } from '../bool.pipe';
 
+
 @Component({
   selector: 'app-teacher-list',
   templateUrl: './teacher-list.component.html',
@@ -11,6 +12,7 @@ import { BoolPipe } from '../bool.pipe';
 })
 export class TeacherListComponent implements OnInit {
   selectedTeacher: Teacher;
+  
 
   private teachers: Array<Teacher> = [];
   private shouldShowCreate = false;

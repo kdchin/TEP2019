@@ -72,3 +72,4 @@ urlpatterns = [
     path(r'api/schools/', school_list, name='school-list'),
     # path(r'', index, name='index')
 ]
+

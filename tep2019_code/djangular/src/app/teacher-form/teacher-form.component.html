@@ -1,0 +1,146 @@
+<!-- TODO: new school option -->
+<div *ngIf="pages[current_page] === 'welcome'">
+  <h1 class="title">Welcome Teachers</h1>
+  <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+    <div class="field">
+      <label class="label">First Name</label>
+      <div class="control">
+        <input id="first_name" class="input" type="text" placeholder="Master" required [(ngModel)]="teacher.first_name"
+          name="first_name">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Last Name</label>
+      <div class="control">
+        <input id="last_name" class="input" type="text" placeholder="ShiFu" required [(ngModel)]="teacher.last_name"
+          name="last_name">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input id="email" class="input" type="text" placeholder="shifu@dreamworks.com" required
+          [(ngModel)]="teacher.email" name="email">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Phone Number</label>
+      <div class="control">
+        <input id="phone" class="input" type="text" placeholder="412 922 6500" required [(ngModel)]="teacher.phone"
+          name="phone">
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="select">
+        <label class="label">School</label>
+        <select id="school" required [(ngModel)]="school" name="school">
+          <option *ngFor="let sch of all_schools" [value]="sch">
+            {{sch.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field section">
+      <label type="checkbox">
+        <input name="isNewTeacher" [(ngModel)]="isNewTeacher" [placeholder]="false" type="checkbox" />
+        I am using this application for the first time
+      </label>
+    </div>
+  </form>
+  <button class="button is-primary" (click)=processTeacher()>Next</button>
+</div>
+
+<div *ngIf="pages[current_page] === 'waiver'">
+  <h1 class="title">Waiver</h1>
+  <img src="../../assets/temp_waiver.png">
+  <div class="columns">
+    <div class="column">
+      <button class="button is-primary" (click)=backPage()>Back</button>
+    </div>
+    <div class="column">
+      <button class="button is-primary" (click)=agreeToWaiver()>I Agree</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pages[current_page] === 'reminders'">
+  <h1 class="title">Shopping Reminders</h1>
+  <div class="section">
+    Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
+  </div>
+
+  <div class="section">
+    Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
+    any
+    questions, please talk to a TEP employee.
+  </div>
+  <div class="columns">
+    <div class="column">
+      <button class="button is-primary" (click)=backPage()>Back</button>
+    </div>
+    <div class="column">
+      <button class="button is-primary" (click)=advancePage()>I Understand</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pages[current_page] === 'checkout'">
+  <h1 class="title">Checkout Sheet</h1>
+  <div class="order-items">
+    <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
+      <div class="columns">
+
+        <div class="column">
+          <label class="label">{{order_item.item.name}}</label>
+        </div>
+
+        <div class="column">
+          <!-- TODO: make this field convert to integer -->
+          <div class="field">
+            <div class="select">
+              <select id="units_taken" required [(ngModel)]="order_item.units_taken" name="units_taken">
+                <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
+                  {{num}}</option>
+              </select>
+              <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <button class="button" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
+            {{ order_item.item.unit_label_name }}</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <div class="columns">
+    <div class="column">
+      <button class="button is-primary" (click)=backPage()>Back</button>
+    </div>
+    <div class="column">
+      <button class="button is-primary" (click)=createOrder()>Submit</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pages[current_page] === 'success'">
+  <h1 class="title">Success!</h1>
+  <div class="section">
+    Your checkout form has been submitted. You may now continue to the incentive items.
+  </div>
+  <div class="section">
+    <strong>Reminder:</strong> You may take as many incentive items as you need!
+  </div>
+  <div class="columns">
+    <div class="column">
+      <button class="button is-primary" (click)=finish()>Return Home</button>
+    </div>
+  </div>
+</div>

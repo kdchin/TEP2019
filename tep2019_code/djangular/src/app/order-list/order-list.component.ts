@@ -21,6 +21,15 @@ export class OrderListComponent implements OnInit {
     this.selectedOrder = order;
   }
 
+  public deleteOrder(order: Order) {
+    let new_orders = this.orders.filter(oi => oi.id !== order.id);
+    // TODO: error and warn
+    if (new_orders.length != this.orders.length - 1)
+      return;
+    this.orders = new_orders;
+    this.apiService.delete("orders", order.id).subscribe();
+  }
+
   public getOrders() {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
       this.orders = data;

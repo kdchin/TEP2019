@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Teacher } from '../models';
+import { Teacher, School } from '../models';
 import { setEnvironment } from '@angular/core/src/render3/instructions';
 
 @Component({
@@ -13,18 +13,18 @@ export class TeacherCreateComponent {
 
   constructor(private apiService: ApiService) { }
 
-  new_teacher = new Teacher(null, '', '', '', '', true);
+  new_teacher = new Teacher(null, '', '', '', '', true, null);
+  school = new School('', true);
 
   public onSubmit() {
+    this.new_teacher.school = this.school;
     this.createTeacher();
     this.teacherChange.emit(this.new_teacher);
-    // TODO: reload page
-    this.new_teacher = new Teacher(null, '', '', '', '', true);
+    this.new_teacher = new Teacher(null, '', '', '', '', true, null);
   }
 
   public createTeacher() {
     // TODO: validation
-    if (this.new_teacher.id === null) return;
     this.apiService.create("teachers", this.new_teacher).subscribe((response) => {
       console.log(response);
     });
