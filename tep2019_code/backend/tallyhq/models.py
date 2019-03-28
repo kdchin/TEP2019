@@ -10,7 +10,7 @@ class Item(models.Model):
     unit_label_name = models.CharField(max_length=15)
 
     # maximum number of units that can be taken for this item
-    max_units = models.IntegerField(validators=[MinValueValidator(1)]) 
+    max_units = models.IntegerField(validators=[MinValueValidator(1)])
 
     # number of the item per unit (e.g. 8 (pencils per pack))
     qty_per_unit = models.IntegerField(validators=[MinValueValidator(1)])
@@ -38,7 +38,7 @@ class Teacher(models.Model):
 # Order model: one per teacher visit, summarizes what a teacher got
 class Order(models.Model):
     # date the teacher visited TEP
-    shopping_date = models.DateField()
+    shopping_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     # whether this order has been exported to csv yet
     uploaded = models.BooleanField(default=False)
@@ -71,5 +71,3 @@ class ValidationPassword(models.Model):
     digest = models.CharField(max_length=30)
     date = models.DateField()
     current = models.BooleanField(default=True)
-
-     
