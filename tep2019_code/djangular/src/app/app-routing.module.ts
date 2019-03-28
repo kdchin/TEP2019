@@ -5,8 +5,10 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderItemListComponent } from './order-item-list/order-item-list.component';
 import { SchoolListComponent } from './school-list/school-list.component';
+import { TeacherFormComponent } from './teacher-form/teacher-form.component';
 
 const routes: Routes = [
+  { path: 'form', component: TeacherFormComponent },
   { path: 'items', component: ItemListComponent },
   { path: 'teachers', component: TeacherListComponent },
   { path: 'order-items', component: OrderItemListComponent },

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Item } from '../models';
+import { BoolPipe } from '../bool.pipe';
 
 @Component({
   selector: 'app-item-list',
@@ -11,6 +12,7 @@ export class ItemListComponent implements OnInit {
 
   private items: Array<Item> = [];
   private shouldShowCreate = false;
+  private activePipe = new BoolPipe();
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -24,6 +26,15 @@ export class ItemListComponent implements OnInit {
 
   public toggleShowCreate() {
     this.shouldShowCreate = !this.shouldShowCreate;
+  }
+
+  public updateItem(i: number, attr: string) {
+    return (new_value) => {
+      // TODO check validity of item
+      let item = this.items[i];
+      item[attr] = new_value;
+      this.apiService.update("items", item).subscribe();
+    }
   }
 
   public getItems() {

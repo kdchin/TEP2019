@@ -16,6 +16,7 @@ import { OrderItemListComponent } from './order-item-list/order-item-list.compon
 import { InlineEditComponent } from './inline-edit/inline-edit.component';
 import { SchoolListComponent } from './school-list/school-list.component';
 import { SchoolCreateComponent } from './school-create/school-create.component';
+import { TeacherFormComponent } from './teacher-form/teacher-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SchoolCreateComponent } from './school-create/school-create.component';
     InlineEditComponent,
     SchoolListComponent,
     SchoolCreateComponent,
+    TeacherFormComponent,
   ],
   imports: [
     BrowserModule,

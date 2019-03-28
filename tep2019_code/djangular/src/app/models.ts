@@ -17,17 +17,19 @@ export class Teacher {
         public last_name: string,
         public email: string,
         public phone: string,
-        public active: boolean
+        public active: boolean,
+        public school: School
+        // TODO: add school fields
     ) { }
 }
 
 export class Order {
     constructor(
         public id: number,
-        public shopping_date: Date,
+        public shopping_date: string,
         public uploaded: boolean,
         public waiver_signed: boolean,
-        public teacher: Teacher,
+        public teacher: Teacher | number,
     ) { }
 }
 
@@ -35,7 +37,7 @@ export class OrderItem {
     constructor(
         public id: number,
         public item: Item,
-        public order: Order,
+        public order: Order | number,
         public units_taken: number,
     ) { }
 }
