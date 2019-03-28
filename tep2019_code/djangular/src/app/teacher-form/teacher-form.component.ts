@@ -13,7 +13,7 @@ export class TeacherFormComponent implements OnInit {
   current_page = 0;
   pages = ["welcome", "waiver", "reminders", "checkout", "success"];
   isNewTeacher = false;
-  teacher = new Teacher(null, '', '', '', '', true);
+  teacher = new Teacher(null, '', '', '', '', true, null);
   all_teachers: Array<Teacher> = [];
   order = new Order(null, new Date().toISOString(), false, false, null);
   school = new School('', false);
@@ -77,7 +77,7 @@ export class TeacherFormComponent implements OnInit {
 
   public finish() {
     this.isNewTeacher = false;
-    this.teacher = new Teacher(null, '', '', '', '', true);
+    this.teacher = new Teacher(null, '', '', '', '', true, null);
     this.order = new Order(null, new Date().toISOString(), false, false, null);
     this.school = new School('', false);
     this.order_items = [];
