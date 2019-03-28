@@ -25,7 +25,7 @@ export class ItemDetailComponent implements OnInit {
 
   getItem(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.apiService.fetchOne("item", id).subscribe((item: Item) => this.item = item);
+    this.apiService.fetchOne("items", id).subscribe((item: Item) => this.item = item);
   }
 
   goBack(): void {
