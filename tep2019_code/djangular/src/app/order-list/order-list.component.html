@@ -10,14 +10,11 @@
       <th>Uploaded</th>
       <th>Waiver Signed</th>
     </tr>
-    <tr *ngFor="let order of orders" [class.selected]="order === selectedOrder" (click)="onSelect(order)">
-      <a routerLink="/orders/{{order.id}}">
-        <td> {{ order.shopping_date | date }} </td>
-      </a>
+    <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+      <td> {{ order.shopping_date | date }} </td>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>
       <td> {{ order.waiver_signed }} </td>
     </tr>
   </table>
-  <app-order-detail [order]="selectedOrder"></app-order-detail>
 </div>

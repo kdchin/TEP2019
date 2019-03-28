@@ -19,7 +19,6 @@
       <td> {{ item.active }} </td>
     </tr>
   </table>
-  <!-- <app-item-detail [item]="selectedItem"></app-item-detail> -->
   <div [hidden]="!shouldShowCreate">
     <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
   </div>

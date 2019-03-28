@@ -4,21 +4,22 @@
     <div>
       <label>First Name:
           <input [(ngModel)]="teacher.first_name" placeholder="Cat"/>
-      </label>
+      </label><br>
       <label>Last Name:
           <input [(ngModel)]="teacher.last_name" placeholder="Price"/>
-      </label>
+      </label><br>
       <label>Email:
           <input [(ngModel)]="teacher.email" placeholder="cprce@example.com"/>
-      </label>
+      </label><br>
       <label>Phone Number:
           <input [(ngModel)]="teacher.phone" placeholder="4128888888"/>
-      </label>
+      </label><br>
       <label>School:
           <td> {{ teacher.school }} </td>
-      </label>
+      </label><br>
       <label>Active:
           <input [(ngModel)]="teacher.active" placeholder="false"/>
       </label>
     </div>
-  </div>
+</div>
+<button (click)="goBack()">go back</button>
