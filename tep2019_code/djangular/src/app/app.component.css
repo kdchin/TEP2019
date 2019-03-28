@@ -10,7 +10,7 @@
     max-width: 800px;
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(7, auto);
+    grid-template-columns: repeat(8, auto);
     align-items: center;
     justify-items: center;
 }
@@ -48,6 +48,7 @@
 
 .section {
     padding-top: 100px;
+    margin-bottom: 50px;
 }
 
 .footer {
