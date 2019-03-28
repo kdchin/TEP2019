@@ -44,7 +44,8 @@
       </div>
     </div>
 
-    <div class="field section">
+    
+    <div class="field section" id = "checker">
       <label type="checkbox">
         <input name="isNewTeacher" [(ngModel)]="isNewTeacher" [placeholder]="false" type="checkbox" />
         I am using this application for the first time
@@ -69,15 +70,17 @@
 
 <div *ngIf="pages[current_page] === 'reminders'">
   <h1 class="title">Shopping Reminders</h1>
-  <div class="section">
+  <div class="section" id= "success">
     Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
   </div>
+  <br>
 
-  <div class="section">
+  <div class="section" id= "success">
     Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
     any
     questions, please talk to a TEP employee.
   </div>
+  <br>
   <div class="columns">
     <div class="column">
       <button class="button is-primary" (click)=backPage()>Back</button>
@@ -101,7 +104,7 @@
         <div class="column">
           <!-- TODO: make this field convert to integer -->
           <div class="field">
-            <div class="select">
+            <div class="select" id = "itemText">
               <select id="units_taken" required [(ngModel)]="order_item.units_taken" name="units_taken">
                 <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
                   {{num}}</option>
@@ -119,6 +122,14 @@
       </div>
     </form>
   </div>
+  <br>
+  <h1 class="title">Please Hand Device to Employee</h1>
+
+  <div class = "section">
+    <h3>Password</h3> 
+  </div>
+  
+
 
   <div class="columns">
     <div class="column">
@@ -134,9 +145,6 @@
   <h1 class="title">Success!</h1>
   <div class="section">
     Your checkout form has been submitted. You may now continue to the incentive items.
-  </div>
-  <div class="section">
-    <strong>Reminder:</strong> You may take as many incentive items as you need!
   </div>
   <div class="columns">
     <div class="column">
