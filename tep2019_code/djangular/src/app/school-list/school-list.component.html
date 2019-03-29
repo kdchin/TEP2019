@@ -2,8 +2,9 @@
   Schools
 </h1>
 <div>
-  <button class="button is-info" (click)="toggleShowCreate()">New School</button>
-  <input [(ngModel)]="searchText" placeholder="search schools">
+  <div>
+    <input [(ngModel)]="searchText" placeholder="search schools">
+  </div>
 
   <table class="table is-hoverable is-fullwidth">
     <tr>
@@ -18,4 +19,5 @@
   <div [hidden]="!shouldShowCreate">
     <app-school-create (schoolChange)="onNewSchool($event)"></app-school-create>
   </div>
+  <button class="button is-info" (click)="toggleShowCreate()">New School</button>
 </div>

@@ -38,12 +38,10 @@
       <div class="select">
         <label class="label">School</label>
         <select id="school" required [(ngModel)]="school" name="school">
-          <option *ngFor="let sch of all_schools" [value]="sch">
-            {{sch.name}}</option>
+          <option *ngFor="let sch of all_schools" [value]="sch">{{sch.name}}</option>
         </select>
       </div>
     </div>
-
     
     <div class="field section" id = "checker">
       <label type="checkbox">
@@ -161,9 +159,7 @@
   <div class="section">
     Your checkout form has been submitted. You may now continue to the incentive items.
   </div>
-  <div class="columns">
-    <div class="column">
-      <button class="button is-primary" (click)=finish()>Return Home</button>
-    </div>
+  <div class="has-text-centered">
+    <button class="button is-medium is-primary" (click)=finish()>Return Home</button>
   </div>
 </div>
