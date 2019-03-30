@@ -6,9 +6,9 @@ input[type=text] {
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  /* background-image: url("../../assets/search_icon.png");
-  background-position: 10px 10px; 
-  background-repeat: no-repeat; */
-  padding: 8px 20px 8px 10px;
+  background-image: url("../../assets/search_icon.png");
+  background-position: 5px 4px; 
+  background-repeat: no-repeat;
+  padding: 8px 20px 8px 35px;
 }
   
