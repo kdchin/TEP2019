@@ -54,7 +54,7 @@
     <button class="button is-medium is-primary" (click)=processTeacher()>GO</button>
   </div>
 </div>
-
+ 
 
 <!-- Waiver Page -->
 
@@ -104,51 +104,39 @@
   <h1 class="title">Checkout Sheet</h1>
   <div class="order-items">
     <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
-      <div class="columns">
-
+      <div class="item-columns">
         <div class="column">
-          <label class="label">{{order_item.item.name}}</label>
-        </div>
-
-        <div class="column">
-          <!-- TODO: make this field convert to integer -->
+          <label class="item-label">{{order_item.item.name}}</label>
           <div class="field">
             <div class="select" id = "itemText">
-              <select id="units_taken" required [(ngModel)]="order_item.units_taken" name="units_taken">
+              <select class="item-dropdown" id="units_taken" required [(ngModel)]="order_item.units_taken" name="units_taken">
                 <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
                   {{num}}</option>
               </select>
               <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
             </div>
+            <button class="button" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
+              {{ order_item.item.unit_label_name }}</button>
           </div>
         </div>
-
-        <div class="column">
-          <button class="button" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
-            {{ order_item.item.unit_label_name }}</button>
-        </div>
-
       </div>
     </form>
   </div>
   <br>
+
   <h1 class="title">Please Hand Device to Employee</h1>
 
   <div class = "section">
     <h3>Passcode:</h3> 
   </div>
-  
 
-
-  <div class="columns">
+  <div class="has-text-centered">
     <div class="column">
       <button class="button is-primary" (click)=backPage()>Back</button>
-    </div>
-    <div class="column">
+      <div class="divider"></div>
       <button class="button is-primary" (click)=createOrder()>Complete Checkout</button>
     </div>
   </div>
-</div>
 
 
 <!-- Success Page -->
