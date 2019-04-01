@@ -130,11 +130,22 @@
     <h3>Passcode:</h3> 
   </div>
 
-  <div class="has-text-centered">
+  <!-- <div class="has-text-centered">
     <div class="column">
-      <button class="button is-primary" (click)=backPage()>Back</button>
+        <button class="button is-primary" (click)=backPage()>Back</button>
       <div class="divider"></div>
-      <button class="button is-primary" (click)=createOrder()>Complete Checkout</button>
+      <button class="button is-primary" (click)=createOrder()>Submit</button>
+    </div>
+  </div> -->
+
+
+  <div class="columns">
+      <div class="column">
+        <button class="button is-primary" (click)=backPage()>Back</button>
+      </div>
+      <div class="column">
+        <button class="button is-primary" (click)=createOrder()>Submit</button>
+      </div>
     </div>
   </div>
 
