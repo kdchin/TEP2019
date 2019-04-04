@@ -31,7 +31,7 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True)
+    school = models.ForeignKey(School, on_delete=models.CASCADE, null=False)
     active = models.BooleanField(default=True)
 
 
@@ -47,7 +47,7 @@ class Order(models.Model):
     waiver_signed = models.BooleanField(default=False)
 
     # teacher associated with the order
-    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=False)
 
     # each order has many items, and many items are in many orders
     items = models.ManyToManyField(
@@ -58,9 +58,9 @@ class Order(models.Model):
 class OrderItem(models.Model):
     # TODO: guarantee uniqueness of order/item pair
     order = models.ForeignKey(
-        Order, related_name='order_items', on_delete=models.SET_NULL, null=True)
+        Order, related_name='order_items', on_delete=models.CASCADE, null=False)
     item = models.ForeignKey(
-        Item, related_name='order_items', on_delete=models.SET_NULL, null=True)
+        Item, related_name='order_items', on_delete=models.CASCADE, null=False)
 
     # how many units of an item a teacher took (e.g. 8 (packs))
     units_taken = models.IntegerField(validators=[MinValueValidator(0)])
