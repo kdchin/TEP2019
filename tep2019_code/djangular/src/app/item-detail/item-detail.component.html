@@ -1,11 +1,17 @@
 <div *ngIf="item">
   <h1 class="title">{{item.name}}</h1>
-  <div><span>id: {{item.id}}</span></div>
-  <div>
-    <label>Name:<input [(ngModel)]="item.name" placeholder="name"/></label><br>
-    <label>Label Name:<input [(ngModel)]="item.unit_label_name" placeholder="Units"/></label><br>
-    <label>Max Units:<input [(ngModel)]="item.max_units" placeholder="8"/></label><br>
-    <label>Quantity Per Unit:<input [(ngModel)]="item.qty_per_unit" placeholder="8"/></label><br>
+  <div class = "row">
+    <div class = "column">
+      <h3>Details</h3><br>
+      <label>Name:<input [(ngModel)]="item.name" placeholder="name"/></label><br>
+      <label>Label Name:<input [(ngModel)]="item.unit_label_name" placeholder="Units"/></label><br>
+      <label>Max Units:<input [(ngModel)]="item.max_units" placeholder="8"/></label><br>
+      <label>Quantity Per Unit:<input [(ngModel)]="item.qty_per_unit" placeholder="8"/></label><br>
+    </div>
+    <div class = "column">
+      <h3>Additional Information</h3><br>
+      <label>Active:<br><input [(ngModel)]="item.active" placeholder="false"/></label><br>
+    </div>
   </div>
   <button class="button" (click)="goBack()">Go Back</button>
 </div>
