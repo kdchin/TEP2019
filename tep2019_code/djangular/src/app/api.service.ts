@@ -24,6 +24,10 @@ export class ApiService {
     return this.httpClient.get(`${this.API_URL}/${type}`);
   }
 
+  fetchOne(type, id) {
+    return this.httpClient.get(`${this.API_URL}/${type}/${id}`);
+  }
+
   create(type, jsonData) {
     return this.httpClient.post(`${this.API_URL}/${type}/`, jsonData, httpOptions);
     // return this.httpClient.post(`${this.API_URL}/${type}/`, jsonData);

@@ -1,5 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Teacher } from '../models';
+import { ApiService }  from '../api.service';
 
 @Component({
   selector: 'app-teacher-detail',
@@ -7,11 +11,24 @@ import { Teacher } from '../models';
   styleUrls: ['./teacher-detail.component.css']
 })
 export class TeacherDetailComponent implements OnInit {
-  @Input() teacher: Teacher;
+  teacher: Teacher;
  
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private location: Location
+  ) { }
  
   ngOnInit() {
+    this.getTeacher();
   }
 
+  getTeacher(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.apiService.fetchOne("teachers", id).subscribe((teacher: Teacher) => this.teacher = teacher);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }
