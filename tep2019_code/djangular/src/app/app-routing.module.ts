@@ -9,6 +9,7 @@ import { TeacherDetailComponent } from './teacher-detail/teacher-detail.componen
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { TeacherFormComponent } from './teacher-form/teacher-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'form', component: TeacherFormComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'order-items', component: OrderItemListComponent },
   { path: 'orders', component: OrderListComponent },
   { path: 'orders/:id', component: OrderDetailComponent },
-  { path: 'schools', component: SchoolListComponent }
+  { path: 'schools', component: SchoolListComponent },
+  { path: '', component: DashboardComponent}
 ];
 
 @NgModule({

@@ -21,6 +21,7 @@ import { TeacherDetailComponent } from './teacher-detail/teacher-detail.componen
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { FilterPipe } from './filter.pipe';
 import { TeacherFormComponent } from './teacher-form/teacher-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TeacherFormComponent } from './teacher-form/teacher-form.component';
     TeacherDetailComponent,
     ItemDetailComponent,
     TeacherFormComponent,
-    FilterPipe
+    FilterPipe,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
