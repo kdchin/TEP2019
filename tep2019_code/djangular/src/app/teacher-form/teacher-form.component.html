@@ -36,14 +36,15 @@
 
     <div class="field">
       <div class="select">
-        <label class="label">School</label>
+        <label class="label" for="school">School</label>
         <select id="school" required [(ngModel)]="school" name="school">
-          <option *ngFor="let sch of all_schools" [value]="sch">{{sch.name}}</option>
+          <option *ngFor="let schl of all_schools" [ngValue]="schl">
+            {{schl.name}}</option>
         </select>
       </div>
     </div>
-    
-    <div class="field section" id = "checker">
+
+    <div class="field section" id="checker">
       <label type="checkbox">
         <input name="isNewTeacher" [(ngModel)]="isNewTeacher" [placeholder]="false" type="checkbox" />
         I am using this application for the first time
@@ -54,7 +55,7 @@
     <button class="button is-medium is-primary" (click)=processTeacher()>GO</button>
   </div>
 </div>
- 
+
 
 <!-- Waiver Page -->
 
@@ -77,12 +78,12 @@
 
 <div *ngIf="pages[current_page] === 'reminders'">
   <h1 class="title">Shopping Reminders</h1>
-  <div class="section" id= "success">
+  <div class="section" id="success">
     Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
   </div>
   <br>
 
-  <div class="section" id= "success">
+  <div class="section" id="success">
     Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
     any
     questions, please talk to a TEP employee.
@@ -108,8 +109,9 @@
         <div class="column">
           <label class="item-label">{{order_item.item.name}}</label>
           <div class="field">
-            <div class="select" id = "itemText">
-              <select class="item-dropdown" id="units_taken" required [(ngModel)]="order_item.units_taken" name="units_taken">
+            <div class="select" id="itemText">
+              <select type="number" class="item-dropdown" id="units_taken" required [(ngModel)]="order_item.units_taken"
+                name="units_taken">
                 <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
                   {{num}}</option>
               </select>
@@ -126,8 +128,8 @@
 
   <h1 class="title">Please Hand Device to Employee</h1>
 
-  <div class = "section">
-    <h3>Passcode:</h3> 
+  <div class="section">
+    <h3>Passcode:</h3>
   </div>
 
   <!-- <div class="has-text-centered">
@@ -140,14 +142,14 @@
 
 
   <div class="columns">
-      <div class="column">
-        <button class="button is-primary" (click)=backPage()>Back</button>
-      </div>
-      <div class="column">
-        <button class="button is-primary" (click)=createOrder()>Submit</button>
-      </div>
+    <div class="column">
+      <button class="button is-primary" (click)=backPage()>Back</button>
+    </div>
+    <div class="column">
+      <button class="button is-primary" (click)=createOrder()>Submit</button>
     </div>
   </div>
+</div>
 
 
 <!-- Success Page -->

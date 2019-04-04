@@ -104,18 +104,19 @@ export class TeacherFormComponent implements OnInit {
   public processTeacher() {
     if (!this.teacher.first_name) return;
     if (this.isNewTeacher) {
-      // TODO: validate is in the database
+      // TODO: validate is not in the database
     } else {
       // TODO: validate is a valid teacher
     }
     // TODO: apply this // this.teacher.school = this.school;
+    this.teacher.school = this.school;
     this.advancePage();
   }
 
-  public makeOrderItems(teacher_id) {
-    console.log("teacher id: ", teacher_id);
+  public makeOrderItems(teacher) {
+    console.log("teacher id: ", teacher);
     // this.order.shopping_date = null;
-    this.order.teacher = teacher_id;
+    this.order.teacher = teacher;
     console.log(this.order);
     // this.order.shopping_date = this.order.shopping_date.toISOString();
     this.apiService.create('orders', this.order).subscribe((data: Order) => {

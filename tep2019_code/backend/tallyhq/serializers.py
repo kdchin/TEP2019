@@ -15,7 +15,6 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'active')
 
 
-# TODO: change models.ts to account for school in the frontend
 class TeacherSerializer(serializers.ModelSerializer):
     school = SchoolSerializer(many=False, read_only=False)
 
