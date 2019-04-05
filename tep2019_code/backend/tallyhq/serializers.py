@@ -15,20 +15,19 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'active')
 
 
-# # TODO: change models.ts to account for school in the frontend
-# class TeacherSerializer(serializers.ModelSerializer):
-#     school = SchoolSerializer(many=False, read_only=False)
+# TODO: change models.ts to account for school in the frontend
+class TeacherSerializer(serializers.ModelSerializer):
+    school = SchoolSerializer(many=False, read_only=False)
 
-#     class Meta:
-#         model = Teacher
-#         fields = ('id', 'first_name', 'last_name',
-#                   'email', 'phone', 'school', 'active')
+    class Meta:
+        model = Teacher
+        fields = ('id', 'first_name', 'last_name',
+                  'email', 'phone', 'school', 'active')
 
-#     def create(self, validated_data):
-#         school_data = validated_data.pop('school')
-#         school, _ = School.objects.get_or_create(**school_data)
-#         return Teacher.objects.create(school=school, **validated_data)
-
+    def create(self, validated_data):
+        school_data = validated_data.pop('school')
+        school, _ = School.objects.get_or_create(**school_data)
+        return Teacher.objects.create(school=school, **validated_data)
 
 class OrderSerializer(serializers.ModelSerializer):
     teacher = TeacherSerializer(many=False, read_only=False)
@@ -83,10 +82,3 @@ class OrderItemSerializer(serializers.ModelSerializer):
         )
         item, _ = Item.objects.get_or_create(**item_data)
         return OrderItem.objects.create(order=order, item=item, **validated_data)
-
-# TODO incorporate school serializer
-class TeacherSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Teacher
-        fields = ('id', 'first_name', 'last_name',
-                  'email', 'phone', 'school', 'active')
