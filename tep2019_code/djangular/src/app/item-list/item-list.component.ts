@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Item } from '../models';
+<<<<<<< HEAD
 import { BoolPipe } from '../bool.pipe';
+=======
+>>>>>>> 260ebcd1531a3af5f2e1e9e57796987434f729cb
 
 @Component({
   selector: 'app-item-list',
@@ -13,7 +16,10 @@ export class ItemListComponent implements OnInit {
 
   private items: Array<Item> = [];
   private shouldShowCreate = false;
+<<<<<<< HEAD
   private activePipe = new BoolPipe();
+=======
+>>>>>>> 260ebcd1531a3af5f2e1e9e57796987434f729cb
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -25,10 +31,13 @@ export class ItemListComponent implements OnInit {
     this.toggleShowCreate();
   }
 
+<<<<<<< HEAD
   public onSelect(item: Item) {
     this.selectedItem = item;
   }
 
+=======
+>>>>>>> 260ebcd1531a3af5f2e1e9e57796987434f729cb
   public toggleShowCreate() {
     this.shouldShowCreate = !this.shouldShowCreate;
   }

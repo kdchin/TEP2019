@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 <h1 class="title">Teachers</h1>
 <div class="container">
   <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
   <input type="text" [(ngModel)]="searchText" placeholder="Search Teachers...">
+=======
+<h1 class="title">
+  Teachers
+</h1>
+<div class="container">
+  <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
+>>>>>>> 260ebcd1531a3af5f2e1e9e57796987434f729cb
   <table class="table is-hoverable is-fullwidth">
     <tr>
       <th>First Name</th>
@@ -11,6 +19,7 @@
       <th>School</th>
       <th>Active</th>
     </tr>
+<<<<<<< HEAD
     <tr *ngFor="let teacher of teachers" routerLink="/teachers/{{teacher.id}}">
       <td>
         <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher(i, 'first_name')"></app-inline-edit>
@@ -41,4 +50,18 @@
     <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
   </div> -->
 
+=======
+    <tr *ngFor="let teacher of teachers">
+      <td> {{ teacher.first_name }} </td>
+      <td> {{ teacher.last_name }} </td>
+      <td> {{ teacher.email }} </td>
+      <td> {{ teacher.phone | phone}} </td>
+      <td> {{ teacher.school }} </td>
+      <td> {{ teacher.active }} </td>
+    </tr>
+  </table>
+</div>
+<div [hidden]="!shouldShowCreate">
+  <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
+>>>>>>> 260ebcd1531a3af5f2e1e9e57796987434f729cb
 </div>

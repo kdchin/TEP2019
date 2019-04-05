@@ -49,8 +49,7 @@ class OrderSerializer(serializers.ModelSerializer):
             teacher=teacher, **validated_data)
         return order
 
-
-# TODO: make one-way serializers for Order and Item fhg
+# TODO: make one-way serializers for Order and Item
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
@@ -58,29 +57,9 @@ class ItemSerializer(serializers.ModelSerializer):
                   'max_units', 'qty_per_unit', 'active')
 
 
-class OrderItemSerializer(serializers.ModelSerializer):
-    item = ItemSerializer(many=False, read_only=False)
-    order = OrderSerializer(many=False, read_only=False)
-
+# TODO incorporate school serializer
+class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OrderItem
-        fields = ('id', 'item', 'order', 'units_taken')
-
-    def create(self, validated_data):
-        if 'id' in validated_data:
-            validated_data.pop('id')
-        order_data = validated_data.pop('order')
-        item_data = validated_data.pop('item')
-        print(order_data)
-        teacher_data = order_data.pop('teacher')
-        print(teacher_data)
-        school_data = teacher_data.pop('school')
-        school, _ = School.objects.get_or_create(**school_data)
-        teacher, _ = Teacher.objects.get_or_create(
-            **teacher_data, school=school)
-        order, _ = Order.objects.get_or_create(
-            **order_data,
-            teacher=teacher,
-        )
-        item, _ = Item.objects.get_or_create(**item_data)
-        return OrderItem.objects.create(order=order, item=item, **validated_data)
+        model = Teacher
+        fields = ('id', 'first_name', 'last_name',
+                  'email', 'phone', 'school', 'active')
