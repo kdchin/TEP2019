@@ -1,7 +1,7 @@
 <h1 class="title">
   Create Teacher
 </h1>
-<form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+<form (ngSubmit)="onSubmit()" #teacherForm="ngForm">
   <div class="field">
     <label class="label">First Name</label>
     <div class="control">
@@ -34,24 +34,6 @@
     </div>
   </div>
 
-<<<<<<< HEAD
-  <!-- <div class="field">
-    <div class="select">
-      <label class="label">School</label>
-      <select id="school" required [(ngModel)]="school" name="school">
-        <option *ngFor="let sch of all_schools" [value]="sch">
-          {{sch.name}}</option>
-      </select>
-    </div> -->
 
-  <!-- </div> -->
-
-  <div class="control">
-    <button class="button is-info" (click)="toggleShowCreate()">Cancel</button>
-=======
-  <div class="control">
->>>>>>> 260ebcd1531a3af5f2e1e9e57796987434f729cb
-    <button type="submit" class="button is-primary">Create Teacher</button>
-  </div>
-  <!-- TODO: add field to associate with school -->
+ 
 </form>

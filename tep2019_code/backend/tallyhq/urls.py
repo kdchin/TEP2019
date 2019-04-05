@@ -16,6 +16,13 @@ teacher_list = TeacherViewSet.as_view({
     'post': 'create'
 })
 
+item_detail = ItemViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 teacher_detail = TeacherViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',

@@ -1,6 +1,5 @@
 export class Item {
     constructor(
-        // TODO: add? public id?: number,
         public id: number,
         public name: string,
         public unit_label_name: string,
@@ -19,7 +18,6 @@ export class Teacher {
         public phone: string,
         public active: boolean,
         public school: School
-        // TODO: add school fields
     ) { }
 }
 
