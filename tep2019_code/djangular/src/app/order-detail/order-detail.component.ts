@@ -25,7 +25,7 @@ export class OrderDetailComponent implements OnInit {
 
   getOrder(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.apiService.fetchOne("orders", id).subscribe((order: Order) => this.order = order);
+    this.apiService.fetchOne("order_foo", id).subscribe((order: Order) => this.order = order);
   }
 
   goBack(): void {

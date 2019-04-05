@@ -59,6 +59,13 @@ school_list = SchoolViewSet.as_view({
     'post': 'create'
 })
 
+order_foo = OrderDetailViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 urlpatterns = [
     path(r'api/', include(router.urls)),
     path(r'api/items/', item_list, name='item-list'),
@@ -70,6 +77,7 @@ urlpatterns = [
     path(r'api/order_items/', order_item_list, name='order-item-list'),
     path(r'api/order_items/<int:pk>', order_item_detail, name='order-item-detail'),
     path(r'api/schools/', school_list, name='school-list'),
+    path(r'api/order_foo/<int:pk>', order_foo, name='order-foo'),
     # path(r'', index, name='index')
 ]
 
