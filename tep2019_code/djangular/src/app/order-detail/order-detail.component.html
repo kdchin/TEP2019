@@ -1,19 +1,16 @@
 <div *ngIf="order">
   <h1 class="title">Order Details</h1>
-  <div><span>id: </span>{{order.id}}</div>
-  <div>
-    <label>Date:
-        <input [(ngModel)]="order.shopping_date" placeholder="4/26/1954"/>
-    </label><br>
-    <label>Teacher:
-        <input [(ngModel)]="order.teacher.first_name" placeholder="Units"/>
-    </label><br>
-    <label>Uploaded:
-        <input [(ngModel)]="order.uploaded" placeholder="no"/>
-    </label><br>
-    <label>Waiver Signed:
-        <input [(ngModel)]="order.waiver_signed" placeholder="no"/>
-    </label>
+  <div class="row">
+    <div class="column">
+      <h3>Details</h3><br>
+      <label>Date:<input [(ngModel)]="order.shopping_date" placeholder="4/26/1954"/></label><br>
+      <label>Teacher:<input [(ngModel)]="order.teacher.first_name" placeholder="Units"/></label><br>
+      <label>Uploaded:<input [(ngModel)]="order.uploaded" placeholder="no"/></label><br>
+      <label>Waiver Signed:<input [(ngModel)]="order.waiver_signed" placeholder="no"/></label>
+    </div>
+    <div class="column">
+      <h3>Order Items</h3><br>
+    </div>
   </div>
   <button class="button is-info" (click)="goBack()">go back</button>
 </div>
