@@ -25,6 +25,9 @@ class School(models.Model):
     name = models.CharField(max_length=50)
     active = models.BooleanField(default=True)
 
+    class Meta:
+        unique_together = ('name',)
+
 
 class Teacher(models.Model):
     first_name = models.CharField(max_length=20)
@@ -35,8 +38,7 @@ class Teacher(models.Model):
     active = models.BooleanField(default=True)
 
     class Meta:
-        unique_together = ('first_name', 'last_name',
-                           'email', 'phone', 'school')
+        unique_together = ('email',)
 
 
 # Order model: one per teacher visit, summarizes what a teacher got
