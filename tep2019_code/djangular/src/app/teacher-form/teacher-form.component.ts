@@ -65,6 +65,11 @@ export class TeacherFormComponent implements OnInit {
   }
 
   public teacherIsValid() {
+    if (!this.teacher.first_name || !this.teacher.last_name
+      || !this.teacher.email || !this.teacher.phone || !this.school) {
+      console.log("hi");
+      return false;
+    }
     let found_email = false;
     let matches = false
     for (let i = 0; i < this.all_teachers.length; i++) {
@@ -123,15 +128,17 @@ export class TeacherFormComponent implements OnInit {
 
   // will create teacher once "submit" is pressed on the checkout page
   public processTeacher() {
-    if (!this.teacher.first_name) return;
-    if (this.isNewTeacher) {
-      // TODO: validate is not in the database
-    } else {
-      // TODO: validate is a valid teacher
-    }
-    // TODO: apply this // this.teacher.school = this.school;
+    if (!this.teacherIsValid() && this.val_email === this.teacher.email) return;
     this.teacher.school = this.school;
     this.advancePage();
+  }
+
+  public orderItemsAreValid() {
+    for (let i = 0; i < this.order_items.length; i++) {
+      let oi: OrderItem = this.order_items[i];
+      if (oi.units_taken > oi.item.max_units) return false;
+    }
+    return true;
   }
 
   public makeOrderItems(teacher) {
@@ -148,12 +155,7 @@ export class TeacherFormComponent implements OnInit {
   }
 
   public createOrder() {
-    // TODO this is a workaround for units_taken being two-way binded to strings
-    for (let i = 0; i < this.order_items.length; i++) {
-      if (typeof this.order_items[i].units_taken === 'string') {
-        // this.order_items[i].units_taken = parseInt(this.order_items[i].units_taken);
-      }
-    }
+    if (!this.orderItemsAreValid()) return;
     // TODO: if new school this.apiService.create('school', this.school);
     let tid = this.getTeacherId();
     if (this.isNewTeacher) {

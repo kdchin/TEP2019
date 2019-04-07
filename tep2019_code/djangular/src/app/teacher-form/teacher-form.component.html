@@ -102,7 +102,7 @@
     </div>
 
     <div
-      *ngIf="first_name.touched && last_name.touched && email.touched && phone.touched && school_.touched && !teacherIsValid()"
+      *ngIf="first_name.touched && last_name.touched && email.touched && phone.touched && (school_.touched || school.name) && !teacherIsValid()"
       class="notification is-danger">
       <span *ngIf="isNewTeacher">Your email matches a teacher we have on record. Please contact Cat if you believe this
         is a mistake!</span>
@@ -184,6 +184,9 @@
         </div>
       </div>
     </form>
+    <div *ngIf="!orderItemsAreValid()" class="notification is-danger">
+      Some items have more than the max allotted quantity.
+    </div>
   </div>
   <br>
 

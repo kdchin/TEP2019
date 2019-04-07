@@ -36,7 +36,7 @@ export class OrderItem {
         public id: number,
         public item: Item,
         public order: Order | number,
-        public units_taken: number,
+        public units_taken: number | string,
     ) { }
 }
 
