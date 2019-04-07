@@ -31,6 +31,25 @@ export class Order {
     ) { }
 }
 
+export class OrderDetail {
+    constructor(
+        public id: number,
+        public shopping_date: string,
+        public uploaded: boolean,
+        public waiver_signed: boolean,
+        public teacher: Teacher | number,
+        public order_items: Array<OrderDetailItem>,
+    ) { }
+}
+
+export class OrderDetailItem {
+    constructor(
+        public id: number,
+        public item: Item,
+        public units_taken: number,
+    ) { }
+}
+
 export class OrderItem {
     constructor(
         public id: number,
