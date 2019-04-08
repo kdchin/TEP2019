@@ -80,4 +80,5 @@ select.item-dropdown {
 
 label.item-label{
   font-size: 20px;
+  font-weight: bold;
 }
