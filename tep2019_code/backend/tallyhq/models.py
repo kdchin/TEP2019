@@ -25,8 +25,7 @@ class School(models.Model):
     name = models.CharField(max_length=50)
     active = models.BooleanField(default=True)
 
-    class Meta:
-        unique_together = ('name',)
+    # TODO: maybe add in name as unique?
 
 
 class Teacher(models.Model):
