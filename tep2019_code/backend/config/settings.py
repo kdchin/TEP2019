@@ -122,7 +122,7 @@ DATABASES = {
         'NAME': os.environ.get('TEP_DB_NAME', ''),
         'USER': os.environ.get('TEP_ADMIN', ''),
         'PASSWORD': os.environ.get('TEP_PWD', ''),
-        'HOST': os.environ.get('TEP_HOST', '8000'),
+        'HOST': os.environ.get('TEP_HOST', '127.0.0.1'),
         'PORT': '5432',
     },
     'OPTIONS': {
