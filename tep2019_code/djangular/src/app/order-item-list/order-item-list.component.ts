@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { OrderItem } from '../models';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-
-@NgModule({
-  imports: [MatButtonModule, MatCheckboxModule],
-})
-export class PizzaPartyAppModule { }
 
 @Component({
   selector: 'app-order-item-list',
