@@ -11,7 +11,7 @@
       <th>School</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let teacher of teachers" routerLink="/teachers/{{teacher.id}}">
+    <tr *ngFor="let teacher of teachers | filter: searchText" routerLink="/teachers/{{teacher.id}}">
       <td>
         <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher(i, 'first_name')"></app-inline-edit>
       </td>
