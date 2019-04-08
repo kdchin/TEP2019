@@ -1,2 +1,2 @@
-web: gunicorn tep2019_code.backend.config.wsgi
+web: gunicorn config.wsgi
 
