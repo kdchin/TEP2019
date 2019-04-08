@@ -40,7 +40,7 @@ export class TeacherDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.apiService.fetchOne("teachers", id).subscribe((teacher: Teacher) => this.teacher = teacher);
 
-    this.orders2 = this.objects.orders;
+    // this.orders2 = this.objects.orders;
   }
 
   goBack(): void {

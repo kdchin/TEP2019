@@ -22,6 +22,9 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { FilterPipe } from './filter.pipe';
 import { TeacherFormComponent } from './teacher-form/teacher-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -48,9 +51,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export class PizzaPartyAppModule { }
