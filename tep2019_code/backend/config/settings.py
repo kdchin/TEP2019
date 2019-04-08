@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n5bk%f$1a-x%7cfe3kl-!%)m5hu$yfkx6h=_a(x30(+gtlp@5*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     # 'http://tallyhq-env-1.gupqc59as2.us-east-2.elasticbeanstalk.com/'
@@ -67,6 +67,7 @@ CORS_ORIGIN_WHITELIST = [
     'localhost:4200',
     '127.0.0.1:8000',
     '127.0.0.1:4200',
+    'http://tallyhq.s3-website.us-east-2.amazonaws.com',
 ]
 
 # CORS_URLS_REGEX = r'^/api/.*$'
