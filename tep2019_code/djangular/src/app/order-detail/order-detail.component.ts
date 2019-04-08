@@ -13,7 +13,6 @@ import { ApiService }  from '../api.service';
 export class OrderDetailComponent implements OnInit {
   orderDetail: OrderDetail;
 
-  private order_detail_items: Array<OrderDetailItem> = [];
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
@@ -27,7 +26,6 @@ export class OrderDetailComponent implements OnInit {
   getOrder(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.apiService.fetchOne("order_foo", id).subscribe((orderDetail: OrderDetail) => this.orderDetail = orderDetail);
-    this.order_detail_items = this.orderDetail.order_items;
   }
 
   goBack(): void {
