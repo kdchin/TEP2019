@@ -37,8 +37,7 @@ class Teacher(models.Model):
     school = models.ForeignKey(School, on_delete=models.CASCADE, null=False)
     active = models.BooleanField(default=True)
 
-    class Meta:
-        unique_together = ('email',)
+    # TODO: make email unique
 
 
 # Order model: one per teacher visit, summarizes what a teacher got
