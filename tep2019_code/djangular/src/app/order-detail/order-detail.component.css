@@ -29,3 +29,32 @@ button.button{
 span{
   font-size: 18px;
 }
+
+.column {
+  float: left;
+  width: 30%;
+  padding: 10px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+h3 {
+  background-color: #CAD5E3;
+  width: 62%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 780px) {
+  .column {
+    width: 100%;
+  }
+}

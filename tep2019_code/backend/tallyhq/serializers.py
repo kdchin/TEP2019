@@ -28,7 +28,6 @@ class TeacherSerializer(serializers.ModelSerializer):
         school, _ = School.objects.get_or_create(**school_data)
         return Teacher.objects.create(school=school, **validated_data)
 
-
 class OrderSerializer(serializers.ModelSerializer):
     teacher = TeacherSerializer(many=False, read_only=False)
 
@@ -90,3 +89,18 @@ class OrderItemSerializer(serializers.ModelSerializer):
         item, _ = Item.objects.get_or_create(**item_data)
         return OrderItem.objects.create(order=order, item=item, **validated_data)
 
+class OrderItemDetailSerializer(serializers.ModelSerializer):
+    item = ItemSerializer(many=False, read_only=False)
+
+    class Meta:
+        model = OrderItem
+        fields = ('id', 'item', 'units_taken')
+
+class OrderDetailSerializer(serializers.ModelSerializer):
+    teacher = TeacherSerializer(many=False, read_only=False)
+    order_items = OrderItemDetailSerializer(many=True, read_only=False)
+
+    class Meta:
+        model = Order
+        fields = ('id', 'shopping_date', 'uploaded',
+                  'waiver_signed', 'teacher', 'order_items')

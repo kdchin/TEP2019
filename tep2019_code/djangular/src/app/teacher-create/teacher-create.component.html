@@ -1,4 +1,5 @@
 <h1 class="title">
+<<<<<<< HEAD
     Create Teacher
   </h1>
   <form (ngSubmit)="onSubmit()" #teacherForm="ngForm">
@@ -8,6 +9,16 @@
         <input id="first_name" class="input" type="text" placeholder="Master" required
           [(ngModel)]="new_teacher.first_name" name="first_name">
       </div>
+=======
+  Create Teacher
+</h1>
+<form (ngSubmit)="onSubmit()" #teacherForm="ngForm">
+  <div class="field">
+    <label class="label">First Name</label>
+    <div class="control">
+      <input id="first_name" class="input" type="text" placeholder="Master" required
+        [(ngModel)]="new_teacher.first_name" name="first_name">
+>>>>>>> 69553551229bfc886183f8994a53e85586127401
     </div>
   
     <div class="field">
@@ -43,10 +54,20 @@
         </select>
       </div>
     </div>
-  
-    <div class="control">
-      <button class="button is-info" (click)="toggleShowCreate()">Cancel</button>
-      <button type="submit" class="button is-primary">Create Teacher</button>
+  </div>
+
+  <div class="field">
+    <div class="select">
+      <label class="label" for="school">School</label>
+      <select id="school" required [(ngModel)]="new_school" name="school">
+        <option *ngFor="let schl of schools" [ngValue]="schl">
+          {{schl.name}}</option>
+      </select>
     </div>
-    <!-- TODO: add field to associate with school -->
-  </form>
+  </div>
+
+  <div class="control">
+    <button type="submit" class="button is-primary">Create Teacher</button>
+  </div>
+  <!-- TODO: add field to associate with school -->
+</form>

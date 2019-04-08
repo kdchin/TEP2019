@@ -46,6 +46,7 @@ export class TeacherCreateComponent implements OnInit {
   
 
   public createTeacher() {
+    // TODO: validation
     this.apiService.create("teachers", this.new_teacher).subscribe((response) => {
       console.log(response);
     });
