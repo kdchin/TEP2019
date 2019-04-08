@@ -20,7 +20,7 @@ export class TeacherDetailComponent implements OnInit {
 
   private order: Array<Order> = [];
   // private newOrders: Array<Order> = [];
-  private orders2: Array<Order> = [];
+  private orders: Array<Order> = [];
   private phonePipe = new PhonePipe();
   private activePipe = new BoolPipe();
  
@@ -64,7 +64,7 @@ export class TeacherDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
 
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
-      this.order = data;
+      this.orders = data;
     })
     
     

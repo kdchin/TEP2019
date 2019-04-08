@@ -20,7 +20,7 @@
           <tr>
             <th>Name</th>
             <th>Date</th>
-      <tr *ngFor="let order of orders2;" routerLink="/orders/{{order.id}}">
+      <tr *ngFor="let order of orders;" routerLink="/orders/{{order.id}}">
         <td> {{ order.teacher.first_name }} {{ order.teacher.id}}</td>
         <td> {{ order.shopping_date | date}}</td>
       </tr>
