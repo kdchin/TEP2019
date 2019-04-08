@@ -67,7 +67,7 @@ CORS_ORIGIN_WHITELIST = [
     'localhost:4200',
     '127.0.0.1:8000',
     '127.0.0.1:4200',
-    # tallyhq.s3-website.us-east-2.amazonaws.com
+    'tallyhq.s3-website.us-east-2.amazonaws.com',
 ]
 
 # CORS_URLS_REGEX = r'^/api/.*$'
