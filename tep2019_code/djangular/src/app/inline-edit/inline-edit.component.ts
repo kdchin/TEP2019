@@ -21,11 +21,11 @@ export class InlineEditComponent implements ControlValueAccessor {
   @Input() onTextClick: any = Function.prototype;
   @Input() fieldType: string = "text"; // right now only supports "text" and "checkbox"
   @Input() required: boolean = true;
-  private _value: any = null;
-  private preValue: any = null;
-  private editing: boolean = false;
-  private showEditIcon: boolean = false;
-  public onTouched: any = Function.prototype;
+  _value: any = null;
+  preValue: any = null;
+  editing: boolean = false;
+  showEditIcon: boolean = false;
+  onTouched: any = Function.prototype;
 
   get value(): any {
     return this._value;

@@ -11,9 +11,9 @@ import { BoolPipe } from '../bool.pipe';
 export class ItemListComponent implements OnInit {
   selectedItem: Item;
 
-  private items: Array<Item> = [];
-  private shouldShowCreate = false;
-  private activePipe = new BoolPipe();
+  items: Array<Item> = [];
+  shouldShowCreate = false;
+  activePipe = new BoolPipe();
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {

@@ -12,12 +12,12 @@ import { BoolPipe } from '../bool.pipe';
 })
 export class TeacherListComponent implements OnInit {
   selectedTeacher: Teacher;
-  
 
-  private teachers: Array<Teacher> = [];
-  private shouldShowCreate = false;
-  private phonePipe = new PhonePipe();
-  private activePipe = new BoolPipe();
+  searchText = '';
+  teachers: Array<Teacher> = [];
+  shouldShowCreate = false;
+  phonePipe = new PhonePipe();
+  activePipe = new BoolPipe();
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
