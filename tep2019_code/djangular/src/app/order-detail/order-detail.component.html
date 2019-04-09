@@ -10,9 +10,16 @@
     </div>
     <div class="column">
       <h3>Order Items</h3><br>
-      <tr *ngFor="let items of orderDetail.order_items">
-        <td> {{ items.item.name }} </td>
-      </tr>
+      <table class="table is-hoverable is-fullwidth">
+        <tr>
+          <th>Item</th>
+          <th>Units Taken</th>
+        </tr>
+        <tr *ngFor="let items of orderDetail.order_items">
+          <td> {{ items.item.name }} </td>
+          <td> {{ items.units_taken }} </td>
+        </tr>
+      </table>
     </div>
   </div>
   <button class="button is-info" (click)="goBack()">go back</button>
