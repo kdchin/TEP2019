@@ -65,9 +65,8 @@ export class TeacherDetailComponent implements OnInit {
 
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
       this.orders = data;
-    })
-    
-    
+    }) 
+     
 
 
     // for (let order of this.orders) {
