@@ -70,6 +70,7 @@ urlpatterns = [
     path(r'api/order_items/', order_item_list, name='order-item-list'),
     path(r'api/order_items/<int:pk>', order_item_detail, name='order-item-detail'),
     path(r'api/schools/', school_list, name='school-list'),
+    path(r'api/waivers/', WaiverView.as_view()),
+    path(r'api/waivers/<int:pk>', WaiverDetailView.as_view())
     # path(r'', index, name='index')
 ]
-

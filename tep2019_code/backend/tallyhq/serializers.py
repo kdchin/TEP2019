@@ -81,3 +81,9 @@ class OrderItemSerializer(serializers.ModelSerializer):
         )
         item, _ = Item.objects.get_or_create(**item_data)
         return OrderItem.objects.create(order=order, item=item, **validated_data)
+
+
+class WaiverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Waiver
+        fields = ('id', 'file', 'uploaded_date')

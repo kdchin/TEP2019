@@ -77,3 +77,8 @@ class ValidationPassword(models.Model):
     digest = models.CharField(max_length=30)
     date = models.DateField()
     current = models.BooleanField(default=True)
+
+
+class Waiver(models.Model):
+    file = models.FileField(blank=True, default='')
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)

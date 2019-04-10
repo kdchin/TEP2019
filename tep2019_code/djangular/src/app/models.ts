@@ -46,3 +46,11 @@ export class School {
         public active: boolean
     ) { }
 }
+
+export class Waiver {
+    constructor(
+        public id: number,
+        public file: File,
+        public uploaded_date: Date,
+    ) { }
+}

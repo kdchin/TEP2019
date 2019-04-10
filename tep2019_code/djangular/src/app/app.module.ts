@@ -22,6 +22,8 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { FilterPipe } from './filter.pipe';
 import { TeacherFormComponent } from './teacher-form/teacher-form.component';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
     TeacherDetailComponent,
     ItemDetailComponent,
     TeacherFormComponent,
-    FilterPipe
+    FilterPipe,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
     ReactiveFormsModule,
     NgBootstrapFormValidationModule.forRoot(),
     NgBootstrapFormValidationModule,
+    PdfViewerModule,
     AppRoutingModule
   ],
   providers: [],

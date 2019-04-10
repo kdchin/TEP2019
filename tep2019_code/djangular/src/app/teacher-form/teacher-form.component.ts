@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Item, Teacher, Order, OrderItem, School } from '../models';
+import { Item, Teacher, Order, OrderItem, School, Waiver } from '../models';
 import * as lodash from "lodash";
 
 @Component({
@@ -21,15 +21,35 @@ export class TeacherFormComponent implements OnInit {
   all_schools: Array<School> = [];
   order_items: Array<OrderItem> = [];
   lodash = lodash;
+  waiverPath = '';
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.getActiveItems();
     this.getActiveSchools();
     this.getActiveTeachers();
+    this.getRecentWaiver();
     this.current_page = 0;
   }
   // TODO: configure back button so it works
+
+  getFilePath(file) {
+    // if (file.includes("\\")) {}
+    return file.file.substring(0, file.file.lastIndexOf("/")) + "/" + file.id;
+  }
+
+  getRecentWaiver() {
+    let API_PATH = 'http://localhost:8000';
+    this.apiService.fetchAll('waivers').subscribe((data: Array<Waiver>) => {
+      let mostRecent = null;
+      for (let i = 0; i < data.length; i++) {
+        if (!mostRecent || (data[i].uploaded_date > mostRecent.uploaded_date))
+          mostRecent = data[i];
+      }
+      if (mostRecent)
+        this.waiverPath = API_PATH + mostRecent.file;// this.getFilePath(mostRecent);
+    })
+  }
 
   public getActiveItems() {
     this.apiService.fetchAll('items').subscribe((data: Array<Item>) => {
