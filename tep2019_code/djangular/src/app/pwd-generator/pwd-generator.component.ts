@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValPass } from '../models';
 import { ApiService } from '../api.service';
 import * as crypto from 'crypto-js';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-pwd-generator',
@@ -11,8 +12,8 @@ import * as crypto from 'crypto-js';
 export class PwdGeneratorComponent implements OnInit {
 
   val_pass: ValPass = new ValPass(null, '', new Date());
-  key = 'tep2019cmuis'; // TODO: idk if this is secure
   new_pwd: string = '';
+  key = environment.val_pass_key;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {

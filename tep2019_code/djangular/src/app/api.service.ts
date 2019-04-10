@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../environments/environment'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,8 +19,9 @@ const httpOptions = {
 })
 export class ApiService {
   // private API_URL: string = 'http://localhost:8000/api';
-  private API_URL = 'http://127.0.0.1:8000/api';
+  // private API_URL = 'http://127.0.0.1:8000/api';
   // private API_URL = 'https://infinite-wave-20988.herokuapp.com/api'
+  private API_URL = environment.api_url;
   constructor(private httpClient: HttpClient) { }
   fetchAll(type) {
     return this.httpClient.get(`${this.API_URL}/${type}`);

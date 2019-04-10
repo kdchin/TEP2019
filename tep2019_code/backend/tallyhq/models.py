@@ -68,9 +68,6 @@ class OrderItem(models.Model):
     # how many units of an item a teacher took (e.g. 8 (packs))
     units_taken = models.IntegerField(validators=[MinValueValidator(0)])
 
-    class Meta:
-        unique_together = ('order', 'item')
-
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
 class ValidationPassword(models.Model):
