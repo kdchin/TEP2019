@@ -59,6 +59,16 @@ school_list = SchoolViewSet.as_view({
     'post': 'create'
 })
 
+validation_password_list = ValidationPasswordViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
+validation_password_detail = ValidationPasswordViewSet.as_view({
+    'get': 'retrieve',
+    'delete': 'destroy'
+})
+
 urlpatterns = [
     path(r'api/', include(router.urls)),
     path(r'api/items/', item_list, name='item-list'),
@@ -71,6 +81,10 @@ urlpatterns = [
     path(r'api/order_items/<int:pk>', order_item_detail, name='order-item-detail'),
     path(r'api/schools/', school_list, name='school-list'),
     path(r'api/waivers/', WaiverView.as_view()),
-    path(r'api/waivers/<int:pk>', WaiverDetailView.as_view())
+    path(r'api/waivers/<int:pk>', WaiverDetailView.as_view()),
+    path(r'api/validation_passwords/',
+         validation_password_list, name='val-pass-list'),
+    path(r'api/validation_passwords/<int:pk>',
+         validation_password_detail, name='val-pass-detail'),
     # path(r'', index, name='index')
 ]

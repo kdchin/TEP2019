@@ -54,3 +54,11 @@ export class Waiver {
         public uploaded_date: Date,
     ) { }
 }
+
+export class ValPass {
+    constructor(
+        public id: number,
+        public digest: string,
+        public uploaded_date: Date,
+    ) { }
+}

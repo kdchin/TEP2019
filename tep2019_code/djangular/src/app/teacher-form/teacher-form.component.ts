@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Item, Teacher, Order, OrderItem, School, Waiver } from '../models';
+import { Item, Teacher, Order, OrderItem, School, Waiver, ValPass } from '../models';
 import * as lodash from "lodash";
+import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-teacher-form',
@@ -22,6 +23,9 @@ export class TeacherFormComponent implements OnInit {
   order_items: Array<OrderItem> = [];
   lodash = lodash;
   waiverPath = '';
+  val_pass = new ValPass(null, '', new Date());
+  guess = '';
+  key = 'tep2019cmuis'; // TODO: idk if this is secure
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -29,13 +33,21 @@ export class TeacherFormComponent implements OnInit {
     this.getActiveSchools();
     this.getActiveTeachers();
     this.getRecentWaiver();
+    this.getMostRecentPassword();
     this.current_page = 0;
   }
   // TODO: configure back button so it works
 
-  getFilePath(file) {
-    // if (file.includes("\\")) {}
-    return file.file.substring(0, file.file.lastIndexOf("/")) + "/" + file.id;
+  getMostRecentPassword() {
+    this.apiService.fetchAll('validation_passwords').subscribe((data: Array<ValPass>) => {
+      let mostRecent = null;
+      for (let i = 0; i < data.length; i++) {
+        if (!mostRecent || (data[i].uploaded_date > mostRecent.uploaded_date))
+          mostRecent = data[i];
+      }
+      if (mostRecent)
+        this.val_pass = mostRecent;
+    })
   }
 
   getRecentWaiver() {
@@ -175,7 +187,9 @@ export class TeacherFormComponent implements OnInit {
   }
 
   public createOrder() {
-    if (!this.orderItemsAreValid()) return;
+    let bytes = crypto.AES.decrypt(this.val_pass.digest, this.key);
+    let decoded = bytes.toString(crypto.enc.Utf8);
+    if (!this.orderItemsAreValid() || this.guess !== decoded) return;
     // TODO: if new school this.apiService.create('school', this.school);
     let tid = this.getTeacherId();
     if (this.isNewTeacher) {

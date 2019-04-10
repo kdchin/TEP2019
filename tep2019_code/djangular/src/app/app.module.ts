@@ -24,6 +24,8 @@ import { TeacherFormComponent } from './teacher-form/teacher-form.component';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { RandomComponent } from './random/random.component';
+import { PwdGeneratorComponent } from './pwd-generator/pwd-generator.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     ItemDetailComponent,
     TeacherFormComponent,
     FilterPipe,
-    FileUploadComponent
+    FileUploadComponent,
+    RandomComponent,
+    PwdGeneratorComponent
   ],
   imports: [
     BrowserModule,

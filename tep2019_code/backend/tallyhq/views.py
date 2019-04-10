@@ -58,6 +58,14 @@ class SchoolViewSet(viewsets.ModelViewSet):
     serializer_class = SchoolSerializer
 
 
+class ValidationPasswordViewSet(viewsets.ModelViewSet):
+    """
+    Provides basic CRUD functions for the Item model
+    """
+    queryset = ValidationPassword.objects.all()
+    serializer_class = ValidationPasswordSerializer
+
+
 class WaiverView(APIView):
     parser_class = (FileUploadParser,)
 

@@ -74,9 +74,8 @@ class OrderItem(models.Model):
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
 class ValidationPassword(models.Model):
-    digest = models.CharField(max_length=30)
-    date = models.DateField()
-    current = models.BooleanField(default=True)
+    digest = models.CharField(max_length=50)
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
 
 
 class Waiver(models.Model):

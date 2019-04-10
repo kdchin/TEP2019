@@ -87,3 +87,9 @@ class WaiverSerializer(serializers.ModelSerializer):
     class Meta:
         model = Waiver
         fields = ('id', 'file', 'uploaded_date')
+
+
+class ValidationPasswordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ValidationPassword
+        fields = ('id', 'uploaded_date', 'digest')

@@ -10,6 +10,7 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { TeacherFormComponent } from './teacher-form/teacher-form.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { RandomComponent } from './random/random.component';
 
 const routes: Routes = [
   { path: 'form', component: TeacherFormComponent },
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: 'order-items', component: OrderItemListComponent },
   { path: 'orders', component: OrderListComponent },
   { path: 'orders/:id', component: OrderDetailComponent },
-  { path: 'waivers', component: FileUploadComponent },
+  { path: 'random', component: RandomComponent },
   { path: 'schools', component: SchoolListComponent }
 ];
 
