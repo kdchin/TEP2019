@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { Item, Teacher, Order, OrderItem, School, Waiver, ValPass } from '../models';
 import * as lodash from "lodash";
 import * as crypto from 'crypto-js';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-teacher-form',
@@ -51,7 +52,6 @@ export class TeacherFormComponent implements OnInit {
   }
 
   getRecentWaiver() {
-    let API_PATH = 'http://localhost:8000';
     this.apiService.fetchAll('waivers').subscribe((data: Array<Waiver>) => {
       let mostRecent = null;
       for (let i = 0; i < data.length; i++) {
@@ -59,7 +59,7 @@ export class TeacherFormComponent implements OnInit {
           mostRecent = data[i];
       }
       if (mostRecent)
-        this.waiverPath = API_PATH + mostRecent.file;// this.getFilePath(mostRecent);
+        this.waiverPath = environment.api_url + '/' + mostRecent.file;// this.getFilePath(mostRecent);
     })
   }
 
@@ -138,6 +138,7 @@ export class TeacherFormComponent implements OnInit {
     this.teacher = new Teacher(null, '', '', '', '', true, null);
     this.order = new Order(null, new Date().toISOString(), false, false, null);
     this.school = new School('', false);
+    this.val_email = "";
     this.order_items = [];
     this.advancePage();
   }

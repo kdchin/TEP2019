@@ -174,7 +174,7 @@
           <label class="item-label">{{order_item.item.name}}</label>
           <div class="field">
             <div class="select" id="itemText">
-              <select type="number" class="item-dropdown" id="units_taken" required [(ngModel)]="order_item.units_taken"
+              <select type="number" class="item-dropdown" required [(ngModel)]="order_item.units_taken"
                 name="units_taken">
                 <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
                   {{num}}</option>
@@ -197,7 +197,7 @@
 
   <div class="section">
     <label class="label">Passcode:</label>
-    <input class="input" type="text" [(ngModel)]="guess">
+    <input class="input" type="password" [(ngModel)]="guess">
   </div>
 
   <!-- <div class="has-text-centered">
