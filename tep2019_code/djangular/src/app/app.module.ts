@@ -26,6 +26,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { RandomComponent } from './random/random.component';
 import { PwdGeneratorComponent } from './pwd-generator/pwd-generator.component';
+import { ExportCsvComponent } from './export-csv/export-csv.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { PwdGeneratorComponent } from './pwd-generator/pwd-generator.component';
     FilterPipe,
     FileUploadComponent,
     RandomComponent,
-    PwdGeneratorComponent
+    PwdGeneratorComponent,
+    ExportCsvComponent
   ],
   imports: [
     BrowserModule,

@@ -47,8 +47,14 @@ class OrderSerializer(serializers.ModelSerializer):
             teacher=teacher, **validated_data)
         return order
 
+    def update(self, instance, validated_data):
+        if (instance.uploaded):
+            return instance
+        instance.uploaded = validated_data.get('uploaded', instance.uploaded)
+        instance.save()
+        return instance
 
-# TODO: make one-way serializers for Order and Item fhg
+
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item

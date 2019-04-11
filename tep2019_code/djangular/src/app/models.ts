@@ -27,7 +27,7 @@ export class Order {
         public shopping_date: string,
         public uploaded: boolean,
         public waiver_signed: boolean,
-        public teacher: Teacher | number,
+        public teacher: Teacher,
     ) { }
 }
 
@@ -35,8 +35,8 @@ export class OrderItem {
     constructor(
         public id: number,
         public item: Item,
-        public order: Order | number,
-        public units_taken: number | string,
+        public order: Order,
+        public units_taken: number,
     ) { }
 }
 
