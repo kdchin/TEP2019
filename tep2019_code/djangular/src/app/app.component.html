@@ -11,7 +11,7 @@
       <a [routerLink]="'/order-items'" class="items"> All Ordered Items </a>
       <a [routerLink]="'/form'" class="items"> Form </a>
       <a [routerLink]="'/random'" class="items"> Random </a>
-      <a class="logout"> Log out </a>
+      <a class="logout" (click)="logout()"> Log out </a>
     </div>
   </nav>
   <section class="section">

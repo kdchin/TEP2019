@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
@@ -27,6 +27,10 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { RandomComponent } from './random/random.component';
 import { PwdGeneratorComponent } from './pwd-generator/pwd-generator.component';
 import { ExportCsvComponent } from './export-csv/export-csv.component';
+import { fakeBackendProvider } from './_helpers';
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { HomeComponent } from './home';
+import { LoginComponent } from './login';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,9 @@ import { ExportCsvComponent } from './export-csv/export-csv.component';
     FileUploadComponent,
     RandomComponent,
     PwdGeneratorComponent,
-    ExportCsvComponent
+    ExportCsvComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,13 @@ import { ExportCsvComponent } from './export-csv/export-csv.component';
     PdfViewerModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
