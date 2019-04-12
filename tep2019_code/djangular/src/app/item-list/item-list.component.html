@@ -2,27 +2,25 @@
   Items
 </h1>
 <button class="button is-info" (click)="toggleShowCreate()">New Item</button>
-<div class = "card">
-  <table class="table is-hoverable is-fullwidth">
-    <tr>
-      <th>Name</th>
-      <th>Label Name</th>
-      <th>Max Units</th>
-      <th>Quantity Per Unit</th>
-      <th>Active</th>
-    </tr>
-    <tr *ngFor="let item of items" routerLink="/items/{{item.id}}">
-      <td> {{ item.name }} </td>
-      <td> {{ item.unit_label_name }} </td>
-      <td> {{ item.max_units }} </td>
-      <td> {{ item.qty_per_unit }} </td>
-      <!-- TODO: this displays kind of weirdly -->
-      <!-- <app-inline-edit [(ngModel)]="item.active" [onChange]="updateItem(i, 'active')" [fieldType]="'checkbox'"
-        [displayPipe]="activePipe"></app-inline-edit> -->
-      <td> {{ item.active }} </td>
-    </tr>
-  </table>
-  <div [hidden]="!shouldShowCreate">
-    <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
-  </div>
+<table class="table is-hoverable is-fullwidth">
+  <tr>
+    <th>Name</th>
+    <th>Label Name</th>
+    <th>Max Units</th>
+    <th>Quantity Per Unit</th>
+    <th>Active</th>
+  </tr>
+  <tr *ngFor="let item of items" routerLink="/items/{{item.id}}">
+    <td> {{ item.name }} </td>
+    <td> {{ item.unit_label_name }} </td>
+    <td> {{ item.max_units }} </td>
+    <td> {{ item.qty_per_unit }} </td>
+    <!-- TODO: this displays kind of weirdly -->
+    <!-- <app-inline-edit [(ngModel)]="item.active" [onChange]="updateItem(i, 'active')" [fieldType]="'checkbox'"
+      [displayPipe]="activePipe"></app-inline-edit> -->
+    <td> {{ item.active }} </td>
+  </tr>
+</table>
+<div [hidden]="!shouldShowCreate">
+  <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
 </div>

@@ -65,7 +65,7 @@
   <img src="../../assets/temp_waiver.png" class="center">
   <div class="has-text-centered">
     <div class="column">
-      <button class="button is-medium is-primary" (click)=backPage()>Back</button>
+      <button class="back button is-medium" (click)=backPage()>Back</button>
       <div class="divider"></div>
       <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Agree</button>
     </div>
@@ -78,19 +78,23 @@
 
 <div *ngIf="pages[current_page] === 'reminders'">
   <h1 class="title">Shopping Reminders</h1>
-  <div class="section" id="success">
-    Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
+  <div class="orange-card">
+    <div class="section" id="success">
+      Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
+    </div>
   </div>
   <br>
 
-  <div class="section" id="success">
-    Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
-    any
-    questions, please talk to a TEP employee.
+  <div class="orange-card">
+    <div class="section" id="success">
+      Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
+      any
+      questions, please talk to a TEP employee.
+    </div>
   </div>
   <div class="has-text-centered">
     <div class="column">
-      <button class="button is-medium is-primary" (click)=backPage()>Back</button>
+      <button class="button back is-medium" (click)=backPage()>Back</button>
       <div class="divider"></div>
       <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Understand</button>
     </div>
@@ -103,41 +107,43 @@
 <div *ngIf="pages[current_page] === 'checkout'">
   <h1 class="title">Checkout Sheet</h1>
   <div class = "card"> 
-  <div class="order-items">
-    <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
-      <div class="item-columns">
-        <div class="column">
-          <label class="item-label">{{order_item.item.name}}</label>
-          <div class="field">
-            <div class="select" id="itemText">
-              <select type="number" class="item-dropdown" id="units_taken" required [(ngModel)]="order_item.units_taken"
-                name="units_taken">
-                <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
-                  {{num}}</option>
-              </select>
-              <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
+    <div class="order-items">
+      <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
+        <div class="item-columns">
+          <div class="column">
+            <label class="item-label">{{order_item.item.name}}</label>
+            <div class="field">
+              <div class="select" id="itemText">
+                <select type="number" class="item-dropdown" id="units_taken" required [(ngModel)]="order_item.units_taken"
+                  name="units_taken">
+                  <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
+                    {{num}}</option>
+                </select>
+                <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
+              </div>
+              <button class="button" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
+                {{ order_item.item.unit_label_name }}</button>
             </div>
-            <button class="button" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
-              {{ order_item.item.unit_label_name }}</button>
           </div>
         </div>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
   </div>
   <br>
 
   <h1 class="title">Please Hand Device to Employee</h1>
 
-  <div class="section">
-    <h3>Passcode:</h3>
+  <div class="orange-card">
+    <div class="section">
+      <h3>Passcode:</h3>
+    </div>
   </div>
 
   <div class="has-text-centered">
     <div class="column">
-      <button class="button is-primary" (click)=backPage()>Back</button>
+      <button class="button back is-medium" (click)=backPage()>Back</button>
       <div class="divider"></div>
-      <button class="button is-primary" (click)=createOrder()>Submit</button>
+      <button class="button is-medium is-primary" (click)=createOrder()>Submit</button>
     </div>
   </div>
 </div>
@@ -148,8 +154,10 @@
 
 <div *ngIf="pages[current_page] === 'success'">
   <h1 class="title">Success!</h1>
-  <div class="section">
-    Your checkout form has been submitted. You may now continue to the incentive items.
+  <div class = "card"> 
+    <div class="section has-text-centered">
+      <strong>Your checkout form has been submitted!</strong><br>You may now continue to the incentive items.
+    </div>
   </div>
   <div class="has-text-centered">
     <button class="button is-medium is-primary" (click)=finish()>Return Home</button>
