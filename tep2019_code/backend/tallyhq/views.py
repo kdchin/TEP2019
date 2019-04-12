@@ -1,5 +1,6 @@
 from .models import *
 from .serializers import *
+from .authentication import *
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User
@@ -111,3 +112,19 @@ class WaiverDetailView(APIView):
         waiver = self.get_object(pk)
         waiver.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    Provides basic CRUD functions for the Item model
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class AuthView(APIView):
+    authentication_classes = (QuietBasicAuthentication,)
+    serializer_class = UserSerializer
+
+    def post(self, request, *args, **kwargs):
+        return Response(self.serializer_class(request.user).data)

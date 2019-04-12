@@ -24,7 +24,6 @@ import { TeacherFormComponent } from './teacher-form/teacher-form.component';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { RandomComponent } from './random/random.component';
 import { PwdGeneratorComponent } from './pwd-generator/pwd-generator.component';
 import { ExportCsvComponent } from './export-csv/export-csv.component';
 import { fakeBackendProvider } from './_helpers';
@@ -52,7 +51,6 @@ import { LoginComponent } from './login';
     TeacherFormComponent,
     FilterPipe,
     FileUploadComponent,
-    RandomComponent,
     PwdGeneratorComponent,
     ExportCsvComponent,
     HomeComponent,
@@ -73,7 +71,7 @@ import { LoginComponent } from './login';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend
-    fakeBackendProvider
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

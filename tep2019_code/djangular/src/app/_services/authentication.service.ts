@@ -1,10 +1,12 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 import { User } from '../_models';
+import { headersToString } from 'selenium-webdriver/http';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -21,10 +23,16 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(`${environment.api_url}/users/authenticate`, { username, password })
+        // return this.http.post<any>(`${environment.api_url}/users/authenticate`, { username, password })
+        const httpOptions = {
+            headers: new HttpHeaders({
+                "Authorization": `Basic ${btoa(username + ':' + password)}`
+            })
+        };
+        return this.http.post<any>(`${environment.api_url}/auth/`, { username, password }, httpOptions)
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
-                if (user && user.token) {
+                if (user) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);

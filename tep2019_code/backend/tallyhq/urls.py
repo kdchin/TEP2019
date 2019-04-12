@@ -69,6 +69,18 @@ validation_password_detail = ValidationPasswordViewSet.as_view({
     'delete': 'destroy'
 })
 
+user_list = UserViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
+user_detail = UserViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 urlpatterns = [
     path(r'api/', include(router.urls)),
     path(r'api/items/', item_list, name='item-list'),
@@ -86,5 +98,8 @@ urlpatterns = [
          validation_password_list, name='val-pass-list'),
     path(r'api/validation_passwords/<int:pk>',
          validation_password_detail, name='val-pass-detail'),
+    path(r'api/users/', user_list, name='user-list'),
+    path(r'api/users/<int:pk>', user_detail, name='user-detail'),
+    path(r'api/auth/', AuthView.as_view(), name='authenticate'),
     # path(r'', index, name='index')
 ]
