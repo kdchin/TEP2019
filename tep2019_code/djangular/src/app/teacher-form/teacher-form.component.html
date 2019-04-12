@@ -100,9 +100,9 @@
 
 <!-- Checkout Page -->
 
-
 <div *ngIf="pages[current_page] === 'checkout'">
   <h1 class="title">Checkout Sheet</h1>
+  <div class = "card"> 
   <div class="order-items">
     <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
       <div class="item-columns">
@@ -123,6 +123,7 @@
         </div>
       </div>
     </form>
+  </div>
   </div>
   <br>
 
