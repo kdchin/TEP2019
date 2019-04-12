@@ -71,6 +71,7 @@ CORS_ORIGIN_WHITELIST = [
     '127.0.0.1:8000',
     '127.0.0.1:4200',
     'tallyhq.s3-website.us-east-2.amazonaws.com',
+    'dxf4xxoe63ib2.cloudfront.net',
 ]
 
 # CORS_URLS_REGEX = r'^/api/.*$'
