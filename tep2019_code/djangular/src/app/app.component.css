@@ -1,3 +1,8 @@
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
 .header {
     position: fixed;
     width: 100%;
@@ -36,6 +41,29 @@
     right: 100px;
 }
 
+.section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -100px;
+    padding-bottom: 100px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #494949;
+    padding: 10px 0px;
+    color: #8D8D8D;
+    font-size: 10px;
+    text-align: center;
+    height: 80px;
+}
+
 @media screen and (max-width: 650px) {
     .header {
         padding: 15px 0;
@@ -44,32 +72,4 @@
     .header-content {
         grid-template-columns: repeat(4, auto);
     }
-}
-
-.section {
-    padding-top: 100px;
-    margin-bottom: 50px;
-}
-
-
-.wrapper {
-    min-height: 100%;
-    margin-bottom: -100px;
-    padding-bottom: 100px;
-}
-
-
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #494949;
-    padding: 10px 0px;
-    color: #8D8D8D;
-    font-size: 10px;
-    text-align: center;
-}
-
-html, body {
-    height: 100%;
 }
