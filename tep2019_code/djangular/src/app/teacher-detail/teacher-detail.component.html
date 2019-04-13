@@ -2,19 +2,25 @@
   <h1 class="title">{{teacher.first_name }} {{teacher.last_name }}</h1>
   <div class ="row">
     <div class = "column">
-      <h3>Details</h3><br>
-      <label>First Name:<br><input [(ngModel)]="teacher.first_name" placeholder="Cat"/></label><br>
-      <label>Last Name:<br><input [(ngModel)]="teacher.last_name" placeholder="Price"/></label><br>
-      <label>Email:<br><input [(ngModel)]="teacher.email" placeholder="cprce@example.com"/></label><br>
-      <label>Phone Number:<br><input [(ngModel)]="teacher.phone" placeholder="4128888888"/></label><br>
+      <div class = "card">
+        <h3>Details</h3><br>
+        <label>First Name:<br><input [(ngModel)]="teacher.first_name" placeholder="Cat"/></label><br>
+        <label>Last Name:<br><input [(ngModel)]="teacher.last_name" placeholder="Price"/></label><br>
+        <label>Email:<br><input [(ngModel)]="teacher.email" placeholder="cprce@example.com"/></label><br>
+        <label>Phone Number:<br><input [(ngModel)]="teacher.phone" placeholder="4128888888"/></label><br>
+      </div>
     </div>
     <div class = "column">
-      <h3>Additional Information</h3><br>
-      <label>School:<br><input [(ngModel)]="teacher.school.name" placeholder="Taylor Allderdice"/></label><br>
-      <label>Active:<br><input [(ngModel)]="teacher.active" placeholder="false"/></label>
+      <div class = "card">
+        <h3>Additional Information</h3><br>
+        <label>School:<br><input class="readonly" [(ngModel)]="teacher.school.name" placeholder="Taylor Allderdice"/></label><br>
+        <label>Active:<br><input [(ngModel)]="teacher.active" placeholder="false"/></label>
+      </div>
     </div>
     <div class = "column">
-      <h3>Past Orders</h3><br>
+      <div class = "card">
+        <h3>Past Orders</h3><br>
+      </div>
     </div>
   </div>
   <button class="button is-info" (click)="goBack()">Go Back</button>

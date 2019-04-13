@@ -1,56 +1,58 @@
 <!-- TODO: new school option -->
 <div *ngIf="pages[current_page] === 'welcome'">
   <h1 class="title">Welcome Teachers!</h1>
-  <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
-    <div class="field">
-      <label class="label">First Name</label>
-      <div class="control">
-        <input id="first_name" class="input" type="text" placeholder="Master" required [(ngModel)]="teacher.first_name"
-          name="first_name">
+  <div class="card">
+    <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+      <div class="field">
+        <label class="label">First Name</label>
+        <div class="control">
+          <input id="first_name" class="input" type="text" placeholder="Master" required [(ngModel)]="teacher.first_name"
+            name="first_name">
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Last Name</label>
-      <div class="control">
-        <input id="last_name" class="input" type="text" placeholder="ShiFu" required [(ngModel)]="teacher.last_name"
-          name="last_name">
+      <div class="field">
+        <label class="label">Last Name</label>
+        <div class="control">
+          <input id="last_name" class="input" type="text" placeholder="ShiFu" required [(ngModel)]="teacher.last_name"
+            name="last_name">
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Email</label>
-      <div class="control">
-        <input id="email" class="input" type="text" placeholder="shifu@dreamworks.com" required
-          [(ngModel)]="teacher.email" name="email">
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input id="email" class="input" type="text" placeholder="shifu@dreamworks.com" required
+            [(ngModel)]="teacher.email" name="email">
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Phone Number</label>
-      <div class="control">
-        <input id="phone" class="input" type="text" placeholder="412 922 6500" required [(ngModel)]="teacher.phone"
-          name="phone">
+      <div class="field">
+        <label class="label">Phone Number</label>
+        <div class="control">
+          <input id="phone" class="input" type="text" placeholder="412 922 6500" required [(ngModel)]="teacher.phone"
+            name="phone">
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <div class="select">
-        <label class="label" for="school">School</label>
-        <select id="school" required [(ngModel)]="school" name="school">
-          <option *ngFor="let schl of all_schools" [ngValue]="schl">
-            {{schl.name}}</option>
-        </select>
+      <div class="field">
+        <div class="select">
+          <label class="label" for="school">School</label>
+          <select id="school" required [(ngModel)]="school" name="school">
+            <option *ngFor="let schl of all_schools" [ngValue]="schl">
+              {{schl.name}}</option>
+          </select>
+        </div>
       </div>
-    </div>
 
-    <div class="field section" id="checker">
-      <label type="checkbox">
-        <input name="isNewTeacher" [(ngModel)]="isNewTeacher" [placeholder]="false" type="checkbox" />
-        I am using this application for the first time
-      </label>
-    </div>
-  </form>
+      <div class="field section" id="checker">
+        <label type="checkbox">
+          <input name="isNewTeacher" [(ngModel)]="isNewTeacher" [placeholder]="false" type="checkbox" />
+          I am using this application for the first time
+        </label>
+      </div>
+    </form>
+  </div>
   <div class="has-text-centered">
     <button class="button is-medium is-primary" (click)=processTeacher()>GO</button>
   </div>
