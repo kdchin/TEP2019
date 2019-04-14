@@ -27,6 +27,7 @@ export class TeacherFormComponent implements OnInit {
   val_pass = new ValPass(null, '', new Date());
   guess = '';
   key = 'tep2019cmuis'; // TODO: idk if this is secure
+  isChrome = false;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -36,6 +37,29 @@ export class TeacherFormComponent implements OnInit {
     this.getRecentWaiver();
     this.getMostRecentPassword();
     this.current_page = 0;
+
+    var isChromium = window['chrome'];
+    var winNav = window.navigator;
+    var vendorName = winNav.vendor;
+    var isOpera = typeof window['opr'] !== "undefined";
+    var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
+    var isIOSChrome = winNav.userAgent.match("CriOS");
+
+    if (isIOSChrome) {
+      // is Google Chrome on IOS
+      this.isChrome = true;
+    } else if (
+      isChromium !== null &&
+      typeof isChromium !== "undefined" &&
+      vendorName === "Google Inc." &&
+      isOpera === false &&
+      isIEedge === false
+    ) {
+      // is Google Chrome
+      this.isChrome = true;
+    } else {
+      this.isChrome = false;
+    }
   }
   // TODO: configure back button so it works
 

@@ -19,10 +19,6 @@
     </div>
   </label>
 </div>
-wavier: {{ waiverPath}}
-<div *ngIf="waiverPath">
-  <pdf-viewer [src]="waiverPath" [render-text]="true" style="display: block;"></pdf-viewer>
-</div>
 <div *ngIf="fileToUpload">
   <div *ngIf="isPdf()">
 
