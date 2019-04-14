@@ -12,9 +12,7 @@ from rest_framework import status
 import json
 import os
 import boto3
-
-# def index(request, path=''):
-#     return render(request, 'index.html')
+from botocore.client import Config
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -138,7 +136,11 @@ def sign_s3(request):
 
     file_name = request.GET['file_name']
 
-    s3 = boto3.client('s3', os.environ.get('AWS_S3_REGION') or 'us-east-2')
+    s3 = boto3.client('s3', os.environ.get('AWS_S3_REGION') or 'us-east-2',
+                      aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+                      aws_secret_access_key=os.environ.get(
+                          'AWS_SECRET_ACCESS_KEY'),
+                      config=Config(signature_version='s3v4'))
 
     presigned_post = s3.generate_presigned_post(
         Bucket=S3_BUCKET,

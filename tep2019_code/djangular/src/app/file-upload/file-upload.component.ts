@@ -11,6 +11,7 @@ export class FileUploadComponent implements OnInit {
 
   fileToUpload: File = null;
   mostRecentUpload: Waiver = null;
+  waiverPath: string = '';
   constructor(private apiService: ApiService) { }
   ngOnInit() {
     this.getMostRecentUpload();
@@ -27,7 +28,10 @@ export class FileUploadComponent implements OnInit {
         if (!mostRecent || (data[i].uploaded_date > mostRecent.uploaded_date))
           mostRecent = data[i];
       }
-      this.mostRecentUpload = mostRecent;
+      if (mostRecent) {
+        this.waiverPath = mostRecent.file;
+        this.mostRecentUpload = mostRecent;
+      }
     })
   }
 

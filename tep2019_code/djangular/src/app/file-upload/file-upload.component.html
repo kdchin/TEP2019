@@ -19,10 +19,16 @@
     </div>
   </label>
 </div>
+wavier: {{ waiverPath}}
+<div *ngIf="waiverPath">
+  <pdf-viewer [src]="waiverPath" [render-text]="true" style="display: block;"></pdf-viewer>
+</div>
 <div *ngIf="fileToUpload">
   <div *ngIf="isPdf()">
 
-    <button class="button is-primary" (click)="uploadToS3()">Upload</button>
+    <!-- <button class="button is-primary" (click)="uploadToS3()">Upload</button> -->
+    <button class="button is-primary" (click)="uploadFile()">Upload</button>
+    <!-- <button class="button is-primary" (click)="uploadDirect()">Upload</button> -->
   </div>
   <div *ngIf="!isPdf()">
     <div class="notification is-danger">File must be a pdf!</div>
