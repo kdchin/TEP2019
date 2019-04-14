@@ -138,7 +138,7 @@ def sign_s3(request):
 
     file_name = request.GET['file_name']
 
-    s3 = boto3.client('s3')
+    s3 = boto3.client('s3', os.environ.get('AWS_S3_REGION') or 'us-east-2')
 
     presigned_post = s3.generate_presigned_post(
         Bucket=S3_BUCKET,

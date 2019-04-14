@@ -63,7 +63,7 @@ export class TeacherFormComponent implements OnInit {
           mostRecent = data[i];
       }
       if (mostRecent)
-        this.waiverPath = `https://s3.us-east-2.amazonaws.com/tallyhq/${this.formatFileName(mostRecent.file)}`;
+        this.waiverPath = `https://s3.us-east-2.amazonaws.com/tallyhq-waivers/${this.formatFileName(mostRecent.file)}`;
     })
   }
 

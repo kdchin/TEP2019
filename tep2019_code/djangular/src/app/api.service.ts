@@ -52,6 +52,7 @@ export class ApiService {
   uploadToS3(file, req_data: SignedRequest) {
     let formData: FormData = new FormData();
     console.log(req_data);
+    console.log(file);
     for (let key in req_data.data.fields) {
       formData.append(key, req_data.data.fields[key]);
     }

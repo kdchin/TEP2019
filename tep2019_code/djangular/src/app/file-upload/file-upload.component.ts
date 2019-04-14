@@ -50,10 +50,12 @@ export class FileUploadComponent implements OnInit {
 
   uploadToS3() {
     if (this.fileToUpload && this.isPdf()) {
-      this.apiService.signS3(this.fileToUpload.name).subscribe((data: SignedRequest) => {
-        this.apiService.uploadToS3(this.fileToUpload, data).subscribe();
+      let file = this.fileToUpload;
+      this.apiService.signS3(file.name).subscribe((data: SignedRequest) => {
+        this.apiService.uploadToS3(file, data).subscribe(() => {
+          this.uploadFile(); // store it locally too
+        });
       });
-      this.uploadFile(); // store it locally too
     }
   }
 
