@@ -34,6 +34,13 @@ export class OrderItemListComponent implements OnInit {
     }
   }
 
+  public alerter(order_item: OrderItem){
+    let r = confirm("Are you sure you would like to delete this Order Item?");
+    if (r == true) {
+      this.deleteOrderItem(order_item)
+    } 
+  }
+
   public getOrderItems() {
     this.apiService.fetchAll("order_items").subscribe((data: Array<OrderItem>) => {
       this.order_items = data;
