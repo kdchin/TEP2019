@@ -43,15 +43,6 @@
 
 .section {
     padding-top: 100px;
-<<<<<<< HEAD
-    padding-bottom: 100px;
-}
-
-.wrapper {
-    min-height: 100%;
-    margin-bottom: -100px;
-=======
->>>>>>> exp
     padding-bottom: 100px;
 }
 
@@ -75,12 +66,8 @@
     .header-content {
         grid-template-columns: repeat(4, auto);
     }
-<<<<<<< HEAD
-}
-=======
 
     .section {
         padding-top: 150px;
     }
 }
->>>>>>> exp
