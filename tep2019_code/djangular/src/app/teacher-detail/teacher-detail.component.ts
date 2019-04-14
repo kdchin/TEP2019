@@ -28,6 +28,11 @@ export class TeacherDetailComponent implements OnInit {
     this.apiService.fetchOne("teachers", id).subscribe((teacher: Teacher) => this.teacher = teacher);
   }
 
+  deleteTeacher(teacher: Teacher) {
+    this.apiService.delete("teachers", this.teacher.id).subscribe();
+    this.location.back();
+  }
+
   goBack(): void {
     this.location.back();
   }

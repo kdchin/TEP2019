@@ -30,6 +30,16 @@ button.back {
   margin-top: 15px;
 }
 
+button.back {
+  /* background-image: url("../../assets/blue-back2.png");
+  background-position: 10px; 
+  background-repeat: no-repeat; */
+  /* padding: 7px 20px 8px 35px; */
+  color: #489AD8;
+  border-color: #489AD8;
+  margin-top: 15px;
+}
+
 span{
   width: 15em;
   margin-right: .5em;
