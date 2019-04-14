@@ -1,3 +1,4 @@
+boto3==1.9.130
 Django==2.1.7
 django-heroku==0.3.1
 django-cors-headers==2.5.0

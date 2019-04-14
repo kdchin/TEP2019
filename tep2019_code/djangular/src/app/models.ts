@@ -62,3 +62,10 @@ export class ValPass {
         public uploaded_date: Date,
     ) { }
 }
+
+export class SignedRequest {
+    constructor(
+        public data: any,
+        public url: string,
+    ) { }
+}

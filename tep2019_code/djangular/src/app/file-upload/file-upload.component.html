@@ -22,7 +22,7 @@
 <div *ngIf="fileToUpload">
   <div *ngIf="isPdf()">
 
-    <button class="button is-primary" (click)="uploadFile()">Upload</button>
+    <button class="button is-primary" (click)="uploadToS3()">Upload</button>
   </div>
   <div *ngIf="!isPdf()">
     <div class="notification is-danger">File must be a pdf!</div>

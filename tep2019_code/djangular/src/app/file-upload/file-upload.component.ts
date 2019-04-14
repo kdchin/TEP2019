@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Waiver } from '../models';
+import { Waiver, SignedRequest } from '../models';
 
 @Component({
   selector: 'app-file-upload',
@@ -46,6 +46,15 @@ export class FileUploadComponent implements OnInit {
 
   formatFileName(file) {
     return file.replace(/^.*[\\\/]/, '');
+  }
+
+  uploadToS3() {
+    if (this.fileToUpload && this.isPdf()) {
+      this.apiService.signS3(this.fileToUpload.name).subscribe((data: SignedRequest) => {
+        this.apiService.uploadToS3(this.fileToUpload, data).subscribe();
+      });
+      this.uploadFile(); // store it locally too
+    }
   }
 
 }

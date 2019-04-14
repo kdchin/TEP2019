@@ -51,6 +51,10 @@ export class TeacherFormComponent implements OnInit {
     })
   }
 
+  formatFileName(file) {
+    return file.replace(/^.*[\\\/]/, '');
+  }
+
   getRecentWaiver() {
     this.apiService.fetchAll('waivers').subscribe((data: Array<Waiver>) => {
       let mostRecent = null;
@@ -59,7 +63,7 @@ export class TeacherFormComponent implements OnInit {
           mostRecent = data[i];
       }
       if (mostRecent)
-        this.waiverPath = environment.api_url + '/' + mostRecent.file;// this.getFilePath(mostRecent);
+        this.waiverPath = `https://s3.us-east-2.amazonaws.com/tallyhq/${this.formatFileName(mostRecent.file)}`;
     })
   }
 

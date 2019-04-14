@@ -1,7 +1,7 @@
 from .models import *
 from .serializers import *
 from .authentication import *
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User
 from rest_framework.parsers import FormParser, MultiPartParser
@@ -9,6 +9,9 @@ from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+import json
+import os
+import boto3
 
 # def index(request, path=''):
 #     return render(request, 'index.html')
@@ -128,3 +131,28 @@ class AuthView(APIView):
 
     def post(self, request, *args, **kwargs):
         return Response(self.serializer_class(request.user).data)
+
+
+def sign_s3(request):
+    S3_BUCKET = os.environ.get('S3_BUCKET')
+
+    file_name = request.GET['file_name']
+
+    s3 = boto3.client('s3')
+
+    presigned_post = s3.generate_presigned_post(
+        Bucket=S3_BUCKET,
+        Key=file_name,
+        Fields={"acl": "public-read", "Content-Type": "application/pdf"},
+        Conditions=[
+            {"acl": "public-read"},
+            {"Content-Type": "application/pdf"}
+        ],
+        ExpiresIn=3600
+    )
+
+    result = json.dumps({
+        'data': presigned_post,
+        'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
+    })
+    return HttpResponse(result, content_type="application/json")

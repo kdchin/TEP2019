@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment'
+import { SignedRequest } from './models';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -42,6 +43,20 @@ export class ApiService {
 
   update(type, jsonData) {
     return this.httpClient.put(`${this.API_URL}/${type}/${jsonData.id}`, jsonData);
+  }
+
+  signS3(filename) {
+    return this.httpClient.get(`${this.API_URL}/sign_s3?file_name=${filename}`);
+  }
+
+  uploadToS3(file, req_data: SignedRequest) {
+    let formData: FormData = new FormData();
+    console.log(req_data);
+    for (let key in req_data.data.fields) {
+      formData.append(key, req_data.data.fields[key]);
+    }
+    formData.append('file', file, file.name.replace(/^.*[\\\/]/, ''));
+    return this.httpClient.post(req_data.url, formData);
   }
 
   uploadFile(file) {
