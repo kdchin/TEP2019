@@ -1,7 +1,7 @@
 input {
-  display: inline-block;
   position: relative;
-  width: 20em;
+  top: 0em;
+  width: 60%;
   padding: 10px 15px;
   margin: 8px 0;
   border: 1px solid #ccc;
@@ -10,18 +10,24 @@ input {
   font-size: 12px;
 }
 
+input.readonly {
+  background-color: #D4D4D4;
+  color: #474747;
+  cursor: default;
+}
+
 label{
-  width: 55%;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 50px;
   font-size: 18px;
 }
 
-button.button{
-  margin-top:30px;
-  color: white;
-  background-color: #489AD8;
+button.back {
+  /* background-image: url("../../assets/blue-back2.png");
+  background-position: 10px; 
+  background-repeat: no-repeat; */
+  /* padding: 7px 20px 8px 35px; */
+  color: #489AD8;
+  border-color: #489AD8;
+  margin-top: 15px;
 }
 
 span{
@@ -44,14 +50,18 @@ span{
 }
 
 h3 {
-  /* background-color: #CAD5E3; */
   width: 80%;
-  text-align: left;
-  padding: 10px;
+  margin: 0 auto;
   border-radius: 5px;
-  margin-top: 15px;
   font-size: 24px;
   font-weight: bold;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  height: 420px;
 }
 
 @media screen and (max-width: 780px) {
