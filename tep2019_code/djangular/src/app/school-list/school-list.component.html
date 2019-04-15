@@ -14,7 +14,7 @@
       <td> {{ school.active }} </td>
     </tr>
   </table>
-  <div [hidden]="!shouldShowCreate">
+  <div id = "creator" [hidden]="!shouldShowCreate">
     <app-school-create (schoolChange)="onNewSchool($event)"></app-school-create>
   </div>
 </div>

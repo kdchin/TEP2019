@@ -12,3 +12,10 @@ input[type=text] {
   padding: 8px 20px 8px 35px;
 }
     
+
+#creator {
+  max-width: 300px;
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+}
