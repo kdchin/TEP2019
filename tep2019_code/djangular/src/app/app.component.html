@@ -1,28 +1,36 @@
-<div class = wrapper>
-<nav class="header">
-  <div class="header-content">
-    <a href="" class="logo">
-      <img width="70" src="../assets/shopping_cart.png" />
-    </a>
-    <a [routerLink]="'/items'" class="items"> Items </a>
-    <a [routerLink]="'/teachers'" class="items"> Teachers </a>
-    <a [routerLink]="'/schools'" class="items"> Schools </a>
-    <a [routerLink]="'/orders'" class="items"> Orders </a>
-    <a [routerLink]="'/order-items'" class="items"> All Ordered Items </a>
-    <a [routerLink]="'/form'" class="items"> Form </a>
-    <a class="logout"> Log out </a>
-  </div>
-</nav>
-<section class="section">
-  <div class="container">
-    <div>
-      <router-outlet></router-outlet>
+<div class = "page-container">
+  <nav class="header">
+    <div class="header-content">
+      <a href="" class="logo">
+        <img width="70" src="../assets/shopping_cart.png" />
+      </a>
+      <a [routerLink]="'/items'" class="items"> Items </a>
+      <a [routerLink]="'/teachers'" class="items"> Teachers </a>
+      <a [routerLink]="'/schools'" class="items"> Schools </a>
+      <a [routerLink]="'/orders'" class="items"> Orders </a>
+      <a [routerLink]="'/order-items'" class="items"> All Ordered Items </a>
+      <a [routerLink]="'/form'" class="items"> Form </a>
+      <a class="logout"> Log out </a>
     </div>
+  </nav>
+  <section class="section">
+    <div class="container">
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </section>
+  <div class="footer">
+    <a href="https://theeducationpartnership.org/"><img width="100" src="../assets/tep_logo.png" /></a>
+    <p>© 2019 The Education Partnership. All Rights Reserved.</p>
   </div>
+<<<<<<< HEAD
 </section>
 </div>
 
 <div class="footer">
   <a href="https://theeducationpartnership.org/"><img width="100" src="../assets/tep_logo.png" /></a>
   <p>© 2019 The Education Partnership. All Rights Reserved.</p>
+=======
+>>>>>>> 2e67ff2e4d66ce6d48c201fcc122c78e699b8407
 </div>
