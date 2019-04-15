@@ -10,7 +10,7 @@ import { Order } from '../models';
 export class OrderListComponent implements OnInit {
   selectedOrder: Order;
 
-  private orders: Array<Order> = [];
+  orders: Array<Order> = [];
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {

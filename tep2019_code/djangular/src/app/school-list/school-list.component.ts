@@ -9,8 +9,9 @@ import { School } from '../models';
 })
 export class SchoolListComponent implements OnInit {
 
-  private schools: Array<School> = [];
-  private shouldShowCreate = false;
+  searchText = '';
+  schools: Array<School> = [];
+  shouldShowCreate = false;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {

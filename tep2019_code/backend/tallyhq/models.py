@@ -25,6 +25,8 @@ class School(models.Model):
     name = models.CharField(max_length=50)
     active = models.BooleanField(default=True)
 
+    # TODO: maybe add in name as unique?
+
 
 class Teacher(models.Model):
     first_name = models.CharField(max_length=20)
@@ -33,6 +35,8 @@ class Teacher(models.Model):
     phone = models.CharField(max_length=20)
     school = models.ForeignKey(School, on_delete=models.CASCADE, null=False)
     active = models.BooleanField(default=True)
+
+    # TODO: make email unique
 
 
 # Order model: one per teacher visit, summarizes what a teacher got
@@ -56,7 +60,6 @@ class Order(models.Model):
 
 # Associative entity for order and item
 class OrderItem(models.Model):
-    # TODO: guarantee uniqueness of order/item pair
     order = models.ForeignKey(
         Order, related_name='order_items', on_delete=models.CASCADE, null=False)
     item = models.ForeignKey(
@@ -68,6 +71,10 @@ class OrderItem(models.Model):
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
 class ValidationPassword(models.Model):
-    digest = models.CharField(max_length=30)
-    date = models.DateField()
-    current = models.BooleanField(default=True)
+    digest = models.CharField(max_length=50)
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
+
+
+class Waiver(models.Model):
+    file = models.FileField(blank=True, default='')
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)

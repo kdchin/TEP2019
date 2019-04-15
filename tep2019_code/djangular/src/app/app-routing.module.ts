@@ -9,17 +9,27 @@ import { TeacherDetailComponent } from './teacher-detail/teacher-detail.componen
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { TeacherFormComponent } from './teacher-form/teacher-form.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+
+import { HomeComponent } from './home';
+import { LoginComponent } from './login';
+import { AuthGuard } from './_guards';
 
 const routes: Routes = [
   { path: 'form', component: TeacherFormComponent },
-  { path: 'items', component: ItemListComponent },
-  { path: 'items/:id', component: ItemDetailComponent },
-  { path: 'teachers', component: TeacherListComponent },
-  { path: 'teachers/:id', component: TeacherDetailComponent },
-  { path: 'order-items', component: OrderItemListComponent },
-  { path: 'orders', component: OrderListComponent },
-  { path: 'orders/:id', component: OrderDetailComponent },
-  { path: 'schools', component: SchoolListComponent }
+  { path: 'items', component: ItemListComponent, canActivate: [AuthGuard] },
+  { path: 'items/:id', component: ItemDetailComponent, canActivate: [AuthGuard] },
+  { path: 'teachers', component: TeacherListComponent, canActivate: [AuthGuard] },
+  { path: 'teachers/:id', component: TeacherDetailComponent, canActivate: [AuthGuard] },
+  { path: 'order-items', component: OrderItemListComponent, canActivate: [AuthGuard] },
+  { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard] },
+  { path: 'orders/:id', component: OrderDetailComponent, canActivate: [AuthGuard] },
+  { path: 'schools', component: SchoolListComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

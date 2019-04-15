@@ -9,7 +9,7 @@ import { OrderItem } from '../models';
 })
 export class OrderItemListComponent implements OnInit {
 
-  private order_items: Array<OrderItem> = [];
+  order_items: Array<OrderItem> = [];
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {

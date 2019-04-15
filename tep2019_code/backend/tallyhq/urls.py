@@ -66,6 +66,28 @@ order_foo = OrderDetailViewSet.as_view({
     'delete': 'destroy'
 })
 
+validation_password_list = ValidationPasswordViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
+validation_password_detail = ValidationPasswordViewSet.as_view({
+    'get': 'retrieve',
+    'delete': 'destroy'
+})
+
+user_list = UserViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
+user_detail = UserViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
 urlpatterns = [
     path(r'api/', include(router.urls)),
     path(r'api/items/', item_list, name='item-list'),
@@ -78,6 +100,15 @@ urlpatterns = [
     path(r'api/order_items/<int:pk>', order_item_detail, name='order-item-detail'),
     path(r'api/schools/', school_list, name='school-list'),
     path(r'api/order_foo/<int:pk>', order_foo, name='order-foo'),
+    path(r'api/waivers/', WaiverView.as_view()),
+    path(r'api/waivers/<int:pk>', WaiverDetailView.as_view()),
+    path(r'api/validation_passwords/',
+         validation_password_list, name='val-pass-list'),
+    path(r'api/validation_passwords/<int:pk>',
+         validation_password_detail, name='val-pass-detail'),
+    path(r'api/users/', user_list, name='user-list'),
+    path(r'api/users/<int:pk>', user_detail, name='user-detail'),
+    path(r'api/auth/', AuthView.as_view(), name='authenticate'),
+    path(r'api/sign_s3', sign_s3),
     # path(r'', index, name='index')
 ]
-

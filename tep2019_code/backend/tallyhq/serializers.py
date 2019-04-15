@@ -38,7 +38,6 @@ class OrderSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         teacher_data = validated_data.pop('teacher')
-        print(teacher_data)
         school_data = teacher_data.pop('school')
         school, _ = School.objects.get_or_create(**school_data)
         teacher, _ = Teacher.objects.get_or_create(
@@ -47,7 +46,14 @@ class OrderSerializer(serializers.ModelSerializer):
             teacher=teacher, **validated_data)
         return order
 
-# TODO: make one-way serializers for Order and Item
+    def update(self, instance, validated_data):
+        if (instance.uploaded):
+            return instance
+        instance.uploaded = validated_data.get('uploaded', instance.uploaded)
+        instance.save()
+        return instance
+
+
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
@@ -68,13 +74,12 @@ class OrderItemSerializer(serializers.ModelSerializer):
             validated_data.pop('id')
         order_data = validated_data.pop('order')
         item_data = validated_data.pop('item')
-        print(order_data)
         teacher_data = order_data.pop('teacher')
-        print(teacher_data)
         school_data = teacher_data.pop('school')
         school, _ = School.objects.get_or_create(**school_data)
         teacher, _ = Teacher.objects.get_or_create(
             **teacher_data, school=school)
+        # TODO: convert to timestamp bc otherwise two orders cant be made on the same day by the same teacher
         order, _ = Order.objects.get_or_create(
             **order_data,
             teacher=teacher,
@@ -97,3 +102,29 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         model = Order
         fields = ('id', 'shopping_date', 'uploaded',
                   'waiver_signed', 'teacher', 'order_items')
+
+class WaiverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Waiver
+        fields = ('id', 'file', 'uploaded_date')
+
+
+class ValidationPasswordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ValidationPassword
+        fields = ('id', 'uploaded_date', 'digest')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'password', 'username')
+        write_only_fields = ('password',)
+        read_only_fields = ('is_superuser',)
+
+    def restore_object(self, attrs, instance=None):
+        # call set_password on user object. Without this
+        # the password will be stored in plain text.
+        user = super(UserSerializer, self).restore_object(attrs, instance)
+        user.set_password(attrs['password'])
+        return user
