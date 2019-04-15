@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Teacher } from '../models';
 import { ApiService }  from '../api.service';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-teacher-detail',

@@ -104,16 +104,16 @@ img {
 
 .orange-card {
   /* background-color: #FEEED6; */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgb(255, 0, 0);
   transition: 0.3s;
   width: 40%;
   margin: 0 auto;
   padding-top: 25px;
   padding-bottom: 25px;
   min-width: 400px;
-  border-style: solid;
+  /* border-style: solid;
   border-color: red;
-  border-width: 5px;
+  border-width: 5px; */
 }
 
 select.item-dropdown {
