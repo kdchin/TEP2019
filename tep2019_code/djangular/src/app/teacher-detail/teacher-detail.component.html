@@ -18,24 +18,9 @@
       </div>
     </div>
     <div class = "column">
-<<<<<<< HEAD
-      <h3>Past Orders</h3><br>
-      <input type="text" [(ngModel)]="searchText" placeholder= "nathan">
-      <table class="table is-hoverable is-fullwidth">
-          <tr>
-            <th>Name</th>
-            <th>Date</th>
-      <tr *ngFor="let order of orders;" routerLink="/orders/{{order.id}}">
-        <td> {{ order.teacher.first_name }} {{ order.teacher.id}}</td>
-        <td> {{ order.shopping_date | date}}</td>
-      </tr>
-    </table>
-
-=======
       <div class = "card">
         <h3>Past Orders</h3><br>
       </div>
->>>>>>> 2e67ff2e4d66ce6d48c201fcc122c78e699b8407
     </div>
   </div>
   <button class="back button is-medium" (click)="goBack()">Go Back</button>

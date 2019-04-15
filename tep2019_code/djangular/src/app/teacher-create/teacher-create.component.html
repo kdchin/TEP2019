@@ -44,17 +44,9 @@
     </div>
   </div>
 
-  <div class="field">
-    <div class="select">
-      <label class="label" for="school">School</label>
-      <select id="school" required [(ngModel)]="new_school" name="school">
-        <option *ngFor="let schl of schools" [ngValue]="schl">
-          {{schl.name}}</option>
-      </select>
-    </div>
-  </div>
+ <br>
 
-  <div class="control">
+  <div id = "buttoner" class="control">
     <button type="submit" class="button is-primary">Create Teacher</button>
   </div>
   <!-- TODO: add field to associate with school -->

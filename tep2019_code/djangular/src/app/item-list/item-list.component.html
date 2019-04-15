@@ -21,6 +21,9 @@
     <td> {{ item.active }} </td>
   </tr>
 </table>
-<div [hidden]="!shouldShowCreate">
+<div id = "creator" [hidden]="!shouldShowCreate">
   <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
+  <div id = "undo">
+    <button type= "button" class = "button is-danger" (click)="toggleShowCreate()">Cancel</button>
+  </div>
 </div>
