@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
@@ -21,6 +21,7 @@ import { TeacherDetailComponent } from './teacher-detail/teacher-detail.componen
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { FilterPipe } from './filter.pipe';
 import { TeacherFormComponent } from './teacher-form/teacher-form.component';
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,9 @@ import { TeacherFormComponent } from './teacher-form/teacher-form.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    NgBootstrapFormValidationModule.forRoot(),
+    NgBootstrapFormValidationModule,
     AppRoutingModule
   ],
   providers: [],

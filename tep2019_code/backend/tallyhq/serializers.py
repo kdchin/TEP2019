@@ -38,7 +38,6 @@ class OrderSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         teacher_data = validated_data.pop('teacher')
-        print(teacher_data)
         school_data = teacher_data.pop('school')
         school, _ = School.objects.get_or_create(**school_data)
         teacher, _ = Teacher.objects.get_or_create(
@@ -68,13 +67,12 @@ class OrderItemSerializer(serializers.ModelSerializer):
             validated_data.pop('id')
         order_data = validated_data.pop('order')
         item_data = validated_data.pop('item')
-        print(order_data)
         teacher_data = order_data.pop('teacher')
-        print(teacher_data)
         school_data = teacher_data.pop('school')
         school, _ = School.objects.get_or_create(**school_data)
         teacher, _ = Teacher.objects.get_or_create(
             **teacher_data, school=school)
+        # TODO: convert to timestamp bc otherwise two orders cant be made on the same day by the same teacher
         order, _ = Order.objects.get_or_create(
             **order_data,
             teacher=teacher,

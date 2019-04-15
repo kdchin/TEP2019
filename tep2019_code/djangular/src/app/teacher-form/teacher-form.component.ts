@@ -13,6 +13,7 @@ export class TeacherFormComponent implements OnInit {
   current_page = 0;
   pages = ["welcome", "waiver", "reminders", "checkout", "success"];
   isNewTeacher = false;
+  val_email = "";
   teacher = new Teacher(null, '', '', '', '', true, null);
   all_teachers: Array<Teacher> = [];
   order = new Order(null, new Date().toISOString(), false, false, null);
@@ -63,6 +64,31 @@ export class TeacherFormComponent implements OnInit {
     });
   }
 
+  public teacherIsValid() {
+    if (!this.teacher.first_name || !this.teacher.last_name
+      || !this.teacher.email || !this.teacher.phone || !this.school) {
+      console.log("hi");
+      return false;
+    }
+    let found_email = false;
+    let matches = false
+    for (let i = 0; i < this.all_teachers.length; i++) {
+      let other: Teacher = this.all_teachers[i];
+      if (other.email == this.teacher.email) {
+        found_email = true;
+        matches = (other.first_name == this.teacher.first_name
+          && other.last_name == this.teacher.last_name
+          && other.school.name == this.school.name
+          && other.phone == this.teacher.phone);
+        break;
+      }
+    }
+    if (this.isNewTeacher) {
+      return !found_email;
+    }
+    return found_email && matches;
+  }
+
   public advancePage() {
     this.current_page++;
     if (this.current_page >= this.pages.length)
@@ -102,41 +128,34 @@ export class TeacherFormComponent implements OnInit {
 
   // will create teacher once "submit" is pressed on the checkout page
   public processTeacher() {
-    if (!this.teacher.first_name) return;
-    if (this.isNewTeacher) {
-      // TODO: validate is not in the database
-    } else {
-      // TODO: validate is a valid teacher
-    }
-    // TODO: apply this // this.teacher.school = this.school;
+    if (!this.teacherIsValid() && this.val_email === this.teacher.email) return;
     this.teacher.school = this.school;
     this.advancePage();
   }
 
+  public orderItemsAreValid() {
+    for (let i = 0; i < this.order_items.length; i++) {
+      let oi: OrderItem = this.order_items[i];
+      if (oi.units_taken > oi.item.max_units) return false;
+    }
+    return true;
+  }
+
   public makeOrderItems(teacher) {
-    console.log("teacher id: ", teacher);
     // this.order.shopping_date = null;
     this.order.teacher = teacher;
-    console.log(this.order);
     // this.order.shopping_date = this.order.shopping_date.toISOString();
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
-      console.log("data", data);
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
         order_item_with_order.order = data;
-        console.log(order_item_with_order);
         this.apiService.create('order_items', order_item_with_order).subscribe();
       }
     });
   }
 
   public createOrder() {
-    // TODO this is a workaround for units_taken being two-way binded to strings
-    for (let i = 0; i < this.order_items.length; i++) {
-      if (typeof this.order_items[i].units_taken === 'string') {
-        // this.order_items[i].units_taken = parseInt(this.order_items[i].units_taken);
-      }
-    }
+    if (!this.orderItemsAreValid()) return;
     // TODO: if new school this.apiService.create('school', this.school);
     let tid = this.getTeacherId();
     if (this.isNewTeacher) {

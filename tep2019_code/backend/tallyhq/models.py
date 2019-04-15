@@ -25,6 +25,9 @@ class School(models.Model):
     name = models.CharField(max_length=50)
     active = models.BooleanField(default=True)
 
+    class Meta:
+        unique_together = ('name',)
+
 
 class Teacher(models.Model):
     first_name = models.CharField(max_length=20)
@@ -33,6 +36,9 @@ class Teacher(models.Model):
     phone = models.CharField(max_length=20)
     school = models.ForeignKey(School, on_delete=models.CASCADE, null=False)
     active = models.BooleanField(default=True)
+
+    class Meta:
+        unique_together = ('email',)
 
 
 # Order model: one per teacher visit, summarizes what a teacher got
@@ -56,7 +62,6 @@ class Order(models.Model):
 
 # Associative entity for order and item
 class OrderItem(models.Model):
-    # TODO: guarantee uniqueness of order/item pair
     order = models.ForeignKey(
         Order, related_name='order_items', on_delete=models.CASCADE, null=False)
     item = models.ForeignKey(
@@ -64,6 +69,9 @@ class OrderItem(models.Model):
 
     # how many units of an item a teacher took (e.g. 8 (packs))
     units_taken = models.IntegerField(validators=[MinValueValidator(0)])
+
+    class Meta:
+        unique_together = ('order', 'item')
 
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
