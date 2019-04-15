@@ -121,7 +121,7 @@
 <!-- Waiver Page -->
 <div *ngIf="pages[current_page] === 'waiver'">
   <h1 class="title">Waiver</h1>
-  <div *ngIf="waiverPath && !isChrome">
+  <div *ngIf="waiverPath">
     <pdf-viewer [src]="waiverPath" [render-text]="true" style="display: block;"></pdf-viewer>
   </div>
   <div *ngIf="waiverPath">
