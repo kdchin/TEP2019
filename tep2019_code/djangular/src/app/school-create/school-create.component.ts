@@ -20,6 +20,10 @@ export class SchoolCreateComponent {
     this.new_school = new School('', true);
   }
 
+  public reload(){
+    window.location.reload();
+  }
+
   public createSchool() {
     this.apiService.create("schools", this.new_school).subscribe((response) => {
       console.log(response);

@@ -16,5 +16,8 @@
   </table>
   <div id = "creator" [hidden]="!shouldShowCreate">
     <app-school-create (schoolChange)="onNewSchool($event)"></app-school-create>
+    <div id = "undo">
+      <button type= "button" class = "button is-primary" (click)="toggleShowCreate()">Cancel</button>
+    </div>
   </div>
 </div>
