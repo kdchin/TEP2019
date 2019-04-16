@@ -1,4 +1,3 @@
-<!-- TODO: new school option -->
 <div *ngIf="pages[current_page] === 'welcome'">
   <h1 class="title">Welcome Teachers!</h1>
   <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
@@ -19,6 +18,7 @@
 
         </div>
       </div>
+    </div>
 
     <div class="field">
       <label class="label">Last Name</label>
@@ -36,6 +36,7 @@
 
         </div>
       </div>
+    </div>
 
     <div class="field">
       <label class="label">Email</label>
@@ -58,6 +59,7 @@
           Emails don't match
         </div>
       </div>
+    </div>
 
     <div class="field">
       <label class="label">Phone Number</label>
@@ -71,6 +73,7 @@
 
         </div>
       </div>
+    </div>
 
     <div class="field">
       <div class="select">
@@ -128,7 +131,7 @@
   </div>
   <div class="has-text-centered">
     <div class="column">
-      <button class="back button is-medium" (click)=backPage()>Back</button>
+      <button class="button is-medium is-primary" (click)=backPage()>Back</button>
       <div class="divider"></div>
       <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Agree</button>
     </div>
@@ -141,23 +144,19 @@
 
 <div *ngIf="pages[current_page] === 'reminders'">
   <h1 class="title">Shopping Reminders</h1>
-  <div class="orange-card">
-    <div class="section" id="success">
-      Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
-    </div>
+  <div class="section" id="success">
+    Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
   </div>
   <br>
 
-  <div class="orange-card">
-    <div class="section" id="success">
-      Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
-      any
-      questions, please talk to a TEP employee.
-    </div>
+  <div class="section" id="success">
+    Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
+    any
+    questions, please talk to a TEP employee.
   </div>
   <div class="has-text-centered">
     <div class="column">
-      <button class="button back is-medium" (click)=backPage()>Back</button>
+      <button class="button is-medium is-primary" (click)=backPage()>Back</button>
       <div class="divider"></div>
       <button class="button is-medium is-primary" (click)=advancePage()>I Understand</button>
     </div>
@@ -166,6 +165,7 @@
 
 
 <!-- Checkout Page -->
+
 
 <div *ngIf="pages[current_page] === 'checkout'">
   <h1 class="title">Checkout Sheet</h1>
@@ -183,6 +183,8 @@
               </select>
               <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
             </div>
+            <button class="button" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
+              {{ order_item.item.unit_label_name }}</button>
           </div>
         </div>
       </div>
@@ -200,11 +202,21 @@
     <input class="input" type="password" [(ngModel)]="guess">
   </div>
 
-  <div class="has-text-centered">
+  <!-- <div class="has-text-centered">
     <div class="column">
-      <button class="button back is-medium" (click)=backPage()>Back</button>
+        <button class="button is-primary" (click)=backPage()>Back</button>
       <div class="divider"></div>
-      <button class="button is-medium is-primary" (click)=createOrder()>Submit</button>
+      <button class="button is-primary" (click)=createOrder()>Submit</button>
+    </div>
+  </div> -->
+
+
+  <div class="columns">
+    <div class="column">
+      <button class="button is-primary" (click)=backPage()>Back</button>
+    </div>
+    <div class="column">
+      <button class="button is-primary" (click)=createOrder()>Submit</button>
     </div>
   </div>
 </div>
@@ -215,10 +227,8 @@
 
 <div *ngIf="pages[current_page] === 'success'">
   <h1 class="title">Success!</h1>
-  <div class = "card"> 
-    <div class="section has-text-centered">
-      <strong>Your checkout form has been submitted!</strong><br>You may now continue to the incentive items.
-    </div>
+  <div class="section">
+    Your checkout form has been submitted. You may now continue to the incentive items.
   </div>
   <div class="has-text-centered">
     <button class="button is-medium is-primary" (click)=finish()>Return Home</button>
