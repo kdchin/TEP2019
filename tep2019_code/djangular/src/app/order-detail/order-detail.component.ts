@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Order } from '../models';
+import { OrderDetail, OrderDetailItem  } from '../models';
 import { ApiService }  from '../api.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ApiService }  from '../api.service';
   styleUrls: ['./order-detail.component.css']
 })
 export class OrderDetailComponent implements OnInit {
-  order: Order;
+  orderDetail: OrderDetail;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +25,7 @@ export class OrderDetailComponent implements OnInit {
 
   getOrder(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.apiService.fetchOne("orders", id).subscribe((order: Order) => this.order = order);
+    this.apiService.fetchOne("order_foo", id).subscribe((orderDetail: OrderDetail) => this.orderDetail = orderDetail);
   }
 
   goBack(): void {

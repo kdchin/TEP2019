@@ -59,6 +59,10 @@ class SchoolViewSet(viewsets.ModelViewSet):
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
 
+class OrderDetailViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderDetailSerializer
+
 
 class ValidationPasswordViewSet(viewsets.ModelViewSet):
     """
