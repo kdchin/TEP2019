@@ -63,7 +63,7 @@
         </div>
   
         <div class="field">
-          <label class="label">Phone Number</label>
+          <label class="label">Mobile Phone Number</label>
           <div class="control">
             <input id="phone" class="input" type="text" placeholder="412 922 6500" [(ngModel)]="teacher.phone" name="phone"
               required maxlength="20" #phone="ngModel">
@@ -79,7 +79,7 @@
         <div class="field">
           <div class="select">
             <label class="label" for="school">School</label>
-            <select id="school" required [(ngModel)]="school" name="school" #school_="ngModel">
+            <select class="school" required [(ngModel)]="school" name="school" #school_="ngModel">
               <option *ngFor="let schl of all_schools" [ngValue]="schl">
                 {{schl.name}}</option>
             </select>
@@ -135,7 +135,7 @@
     </div>
     <div class="has-text-centered">
       <div class="column">
-        <button class="button is-medium is-primary" (click)=backPage()>Back</button>
+        <button class="button back is-medium" (click)=backPage()>Back</button>
         <div class="divider"></div>
         <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Agree</button>
       </div>
@@ -192,7 +192,7 @@
                   </select>
                   <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
                 </div>
-                <button class="button" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
+                <button class="button max" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
                   {{ order_item.item.unit_label_name }}</button>
               </div>
             </div>
