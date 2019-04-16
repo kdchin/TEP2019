@@ -3,14 +3,6 @@ h1 {
   margin-bottom: 50px;
 }
 
-/* .section {
-  background-color: #FEEED6;
-  color: black;
-  font-size: 20px;
-  max-width: 400px;
-  margin: 0 auto;
-} */
-
 div.field {
   max-width: 400px;
   margin: 0 auto;
@@ -104,7 +96,7 @@ img {
 
 .orange-card {
   /* background-color: #FEEED6; */
-  box-shadow: 0 4px 8px 0 rgb(255, 0, 0);
+  box-shadow: 0 4px 8px 0 rgba(204, 8, 8, 0.5);
   transition: 0.3s;
   width: 40%;
   margin: 0 auto;
@@ -123,4 +115,34 @@ select.item-dropdown {
 label.item-label {
   font-size: 20px;
   font-weight: bold;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+input {
+  /* display: block; */
+  /* width: 80%; */
+  /* margin: 0 auto; */
+  margin-bottom: 5px;
+}
+
+input[type=password] {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 650px) {
+  p {
+    color: red;
+  }
+
+  /* input {
+    width: 80%;
+  } */
+
 }
