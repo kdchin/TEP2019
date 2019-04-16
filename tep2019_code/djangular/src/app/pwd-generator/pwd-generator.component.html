@@ -1,10 +1,10 @@
-<h2>Passwords</h2>
+<h1 class="title">Password:</h1>
 <div *ngIf="val_pass && val_pass.digest">
   <p>Current: {{ getPwd(val_pass) }}</p>
 </div>
 <div *ngIf="!val_pass.digest">
   No passwords set yet!
-</div>
+</div><br>
 <label class="label">New Password:</label>
 <input class="input" type="text" [(ngModel)]="new_pwd">
 <button class="button" (click)="submitPassword()">Update Password</button>
