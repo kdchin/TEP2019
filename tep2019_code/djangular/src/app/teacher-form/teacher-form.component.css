@@ -37,6 +37,10 @@ button.back {
   border-color: #489AD8;
 }
 
+button.max {
+  width: 40%;
+}
+
 div.columns{
   text-indent: 10px;
 }
@@ -53,7 +57,7 @@ div.has-text-centered{
 }
 
 .divider{
-  width:100px;
+  width:25px;
   height:auto;
   display:inline-block;
 }
@@ -79,11 +83,11 @@ div.order-items{
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 40%;
+  width: 50%;
   margin: 0 auto;
   padding-top: 25px;
   padding-bottom: 25px;
-  min-width: 400px;
+  min-width: 350px;
 }
 
 img {
@@ -91,25 +95,28 @@ img {
   transition: 0.3s;
   width: 40%;
   margin: 0 auto;
-  min-width: 400px;
+  min-width: 350px;
 }
 
 .orange-card {
-  /* background-color: #FEEED6; */
   box-shadow: 0 4px 8px 0 rgba(204, 8, 8, 0.5);
   transition: 0.3s;
-  width: 40%;
+  width: 50%;
   margin: 0 auto;
   padding-top: 25px;
   padding-bottom: 25px;
-  min-width: 400px;
-  /* border-style: solid;
-  border-color: red;
-  border-width: 5px; */
+  min-width: 350px;
 }
 
 select.item-dropdown {
   width: 200px;
+}
+
+select.school {
+  display: block;
+  margin-bottom: 5px;
+  width: 82%;
+  margin-left: 35px;
 }
 
 label.item-label {
@@ -117,16 +124,27 @@ label.item-label {
   font-weight: bold;
 }
 
+label.label {
+  margin-left: 40px;
+}
+
 p {
   text-align: center;
   margin-top: 15px;
 }
 
-input {
-  /* display: block; */
-  /* width: 80%; */
-  /* margin: 0 auto; */
+input[type=text] {
+  display: block;
   margin-bottom: 5px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+input[type=email] {
+  display: block;
+  margin-bottom: 5px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 input[type=password] {
@@ -136,13 +154,13 @@ input[type=password] {
   margin-top: 15px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 500px) {
   p {
     color: red;
   }
 
-  /* input {
-    width: 80%;
-  } */
+  select.item-dropdown {
+    width: 150px;
+  }
 
 }
