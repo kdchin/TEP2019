@@ -10,7 +10,7 @@
     <th>Quantity Per Unit</th>
     <th>Active</th>
   </tr>
-  <tr *ngFor="let item of items" routerLink="/items/{{item.id}}">
+  <tr *ngFor="let item of items | paginate: { itemsPerPage: 10, currentPage: p }" routerLink="/items/{{item.id}}">
     <td> {{ item.name }} </td>
     <td> {{ item.unit_label_name }} </td>
     <td> {{ item.max_units }} </td>
@@ -27,3 +27,5 @@
     <button type= "button" class = "button is-danger" (click)="toggleShowCreate()">Cancel</button>
   </div>
 </div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

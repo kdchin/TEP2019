@@ -10,7 +10,7 @@
       <th>Uploaded</th>
       <th>Waiver Signed</th>
     </tr>
-    <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+    <tr *ngFor="let order of orders | paginate: { itemsPerPage: 10, currentPage: p }" routerLink="/orders/{{order.id}}">
       <td> {{ order.shopping_date | date }} </td>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>
@@ -22,5 +22,6 @@
 </div>
 
 
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 
 
