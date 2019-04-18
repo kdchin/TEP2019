@@ -4,6 +4,10 @@ import { Location } from '@angular/common';
 
 import { Teacher } from '../models';
 import { ApiService }  from '../api.service';
+<<<<<<< HEAD
+=======
+import { ResourceLoader } from '@angular/compiler';
+>>>>>>> 3db638e7fda5bb5f903235eb6183e9e16ac7e1fa
 
 @Component({
   selector: 'app-teacher-detail',
@@ -26,6 +30,11 @@ export class TeacherDetailComponent implements OnInit {
   getTeacher(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.apiService.fetchOne("teachers", id).subscribe((teacher: Teacher) => this.teacher = teacher);
+  }
+
+  deleteTeacher(teacher: Teacher) {
+    this.apiService.delete("teachers", this.teacher.id).subscribe();
+    this.location.back();
   }
 
   goBack(): void {

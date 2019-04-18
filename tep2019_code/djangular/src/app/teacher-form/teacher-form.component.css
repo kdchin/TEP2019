@@ -74,10 +74,87 @@ div.order-items{
   margin: 0 auto;
 }
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  min-width: 350px;
+}
+
+img {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+  margin: 0 auto;
+  min-width: 350px;
+}
+
+.orange-card {
+  box-shadow: 0 4px 8px 0 rgba(204, 8, 8, 0.5);
+  transition: 0.3s;
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  min-width: 350px;
+}
+
 select.item-dropdown {
   width: 200px;
 }
 
-label.item-label{
+select.school {
+  display: block;
+  margin-bottom: 5px;
+  width: 82%;
+  margin-left: 35px;
+}
+
+label.item-label {
   font-size: 20px;
+  font-weight: bold;
+}
+
+label.label {
+  margin-left: 40px;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+input[type=text] {
+  display: block;
+  margin-bottom: 5px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+input[type=email] {
+  display: block;
+  margin-bottom: 5px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+input[type=password] {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 500px) {
+  p {
+    color: red;
+  }
+
+  select.item-dropdown {
+    width: 150px;
+  }
+
 }

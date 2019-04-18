@@ -17,7 +17,7 @@ class Item(models.Model):
 
     # also has attribute: 'orders' as defined by ManyToMany in Order
 
-    # whether or not the item is active
+    # whether or not the item is active.
     active = models.BooleanField(default=True)
 
 
@@ -25,20 +25,24 @@ class School(models.Model):
     name = models.CharField(max_length=50)
     active = models.BooleanField(default=True)
 
+    # TODO: maybe add in name as unique?
+
 
 class Teacher(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True)
+    school = models.ForeignKey(School, on_delete=models.CASCADE, null=False)
     active = models.BooleanField(default=True)
+
+    # TODO: make email unique
 
 
 # Order model: one per teacher visit, summarizes what a teacher got
 class Order(models.Model):
     # date the teacher visited TEP
-    shopping_date = models.DateField()
+    shopping_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     # whether this order has been exported to csv yet
     uploaded = models.BooleanField(default=False)
@@ -47,7 +51,7 @@ class Order(models.Model):
     waiver_signed = models.BooleanField(default=False)
 
     # teacher associated with the order
-    teacher = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=False)
 
     # each order has many items, and many items are in many orders
     items = models.ManyToManyField(
@@ -57,16 +61,20 @@ class Order(models.Model):
 # Associative entity for order and item
 class OrderItem(models.Model):
     order = models.ForeignKey(
-        Order, related_name='order_items', on_delete=models.SET_NULL, null=True)
+        Order, related_name='order_items', on_delete=models.CASCADE, null=False)
     item = models.ForeignKey(
-        Item, related_name='order_items', on_delete=models.SET_NULL, null=True)
+        Item, related_name='order_items', on_delete=models.CASCADE, null=False)
 
     # how many units of an item a teacher took (e.g. 8 (packs))
-    unit_quantity = models.IntegerField(validators=[MinValueValidator(0)])
+    units_taken = models.IntegerField(validators=[MinValueValidator(0)])
 
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
 class ValidationPassword(models.Model):
-    digest = models.CharField(max_length=30)
-    date = models.DateField()
-    current = models.BooleanField(default=True)
+    digest = models.CharField(max_length=50)
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
+
+
+class Waiver(models.Model):
+    file = models.FileField(blank=True, default='')
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)

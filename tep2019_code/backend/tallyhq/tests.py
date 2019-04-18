@@ -45,8 +45,8 @@ class ItemModelTests(ValidationErrorTestMixin, TestCase):
             name='pens', max_units=4, qty_per_unit=12, unit_label_name='Packs')
         order = Order.objects.create(shopping_date=date.today())
 
-        OrderItem.objects.create(item=pencils, order=order, unit_quantity=4)
-        OrderItem.objects.create(item=pens, order=order, unit_quantity=3)
+        OrderItem.objects.create(item=pencils, order=order, units_taken=4)
+        OrderItem.objects.create(item=pens, order=order, units_taken=3)
 
         items = Item.objects.filter(orders=order)
         self.assertEqual(set(items), set([pens, pencils]))
