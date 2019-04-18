@@ -23,6 +23,7 @@ import { FilterPipe } from './filter.pipe';
 import { TeacherFormComponent } from './teacher-form/teacher-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -53,6 +54,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
