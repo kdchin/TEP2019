@@ -1,0 +1,44 @@
+<h1 class="title">Teachers</h1>
+<div class="container">
+  <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
+  <input type="text" [(ngModel)]="searchText" placeholder="Search Teachers...">
+  <table class="table is-hoverable is-fullwidth">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>School</th>
+      <th>Active</th>
+    </tr>
+    <tr *ngFor="let teacher of teachers" routerLink="/teachers/{{teacher.id}}">
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher(i, 'first_name')"></app-inline-edit>
+      </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher(i, 'last_name')"></app-inline-edit>
+      </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.email" [onChange]="updateTeacher(i, 'email')"></app-inline-edit>
+      </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher(i, 'phone')" [displayPipe]="phonePipe">
+        </app-inline-edit>
+      </td>
+      <!-- <td> {{ teacher.phone | phone}} </td> -->
+      <td> {{ teacher.school.name }} </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher(i, 'active')" [fieldType]="'checkbox'"
+          [displayPipe]="activePipe">
+        </app-inline-edit>
+      </td>
+    </tr>
+  </table>
+  <div [hidden]="!shouldShowCreate">
+    <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
+  </div>
+  <!-- <div [hidden]="shouldShowCreate">
+    <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
+  </div> -->
+
+</div>

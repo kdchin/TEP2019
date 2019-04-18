@@ -1,0 +1,90 @@
+<div id = "name">
+    <h1>Welcome, Cat</h1>
+  </div>
+  
+  <div id= "container">
+  
+    <div id="left-rectangle">
+      <div id="title-box">
+        <h2><b>Today's Checkouts</b></h2>
+      </div>
+      <div id="display-table">
+        <table class="table is-hoverable is-fullwidth">
+            <tr>
+              <th>Name</th>
+              <th>Checkout Date</th>
+            </tr>
+            <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+              <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
+              <td> {{ order.shopping_date | date}}</td>
+            </tr>
+        </table>
+      </div>
+      <br>
+      <button class="button is-danger" id = "button" (click)="deleteOrder(order)">See All</button>
+    </div>
+  
+    <div id= "middle-rectangle">
+      <div id="title-box">
+        <h2><b>Edit Items</b></h2>
+      </div>
+      <br>
+      <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Edit Listed Items</button>
+      <br>
+      <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Edit Teacher Agreement</button>
+  
+      <div id = "white"></div>
+      <div id="title-box">
+          <h2><b>Date Range</b></h2>
+          <h3><b>1/1/18 - 12/31/18</b></h3>
+      </div>
+      <br>
+      <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Export Time CSV</button>
+      <br>
+      <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Export Contact CSV</button>
+      <br>
+      <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Export Checkout CSV</button>
+      
+    </div>
+    
+  
+    <div id= "right-rectangle">
+      <div id="title-box">
+        <h2><b>Daily Info</b></h2>
+      </div>
+      <div id="stats">
+          <a href="" class="placeholder">
+              <img src="../assets/image_4.png" />
+          </a>
+      </div>
+  
+      <!-- put teacher visit stat here -->
+      <div id="numberstats1">
+        <h5><b>23</b></h5>
+      </div>
+  
+       <!-- put average shop time stat here -->
+       <div id="numberstats2">
+          <h5><b>25</b></h5>
+      </div>
+  
+      <div id="descriptor1">
+          <h6><b>Teacher Visits</b></h6>
+        </div>
+  
+      <div id="descriptor2">
+          <h6><b>Avg. Shop Time</b></h6>
+      </div>
+  
+  
+      <div id = "white2"></div>
+      <div id="title-box">
+          <h2><b>Password</b></h2>
+      </div>
+          <h4>TheEducationPartnership</h4>
+          <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Change Password</button>
+          <br>
+          <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Random Password</button>
+    </div>
+  </div>
+  

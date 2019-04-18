@@ -1,0 +1,157 @@
+#name {
+    font-size: 45px;
+}
+
+#left-rectangle {
+    width: 350px;
+    height: 650px;
+    background: #CAD5E3;
+    float: left;
+    padding: 15px;
+  }
+
+#middle-rectangle {
+    width: 350px;
+    height: 650px;
+    background: #CAD5E3;
+    float: left;
+    margin-left: 20px;
+    padding: 15px;
+  }
+
+#white{
+    width: 350px;
+    height: 25px;
+    background: white;
+    float: left;
+    margin-top: 25px;
+    margin-left: -15px;
+    margin-bottom: 15px;
+}
+
+#white2{
+    width: 350px;
+    height: 25px;
+    background: white;
+    float: left;
+    margin-top: 15px;
+    margin-left: -15px;
+    margin-bottom: 15px;
+}
+
+#right-rectangle {
+    width: 350px;
+    height: 650px;
+    background: #CAD5E3;
+    float: left;
+    margin-left: 20px;
+    padding: 15px;
+  }
+
+#container {
+
+    margin: 0 auto;
+}
+
+h2{
+    font-size: 30px;
+    text-align: center;
+    color: black;
+}
+
+h1{
+    color: black;
+    padding-bottom: 10px;
+}
+
+h3{
+    text-align: center;
+    color: black;
+}
+
+h4{
+    font-size: 25px;
+    color: black;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 7px;
+}
+
+#title-box{
+    border-bottom-style: solid;
+    width: 100%;
+}
+
+#button {
+    width: 90%;
+    height: 60px;
+    background: white;
+    color: black;
+    display: block;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+#display-table{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 25px;
+    color: black;
+    min-height: 450px;
+    background-color: white;
+    display: block;
+}
+
+tr:nth-child(odd) {
+    background-color: #E5E5E5
+  }
+
+/* name text */
+td {
+    padding-left: 15px;
+    font-size: 18px;
+    height: 65px;
+    vertical-align: middle;
+}
+
+/* title text */
+th {
+    font-size: 18px;
+}
+
+#stats{
+    width: 100%;
+    padding-top: 25px;
+}
+
+/* stats big number */
+h5{
+    font-size: 30px;
+    color: black;
+}
+
+/* stats descriptor */
+#descriptor1{
+    font-size: 16px;
+    color: black;
+    float: left;
+    padding-left: 20px;
+}
+#descriptor2{
+    font-size: 16px;
+    color: black;
+    float: left;
+    padding-left: 40px;
+}
+
+#numberstats1{
+    float: left;
+    padding-left: 60px;
+    padding-top: 10px;
+}
+
+#numberstats2{
+    float:left;
+    padding-left: 125px;
+    padding-top: 10px;
+}
