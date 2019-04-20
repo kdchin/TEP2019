@@ -1,241 +1,244 @@
 <div *ngIf="pages[current_page] === 'welcome'">
-    <h1 class="title">Welcome Teachers!</h1>
-    <div class="card">
-      <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
-        <div class="field">
-          <label class="label">First Name</label>
-          <div class="control">
-            <input id="first_name" class="input" type="text" placeholder="Master" [(ngModel)]="teacher.first_name"
-              name="first_name" required maxlength="20" #first_name="ngModel">
-  
-            <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="notification is-danger">
-              <div *ngIf="first_name.errors.required">
-                First name is required
+  <h1 class="title">Welcome Teachers!</h1>
+  <div class="card">
+    <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+      <div class="field">
+        <label class="label">First Name</label>
+        <div class="control">
+          <input id="first_name" class="input" type="text" placeholder="Master" [(ngModel)]="teacher.first_name"
+            name="first_name" required maxlength="20" #first_name="ngModel">
+
+          <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="notification is-danger">
+            <div *ngIf="first_name.errors.required">
+              First name is required
+            </div>
+
+            <div *ngIf="first_name.errors.maxlength">
+              First name is too long
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Last Name</label>
+        <div class="control">
+          <input id="last_name" class="input" type="text" placeholder="ShiFu" [(ngModel)]="teacher.last_name"
+            name="last_name" required maxlength="30" #last_name="ngModel">
+          <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="notification is-danger">
+            <div *ngIf="last_name.errors.required">
+              Last name is required
+            </div>
+
+            <div *ngIf="last_name.errors.maxlength">
+              Last name is too long
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input id="email" class="input" type="email" placeholder="shifu@dreamworks.com" [(ngModel)]="teacher.email"
+            name="email" required maxlength="50" #email="ngModel" [email]="true">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="notification is-danger">
+            Please enter a valid email address
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Confirm Email</label>
+        <div class="control">
+          <input id="validation_email" class="input" type="email" placeholder="shifu@dreamworks.com"
+            [(ngModel)]="val_email" name="validation_email" required maxlength="50" #validation_email="ngModel"
+            [email]="true">
+          <div *ngIf="val_email != '' && email.value != val_email" class="notification is-danger">
+            Emails don't match
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Mobile Phone Number</label>
+        <div class="control">
+          <input id="phone" class="input" type="text" placeholder="412 922 6500" [(ngModel)]="teacher.phone"
+            name="phone" required maxlength="20" #phone="ngModel">
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="notification is-danger">
+            <div *ngIf="phone.errors.required">
+              Plese enter a valid phone number
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="select">
+          <label class="label" for="school">School</label>
+          <select class="school" required [(ngModel)]="school" name="school" #school_="ngModel">
+            <option *ngFor="let schl of all_schools" [ngValue]="schl">
+              {{schl.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div *ngIf="school_.invalid && (school_.dirty || school_.touched)" class="notification is-danger">
+        <div *ngIf="school_.errors.required">
+          Please select a school
+        </div>
+        <small>If you don't see your school here, please contact a TEP employee</small>
+        <!-- TODO: other box-->
+
+      </div>
+
+      <div class="field section" id="checker">
+        <label type="checkbox">
+          <input name="isNewTeacher" [(ngModel)]="isNewTeacher" [placeholder]="false" type="checkbox" />
+          I am new to TEP
+        </label>
+      </div>
+      <div *ngIf="isNewTeacher" class="notification is-danger">
+        Please see a TEP employee to be registered!
+      </div>
+
+      <div
+        *ngIf="first_name.touched && last_name.touched && email.touched && phone.touched && (school_.touched || school.name) && !teacherIsValid()"
+        class="notification is-danger">
+        Your information does not match any teachers we have on record. Please double check
+        that all the information you entered is correct and contact a TEP employee if you believe this is a
+        mistake!
+      </div>
+
+    </form>
+  </div>
+  <p><small>Note: if you have changed your email, phone number, or school, please contact a TEP employee before
+      proceeding.</small></p>
+  <div class="has-text-centered">
+    <button class="button is-medium is-primary" (click)="processTeacher()" [disabled]="!teacherIsValid()">GO</button>
+  </div>
+</div>
+
+
+<!-- Waiver Page -->
+
+
+<div *ngIf="pages[current_page] === 'waiver'">
+  <h1 class="title">Waiver</h1>
+  <div *ngIf="waiverPath">
+    <pdf-viewer [src]="waiverPath" [render-text]="true" style="display: block;"></pdf-viewer>
+  </div>
+  <div *ngIf="waiverPath">
+    <a href="{{waiverPath}}" target="_blank">{{formatFileName(waiverPath)}}</a>
+  </div>
+  <div *ngIf="!waiverPath">
+    - <img src="../../assets/temp_waiver.png" class="center">
+  </div>
+  <div class="has-text-centered">
+    <div class="column">
+      <button class="button back is-medium" (click)=backPage()>Back</button>
+      <div class="divider"></div>
+      <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Agree</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Reminders Page -->
+
+
+<div *ngIf="pages[current_page] === 'reminders'">
+  <h1 class="title">Shopping Reminders</h1>
+  <div class="orange-card">
+    <div class="section" id="success">
+      Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each
+      item.
+    </div>
+  </div>
+  <br>
+
+  <div class="orange-card">
+    <div class="section" id="success">
+      Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
+      any
+      questions, please talk to a TEP employee.
+    </div>
+  </div>
+  <div class="has-text-centered">
+    <div class="column">
+      <button class="button back is-medium" (click)=backPage()>Back</button>
+      <div class="divider"></div>
+      <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Understand</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Checkout Page -->
+
+
+<div *ngIf="pages[current_page] === 'checkout'">
+  <h1 class="title">Checkout Sheet</h1>
+  <div class="card">
+    <div class="order-items">
+      <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
+        <div class="item-columns">
+          <div class="column">
+            <label class="item-label">{{order_item.item.name}}</label>
+            <div class="field">
+              <div class="select" id="itemText">
+                <select type="number" class="item-dropdown" required [(ngModel)]="order_item.units_taken"
+                  name="units_taken">
+                  <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
+                    {{num}}</option>
+                </select>
+                <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
               </div>
-  
-              <div *ngIf="first_name.errors.maxlength">
-                First name is too long
-              </div>
-  
+              <button class="button max" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
+                {{ order_item.item.unit_label_name }}</button>
             </div>
           </div>
         </div>
-  
-        <div class="field">
-          <label class="label">Last Name</label>
-          <div class="control">
-            <input id="last_name" class="input" type="text" placeholder="ShiFu" [(ngModel)]="teacher.last_name"
-              name="last_name" required maxlength="30" #last_name="ngModel">
-            <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="notification is-danger">
-              <div *ngIf="last_name.errors.required">
-                Last name is required
-              </div>
-  
-              <div *ngIf="last_name.errors.maxlength">
-                Last name is too long
-              </div>
-  
-            </div>
-          </div>
-        </div>
-  
-        <div class="field">
-          <label class="label">Email</label>
-          <div class="control">
-            <input id="email" class="input" type="email" placeholder="shifu@dreamworks.com" [(ngModel)]="teacher.email"
-              name="email" required maxlength="50" #email="ngModel" [email]="true">
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="notification is-danger">
-              Please enter a valid email address
-            </div>
-          </div>
-        </div>
-  
-        <div class="field">
-          <label class="label">Confirm Email</label>
-          <div class="control">
-            <input id="validation_email" class="input" type="email" placeholder="shifu@dreamworks.com"
-              [(ngModel)]="val_email" name="validation_email" required maxlength="50" #validation_email="ngModel"
-              [email]="true">
-            <div *ngIf="val_email != '' && email.value != val_email" class="notification is-danger">
-              Emails don't match
-            </div>
-          </div>
-        </div>
-  
-        <div class="field">
-          <label class="label">Mobile Phone Number</label>
-          <div class="control">
-            <input id="phone" class="input" type="text" placeholder="412 922 6500" [(ngModel)]="teacher.phone" name="phone"
-              required maxlength="20" #phone="ngModel">
-            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="notification is-danger">
-              <div *ngIf="phone.errors.required">
-                Plese enter a valid phone number
-              </div>
-  
-            </div>
-          </div>
-        </div>
-  
-        <div class="field">
-          <div class="select">
-            <label class="label" for="school">School</label>
-            <select class="school" required [(ngModel)]="school" name="school" #school_="ngModel">
-              <option *ngFor="let schl of all_schools" [ngValue]="schl">
-                {{schl.name}}</option>
-            </select>
-          </div>
-        </div>
-        <div *ngIf="school_.invalid && (school_.dirty || school_.touched)" class="notification is-danger">
-          <div *ngIf="school_.errors.required">
-            Please select a school
-          </div>
-          <small>If you don't see your school here, please contact Cat</small>
-          <!-- TODO: other box-->
-  
-        </div>
-  
-        <div class="field section" id="checker">
-          <label type="checkbox">
-            <input name="isNewTeacher" [(ngModel)]="isNewTeacher" [placeholder]="false" type="checkbox" />
-            I am using this application for the first time
-          </label>
-        </div>
-  
-        <div
-          *ngIf="first_name.touched && last_name.touched && email.touched && phone.touched && (school_.touched || school.name) && !teacherIsValid()"
-          class="notification is-danger">
-          <span *ngIf="isNewTeacher">Your email matches a teacher we have on record. Please contact Cat if you believe this
-            is a mistake!</span>
-          <span *ngIf="!isNewTeacher">Your information does not match any teachers we have on record. Please double check
-            that all the information you entered is correct and contact Cat if you believe this is a mistake!</span>
-        </div>
-  
       </form>
-    </div>
-    <p><small>Note: if you have changed your email, phone number, or school, please contact Cat before proceeding.</small></p>
-    <div class="has-text-centered">
-      <button class="button is-medium is-primary" (click)=processTeacher()>GO</button>
-    </div>
-  </div>
-  
-  
-  <!-- Waiver Page -->
-  
-  
-  <div *ngIf="pages[current_page] === 'waiver'">
-    <h1 class="title">Waiver</h1>
-    <div *ngIf="waiverPath">
-      <pdf-viewer [src]="waiverPath" [render-text]="true" style="display: block;"></pdf-viewer>
-    </div>
-    <div *ngIf="waiverPath">
-      <a href="{{waiverPath}}" target="_blank">{{formatFileName(waiverPath)}}</a>
-    </div>
-    <div *ngIf="!waiverPath">
-      - <img src="../../assets/temp_waiver.png" class="center">
-    </div>
-    <div class="has-text-centered">
-      <div class="column">
-        <button class="button back is-medium" (click)=backPage()>Back</button>
-        <div class="divider"></div>
-        <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Agree</button>
+      <div *ngIf="!orderItemsAreValid()" class="notification is-danger">
+        Some items have more than the max allotted quantity.
       </div>
     </div>
   </div>
-  
-  
-  <!-- Reminders Page -->
-  
-  
-  <div *ngIf="pages[current_page] === 'reminders'">
-    <h1 class="title">Shopping Reminders</h1>
-    <div class="orange-card">
-      <div class="section" id="success">
-        Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each item.
-      </div>
-    </div>
-    <br>
-  
-    <div class="orange-card">
-      <div class="section" id="success">
-        Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
-        any
-        questions, please talk to a TEP employee.
-      </div>
-    </div>
-    <div class="has-text-centered">
-      <div class="column">
-        <button class="button back is-medium" (click)=backPage()>Back</button>
-        <div class="divider"></div>
-        <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Understand</button>
-      </div>
+  <br>
+
+  <h1 class="title">Please Hand Device to Employee</h1>
+
+  <div class="orange-card">
+    <div class="section">
+      <label class="label" style="text-align: center">Passcode:</label>
+      <input class="input" type="password" [(ngModel)]="guess">
     </div>
   </div>
-  
-  
-  <!-- Checkout Page -->
-  
-  
-  <div *ngIf="pages[current_page] === 'checkout'">
-    <h1 class="title">Checkout Sheet</h1>
-    <div class="card">
-      <div class="order-items">
-        <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
-          <div class="item-columns">
-            <div class="column">
-              <label class="item-label">{{order_item.item.name}}</label>
-              <div class="field">
-                <div class="select" id="itemText">
-                  <select type="number" class="item-dropdown" required [(ngModel)]="order_item.units_taken"
-                    name="units_taken">
-                    <option *ngFor="let num of lodash.range(order_item.item.max_units+1)" [value]="num">
-                      {{num}}</option>
-                  </select>
-                  <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
-                </div>
-                <button class="button max" (click)="maxOutOrderItem(order_item)">Max: {{order_item.item.max_units}}
-                  {{ order_item.item.unit_label_name }}</button>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div *ngIf="!orderItemsAreValid()" class="notification is-danger">
-          Some items have more than the max allotted quantity.
-        </div>
-      </div>
-    </div>
-    <br>
-  
-    <h1 class="title">Please Hand Device to Employee</h1>
-  
-    <div class="orange-card">
-      <div class="section">
-        <label class="label" style="text-align: center">Passcode:</label>
-        <input class="input" type="password" [(ngModel)]="guess">
-      </div>
-    </div>
-  
-    <div class="has-text-centered">
-      <div class="column">
-        <button class="button back is-medium" (click)=backPage()>Back</button>
-        <div class="divider"></div>
-        <button class="button is-medium is-primary" (click)=createOrder()>Submit</button>
-      </div>
+
+  <div class="has-text-centered">
+    <div class="column">
+      <button class="button back is-medium" (click)=backPage()>Back</button>
+      <div class="divider"></div>
+      <button class="button is-medium is-primary" (click)=createOrder()>Submit</button>
     </div>
   </div>
-  
-  
-  <!-- Success Page -->
-  
-  
-  <div *ngIf="pages[current_page] === 'success'">
-    <h1 class="title">Success!</h1>
-    <div class = "card"> 
-      <div class="section has-text-centered">
-        <strong>Your checkout form has been submitted!</strong><br><br>You may now continue to the incentive items.
-      </div>
-    </div>
-    <div class="has-text-centered">
-      <button class="button is-medium is-primary" (click)=finish()>Return Home</button>
+</div>
+
+
+<!-- Success Page -->
+
+
+<div *ngIf="pages[current_page] === 'success'">
+  <h1 class="title">Success!</h1>
+  <div class="card">
+    <div class="section has-text-centered">
+      <strong>Your checkout form has been submitted!</strong><br><br>You may now continue to the incentive items.
     </div>
   </div>
-  
+  <div class="has-text-centered">
+    <button class="button is-medium is-primary" (click)=finish()>Return Home</button>
+  </div>
+</div>

@@ -105,7 +105,6 @@ export class TeacherFormComponent implements OnInit {
   public teacherIsValid() {
     if (!this.teacher.first_name || !this.teacher.last_name
       || !this.teacher.email || !this.teacher.phone || !this.school) {
-      console.log("hi");
       return false;
     }
     let found_email = false;
@@ -121,10 +120,7 @@ export class TeacherFormComponent implements OnInit {
         break;
       }
     }
-    if (this.isNewTeacher) {
-      return !found_email;
-    }
-    return found_email && matches;
+    return !this.isNewTeacher && found_email && matches;
   }
 
   public advancePage() {
