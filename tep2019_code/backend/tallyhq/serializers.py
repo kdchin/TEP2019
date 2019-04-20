@@ -28,6 +28,29 @@ class TeacherSerializer(serializers.ModelSerializer):
         school, _ = School.objects.get_or_create(**school_data)
         return Teacher.objects.create(school=school, **validated_data)
 
+
+class OrderTeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ('id', 'shopping_date', 'uploaded', 'waiver_signed')
+
+
+class TeacherDetailSerializer(serializers.ModelSerializer):
+    orders = OrderTeacherSerializer(
+        many=True, source='order_set', read_only=True)
+    school = SchoolSerializer(many=False, read_only=False)
+
+    def create(self, validated_data):
+        school_data = validated_data.pop('school')
+        school, _ = School.objects.get_or_create(**school_data)
+        return Teacher.objects.create(school=school, **validated_data)
+
+    class Meta:
+        model = Teacher
+        fields = ('id', 'first_name', 'last_name',
+                  'email', 'phone', 'school', 'orders', 'active')
+
+
 class OrderSerializer(serializers.ModelSerializer):
     teacher = TeacherSerializer(many=False, read_only=False)
 
@@ -87,12 +110,14 @@ class OrderItemSerializer(serializers.ModelSerializer):
         item, _ = Item.objects.get_or_create(**item_data)
         return OrderItem.objects.create(order=order, item=item, **validated_data)
 
+
 class OrderItemDetailSerializer(serializers.ModelSerializer):
     item = ItemSerializer(many=False, read_only=False)
 
     class Meta:
         model = OrderItem
         fields = ('id', 'item', 'units_taken')
+
 
 class OrderDetailSerializer(serializers.ModelSerializer):
     teacher = TeacherSerializer(many=False, read_only=False)
@@ -102,6 +127,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         model = Order
         fields = ('id', 'shopping_date', 'uploaded',
                   'waiver_signed', 'teacher', 'order_items')
+
 
 class WaiverSerializer(serializers.ModelSerializer):
     class Meta:
