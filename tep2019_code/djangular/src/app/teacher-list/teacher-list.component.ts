@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Teacher } from '../models';
+import { TeacherDetail, OrderTeacher } from '../models';
 import { PhonePipe } from '../phone.pipe';
 import { BoolPipe } from '../bool.pipe';
 
@@ -11,10 +11,10 @@ import { BoolPipe } from '../bool.pipe';
   styleUrls: ['./teacher-list.component.css']
 })
 export class TeacherListComponent implements OnInit {
-  selectedTeacher: Teacher;
+  selectedTeacher: TeacherDetail;
 
   searchText = '';
-  teachers: Array<Teacher> = [];
+  teachers: Array<TeacherDetail> = [];
   shouldShowCreate = false;
   phonePipe = new PhonePipe();
   activePipe = new BoolPipe();
@@ -28,7 +28,7 @@ export class TeacherListComponent implements OnInit {
     this.shouldShowCreate = !this.shouldShowCreate;
   }
 
-  public onSelect(teacher: Teacher) {
+  public onSelect(teacher: TeacherDetail) {
     this.selectedTeacher = teacher;
   }
 
@@ -41,13 +41,13 @@ export class TeacherListComponent implements OnInit {
     }
   }
 
-  public onNewTeacher(newTeacher: Teacher) {
+  public onNewTeacher(newTeacher: TeacherDetail) {
     this.teachers.push(newTeacher);
     this.toggleShowCreate();
   }
 
   public getTeachers() {
-    this.apiService.fetchAll("teachers").subscribe((data: Array<Teacher>) => {
+    this.apiService.fetchAll("teachers").subscribe((data: Array<TeacherDetail>) => {
       this.teachers = data;
     });
   }

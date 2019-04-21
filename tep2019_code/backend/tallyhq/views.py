@@ -39,7 +39,7 @@ class ItemViewSet(viewsets.ModelViewSet):
 
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
-    serializer_class = TeacherSerializer
+    serializer_class = TeacherDetailSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
@@ -58,6 +58,7 @@ class SchoolViewSet(viewsets.ModelViewSet):
     """
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
+
 
 class OrderDetailViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()

@@ -1,6 +1,6 @@
-<div class = "page-container">
+<div class="page-container">
   <nav class="header">
-    <div class="header-content">
+    <div *ngIf="currentUser" class="header-content">
       <a href="" class="logo">
         <img width="70" src="../assets/shopping_cart.png" />
       </a>
@@ -11,6 +11,12 @@
       <a [routerLink]="'/order-items'" class="items"> All Ordered Items </a>
       <a [routerLink]="'/form'" class="items"> Form </a>
       <a class="logout" (click)="logout()"> Log out </a>
+    </div>
+    <div *ngIf="!currentUser" class="header-content">
+      <a href="" class="logo">
+        <img width="70" src="../assets/shopping_cart.png" />
+      </a>
+      <a class="logout" (click)="login()"> Log in </a>
     </div>
   </nav>
   <section class="section">

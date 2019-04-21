@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Teacher, School } from '../models';
-import { setEnvironment } from '@angular/core/src/render3/instructions';
+import { Teacher, School, TeacherDetail } from '../models';
 
 @Component({
   selector: 'app-teacher-create',
@@ -9,10 +8,10 @@ import { setEnvironment } from '@angular/core/src/render3/instructions';
   styleUrls: ['./teacher-create.component.css']
 })
 export class TeacherCreateComponent implements OnInit {
-  @Output() teacherChange = new EventEmitter<Teacher>();
+  @Output() teacherChange = new EventEmitter<TeacherDetail>();
 
   new_school = new School('', true);
-  new_teacher = new Teacher(null, '', '', '', '', true, this.new_school);
+  new_teacher = new TeacherDetail(null, '', '', '', '', true, null, []);
   schools: Array<School> = [];
 
   constructor(private apiService: ApiService) { }
@@ -35,10 +34,9 @@ export class TeacherCreateComponent implements OnInit {
 
   public onSubmit() {
     this.new_teacher.school = this.new_school;
-    console.log(this.new_teacher);
     this.createTeacher();
     this.teacherChange.emit(this.new_teacher);
-    this.new_teacher = new Teacher(null, '', '', '', '', true, null);
+    this.new_teacher = new TeacherDetail(null, '', '', '', '', true, null, []);
   }
 
   public createTeacher() {

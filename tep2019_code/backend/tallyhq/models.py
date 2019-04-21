@@ -39,6 +39,11 @@ class Teacher(models.Model):
     # TODO: make email unique
 
 
+class Waiver(models.Model):
+    file = models.FileField(blank=True, default='')
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
+
+
 # Order model: one per teacher visit, summarizes what a teacher got
 class Order(models.Model):
     # date the teacher visited TEP
@@ -47,8 +52,8 @@ class Order(models.Model):
     # whether this order has been exported to csv yet
     uploaded = models.BooleanField(default=False)
 
-    # whether the waiver was signed this time
-    waiver_signed = models.BooleanField(default=False)
+    # the waiver they signed
+    waiver = models.ForeignKey(Waiver, on_delete=models.CASCADE, null=False)
 
     # teacher associated with the order
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=False)
@@ -72,9 +77,4 @@ class OrderItem(models.Model):
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
 class ValidationPassword(models.Model):
     digest = models.CharField(max_length=50)
-    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
-
-
-class Waiver(models.Model):
-    file = models.FileField(blank=True, default='')
     uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
