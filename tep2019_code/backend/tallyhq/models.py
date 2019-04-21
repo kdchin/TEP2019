@@ -20,6 +20,9 @@ class Item(models.Model):
     # whether or not the item is active.
     active = models.BooleanField(default=True)
 
+    # order of item in the orderItem list
+    rank = models.IntegerField(default=0)
+
 
 class School(models.Model):
     name = models.CharField(max_length=50)
