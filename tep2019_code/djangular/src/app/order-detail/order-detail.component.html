@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-<div *ngIf="order">
-  <h1 class="title">Order Details</h1>
-  <div><span>id: </span>{{order.id}}</div>
-  <div>
-    <label>Date:
-        <input [(ngModel)]="order.shopping_date" placeholder="4/26/1954"/>
-    </label><br>
-    <label>Teacher:
-        <input [(ngModel)]="order.teacher.first_name" placeholder="Units"/>
-    </label><br>
-    <label>Uploaded:
-        <input [(ngModel)]="order.uploaded" placeholder="no"/>
-    </label><br>
-    <label>Waiver Signed:
-        <input [(ngModel)]="order.waiver_signed" placeholder="no"/>
-    </label>
-  </div>
-  <button class="button is-info" (click)="goBack()">go back</button>
-</div>
-=======
 <div *ngIf="orderDetail">
   <h1 class="title">Order Details</h1>
   <div class="row">
@@ -50,4 +29,3 @@
   <button class="back button is-medium" (click)="goBack()">Back</button>
 </div>
  
->>>>>>> 3db638e7fda5bb5f903235eb6183e9e16ac7e1fa
