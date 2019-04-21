@@ -1,6 +1,9 @@
 <h1 class="title">All Teachers</h1>
 <div class="container">
   <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
+  <div [hidden]="!shouldShowCreate">
+    <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
+  </div>
   <input type="text" [(ngModel)]="searchText" placeholder="Search Teachers...">
   <table class="table is-hoverable is-fullwidth">
     <tr>
@@ -34,11 +37,4 @@
       </td>
     </tr>
   </table>
-  <div [hidden]="!shouldShowCreate">
-    <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
-  </div>
-  <!-- <div [hidden]="shouldShowCreate">
-    <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
-  </div> -->
-
 </div>
