@@ -29,6 +29,7 @@
     "lodash": "^4.17.11",
     "ng-bootstrap-form-validation": "^3.0.3",
     "ng2-pdf-viewer": "^5.2.4",
+    "ngx-pagination": "^3.2.1",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
