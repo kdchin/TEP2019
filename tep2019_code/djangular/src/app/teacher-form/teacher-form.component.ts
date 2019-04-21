@@ -18,15 +18,15 @@ export class TeacherFormComponent implements OnInit {
   val_email = "";
   teacher = new Teacher(null, '', '', '', '', true, null);
   all_teachers: Array<Teacher> = [];
-  order = new Order(null, new Date().toISOString(), false, false, null);
+  order = new Order(null, null, false, null, null);
   school = new School('', false);
   all_schools: Array<School> = [];
   order_items: Array<OrderItem> = [];
   lodash = lodash;
-  waiverPath = '';
-  val_pass = new ValPass(null, '', new Date());
+  recentWaiver: Waiver = null;
+  val_pass = new ValPass(null, '', null);
   guess = '';
-  key = 'tep2019cmuis'; // TODO: idk if this is secure
+  key = environment.val_pass_key;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -63,7 +63,7 @@ export class TeacherFormComponent implements OnInit {
           mostRecent = data[i];
       }
       if (mostRecent) {
-        this.waiverPath = mostRecent.file;
+        this.recentWaiver = mostRecent;
       }
       // this.waiverPath = `https://s3.us-east-2.amazonaws.com/tallyhq-waivers/${this.formatFileName(mostRecent.file)}`;
     })
@@ -138,14 +138,15 @@ export class TeacherFormComponent implements OnInit {
   public finish() {
     this.isNewTeacher = false;
     this.teacher = new Teacher(null, '', '', '', '', true, null);
-    this.order = new Order(null, new Date().toISOString(), false, false, null);
+    this.order = new Order(null, null, false, null, null);
     this.school = new School('', false);
+    this.recentWaiver = null;
     this.val_email = "";
     this.order_items = [];
     this.advancePage();
   }
 
-  public getTeacherId() {
+  public getTeacher() {
     for (let i = 0; i < this.all_teachers.length; i++) {
       let cur_teacher = this.all_teachers[i];
       /* TODO: add this back in
@@ -157,7 +158,6 @@ export class TeacherFormComponent implements OnInit {
       if (cur_teacher.email === this.teacher.email)
         return cur_teacher;
     }
-    this.isNewTeacher = true;
     return 0;
   }
 
@@ -183,8 +183,10 @@ export class TeacherFormComponent implements OnInit {
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
-        order_item_with_order.order = data;
-        this.apiService.create('order_items', order_item_with_order).subscribe();
+        if (order_item_with_order.units_taken > 0) {
+          order_item_with_order.order = data;
+          this.apiService.create('order_items', order_item_with_order).subscribe();
+        }
       }
     });
   }
@@ -193,19 +195,11 @@ export class TeacherFormComponent implements OnInit {
     let bytes = crypto.AES.decrypt(this.val_pass.digest, this.key);
     let decoded = bytes.toString(crypto.enc.Utf8);
     if (!this.orderItemsAreValid() || this.guess !== decoded) return;
-    // TODO: if new school this.apiService.create('school', this.school);
-    let tid = this.getTeacherId();
-    if (this.isNewTeacher) {
-      this.apiService.create('teachers', this.teacher).subscribe(
-        (teacher: Teacher) => { this.makeOrderItems(teacher); });
-    } else {
-      this.makeOrderItems(tid);
-    }
-    this.advancePage();
-  }
-
-  public agreeToWaiver() {
-    this.order.waiver_signed = true;
+    let tchr = this.getTeacher();
+    this.order.waiver = this.recentWaiver;
+    if (this.isNewTeacher)
+      return;
+    this.makeOrderItems(tchr);
     this.advancePage();
   }
 

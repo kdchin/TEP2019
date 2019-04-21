@@ -127,20 +127,20 @@
 
 <div *ngIf="pages[current_page] === 'waiver'">
   <h1 class="title">Waiver</h1>
-  <div *ngIf="waiverPath">
-    <pdf-viewer [src]="waiverPath" [render-text]="true" style="display: block;"></pdf-viewer>
+  <div *ngIf="recentWaiver">
+    <pdf-viewer [src]="recentWaiver.file" [render-text]="true" style="display: block;"></pdf-viewer>
   </div>
-  <div *ngIf="waiverPath">
-    <a href="{{waiverPath}}" target="_blank">{{formatFileName(waiverPath)}}</a>
+  <div *ngIf="recentWaiver">
+    <a href="{{recentWaiver.file}}" target="_blank">{{formatFileName(recentWaiver.file)}}</a>
   </div>
-  <div *ngIf="!waiverPath">
+  <div *ngIf="!recentWaiver">
     - <img src="../../assets/temp_waiver.png" class="center">
   </div>
   <div class="has-text-centered">
     <div class="column">
       <button class="button back is-medium" (click)=backPage()>Back</button>
       <div class="divider"></div>
-      <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Agree</button>
+      <button class="button is-medium is-primary" (click)=advancePage()>I Agree</button>
     </div>
   </div>
 </div>
@@ -170,7 +170,7 @@
     <div class="column">
       <button class="button back is-medium" (click)=backPage()>Back</button>
       <div class="divider"></div>
-      <button class="button is-medium is-primary" (click)=agreeToWaiver()>I Understand</button>
+      <button class="button is-medium is-primary" (click)=advancePage()>I Understand</button>
     </div>
   </div>
 </div>

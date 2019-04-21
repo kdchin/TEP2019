@@ -26,7 +26,7 @@ export class OrderTeacher {
         public id: number,
         public shopping_date: string,
         public uploaded: boolean,
-        public waiver_signed: boolean,
+        public waiver: Waiver,
     ) { }
 }
 
@@ -48,7 +48,7 @@ export class Order {
         public id: number,
         public shopping_date: string,
         public uploaded: boolean,
-        public waiver_signed: boolean,
+        public waiver: Waiver,
         public teacher: Teacher,
     ) { }
 }
@@ -58,7 +58,7 @@ export class OrderDetail {
         public id: number,
         public shopping_date: string,
         public uploaded: boolean,
-        public waiver_signed: boolean,
+        public waiver: Waiver,
         public teacher: Teacher | number,
         public order_items: Array<OrderDetailItem>,
     ) { }
