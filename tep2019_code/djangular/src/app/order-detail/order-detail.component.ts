@@ -28,6 +28,12 @@ export class OrderDetailComponent implements OnInit {
     this.apiService.fetchOne("order_foo", id).subscribe((orderDetail: OrderDetail) => this.orderDetail = orderDetail);
   }
 
+  deleteOrder(orderDetail: OrderDetail) {
+    this.apiService.delete("orders", this.orderDetail.id).subscribe();
+    this.location.back();
+  }
+
+
   goBack(): void {
     this.location.back();
   }
