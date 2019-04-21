@@ -12,3 +12,6 @@ input[type=text] {
   padding: 8px 20px 8px 35px;
 }
   
+button.is-info{
+  background-color: #489AD8;
+}
