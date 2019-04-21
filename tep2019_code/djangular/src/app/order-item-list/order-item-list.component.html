@@ -2,7 +2,7 @@
   All Ordered Items
 </h1>
 <div class="container">
-  <table class="table is-hoverable is-fullwidth">
+  <table class="table is-fullwidth">
     <tr>
       <th>Date</th>
       <th>Teacher</th>
@@ -11,6 +11,7 @@
       <th>Units Allowed</th>
       <th>Quantity Per Unit</th>
       <th>Total Taken</th>
+      <th>Total Units Taken</th>
       <th></th>
     </tr>
     <tr *ngFor="let order_item of order_items; let i = index">
@@ -24,6 +25,7 @@
       <td>{{order_item.item.max_units}}</td>
       <td>{{order_item.item.qty_per_unit}}</td>
       <td>{{order_item.item.qty_per_unit * order_item.units_taken}} {{order_item.item.unit_label_name}}</td>
+      <td>{{order_item.item.qty_per_unit * order_item.units_taken * order_item.item.max_units}} Total Units</td>
       <td><button class=" button is-danger" (click)="deleteOrderItem(order_item)">delete</button>
       </td>
     </tr>
