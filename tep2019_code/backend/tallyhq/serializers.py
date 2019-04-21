@@ -15,6 +15,12 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'active')
 
 
+class WaiverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Waiver
+        fields = ('id', 'file', 'uploaded_date')
+
+
 class TeacherSerializer(serializers.ModelSerializer):
     school = SchoolSerializer(many=False, read_only=False)
 
@@ -133,12 +139,6 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         model = Order
         fields = ('id', 'shopping_date', 'uploaded',
                   'waiver', 'teacher', 'order_items')
-
-
-class WaiverSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Waiver
-        fields = ('id', 'file', 'uploaded_date')
 
 
 class ValidationPasswordSerializer(serializers.ModelSerializer):
