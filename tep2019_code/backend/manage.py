@@ -15,4 +15,3 @@ if __name__ == '__main__':
     execute_from_command_line(sys.argv)
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tallyhq.settings.local")
