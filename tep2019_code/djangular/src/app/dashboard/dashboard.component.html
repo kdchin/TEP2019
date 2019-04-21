@@ -10,14 +10,18 @@
     </div>
     <div id="display-table">
       <table class="table is-hoverable is-fullwidth">
+        <thead>
           <tr>
             <th>Name</th>
             <th>Checkout Date</th>
           </tr>
+        </thead>
+        <tbody>
           <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
             <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
             <td> {{ order.shopping_date | date}}</td>
           </tr>
+        </tbody>
       </table>
     </div>
     <br>
