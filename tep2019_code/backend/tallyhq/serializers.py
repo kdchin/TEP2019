@@ -92,7 +92,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ('id', 'name', 'unit_label_name',
-                  'max_units', 'qty_per_unit', 'active')
+                  'max_units', 'qty_per_unit', 'active', 'rank')
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
