@@ -1,15 +1,5 @@
 <div *ngIf="item">
   <h1 class="title">{{item.name}}</h1>
-<<<<<<< HEAD
-  <div><span>id: {{item.id}}</span></div>
-  <div>
-    <label>Name:<input [(ngModel)]="item.name" placeholder="name"/></label><br>
-    <label>Label Name:<input [(ngModel)]="item.unit_label_name" placeholder="Units"/></label><br>
-    <label>Max Units:<input [(ngModel)]="item.max_units" placeholder="8"/></label><br>
-    <label>Quantity Per Unit:<input [(ngModel)]="item.qty_per_unit" placeholder="8"/></label><br>
-  </div>
-  <button class="button" (click)="goBack()">Go Back</button>
-=======
   <div class = "row">
     <div class = "column">
       <div class = "card">
@@ -28,5 +18,4 @@
     </div>
   </div>
   <button class="back button is-medium" (click)="goBack()">Back</button>
->>>>>>> 3db638e7fda5bb5f903235eb6183e9e16ac7e1fa
 </div>

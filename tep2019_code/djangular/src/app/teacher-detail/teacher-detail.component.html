@@ -1,17 +1,4 @@
 <div *ngIf="teacher">
-<<<<<<< HEAD
-  <h1 class="title">{{teacher.first_name }}'s Details</h1>
-  <div>
-    <div><span>id: </span>{{teacher.id}}</div>
-    <div><span>School: {{ teacher.school.name }}</span></div>
-    <label>First Name:<input [(ngModel)]="teacher.first_name" placeholder="Cat"/></label><br>
-    <label>Last Name:<input [(ngModel)]="teacher.last_name" placeholder="Price"/></label><br>
-    <label>Email:<input [(ngModel)]="teacher.email" placeholder="cprce@example.com"/></label><br>
-    <label>Phone Number:<input [(ngModel)]="teacher.phone" placeholder="4128888888"/></label><br>
-    <label>Active:<input [(ngModel)]="teacher.active" placeholder="false"/></label>
-  </div>
-  <button class="button is-info" (click)="goBack()">Go Back</button>
-=======
   <h1 class="title">{{teacher.first_name }} {{teacher.last_name }}</h1>
   <div class ="row">
     <div class = "column">
@@ -38,5 +25,4 @@
   </div>
   <button class="back button is-medium" (click)="goBack()">Go Back</button>
   <button class="red button is-medium" (click)="deleteTeacher()">Delete</button>
->>>>>>> 3db638e7fda5bb5f903235eb6183e9e16ac7e1fa
 </div>
