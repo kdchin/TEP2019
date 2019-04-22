@@ -28,7 +28,8 @@ export class Teacher {
         public email: string,
         public phone: string,
         public active: boolean,
-        public school: School
+        public school: School,
+        public address: string,
     ) { }
 }
 
@@ -51,6 +52,7 @@ export class TeacherDetail {
         public active: boolean,
         public school: School,
         public orders: Array<OrderTeacher>,
+        public address: string,
     ) { }
 }
 
@@ -70,7 +72,7 @@ export class OrderDetail {
         public checkout_time: string,
         public uploaded: boolean,
         public waiver: Waiver,
-        public teacher: Teacher | number,
+        public teacher: Teacher,
         public order_items: Array<OrderDetailItem>,
     ) { }
 }

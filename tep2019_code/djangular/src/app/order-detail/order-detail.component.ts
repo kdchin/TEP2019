@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { OrderDetail, OrderDetailItem  } from '../models';
-import { ApiService }  from '../api.service';
+import { OrderDetail, OrderDetailItem } from '../models';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -25,7 +25,7 @@ export class OrderDetailComponent implements OnInit {
 
   getOrder(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.apiService.fetchOne("order_foo", id).subscribe((orderDetail: OrderDetail) => this.orderDetail = orderDetail);
+    this.apiService.fetchOne("order_detail", id).subscribe((orderDetail: OrderDetail) => this.orderDetail = orderDetail);
   }
 
   deleteOrder(orderDetail: OrderDetail) {
