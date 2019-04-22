@@ -1,0 +1,43 @@
+#filebox {
+    width: 288px;
+    height: 60px;
+    background: white;
+    color: black;
+    display: block;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+#waiversection {
+    margin-left: 16px;
+}
+
+.file-icon {
+    float: left;
+    padding-left: 30px;
+    padding-top: 8px;
+}
+
+#texter {
+    margin: 0 auto;
+}
+
+p {
+    font-size: 10pt;
+    text-align: center;
+    
+}
+
+.file-cta {
+    border-color: #dbdbdb;
+
+    padding-right: 0;
+    padding-left: 0;
+    margin: 0 auto;
+
+}
+
+#waiverchoose {
+    margin: 0 auto;
+}
+
