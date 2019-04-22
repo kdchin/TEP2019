@@ -24,6 +24,7 @@ export class TeacherFormComponent implements OnInit {
   order_items: Array<OrderItem> = [];
   lodash = lodash;
   recentWaiver: Waiver = null;
+  agreedToWaiver = false;
   val_pass = new ValPass(null, '', null);
   guess = '';
   key = environment.val_pass_key;
