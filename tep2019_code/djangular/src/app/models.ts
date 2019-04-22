@@ -5,7 +5,8 @@ export class Item {
         public unit_label_name: string,
         public max_units: number,
         public qty_per_unit: number,
-        public active: boolean
+        public active: boolean,
+        public rank: number,
     ) { }
 }
 

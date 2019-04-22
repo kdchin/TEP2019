@@ -77,6 +77,7 @@ export class TeacherFormComponent implements OnInit {
         if (data[i].active)
           this.order_items.push(new OrderItem(null, data[i], this.order, 0));
       }
+      this.order_items = this.lodash.sortBy(this.order_items, (oi: OrderItem) => oi.item.rank, ['asc']);
     });
   }
 

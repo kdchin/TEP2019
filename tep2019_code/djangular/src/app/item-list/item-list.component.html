@@ -1,26 +1,61 @@
 <h1 class="title">All Items</h1>
 <button class="button is-info" (click)="toggleShowCreate()">New Item</button>
-<button class="button">Filter</button>
-<button class="button">Sort</button>
-<table class="table is-hoverable is-fullwidth">
-  <tr>
-    <th>Name</th>
-    <th>Label Name</th>
-    <th>Max Units</th>
-    <th>Quantity Per Unit</th>
-    <th>Active</th>
-  </tr>
-  <tr *ngFor="let item of items" routerLink="/items/{{item.id}}">
-    <td> {{ item.name }} </td>
-    <td> {{ item.unit_label_name }} </td>
-    <td> {{ item.max_units }} </td>
-    <td> {{ item.qty_per_unit }} </td>
-    <!-- TODO: this displays kind of weirdly -->
-    <!-- <app-inline-edit [(ngModel)]="item.active" [onChange]="updateItem(i, 'active')" [fieldType]="'checkbox'"
-      [displayPipe]="activePipe"></app-inline-edit> -->
-    <td> {{ item.active }} </td>
-  </tr>
-</table>
 <div [hidden]="!shouldShowCreate">
   <app-item-create (itemChange)="onNewItem($event)"></app-item-create>
+</div>
+<div *ngIf="activeItems.length > 0">
+  <h2 class="title">Active Items</h2>
+  <table class="table is-hoverable is-fullwidth">
+    <tr>
+      <th>Form Order</th>
+      <th>Name</th>
+      <th>Label Name</th>
+      <th>Max Units</th>
+      <th>Quantity Per Unit</th>
+      <th>Active</th>
+    </tr>
+    <!-- <tr *ngFor="let item of items" routerLink="/items/{{item.id}}"> -->
+    <tr *ngFor="let item of activeItems; let i = index;">
+      <td>
+        <app-inline-edit [(ngModel)]="item.rank" [onChange]="updateRank(i)" [fieldType]="'text'"></app-inline-edit>
+      </td>
+      <td> {{ item.name }} </td>
+      <td> {{ item.unit_label_name }} </td>
+      <td> {{ item.max_units }} </td>
+      <td> {{ item.qty_per_unit }} </td>
+      <!-- TODO: this displays kind of weirdly -->
+      <td>
+        <app-inline-edit [(ngModel)]="item.active" [onChange]="updateActive(i)" [fieldType]="'checkbox'"
+          [displayPipe]="activePipe"></app-inline-edit>
+      </td>
+      <!-- <td> {{ item.active }} </td> -->
+      <!-- <td>{{item.rank}}</td> -->
+    </tr>
+  </table>
+</div>
+<div *ngIf="activeItems.length === 0">
+  No active items! Please create new items.
+</div>
+<div *ngIf="inactiveItems.length > 0">
+  <h2 class="title">Inactive Items</h2>
+  <table class="table is-hoverable is-fullwidth">
+    <tr>
+      <th>Name</th>
+      <th>Label Name</th>
+      <th>Max Units</th>
+      <th>Quantity Per Unit</th>
+      <th>Active</th>
+    </tr>
+    <!-- <tr *ngFor="let item of items" routerLink="/items/{{item.id}}"> -->
+    <tr *ngFor="let item of inactiveItems; let i = index;">
+      <td> {{ item.name }} </td>
+      <td> {{ item.unit_label_name }} </td>
+      <td> {{ item.max_units }} </td>
+      <td> {{ item.qty_per_unit }} </td>
+      <!-- TODO: this displays kind of weirdly -->
+      <app-inline-edit [(ngModel)]="item.active" [onChange]="updateActive(i)" [fieldType]="'checkbox'"
+        [displayPipe]="activePipe"></app-inline-edit>
+      <!-- <td> {{ item.active }} </td> -->
+    </tr>
+  </table>
 </div>

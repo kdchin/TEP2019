@@ -16,6 +16,7 @@ export class ExportCsvComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    // TODO: only do this wehn needed
     this.getAllOrderItems();
   }
 
