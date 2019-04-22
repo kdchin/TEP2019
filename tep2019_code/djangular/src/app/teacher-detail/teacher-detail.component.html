@@ -23,7 +23,7 @@
         <h3>Past Orders</h3><br>
         <table class="table is-hoverable is-fullwidth">
           <tr *ngFor="let order of teacher.orders" routerLink="/orders/{{order.id}}">
-            <td>{{order.shopping_date | date}}</td>
+            <td>{{order.checkout_time | date : 'medium'}}</td>
           </tr>
         </table>
       </div>

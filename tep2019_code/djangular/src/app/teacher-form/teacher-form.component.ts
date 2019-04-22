@@ -178,9 +178,7 @@ export class TeacherFormComponent implements OnInit {
   }
 
   public makeOrderItems(teacher) {
-    // this.order.shopping_date = null;
     this.order.teacher = teacher;
-    // this.order.shopping_date = this.order.shopping_date.toISOString();
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];

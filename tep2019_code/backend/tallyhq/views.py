@@ -1,7 +1,7 @@
 from .models import *
 from .serializers import *
 from .authentication import *
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, Http404
 from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User
 from rest_framework.parsers import FormParser, MultiPartParser

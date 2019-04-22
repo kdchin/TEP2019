@@ -48,11 +48,11 @@ export class ExportCsvComponent implements OnInit {
         item_name: oi.item.name,
         item_quantity: oi.item.qty_per_unit * oi.units_taken,
       });
-      if (oldest === null || oi.order.shopping_date < oldest) {
-        oldest = oi.order.shopping_date;
+      if (oldest === null || oi.order.checkout_time < oldest) {
+        oldest = oi.order.checkout_time;
       }
-      if (newest === null || oi.order.shopping_date > newest) {
-        newest = oi.order.shopping_date;
+      if (newest === null || oi.order.checkout_time > newest) {
+        newest = oi.order.checkout_time;
       }
     }
     let fDate = (date: Date) => formatDate(date, 'MM-dd-yyyy', 'en-US');

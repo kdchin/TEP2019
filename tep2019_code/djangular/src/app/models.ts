@@ -10,6 +10,16 @@ export class Item {
     ) { }
 }
 
+
+export class Waiver {
+    constructor(
+        public id: number,
+        public file: File,
+        public uploaded_date: Date,
+    ) { }
+}
+
+
 export class Teacher {
     constructor(
         public id: number,
@@ -25,7 +35,7 @@ export class Teacher {
 export class OrderTeacher {
     constructor(
         public id: number,
-        public shopping_date: string,
+        public checkout_time: string,
         public uploaded: boolean,
         public waiver: Waiver,
     ) { }
@@ -47,7 +57,7 @@ export class TeacherDetail {
 export class Order {
     constructor(
         public id: number,
-        public shopping_date: string,
+        public checkout_time: string,
         public uploaded: boolean,
         public waiver: Waiver,
         public teacher: Teacher,
@@ -57,7 +67,7 @@ export class Order {
 export class OrderDetail {
     constructor(
         public id: number,
-        public shopping_date: string,
+        public checkout_time: string,
         public uploaded: boolean,
         public waiver: Waiver,
         public teacher: Teacher | number,
@@ -86,14 +96,6 @@ export class School {
     constructor(
         public name: string,
         public active: boolean
-    ) { }
-}
-
-export class Waiver {
-    constructor(
-        public id: number,
-        public file: File,
-        public uploaded_date: Date,
     ) { }
 }
 

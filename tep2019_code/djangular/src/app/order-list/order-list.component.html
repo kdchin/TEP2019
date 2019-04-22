@@ -5,16 +5,16 @@
   <!-- TODO: link this to the normal form page -->
   <table class="table is-hoverable is-fullwidth">
     <tr>
-      <th>Date</th>
+      <th>Checkout Time</th>
       <th>Teacher</th>
       <th>Uploaded</th>
-      <th>Waiver Signed</th>
+      <th>Waiver</th>
     </tr>
     <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
-      <td> {{ order.shopping_date | date }} </td>
+      <td> {{ order.checkout_time | date : 'medium' }} </td>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>
-      <td> <a href="{{ order.waiver.file }}" target="_blank">Waiver</a> </td>
+      <td> <a href="{{ order.waiver.file }}" target="_blank">View</a> </td>
       <td><button class=" button is-danger" (click)="deleteOrder(order)">delete</button></td>
     </tr>
   </table>
