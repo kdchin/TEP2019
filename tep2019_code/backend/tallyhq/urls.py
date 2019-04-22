@@ -30,6 +30,10 @@ teacher_detail = TeacherViewSet.as_view({
     'delete': 'destroy'
 })
 
+teacher_update = TeacherUpdateViewSet.as_view({
+    'put': 'update',
+})
+
 order_list = OrderViewSet.as_view({
     'get': 'list',
     'post': 'create'
@@ -94,6 +98,7 @@ urlpatterns = [
     path(r'api/items/<int:pk>', item_detail, name='item-detail'),
     path(r'api/teachers/', teacher_list, name='teacher-list'),
     path(r'api/teachers/<int:pk>', teacher_detail, name='teacher-detail'),
+    path(r'api/teacher_update/<int:pk>', teacher_update, name='teacher-update'),
     path(r'api/orders/', order_list, name='order-list'),
     path(r'api/orders/<int:pk>', order_detail, name='order-detail'),
     path(r'api/order_items/', order_item_list, name='order-item-list'),

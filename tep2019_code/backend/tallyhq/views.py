@@ -42,6 +42,11 @@ class TeacherViewSet(viewsets.ModelViewSet):
     serializer_class = TeacherDetailSerializer
 
 
+class TeacherUpdateViewSet(viewsets.ModelViewSet):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
+
+
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer

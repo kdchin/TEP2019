@@ -16,7 +16,8 @@ export class TeacherFormComponent implements OnInit {
   pages = ["welcome", "waiver", "reminders", "checkout", "success"];
   isNewTeacher = false;
   val_email = "";
-  teacher = new Teacher(null, '', '', '', '', true, null);
+  teacher = new Teacher(null, '', '', '', '', true, null, '');
+  new_address: string = "";
   all_teachers: Array<Teacher> = [];
   order = new Order(null, null, false, null, null);
   school = new School('', false);
@@ -90,6 +91,7 @@ export class TeacherFormComponent implements OnInit {
         if (data[i].active)
           this.all_schools.push(data[i]);
       }
+      if (this.all_schools.length > 0) this.school = this.all_schools[0];
     });
   }
 
@@ -139,7 +141,7 @@ export class TeacherFormComponent implements OnInit {
 
   public finish() {
     this.isNewTeacher = false;
-    this.teacher = new Teacher(null, '', '', '', '', true, null);
+    this.teacher = new Teacher(null, '', '', '', '', true, null, '');
     this.order = new Order(null, null, false, null, null);
     this.school = new School('', false);
     this.recentWaiver = null;
@@ -165,8 +167,9 @@ export class TeacherFormComponent implements OnInit {
 
   // will create teacher once "submit" is pressed on the checkout page
   public processTeacher() {
-    if (!this.teacherIsValid() && this.val_email === this.teacher.email) return;
+    if (!this.teacherIsValid() || this.val_email !== this.teacher.email) return;
     this.teacher.school = this.school;
+    this.teacher.address = this.new_address;
     this.advancePage();
   }
 
@@ -178,8 +181,7 @@ export class TeacherFormComponent implements OnInit {
     return true;
   }
 
-  public makeOrderItems(teacher) {
-    this.order.teacher = teacher;
+  public createOrderItems() {
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
@@ -189,6 +191,18 @@ export class TeacherFormComponent implements OnInit {
         }
       }
     });
+  }
+
+  public makeOrderItems(teacher) {
+    teacher.address = this.new_address;
+    this.order.teacher = teacher;
+    if (this.teacher.address.length > 0) {
+      this.apiService.update('teacher_update', teacher).subscribe(() => {
+        this.createOrderItems();
+      });
+    } else {
+      this.createOrderItems();
+    }
   }
 
   public createOrder() {

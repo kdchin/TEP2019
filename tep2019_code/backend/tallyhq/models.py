@@ -38,6 +38,7 @@ class Teacher(models.Model):
     phone = models.CharField(max_length=20)
     school = models.ForeignKey(School, on_delete=models.CASCADE, null=False)
     active = models.BooleanField(default=True)
+    address = models.CharField(max_length=100, blank=True)
 
     # TODO: make email unique
 

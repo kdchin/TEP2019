@@ -11,7 +11,7 @@ export class TeacherCreateComponent implements OnInit {
   @Output() teacherChange = new EventEmitter<TeacherDetail>();
 
   new_school = new School('', true);
-  new_teacher = new TeacherDetail(null, '', '', '', '', true, null, []);
+  new_teacher = new TeacherDetail(null, '', '', '', '', true, null, [], '');
   schools: Array<School> = [];
 
   constructor(private apiService: ApiService) { }
@@ -36,7 +36,7 @@ export class TeacherCreateComponent implements OnInit {
     this.new_teacher.school = this.new_school;
     this.createTeacher();
     this.teacherChange.emit(this.new_teacher);
-    this.new_teacher = new TeacherDetail(null, '', '', '', '', true, null, []);
+    this.new_teacher = new TeacherDetail(null, '', '', '', '', true, null, [], '');
   }
 
   public createTeacher() {

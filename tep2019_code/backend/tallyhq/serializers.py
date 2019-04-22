@@ -26,13 +26,29 @@ class TeacherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Teacher
-        fields = ('id', 'first_name', 'last_name',
+        fields = ('id', 'first_name', 'last_name', 'address',
                   'email', 'phone', 'school', 'active')
 
     def create(self, validated_data):
         school_data = validated_data.pop('school')
         school, _ = School.objects.get_or_create(**school_data)
         return Teacher.objects.create(school=school, **validated_data)
+
+    def update(self, instance, validated_data):
+        school_data = validated_data.pop('school')
+        school, _ = School.objects.get_or_create(**school_data)
+        instance.school = school
+        print("data", validated_data)
+        instance.first_name = validated_data.get(
+            'first_name', instance.first_name)
+        instance.last_name = validated_data.get(
+            'last_name', instance.last_name)
+        instance.address = validated_data.get('address', instance.address)
+        instance.email = validated_data.get('email', instance.email)
+        instance.phone = validated_data.get('phone', instance.phone)
+        instance.active = validated_data.get('active', instance.active)
+        instance.save()
+        return instance
 
 
 class OrderTeacherSerializer(serializers.ModelSerializer):
@@ -55,7 +71,7 @@ class TeacherDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Teacher
-        fields = ('id', 'first_name', 'last_name',
+        fields = ('id', 'first_name', 'last_name', 'address',
                   'email', 'phone', 'school', 'orders', 'active')
 
 

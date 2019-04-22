@@ -40,7 +40,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Email</label>
+        <label class="label">Work Email</label>
         <div class="control">
           <input id="email" class="input" type="email" placeholder="shifu@dreamworks.com" [(ngModel)]="teacher.email"
             name="email" required maxlength="50" #email="ngModel" [email]="true">
@@ -73,6 +73,14 @@
             </div>
 
           </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Full Home Address</label>
+        <div class="control">
+          <input id="address" class="input" type="text" placeholder="281 Corliss St, Pittsburgh, PA 15220"
+            [(ngModel)]="new_address" name="address" maxlength="100">
         </div>
       </div>
 

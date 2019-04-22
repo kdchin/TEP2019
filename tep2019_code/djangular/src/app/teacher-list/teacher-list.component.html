@@ -8,6 +8,7 @@
       <th>Last Name</th>
       <th>Email</th>
       <th>Phone Number</th>
+      <th>Address</th>
       <th>School</th>
       <th>Active</th>
     </tr>
@@ -24,6 +25,9 @@
       <td>
         <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher(i, 'phone')" [displayPipe]="phonePipe">
         </app-inline-edit>
+      </td>
+      <td>
+        <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher(i, 'address')"></app-inline-edit>
       </td>
       <!-- <td> {{ teacher.phone | phone}} </td> -->
       <td> {{ teacher.school.name }} </td>
