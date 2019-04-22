@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./pwd-generator.component.css']
 })
 export class PwdGeneratorComponent implements OnInit {
-
+  shouldShowChange = false;
   val_pass: ValPass = new ValPass(null, '', new Date());
   new_pwd: string = '';
   key = environment.val_pass_key;
@@ -36,6 +36,16 @@ export class PwdGeneratorComponent implements OnInit {
       this.val_pass.digest = pwd.digest;
       this.new_pwd = '';
     }
+    this.alerter();
+    this.shouldShowChange = !this.shouldShowChange;
+  }
+
+  public toggleShowChange() {
+    this.shouldShowChange = !this.shouldShowChange;
+  }
+  
+  public alerter(){
+    alert("Passwords must be at least 4 characters");
   }
 
   getMostRecentPassword() {
