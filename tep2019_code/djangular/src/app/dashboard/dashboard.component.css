@@ -48,10 +48,7 @@
     padding: 15px;
   }
 
-#container {
 
-    margin: 0 auto;
-}
 
 h2{
     font-size: 30px;
@@ -169,4 +166,8 @@ h5{
     float:left;
     padding-left: 125px;
     padding-top: 10px;
+}
+
+#wrapper {
+    margin: auto;
 }

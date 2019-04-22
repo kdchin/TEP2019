@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Order } from '../models';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -36,6 +37,10 @@ export class DashboardComponent implements OnInit {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
       this.orders = data;
     });
+  }
+
+  public getNumber() {
+    return this.orders.length;
   }
 
 }
