@@ -72,7 +72,7 @@ export class OrderDetail {
         public checkout_time: string,
         public uploaded: boolean,
         public waiver: Waiver,
-        public teacher: Teacher | number,
+        public teacher: Teacher,
         public order_items: Array<OrderDetailItem>,
     ) { }
 }
