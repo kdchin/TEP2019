@@ -5,9 +5,20 @@ export class Item {
         public unit_label_name: string,
         public max_units: number,
         public qty_per_unit: number,
-        public active: boolean
+        public active: boolean,
+        public rank: number,
     ) { }
 }
+
+
+export class Waiver {
+    constructor(
+        public id: number,
+        public file: File,
+        public uploaded_date: Date,
+    ) { }
+}
+
 
 export class Teacher {
     constructor(
@@ -24,7 +35,7 @@ export class Teacher {
 export class OrderTeacher {
     constructor(
         public id: number,
-        public shopping_date: string,
+        public checkout_time: string,
         public uploaded: boolean,
         public waiver: Waiver,
     ) { }
@@ -46,7 +57,7 @@ export class TeacherDetail {
 export class Order {
     constructor(
         public id: number,
-        public shopping_date: string,
+        public checkout_time: string,
         public uploaded: boolean,
         public waiver: Waiver,
         public teacher: Teacher,
@@ -56,7 +67,7 @@ export class Order {
 export class OrderDetail {
     constructor(
         public id: number,
-        public shopping_date: string,
+        public checkout_time: string,
         public uploaded: boolean,
         public waiver: Waiver,
         public teacher: Teacher | number,
@@ -85,14 +96,6 @@ export class School {
     constructor(
         public name: string,
         public active: boolean
-    ) { }
-}
-
-export class Waiver {
-    constructor(
-        public id: number,
-        public file: File,
-        public uploaded_date: Date,
     ) { }
 }
 

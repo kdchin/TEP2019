@@ -40,7 +40,7 @@ class OrderTeacherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'shopping_date', 'uploaded', 'waiver')
+        fields = ('id', 'checkout_time', 'uploaded', 'waiver')
 
 
 class TeacherDetailSerializer(serializers.ModelSerializer):
@@ -65,14 +65,16 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'shopping_date', 'uploaded',
-                  'waiver', 'teacher')
+        fields = ('id', 'checkout_time', 'uploaded', 'waiver', 'teacher')
 
     def create(self, validated_data):
         teacher_data = validated_data.pop('teacher')
         school_data = teacher_data.pop('school')
-        waiver_data = validated_data.pop('waiver')
-        waiver, _ = Waiver.objects.get_or_create(**waiver_data)
+        if 'waiver' in validated_data:
+            waiver_data = validated_data.pop('waiver')
+            waiver, _ = Waiver.objects.get_or_create(**waiver_data)
+        else:
+            waiver = Waiver.objects.latest('uploaded_date')
         school, _ = School.objects.get_or_create(**school_data)
         teacher, _ = Teacher.objects.get_or_create(
             **teacher_data, school=school)
@@ -107,9 +109,12 @@ class OrderItemSerializer(serializers.ModelSerializer):
         order_data = validated_data.pop('order')
         item_data = validated_data.pop('item')
         teacher_data = order_data.pop('teacher')
-        waiver_data = order_data.pop('waiver')
         school_data = teacher_data.pop('school')
-        waiver, _ = Waiver.objects.get_or_create(**waiver_data)
+        if 'waiver' in order_data:
+            waiver_data = order_data.pop('waiver')
+            waiver, _ = Waiver.objects.get_or_create(**waiver_data)
+        else:
+            waiver = Waiver.objects.latest('uploaded_date')
         school, _ = School.objects.get_or_create(**school_data)
         teacher, _ = Teacher.objects.get_or_create(
             **teacher_data, school=school)
@@ -137,7 +142,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'shopping_date', 'uploaded',
+        fields = ('id', 'checkout_time', 'uploaded',
                   'waiver', 'teacher', 'order_items')
 
 

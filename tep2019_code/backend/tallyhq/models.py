@@ -50,7 +50,7 @@ class Waiver(models.Model):
 # Order model: one per teacher visit, summarizes what a teacher got
 class Order(models.Model):
     # date the teacher visited TEP
-    shopping_date = models.DateTimeField(auto_now_add=True, blank=True)
+    checkout_time = models.DateTimeField(auto_now_add=True, blank=True)
 
     # whether this order has been exported to csv yet
     uploaded = models.BooleanField(default=False)

@@ -24,6 +24,7 @@ export class TeacherFormComponent implements OnInit {
   order_items: Array<OrderItem> = [];
   lodash = lodash;
   recentWaiver: Waiver = null;
+  agreedToWaiver = false;
   val_pass = new ValPass(null, '', null);
   guess = '';
   key = environment.val_pass_key;
@@ -77,6 +78,7 @@ export class TeacherFormComponent implements OnInit {
         if (data[i].active)
           this.order_items.push(new OrderItem(null, data[i], this.order, 0));
       }
+      this.order_items = this.lodash.sortBy(this.order_items, (oi: OrderItem) => oi.item.rank, ['asc']);
     });
   }
 
@@ -177,9 +179,7 @@ export class TeacherFormComponent implements OnInit {
   }
 
   public makeOrderItems(teacher) {
-    // this.order.shopping_date = null;
     this.order.teacher = teacher;
-    // this.order.shopping_date = this.order.shopping_date.toISOString();
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];

@@ -4,12 +4,12 @@
     <div class="column">
       <div class="card">
         <h3>Details</h3><br>
-        <label>Date:<br><input class="readonly" readonly="readonly" [(ngModel)]="orderDetail.shopping_date"
+        <label>Checkout Time:<br><input class="readonly" readonly="readonly" [(ngModel)]="orderDetail.checkout_time"
             placeholder="4/26/1954" /></label><br>
         <label>Teacher:<br><input class="readonly" readonly="readonly" [(ngModel)]="orderDetail.teacher.first_name"
             placeholder="Units" /></label><br>
         <label>Uploaded:<br><input [(ngModel)]="orderDetail.uploaded" placeholder="no" /></label><br>
-        <label>Waiver:<br><a href="{{orderDetail.waiver.file}}" target="_blank">Waiver</a></label>
+        <a href="{{orderDetail.waiver.file}}" target="_blank">View waiver</a>
       </div>
     </div>
     <div class="column">

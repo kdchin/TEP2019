@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -26,7 +25,6 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PwdGeneratorComponent } from './pwd-generator/pwd-generator.component';
 import { ExportCsvComponent } from './export-csv/export-csv.component';
-import { fakeBackendProvider } from './_helpers';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
