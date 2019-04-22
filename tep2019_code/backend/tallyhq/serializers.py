@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -94,7 +95,7 @@ class OrderSerializer(serializers.ModelSerializer):
         school, _ = School.objects.get_or_create(**school_data)
         teacher, _ = Teacher.objects.get_or_create(
             **teacher_data, school=school)
-        order, _ = Order.objects.get_or_create(waiver=waiver,
+        order, _ = Order.objects.get_or_create(checkout_time=timezone.now(), waiver=waiver,
                                                teacher=teacher, **validated_data)
         return order
 
