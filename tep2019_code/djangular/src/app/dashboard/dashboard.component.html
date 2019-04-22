@@ -25,7 +25,7 @@
       </table>
     </div>
     <br>
-    <button class="button is-danger" id = "button" (click)="deleteOrder(order)">See All</button>
+    <button class="button is-danger" id = "button" (click)="deleteOrder(order)" routerLink="orders">See All</button>
   </div>
 
   <div id= "middle-rectangle">
@@ -33,22 +33,18 @@
       <h2><b>Edit Items</b></h2>
     </div>
     <br>
-    <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Edit Listed Items</button>
+    <button class="button is-danger" id = "button" routerLink="items">Edit Listed Items</button>
     <br>
     <app-file-upload></app-file-upload>
 
     <div id = "white"></div>
     <div id="title-box">
-        <h2><b>Date Range</b></h2>
-        <h3><b>1/1/18 - 12/31/18</b></h3>
+        <!-- <h2><b>Date Range</b></h2>
+        <h3><b>1/1/18 - 12/31/18</b></h3> -->
+        <h2><b>Export CSV</b></h2>
     </div>
     <br>
-    <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Export Time CSV</button>
-    <br>
-    <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Export Contact CSV</button>
-    <br>
-    <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Export Checkout CSV</button>
-    
+    <app-export-csv></app-export-csv>    
   </div>
   
 

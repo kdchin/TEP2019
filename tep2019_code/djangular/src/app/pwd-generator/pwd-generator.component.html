@@ -6,7 +6,7 @@
 </div>
 
 <div id="changer2" [hidden]="shouldShowChange">
-  <button type= "button" class = "button is-danger" (click)="toggleShowChange()">Change Password</button>
+  <button type= "button" class = "button" (click)="toggleShowChange()">Change Password</button>
 </div>
 
 <div id = "changer" [hidden]="!shouldShowChange">
@@ -18,7 +18,7 @@
 <br>
 
 <div [hidden]="shouldShowChange">
-  <button class="button is-danger" id = "button" (click)="deleteOrder(order)">Random Password</button>
+  <button class="button" id = "button" (click)="deleteOrder(order)">Random Password</button>
 </div>
 
 
