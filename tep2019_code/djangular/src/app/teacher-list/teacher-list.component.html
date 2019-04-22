@@ -14,6 +14,27 @@
     </tr>
     <tr *ngFor="let teacher of teachers" routerLink="/teachers/{{teacher.id}}">
       <td>
+        {{ teacher.first_name }}
+      </td>
+      <td>
+        {{ teacher.last_name}}
+      </td>
+      <td>
+        {{ teacher.email}}
+      </td>
+      <td>
+        {{ phonePipe.transform(teacher.phone)}}
+      </td>
+      <td>
+        {{ teacher.address}}
+      </td>
+      <td> {{ teacher.school.name }} </td>
+      <td>
+        {{ activePipe.transform(teacher.active)}}
+      </td>
+    </tr>
+    <!-- <tr *ngFor="let teacher of teachers" routerLink="/teachers/{{teacher.id}}">
+      <td>
         <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher(i, 'first_name')"></app-inline-edit>
       </td>
       <td>
@@ -29,14 +50,13 @@
       <td>
         <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher(i, 'address')"></app-inline-edit>
       </td>
-      <!-- <td> {{ teacher.phone | phone}} </td> -->
       <td> {{ teacher.school.name }} </td>
       <td>
         <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher(i, 'active')" [fieldType]="'checkbox'"
           [displayPipe]="activePipe">
         </app-inline-edit>
       </td>
-    </tr>
+    </tr> -->
   </table>
   <div [hidden]="!shouldShowCreate">
     <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>

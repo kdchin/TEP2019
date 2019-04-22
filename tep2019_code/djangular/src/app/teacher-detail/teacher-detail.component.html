@@ -4,12 +4,18 @@
     <div class="column">
       <div class="card">
         <h3>Details</h3><br>
-        <label>First Name:<br><input [(ngModel)]="teacher.first_name" placeholder="Cat" /></label><br>
-        <label>Last Name:<br><input [(ngModel)]="teacher.last_name" placeholder="Price" /></label><br>
-        <label>Email:<br><input [(ngModel)]="teacher.email" placeholder="cprice@example.com" /></label><br>
-        <label>Phone Number:<br><input [(ngModel)]="teacher.phone" placeholder="4128888888" /></label><br>
-        <label>Address:<br><input [(ngModel)]="teacher.address"
-            placeholder="281 Corliss St, Pittsburgh, PA 15220" /></label><br>
+        <label>Name:
+          <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')"></app-inline-edit>
+          <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher('last_name')"></app-inline-edit>
+        </label>
+        <label>Email:
+          <app-inline-edit [(ngModel)]="teacher.email" [onChange]="updateTeacher('email')"></app-inline-edit>
+        </label>
+        <label>Home Address:
+          <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher('address')"></app-inline-edit>
+        </label>
+        <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')" [displayPipe]="phonePipe">
+        </app-inline-edit>
       </div>
     </div>
     <div class="column">
@@ -17,7 +23,10 @@
         <h3>Additional Information</h3><br>
         <label>School:<br><input class="readonly" [(ngModel)]="teacher.school.name"
             placeholder="Taylor Allderdice" /></label><br>
-        <label>Active:<br><input [(ngModel)]="teacher.active" placeholder="false" /></label>
+        <label>Active:
+          <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher('active')" [displayPipe]="activePipe"
+            [fieldType]="'checkbox'"></app-inline-edit>
+        </label>
       </div>
     </div>
     <div class="column">
