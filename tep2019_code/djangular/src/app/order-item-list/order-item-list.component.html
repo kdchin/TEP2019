@@ -13,7 +13,7 @@
       <th>Total Taken</th>
       <th></th>
     </tr>
-    <tr *ngFor="let order_item of order_items; let i = index">
+    <tr *ngFor="let order_item of order_items | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
       <td>{{order_item.order.shopping_date | date}}</td>
       <td>{{order_item.order.teacher.first_name}} {{ order_item.order.teacher.last_name}}</td>
       <td>{{order_item.item.name}}</td>
@@ -24,8 +24,10 @@
       <td>{{order_item.item.max_units}}</td>
       <td>{{order_item.item.qty_per_unit}}</td>
       <td>{{order_item.item.qty_per_unit * order_item.units_taken}} {{order_item.item.unit_label_name}}</td>
-      <td><button class=" button is-danger" (click)="deleteOrderItem(order_item)">delete</button>
+      <td><button class=" button is-danger" (click)="alerter(order_item)">delete</button>
       </td>
     </tr>
   </table>
 </div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

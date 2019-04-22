@@ -31,4 +31,9 @@ export class OrderDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  makeFalse(): void {
+    const id = +this.route.snapshot.paramMap.get('');
+    this.apiService.update("order_foo", id)
+  }
 }

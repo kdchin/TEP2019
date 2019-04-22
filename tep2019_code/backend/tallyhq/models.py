@@ -25,7 +25,8 @@ class School(models.Model):
     name = models.CharField(max_length=50)
     active = models.BooleanField(default=True)
 
-    # TODO: maybe add in name as unique?
+    class Meta:
+        ordering = ('name', )
 
 
 class Teacher(models.Model):
@@ -36,7 +37,8 @@ class Teacher(models.Model):
     school = models.ForeignKey(School, on_delete=models.CASCADE, null=False)
     active = models.BooleanField(default=True)
 
-    # TODO: make email unique
+    class Meta:
+        ordering = ('last_name', )
 
 
 # Order model: one per teacher visit, summarizes what a teacher got
@@ -67,6 +69,8 @@ class OrderItem(models.Model):
 
     # how many units of an item a teacher took (e.g. 8 (packs))
     units_taken = models.IntegerField(validators=[MinValueValidator(0)])
+
+    
 
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form

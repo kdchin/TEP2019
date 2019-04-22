@@ -17,6 +17,8 @@ export class TeacherCreateComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
+
+
   ngOnInit() {
     this.getActiveSchools();
   }
@@ -40,6 +42,8 @@ export class TeacherCreateComponent implements OnInit {
     this.teacherChange.emit(this.new_teacher);
     this.new_teacher = new Teacher(null, '', '', '', '', true, null);
   }
+
+  
 
   public createTeacher() {
     // TODO: validation

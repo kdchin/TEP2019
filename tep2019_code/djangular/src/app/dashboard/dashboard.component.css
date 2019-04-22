@@ -97,14 +97,29 @@ h4{
     margin: 0 auto;
     margin-top: 25px;
     color: black;
-    min-height: 450px;
     background-color: white;
     display: block;
+    overflow: scroll;
+    max-height: 450px;
 }
+/* 
+#display-table thead {
+    position: sticky;
+    display: block;
+    margin: 0 auto;
+}
+
+#display-table tbody{
+    display:block;
+    width: 100%;
+    margin-top: 47px;
+  } */
 
 tr:nth-child(odd) {
     background-color: #E5E5E5
   }
+
+
 
 /* name text */
 td {

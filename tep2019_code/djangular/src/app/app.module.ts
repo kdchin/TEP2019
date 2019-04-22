@@ -30,6 +30,11 @@ import { fakeBackendProvider } from './_helpers';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+
 
 @NgModule({
   declarations: [
@@ -54,7 +59,8 @@ import { LoginComponent } from './login';
     PwdGeneratorComponent,
     ExportCsvComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,9 @@ import { LoginComponent } from './login';
     NgBootstrapFormValidationModule.forRoot(),
     NgBootstrapFormValidationModule,
     PdfViewerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -76,3 +84,4 @@ import { LoginComponent } from './login';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export class PizzaPartyAppModule { }

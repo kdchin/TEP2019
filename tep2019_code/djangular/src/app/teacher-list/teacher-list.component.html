@@ -11,7 +11,7 @@
       <th>School</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let teacher of teachers" routerLink="/teachers/{{teacher.id}}">
+    <tr *ngFor="let teacher of teachers | filter: searchText | paginate: { itemsPerPage: 10, currentPage: p }" routerLink="/teachers/{{teacher.id}}">
       <td>
         <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher(i, 'first_name')"></app-inline-edit>
       </td>
@@ -34,11 +34,14 @@
       </td>
     </tr>
   </table>
-  <div [hidden]="!shouldShowCreate">
+  <div id = "creator" [hidden]="!shouldShowCreate">
     <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
+    <div id = "undo">
+      <button type= "button" class = "button is-danger" (click)="toggleShowCreate()">Cancel</button>
+    </div>
   </div>
   <!-- <div [hidden]="shouldShowCreate">
     <button class="button is-info" (click)="toggleShowCreate()">New Teacher</button>
   </div> -->
-
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
