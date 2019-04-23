@@ -16,7 +16,8 @@
       <p>Last Upload: <span *ngIf="mostRecentUpload">{{ mostRecentUpload.uploaded_date | date }}:
         {{formatFileName(mostRecentUpload.file)}}</span><span *ngIf="!mostRecentUpload">None</span></p><br>
     </span>
-    <div *ngIf="fileToUpload">
+    
+    <div *ngIf="fileToUpload" >
       <span class="file-name">
         {{fileToUpload.name}}
       </span>
@@ -24,7 +25,7 @@
   </label>
 </div>
 <div *ngIf="fileToUpload">
-  <div *ngIf="isPdf()">
+  <div *ngIf="isPdf()" >
 
     <!-- <button class="button is-primary" (click)="uploadToS3()">Upload</button> -->
     <button class="button is-primary" (click)="uploadFile()">Upload</button>

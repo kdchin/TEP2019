@@ -23,6 +23,8 @@ export class PwdGeneratorComponent implements OnInit {
 
   randomPwd() {
     this.new_pwd = randomWords({ min: 1, max: 3, join: '-', maxLength: 7 });
+    this.submitPassword();
+    this.shouldShowChange = false;
   }
 
   getPwd(digest) {
@@ -41,7 +43,9 @@ export class PwdGeneratorComponent implements OnInit {
       this.val_pass.digest = pwd.digest;
       this.new_pwd = '';
     }
-    this.alerter();
+    else {
+      this.alerter();
+    }
     this.shouldShowChange = !this.shouldShowChange;
   }
 
