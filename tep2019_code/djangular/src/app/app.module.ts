@@ -30,6 +30,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -68,6 +69,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    ItemCreateComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
