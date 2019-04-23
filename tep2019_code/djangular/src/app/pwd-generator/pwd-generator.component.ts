@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValPass } from '../models';
 import { ApiService } from '../api.service';
 import * as crypto from 'crypto-js';
+import * as randomWords from "random-words";
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -18,6 +19,10 @@ export class PwdGeneratorComponent implements OnInit {
 
   ngOnInit() {
     this.getMostRecentPassword();
+  }
+
+  randomPwd() {
+    this.new_pwd = randomWords({ min: 1, max: 3, join: '-', maxLength: 7 });
   }
 
   getPwd(digest) {

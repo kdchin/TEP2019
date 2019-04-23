@@ -1,7 +1,7 @@
 from .models import *
 from .serializers import *
 from .authentication import *
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, Http404
 from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User
 from rest_framework.parsers import FormParser, MultiPartParser
@@ -39,6 +39,11 @@ class ItemViewSet(viewsets.ModelViewSet):
 
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
+    serializer_class = TeacherDetailSerializer
+
+
+class TeacherUpdateViewSet(viewsets.ModelViewSet):
+    queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
 
 
@@ -58,6 +63,7 @@ class SchoolViewSet(viewsets.ModelViewSet):
     """
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
+
 
 class OrderDetailViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()

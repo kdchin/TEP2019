@@ -5,9 +5,20 @@ export class Item {
         public unit_label_name: string,
         public max_units: number,
         public qty_per_unit: number,
-        public active: boolean
+        public active: boolean,
+        public rank: number,
     ) { }
 }
+
+
+export class Waiver {
+    constructor(
+        public id: number,
+        public file: File,
+        public uploaded_date: Date,
+    ) { }
+}
+
 
 export class Teacher {
     constructor(
@@ -17,16 +28,40 @@ export class Teacher {
         public email: string,
         public phone: string,
         public active: boolean,
-        public school: School
+        public school: School,
+        public address: string,
+    ) { }
+}
+
+export class OrderTeacher {
+    constructor(
+        public id: number,
+        public checkout_time: string,
+        public uploaded: boolean,
+        public waiver: Waiver,
+    ) { }
+}
+
+export class TeacherDetail {
+    constructor(
+        public id: number,
+        public first_name: string,
+        public last_name: string,
+        public email: string,
+        public phone: string,
+        public active: boolean,
+        public school: School,
+        public orders: Array<OrderTeacher>,
+        public address: string,
     ) { }
 }
 
 export class Order {
     constructor(
         public id: number,
-        public shopping_date: string,
+        public checkout_time: string,
         public uploaded: boolean,
-        public waiver_signed: boolean,
+        public waiver: Waiver,
         public teacher: Teacher,
     ) { }
 }
@@ -34,10 +69,10 @@ export class Order {
 export class OrderDetail {
     constructor(
         public id: number,
-        public shopping_date: string,
+        public checkout_time: string,
         public uploaded: boolean,
-        public waiver_signed: boolean,
-        public teacher: Teacher | number,
+        public waiver: Waiver,
+        public teacher: Teacher,
         public order_items: Array<OrderDetailItem>,
     ) { }
 }
@@ -63,14 +98,6 @@ export class School {
     constructor(
         public name: string,
         public active: boolean
-    ) { }
-}
-
-export class Waiver {
-    constructor(
-        public id: number,
-        public file: File,
-        public uploaded_date: Date,
     ) { }
 }
 

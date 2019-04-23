@@ -1,2 +1,11 @@
 <button class="button" (click)="exportLast()">Export Since Last</button><br>
 <button class="button" (click)="exportAll()">Export Whole Year</button>
+<!-- <h1 class="title">Export CSV:</h1>
+Last Upload: <span *ngIf="mostRecent">{{mostRecent.checkout_time | date : 'medium'}}</span><span
+    *ngIf="!mostRecent">None</span>
+<button class="button" (click)="exportLast()">Export Since Last</button><br><br>
+<button class="button" (click)="exportAll()">Export Whole Year</button>
+Clicking either export button will mark all orders as exported, even if you do not save the csv. If you clicked cancel
+and wish
+to undo this change, please click the button below. -->
+<button class="button" (click)="resetUploaded()">Reset</button>

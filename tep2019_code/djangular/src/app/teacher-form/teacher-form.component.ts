@@ -16,17 +16,19 @@ export class TeacherFormComponent implements OnInit {
   pages = ["welcome", "waiver", "reminders", "checkout", "success"];
   isNewTeacher = false;
   val_email = "";
-  teacher = new Teacher(null, '', '', '', '', true, null);
+  teacher = new Teacher(null, '', '', '', '', true, null, '');
+  new_address: string = "";
   all_teachers: Array<Teacher> = [];
-  order = new Order(null, new Date().toISOString(), false, false, null);
+  order = new Order(null, null, false, null, null);
   school = new School('', false);
   all_schools: Array<School> = [];
   order_items: Array<OrderItem> = [];
   lodash = lodash;
-  waiverPath = '';
-  val_pass = new ValPass(null, '', new Date());
+  recentWaiver: Waiver = null;
+  agreedToWaiver = false;
+  val_pass = new ValPass(null, '', null);
   guess = '';
-  key = 'tep2019cmuis'; // TODO: idk if this is secure
+  key = environment.val_pass_key;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -63,7 +65,7 @@ export class TeacherFormComponent implements OnInit {
           mostRecent = data[i];
       }
       if (mostRecent) {
-        this.waiverPath = mostRecent.file;
+        this.recentWaiver = mostRecent;
       }
       // this.waiverPath = `https://s3.us-east-2.amazonaws.com/tallyhq-waivers/${this.formatFileName(mostRecent.file)}`;
     })
@@ -77,6 +79,7 @@ export class TeacherFormComponent implements OnInit {
         if (data[i].active)
           this.order_items.push(new OrderItem(null, data[i], this.order, 0));
       }
+      this.order_items = this.lodash.sortBy(this.order_items, (oi: OrderItem) => oi.item.rank, ['asc']);
     });
   }
 
@@ -88,6 +91,7 @@ export class TeacherFormComponent implements OnInit {
         if (data[i].active)
           this.all_schools.push(data[i]);
       }
+      if (this.all_schools.length > 0) this.school = this.all_schools[0];
     });
   }
 
@@ -105,7 +109,6 @@ export class TeacherFormComponent implements OnInit {
   public teacherIsValid() {
     if (!this.teacher.first_name || !this.teacher.last_name
       || !this.teacher.email || !this.teacher.phone || !this.school) {
-      console.log("hi");
       return false;
     }
     let found_email = false;
@@ -121,10 +124,7 @@ export class TeacherFormComponent implements OnInit {
         break;
       }
     }
-    if (this.isNewTeacher) {
-      return !found_email;
-    }
-    return found_email && matches;
+    return !this.isNewTeacher && found_email && matches;
   }
 
   public advancePage() {
@@ -141,15 +141,16 @@ export class TeacherFormComponent implements OnInit {
 
   public finish() {
     this.isNewTeacher = false;
-    this.teacher = new Teacher(null, '', '', '', '', true, null);
-    this.order = new Order(null, new Date().toISOString(), false, false, null);
+    this.teacher = new Teacher(null, '', '', '', '', true, null, '');
+    this.order = new Order(null, null, false, null, null);
     this.school = new School('', false);
+    this.recentWaiver = null;
     this.val_email = "";
     this.order_items = [];
     this.advancePage();
   }
 
-  public getTeacherId() {
+  public getTeacher() {
     for (let i = 0; i < this.all_teachers.length; i++) {
       let cur_teacher = this.all_teachers[i];
       /* TODO: add this back in
@@ -161,14 +162,14 @@ export class TeacherFormComponent implements OnInit {
       if (cur_teacher.email === this.teacher.email)
         return cur_teacher;
     }
-    this.isNewTeacher = true;
     return 0;
   }
 
   // will create teacher once "submit" is pressed on the checkout page
   public processTeacher() {
-    if (!this.teacherIsValid() && this.val_email === this.teacher.email) return;
+    if (!this.teacherIsValid() || this.val_email !== this.teacher.email) return;
     this.teacher.school = this.school;
+    this.teacher.address = this.new_address;
     this.advancePage();
   }
 
@@ -180,36 +181,39 @@ export class TeacherFormComponent implements OnInit {
     return true;
   }
 
-  public makeOrderItems(teacher) {
-    // this.order.shopping_date = null;
-    this.order.teacher = teacher;
-    // this.order.shopping_date = this.order.shopping_date.toISOString();
+  public createOrderItems() {
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
-        order_item_with_order.order = data;
-        this.apiService.create('order_items', order_item_with_order).subscribe();
+        if (order_item_with_order.units_taken > 0) {
+          order_item_with_order.order = data;
+          this.apiService.create('order_items', order_item_with_order).subscribe();
+        }
       }
     });
+  }
+
+  public makeOrderItems(teacher) {
+    teacher.address = this.new_address;
+    this.order.teacher = teacher;
+    if (this.teacher.address.length > 0) {
+      this.apiService.update('teacher_update', teacher).subscribe(() => {
+        this.createOrderItems();
+      });
+    } else {
+      this.createOrderItems();
+    }
   }
 
   public createOrder() {
     let bytes = crypto.AES.decrypt(this.val_pass.digest, this.key);
     let decoded = bytes.toString(crypto.enc.Utf8);
     if (!this.orderItemsAreValid() || this.guess !== decoded) return;
-    // TODO: if new school this.apiService.create('school', this.school);
-    let tid = this.getTeacherId();
-    if (this.isNewTeacher) {
-      this.apiService.create('teachers', this.teacher).subscribe(
-        (teacher: Teacher) => { this.makeOrderItems(teacher); });
-    } else {
-      this.makeOrderItems(tid);
-    }
-    this.advancePage();
-  }
-
-  public agreeToWaiver() {
-    this.order.waiver_signed = true;
+    let tchr = this.getTeacher();
+    this.order.waiver = this.recentWaiver;
+    if (this.isNewTeacher)
+      return;
+    this.makeOrderItems(tchr);
     this.advancePage();
   }
 

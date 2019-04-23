@@ -5,23 +5,17 @@
   <!-- TODO: link this to the normal form page -->
   <table class="table is-hoverable is-fullwidth">
     <tr>
-      <th>Date</th>
+      <th>Checkout Time</th>
       <th>Teacher</th>
       <th>Uploaded</th>
-      <th>Waiver Signed</th>
+      <th>Waiver</th>
     </tr>
-    <tr *ngFor="let order of orders | paginate: { itemsPerPage: 10, currentPage: p }" routerLink="/orders/{{order.id}}">
-      <td> {{ order.shopping_date | date }} </td>
+    <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+      <td> {{ order.checkout_time | date : 'medium' }} </td>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>
-      <td> {{ order.waiver_signed }} </td>
-      <td><button (click) ="alerter(order)" class=" button is-danger">delete</button>
-      </td>
+      <td> <a href="{{ order.waiver.file }}" target="_blank">View</a> </td>
+      <td><button class=" button is-danger" (click)="deleteOrder(order)">delete</button></td>
     </tr>
   </table>
 </div>
-
-
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
-
-

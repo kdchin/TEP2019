@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  val_pass_key: 'tep2019cmuis',
+  val_pass_key: 'farquaad',
   api_url: 'http://127.0.0.1:8000/api',
 };
 

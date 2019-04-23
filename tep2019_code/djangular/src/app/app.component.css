@@ -36,7 +36,7 @@
 /* .header a.items:hover:after {  transform-origin:  0% 50%; } */
 
 .header a.logout {
-    position: fixed;
+    /* position: fixed; */
     top: 18px;
     right: 100px;
 }

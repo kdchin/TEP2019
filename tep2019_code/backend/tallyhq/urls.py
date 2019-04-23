@@ -35,6 +35,10 @@ teacher_detail = TeacherViewSet.as_view({
     'delete': 'destroy'
 })
 
+teacher_update = TeacherUpdateViewSet.as_view({
+    'put': 'update',
+})
+
 order_list = OrderViewSet.as_view({
     'get': 'list',
     'post': 'create'
@@ -64,7 +68,12 @@ school_list = SchoolViewSet.as_view({
     'post': 'create'
 })
 
-order_foo = OrderDetailViewSet.as_view({
+order_detail_all = OrderDetailViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
+order_detail_single = OrderDetailViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
@@ -99,12 +108,16 @@ urlpatterns = [
     path(r'api/items/<int:pk>', item_detail, name='item-detail'),
     path(r'api/teachers/', teacher_list, name='teacher-list'),
     path(r'api/teachers/<int:pk>', teacher_detail, name='teacher-detail'),
+    path(r'api/teacher_update/<int:pk>', teacher_update, name='teacher-update'),
     path(r'api/orders/', order_list, name='order-list'),
     path(r'api/orders/<int:pk>', order_detail, name='order-detail'),
     path(r'api/order_items/', order_item_list, name='order-item-list'),
     path(r'api/order_items/<int:pk>', order_item_detail, name='order-item-detail'),
     path(r'api/schools/', school_list, name='school-list'),
-    path(r'api/order_foo/<int:pk>', order_foo, name='order-foo'),
+    path(r'api/order_detail/<int:pk>',
+         order_detail_single, name='order-detail-single'),
+    path(r'api/order_details/',
+         order_detail_all, name='order-detail-all'),
     path(r'api/waivers/', WaiverView.as_view()),
     path(r'api/waivers/<int:pk>', WaiverDetailView.as_view()),
     path(r'api/validation_passwords/',

@@ -11,18 +11,17 @@ export class ItemCreateComponent {
   @Output() itemChange = new EventEmitter<Item>();
 
   constructor(private apiService: ApiService) { }
-  new_item = new Item(null, '', '', null, null, true);
+  new_item = new Item(null, '', '', null, null, true, 0);
 
   public onSubmit() {
     this.createItem();
-    this.itemChange.emit(this.new_item);
-    this.new_item = new Item(null, '', '', null, null, true);
   }
 
   public createItem() {
     // TODO: validation
-    this.apiService.create("items", this.new_item).subscribe((response) => {
-      console.log(response);
+    this.apiService.create("items", this.new_item).subscribe((response: Item) => {
+      this.itemChange.emit(response);
+      this.new_item = new Item(null, '', '', null, null, true, 0);
     });
   }
 }
