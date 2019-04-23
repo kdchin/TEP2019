@@ -28,6 +28,9 @@ import { ExportCsvComponent } from './export-csv/export-csv.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -62,7 +65,9 @@ import { LoginComponent } from './login';
     NgBootstrapFormValidationModule.forRoot(),
     NgBootstrapFormValidationModule,
     PdfViewerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
