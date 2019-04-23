@@ -15,3 +15,9 @@ input[type=text] {
 button.is-info{
   background-color: #489AD8;
 }
+
+td.first-name {
+  color: #0000EE;
+  text-decoration: underline;
+  cursor: pointer;
+}
