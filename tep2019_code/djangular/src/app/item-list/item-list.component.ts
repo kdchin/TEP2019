@@ -29,9 +29,11 @@ export class ItemListComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ItemCreateComponent, {
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      // this.getItems(); shows double of each item - put it in so user can see new item in table
     });
   }
 
