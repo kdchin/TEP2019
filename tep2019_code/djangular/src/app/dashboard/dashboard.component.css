@@ -34,7 +34,7 @@
     height: 25px;
     background: white;
     float: left;
-    margin-top: 15px;
+    margin-top: 25px;
     margin-left: -15px;
     margin-bottom: 15px;
 }
@@ -99,6 +99,14 @@ h4{
     overflow: scroll;
     max-height: 450px;
 }
+
+#statsbox{
+    background: white;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    min-height: 240px;
+}
 /* 
 #display-table thead {
     position: sticky;
@@ -134,7 +142,6 @@ th {
 }
 
 #stats{
-    width: 100%;
     padding-top: 25px;
 }
 
@@ -142,6 +149,10 @@ th {
 h5{
     font-size: 30px;
     color: black;
+}
+
+h6{
+    text-align: center;
 }
 
 /* stats descriptor */
@@ -155,7 +166,20 @@ h5{
     font-size: 16px;
     color: black;
     float: left;
-    padding-left: 40px;
+    padding-left: 25px;
+}
+#descriptor3{
+    font-size: 16px;
+    color: black;
+    float: left;
+    padding-left: 38px;
+}
+
+#descriptor4{
+    font-size: 16px;
+    color: black;
+    float: left;
+    padding-left: 72px;
 }
 
 #numberstats1{
@@ -166,7 +190,13 @@ h5{
 
 #numberstats2{
     float:left;
-    padding-left: 125px;
+    padding-left: 110px;
+    padding-top: 10px;
+}
+
+#numberstats3{
+    float:left;
+    padding-left: 119px;
     padding-top: 10px;
 }
 

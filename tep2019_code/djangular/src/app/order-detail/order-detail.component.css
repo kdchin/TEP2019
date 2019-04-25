@@ -53,7 +53,7 @@ h3 {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  text-align: center;
+  text-align: left;
   height: 420px;
 }
 
@@ -63,6 +63,7 @@ h3 {
 }
 
 table {
+  width: 90%;
   display: block;
   max-height: 325px;
   overflow: scroll;
@@ -74,4 +75,161 @@ table {
     display: block;
     margin-bottom: 20px;
   }
+}
+
+#display-table{
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 25px;
+  color: black;
+  background-color: #E5E5E5;
+  display: block;
+  overflow: scroll;
+  max-height: 450px;
+}
+
+tr:nth-child(even) {
+  background-color: #E5E5E5
+}
+
+thead {
+  background-color: #E5E5E5;
+}
+
+
+input {
+  position: relative;
+  top: 0em;
+  width: 60%;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+input.readonly {
+  background-color: #D4D4D4;
+  color: #474747;
+  cursor: default;
+}
+
+label{
+  font-size: 20px;
+  line-height: 30px;
+  text-align: left;
+}
+
+
+
+button.back {
+  /* background-image: url("../../assets/blue-back2.png");
+  background-position: 10px; 
+  background-repeat: no-repeat; */
+  /* padding: 7px 20px 8px 35px; */
+  color: #489AD8;
+  border-color: #489AD8;
+  margin-top: 15px;
+}
+
+button.back {
+  /* background-image: url("../../assets/blue-back2.png");
+  background-position: 10px; 
+  background-repeat: no-repeat; */
+  /* padding: 7px 20px 8px 35px; */
+  color: #489AD8;
+  border-color: #489AD8;
+  margin-top: 15px;
+}
+
+button.red {
+  background-color: red;
+  border-color: white;
+  color: white;
+  margin-top: 15px;
+  margin-left: 30px;
+}
+
+span{
+  width: 15em;
+  margin-right: .5em;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.column {
+  float: left;
+  width: 30%;
+  padding: 10px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+h3 {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: left;
+  height: 420px;
+}
+
+@media screen and (max-width: 780px) {
+  .column {
+    width: 100%;
+  }
+}
+
+td {
+  width: 10em;
+}
+
+#display-table{
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 25px;
+  color: black;
+  background-color: #E5E5E5;
+  display: block;
+  overflow: scroll;
+  max-height: 450px;
+}
+
+tr:nth-child(even) {
+  background-color: #E5E5E5
+}
+
+thead {
+  background-color: #E5E5E5;
+}
+
+#text {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+/* name text */
+td {
+  padding-left: 15px;
+  font-size: 18px;
+  height: 65px;
+  vertical-align: middle;
+}
+
+/* title text */
+th {
+  font-size: 18px;
 }

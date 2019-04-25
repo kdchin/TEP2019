@@ -1,6 +1,8 @@
 <div id = "name">
   <h1>Welcome, Cat</h1>
+  <h1></h1>
 </div>
+
 
 <div id= "container">
 
@@ -52,12 +54,31 @@
     <div id="title-box">
       <h2><b>Daily Info</b></h2>
     </div>
-    <div id="stats">
-        <a href="" class="placeholder">
-            <img src="../assets/image_4.png" />
-        </a>
-    </div>
 
+  
+  <br>
+  <div id="statsbox">
+
+    <div id="numberstats1">
+        <h5><b>{{ getNumSchools() }}</b></h5>
+      </div>
+  
+       <!-- put average shop time stat here -->
+       <div id="numberstats3">
+          <h5><b>{{ getNumTeachers() }}</b></h5>
+      </div>
+  
+      <div id="descriptor3">
+          <h6><b>Schools</b></h6>
+        </div>
+  
+      <div id="descriptor4">
+          <h6><b>Teachers</b></h6>
+      </div>
+    
+
+
+    <br><br><br><br><br>
     <!-- put teacher visit stat here -->
     <div id="numberstats1">
       <h5><b>{{ getNumber() }}</b></h5>
@@ -65,16 +86,21 @@
 
      <!-- put average shop time stat here -->
      <div id="numberstats2">
-        <h5><b>25</b></h5>
+       <h5>.</h5>
+        <!-- <h5><b>{{orders[orders.length-1].checkout_time  | date:'shortTime'}}</b></h5> -->
+        <!-- <h5><b>{{passwords[passwords.length-1].uploaded_date  | date:'shortTime'}}</b></h5> -->
     </div>
 
     <div id="descriptor1">
-        <h6><b>Teacher Visits</b></h6>
+        <h6><b>Teacher Visits<br>This Year</b></h6>
       </div>
 
     <div id="descriptor2">
         <h6><b>Avg. Shop Time</b></h6>
     </div>
+
+  </div>
+
 
 
     <div id = "white2"></div>
