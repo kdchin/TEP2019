@@ -17,8 +17,12 @@ input.readonly {
 }
 
 label{
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: left;
 }
+
+
 
 button.back {
   /* background-image: url("../../assets/blue-back2.png");
@@ -78,7 +82,7 @@ h3 {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  text-align: center;
+  text-align: left;
   height: 420px;
 }
 
@@ -111,6 +115,11 @@ thead {
   background-color: #E5E5E5;
 }
 
+#text {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
 
 
 /* name text */

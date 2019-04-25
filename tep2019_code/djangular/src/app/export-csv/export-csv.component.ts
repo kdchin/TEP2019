@@ -95,6 +95,13 @@ export class ExportCsvComponent implements OnInit {
     } 
   }
 
+  public alerterAll(){
+    let r = confirm("Are you sure you would like to export everything?");
+    if (r == true) {
+      this.exportAll()
+    } 
+  }
+
   exportAll() {
     this.export(this.unuploaded_orders.concat(this.uploaded_orders));
   }

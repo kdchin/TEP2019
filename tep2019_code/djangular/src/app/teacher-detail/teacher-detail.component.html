@@ -4,6 +4,7 @@
     <div class="column">
       <div class="card">
         <h3>Details</h3><br>
+        <div id="text">
         <label>Name:
           <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')"></app-inline-edit> 
           <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher('last_name')"></app-inline-edit>
@@ -14,19 +15,23 @@
         <label>Home Address:
           <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher('address')"></app-inline-edit>
         </label>
+        <label>
         <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')" [displayPipe]="phonePipe">
-        </app-inline-edit>
+        </app-inline-edit></label>
+      </div>
       </div>
     </div>
     <div class="column">
       <div class="card">
+        <div id="text">
         <h3>Additional Information</h3><br>
-        <label>School:<br><input class="readonly" [(ngModel)]="teacher.school.name"
-            placeholder="Taylor Allderdice" /></label><br>
+        <label>School: {{teacher.school.name }}
+            </label><br>
         <label>Active:
           <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher('active')" [displayPipe]="activePipe"
             [fieldType]="'checkbox'"></app-inline-edit>
         </label>
+       </div>
       </div>
     </div>
     <div class="column">

@@ -27,6 +27,10 @@ export class TeacherDetailComponent implements OnInit {
     this.getTeacher();
   }
 
+  getSchool() {
+    return this.teacher.school;
+  }
+
   getTeacher(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.apiService.fetchOne("teachers", id).subscribe((teacher: TeacherDetail) => this.teacher = teacher);
