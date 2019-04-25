@@ -4,29 +4,32 @@
     <div class="column">
       <div class="card">
         <h3>Details</h3><br>
-        <label>Name:
+        <label><b>Name:</b><br>
           <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')"></app-inline-edit>
           <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher('last_name')"></app-inline-edit>
-        </label>
-        <label>Email:
+        </label><br><br>
+        <label><b>Email:</b><br>
           <app-inline-edit [(ngModel)]="teacher.email" [onChange]="updateTeacher('email')"></app-inline-edit>
-        </label>
-        <label>Home Address:
+        </label><br><br>
+        <label><b>Home Address:</b><br>
           <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher('address')"></app-inline-edit>
+        </label><br><br>
+        <label><b>Phone Number:</b><br>
+          <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')" [displayPipe]="phonePipe">
+          </app-inline-edit>
         </label>
-        <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')" [displayPipe]="phonePipe">
-        </app-inline-edit>
       </div>
     </div>
     <div class="column">
       <div class="card">
+        <div id="text">
         <h3>Additional Information</h3><br>
-        <label>School:<br><input class="readonly" [(ngModel)]="teacher.school.name"
-            placeholder="Taylor Allderdice" /></label><br>
-        <label>Active:
+        <label><b>School:</b><br><p class="school-name">{{teacher.school.name }}</p></label><br>
+        <label><b>Active:</b><br>
           <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher('active')" [displayPipe]="activePipe"
             [fieldType]="'checkbox'"></app-inline-edit>
         </label>
+        </div>
       </div>
     </div>
     <div class="column">
