@@ -1,15 +1,13 @@
 <div *ngIf="orderDetail">
-  <h1 class="title">Order Details</h1>
+  <h1 class="title">{{orderDetail.teacher.first_name}} {{orderDetail.teacher.last_name}}'s order from {{orderDetail.checkout_time | date }}</h1>
   <div class="row">
     <div class="column">
       <div class="card">
-        <h3>Details</h3><br>
-        <label>Checkout Time:<br><input class="readonly" readonly="readonly" [(ngModel)]="orderDetail.checkout_time"
-            placeholder="4/26/1954" /></label><br>
-        <label>Teacher:<br><input class="readonly" readonly="readonly" [(ngModel)]="orderDetail.teacher.first_name"
-            placeholder="Units" /></label><br>
-        <label>Uploaded:<br><input [(ngModel)]="orderDetail.uploaded" placeholder="no" /></label><br>
-        <a href="{{orderDetail.waiver.file}}" target="_blank">View waiver</a>
+        <h3>Order Information</h3>
+        <br>
+        <label><h4><b>Checkout Time:</b><br>{{orderDetail.checkout_time | date: "medium"}}</h4></label>
+        <br>
+        <label><h4><b>Exported for Salesforce:</b><br>{{orderDetail.uploaded}}</h4></label>
       </div>
     </div>
     <div class="column">
@@ -29,6 +27,4 @@
     </div>
   </div>
   <button class="back button is-medium" (click)="goBack()">Back</button>
-  <button class="red button is-medium" (click)="deleteOrder()">Delete</button>
 </div>
- 
