@@ -1,9 +1,8 @@
 <h1 class="title">Items</h1>
 <button class="button is-info" (click)="openDialog()">New Item</button>
 <mat-tab-group>
-  <mat-tab label="Active"> 
+  <mat-tab label="Active Items"> 
     <div *ngIf="activeItems.length > 0">
-      <h2 class="title">Active Items</h2>
       <table class="table is-hoverable is-fullwidth">
         <tr>
           <th>Form Order</th>
@@ -36,9 +35,8 @@
       No active items! Please create new items.
     </div>
   </mat-tab>
-  <mat-tab label="Inactive"> 
+  <mat-tab label="Inactive Items"> 
     <div *ngIf="inactiveItems.length > 0">
-        <h2 class="title">Inactive Items</h2>
         <table class="table is-hoverable is-fullwidth">
           <tr>
             <th>Name</th>
