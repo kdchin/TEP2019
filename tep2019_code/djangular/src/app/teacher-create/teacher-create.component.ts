@@ -39,6 +39,7 @@ export class TeacherCreateComponent implements OnInit {
     this.createTeacher();
     this.teacherChange.emit(this.new_teacher);
     this.new_teacher = new TeacherDetail(null, '', '', '', '', true, null, [], '');
+    this.dialogRef.close();
   }
 
   public createTeacher() {

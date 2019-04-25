@@ -1,11 +1,6 @@
 <h1 class="title">All Teachers</h1>
 <div class="container">
-  <div [hidden]="shouldShowCreate">
-    <button class="button is-info" (click)="openDialog()">New Teacher</button>
-  </div>
-  <div [hidden]="!shouldShowCreate">
-    <app-teacher-create (teacherChange)="onNewTeacher($event)"></app-teacher-create>
-  </div>
+  <button class="button is-info" (click)="openDialog()">New Teacher</button>
   <input type="text" [(ngModel)]="searchText" placeholder="Search Teachers...">
   <table class="table is-hoverable is-fullwidth">
     <tr>

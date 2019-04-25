@@ -1,6 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Inject } from '@angular/core';
 import { ApiService } from '../api.service';
 import { School } from '../models';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-school-create',
@@ -10,7 +11,9 @@ import { School } from '../models';
 export class SchoolCreateComponent {
   @Output() schoolChange = new EventEmitter<School>();
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialogRef: MatDialogRef<SchoolCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
   new_school = new School('', true);
 
   public onSubmit() {
@@ -18,6 +21,7 @@ export class SchoolCreateComponent {
     this.schoolChange.emit(this.new_school);
     // TODO: reload page
     this.new_school = new School('', true);
+    this.dialogRef.close();
   }
 
   public createSchool() {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { School } from '../models';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { SchoolCreateComponent } from '../school-create/school-create.component';
 
 @Component({
   selector: 'app-school-list',
@@ -12,11 +14,22 @@ export class SchoolListComponent implements OnInit {
   searchText = '';
   schools: Array<School> = [];
   shouldShowCreate = false;
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getSchools();
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(SchoolCreateComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.getItems(); shows double of each item - put it in so user can see new item in table
+    });
+  }
+
 
   public onNewSchool(newSchool: School) {
     this.schools.push(newSchool);
