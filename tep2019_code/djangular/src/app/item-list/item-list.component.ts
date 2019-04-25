@@ -3,7 +3,7 @@ import { ApiService } from '../api.service';
 import { Item } from '../models';
 import { BoolPipe } from '../bool.pipe';
 import * as lodash from "lodash";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatPaginator, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ItemCreateComponent } from '../item-create/item-create.component';
 
 

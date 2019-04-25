@@ -17,7 +17,7 @@ button.is-info{
 }
 
 td.first-name {
-  color: #0000EE;
-  text-decoration: underline;
+  color: #33aaff;
+  /* text-decoration: underline; */
   cursor: pointer;
 }
