@@ -19,6 +19,7 @@ export class ItemCreateComponent {
   public onSubmit() {
     this.createItem();
     this.dialogRef.close();
+    window.location.reload();
   }
 
   public createItem() {

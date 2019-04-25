@@ -22,6 +22,7 @@ export class SchoolCreateComponent {
     // TODO: reload page
     this.new_school = new School('', true);
     this.dialogRef.close();
+    window.location.reload();
   }
 
   public createSchool() {
