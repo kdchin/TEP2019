@@ -73,6 +73,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
   ],
   entryComponents: [
     ItemCreateComponent,
+    TeacherCreateComponent,
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

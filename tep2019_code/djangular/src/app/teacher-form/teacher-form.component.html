@@ -1,6 +1,6 @@
 <div *ngIf="pages[current_page] === 'welcome'">
-  <h1 class="title">Welcome Teachers!</h1>
   <div class="card">
+    <h1 class="title">Welcome Teachers!</h1>
     <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
       <div class="field">
         <label class="label">First Name</label>
@@ -121,11 +121,11 @@
       </div>
 
     </form>
-  </div>
-  <p><small>Note: if you have changed your email, phone number, or school, please contact a TEP employee before
-      proceeding.</small></p>
-  <div class="has-text-centered">
-    <button class="button is-medium is-primary" (click)="processTeacher()" [disabled]="!teacherIsValid()">GO</button>
+    <p><small>Note: if you have changed your email, phone number, or school, please contact a TEP employee before
+        proceeding.</small></p>
+    <div class="has-text-centered">
+      <button class="button is-medium is-primary" (click)="processTeacher()" [disabled]="!teacherIsValid()">GO</button>
+    </div>
   </div>
 </div>
 
