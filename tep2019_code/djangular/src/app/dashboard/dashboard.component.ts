@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Order } from '../models';
+import { getLocaleDateTimeFormat, DatePipe } from '@angular/common';
 
 
 @Component({
@@ -37,10 +38,13 @@ export class DashboardComponent implements OnInit {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
       this.orders = data;
     });
+    // let today_orders = this.orders.filter(oi => oi.checkout_time !== ));
   }
 
   public getNumber() {
     return this.orders.length;
   }
+
+
 
 }

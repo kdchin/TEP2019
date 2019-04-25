@@ -5,7 +5,7 @@
       <div class="card">
         <h3>Details</h3><br>
         <label>Name:
-          <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')"></app-inline-edit>
+          <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')"></app-inline-edit> 
           <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher('last_name')"></app-inline-edit>
         </label>
         <label>Email:
@@ -32,14 +32,23 @@
     <div class="column">
       <div class="card">
         <h3>Past Orders</h3><br>
-        <table class="table is-hoverable is-fullwidth">
-          <tr *ngFor="let order of teacher.orders" routerLink="/orders/{{order.id}}">
-            <td>{{order.checkout_time | date : 'medium'}}</td>
-          </tr>
-        </table>
+        <div id = "display-table">
+          <table class="table is-hoverable is-fullwidth">
+              <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                  </tr>
+              </thead>
+            <tr *ngFor="let order of teacher.orders" routerLink="/orders/{{order.id}}">
+              <td>{{order.checkout_time | date}}</td>
+              <td>{{order.checkout_time | date: 'shortTime'  }}</td>
+            </tr>
+          </table>
+       </div>
       </div>
     </div>
   </div>
   <button class="back button is-medium" (click)="goBack()">Go Back</button>
-  <button class="red button is-medium" (click)="deleteTeacher()">Delete</button>
+  <button class="red button is-medium" (click)="alerter()">Delete</button>
 </div>

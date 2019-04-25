@@ -91,3 +91,37 @@ h3 {
 td {
   width: 10em;
 }
+
+#display-table{
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 25px;
+  color: black;
+  background-color: #E5E5E5;
+  display: block;
+  overflow: scroll;
+  max-height: 450px;
+}
+
+tr:nth-child(even) {
+  background-color: #E5E5E5
+}
+
+thead {
+  background-color: #E5E5E5;
+}
+
+
+
+/* name text */
+td {
+  padding-left: 15px;
+  font-size: 18px;
+  height: 65px;
+  vertical-align: middle;
+}
+
+/* title text */
+th {
+  font-size: 18px;
+}

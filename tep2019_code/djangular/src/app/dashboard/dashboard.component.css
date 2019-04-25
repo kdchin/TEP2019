@@ -112,11 +112,13 @@ h4{
     margin-top: 47px;
   } */
 
-tr:nth-child(odd) {
-    background-color: #E5E5E5
+tr:nth-child(even) {
+    background-color: #E5E5E5;
   }
 
-
+thead{
+    background-color: #E5E5E5;
+}
 
 /* name text */
 td {

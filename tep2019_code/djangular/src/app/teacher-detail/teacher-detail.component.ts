@@ -44,6 +44,13 @@ export class TeacherDetailComponent implements OnInit {
     }
   }
 
+  public alerter(teacher: TeacherDetail){
+    let r = confirm("Are you sure you would like to delete this teacher?");
+    if (r == true) {
+      this.deleteTeacher(teacher)
+    } 
+  }
+
   goBack(): void {
     this.location.back();
   }

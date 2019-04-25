@@ -1,4 +1,4 @@
-<button class="button" (click)="exportLast()">Export Since Last<br><p>Last Export: <span *ngIf="mostRecent">{{mostRecent.checkout_time | date : 'medium'}}</span><span
+<button class="button" (click)="alerterLast()">Export Since Last<br><p>Last Export: <span *ngIf="mostRecent">{{mostRecent.checkout_time | date : 'medium'}}</span><span
     *ngIf="!mostRecent">None</span></p></button><br>
 <button class="button" (click)="exportAll()">Export Whole Year</button>
 

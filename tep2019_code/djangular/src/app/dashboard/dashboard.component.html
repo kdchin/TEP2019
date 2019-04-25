@@ -6,7 +6,7 @@
 
   <div id="left-rectangle">
     <div id="title-box">
-      <h2><b>Today's Checkouts</b></h2>
+      <h2><b>Recent Checkouts</b></h2>
     </div>
     <div id="display-table">
       <table class="table is-hoverable is-fullwidth">
@@ -16,10 +16,10 @@
             <th>Checkout Date</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+        <tbody> 
+          <tr *ngFor="let order of orders | slice:0:10" routerLink="/orders/{{order.id}}">
             <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
-            <td> {{ order.shopping_date | date}}</td>
+            <td> {{ order.checkout_time | date}} </td>
           </tr>
         </tbody>
       </table>

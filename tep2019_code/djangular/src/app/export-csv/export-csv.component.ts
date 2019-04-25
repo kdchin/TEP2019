@@ -88,6 +88,13 @@ export class ExportCsvComponent implements OnInit {
     this.export(this.unuploaded_orders);
   }
 
+  public alerterLast(){
+    let r = confirm("Are you sure you would like to export since last?");
+    if (r == true) {
+      this.exportLast()
+    } 
+  }
+
   exportAll() {
     this.export(this.unuploaded_orders.concat(this.uploaded_orders));
   }
