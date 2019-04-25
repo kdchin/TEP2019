@@ -15,7 +15,7 @@
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>
       <td> <a href="{{ order.waiver.file }}" target="_blank">View</a> </td>
-      <td><button class=" button is-danger" (click)="deleteOrder(order)">delete</button></td>
+      <td><button class=" button is-danger" (click)="alerter(order)">delete</button></td>
     </tr>
   </table>
 </div>
