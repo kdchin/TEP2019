@@ -1,6 +1,7 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, Inject } from '@angular/core';
 import { ApiService } from '../api.service';
-import { Teacher, School, TeacherDetail } from '../models';
+import { School, TeacherDetail } from '../models';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-teacher-create',
@@ -14,7 +15,8 @@ export class TeacherCreateComponent implements OnInit {
   new_teacher = new TeacherDetail(null, '', '', '', '', true, null, [], '');
   schools: Array<School> = [];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialogRef: MatDialogRef<TeacherCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.getActiveSchools();
@@ -37,6 +39,8 @@ export class TeacherCreateComponent implements OnInit {
     this.createTeacher();
     this.teacherChange.emit(this.new_teacher);
     this.new_teacher = new TeacherDetail(null, '', '', '', '', true, null, [], '');
+    this.dialogRef.close();
+    window.location.reload();
   }
 
   public createTeacher() {

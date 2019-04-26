@@ -3,6 +3,8 @@ import { ApiService } from '../api.service';
 import { TeacherDetail, OrderTeacher } from '../models';
 import { PhonePipe } from '../phone.pipe';
 import { BoolPipe } from '../bool.pipe';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TeacherCreateComponent } from '../teacher-create/teacher-create.component';
 
 
 @Component({
@@ -18,10 +20,20 @@ export class TeacherListComponent implements OnInit {
   shouldShowCreate = false;
   phonePipe = new PhonePipe();
   activePipe = new BoolPipe();
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getTeachers();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TeacherCreateComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.getItems(); shows double of each item - put it in so user can see new item in table
+    });
   }
 
   public toggleShowCreate() {

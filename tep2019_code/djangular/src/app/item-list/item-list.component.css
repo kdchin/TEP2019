@@ -4,3 +4,11 @@
     margin-top: 25px;
     width: 75%;
 }
+
+button.is-info{
+    background-color: #489AD8;
+}
+
+h2 {
+    margin-top: 25px;
+}

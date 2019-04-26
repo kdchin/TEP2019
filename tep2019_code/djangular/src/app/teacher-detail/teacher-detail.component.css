@@ -18,6 +18,7 @@ input.readonly {
 
 label{
   font-size: 18px;
+  text-align: left;
 }
 
 button.back {
@@ -78,8 +79,16 @@ h3 {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  text-align: center;
   height: 420px;
+}
+
+app-inline-edit {
+  /* text-indent: 20px; */
+  display: inline-block;
+}
+
+p.school-name {
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 780px) {
@@ -87,3 +96,4 @@ h3 {
     width: 100%;
   }
 }
+

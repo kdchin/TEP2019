@@ -3,6 +3,9 @@ import { ApiService } from '../api.service';
 import { Item } from '../models';
 import { BoolPipe } from '../bool.pipe';
 import * as lodash from "lodash";
+import { MatPaginator, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { ItemCreateComponent } from '../item-create/item-create.component';
+
 
 @Component({
   selector: 'app-item-list',
@@ -17,11 +20,21 @@ export class ItemListComponent implements OnInit {
   shouldShowCreate = false;
   activePipe = new BoolPipe();
   lodash = lodash;
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getItems();
     this.lodash = lodash;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ItemCreateComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.getItems(); shows double of each item - put it in so user can see new item in table
+    });
   }
 
   public onNewItem(newItem: Item) {

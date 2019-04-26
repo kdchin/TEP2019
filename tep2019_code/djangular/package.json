@@ -11,11 +11,14 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^7.2.13",
+    "@angular/cdk": "^7.3.7",
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
     "@angular/core": "~7.0.0",
     "@angular/forms": "~7.0.0",
     "@angular/http": "~7.0.0",
+    "@angular/material": "^7.3.7",
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
@@ -28,6 +31,7 @@
     "lodash": "^4.17.11",
     "ng-bootstrap-form-validation": "^3.0.3",
     "ng2-pdf-viewer": "^5.2.4",
+    "ngx-pagination": "^3.2.1",
     "random-words": "^1.1.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"

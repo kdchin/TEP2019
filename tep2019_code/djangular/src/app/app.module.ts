@@ -28,6 +28,10 @@ import { ExportCsvComponent } from './export-csv/export-csv.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @NgModule({
   declarations: [
@@ -62,9 +66,19 @@ import { LoginComponent } from './login';
     NgBootstrapFormValidationModule.forRoot(),
     NgBootstrapFormValidationModule,
     PdfViewerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    ItemCreateComponent,
+    TeacherCreateComponent,
+    SchoolCreateComponent,
   ],
   providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
