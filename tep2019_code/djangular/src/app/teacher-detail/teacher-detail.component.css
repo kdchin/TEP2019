@@ -21,6 +21,8 @@ label{
   text-align: left;
 }
 
+
+
 button.back {
   /* background-image: url("../../assets/blue-back2.png");
   background-position: 10px; 
@@ -79,6 +81,7 @@ h3 {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
+  text-align: left;
   height: 420px;
 }
 
@@ -97,3 +100,45 @@ p.school-name {
   }
 }
 
+td {
+  width: 10em;
+}
+
+#display-table{
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 25px;
+  color: black;
+  background-color: #E5E5E5;
+  display: block;
+  overflow: scroll;
+  max-height: 450px;
+}
+
+tr:nth-child(even) {
+  background-color: #E5E5E5
+}
+
+thead {
+  background-color: #E5E5E5;
+}
+
+#text {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+/* name text */
+td {
+  padding-left: 15px;
+  font-size: 18px;
+  height: 65px;
+  vertical-align: middle;
+}
+
+/* title text */
+th {
+  font-size: 18px;
+}

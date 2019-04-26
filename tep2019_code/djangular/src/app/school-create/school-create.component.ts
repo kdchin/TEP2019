@@ -18,16 +18,20 @@ export class SchoolCreateComponent {
 
   public onSubmit() {
     this.createSchool();
-    this.schoolChange.emit(this.new_school);
-    // TODO: reload page
-    this.new_school = new School('', true);
-    this.dialogRef.close();
+  }
+
+  public reload() {
     window.location.reload();
   }
 
   public createSchool() {
     this.apiService.create("schools", this.new_school).subscribe((response) => {
       console.log(response);
+      this.schoolChange.emit(this.new_school);
+      // TODO: reload page
+      this.new_school = new School('', true);
+      this.dialogRef.close();
+      window.location.reload();
     });
   }
 }

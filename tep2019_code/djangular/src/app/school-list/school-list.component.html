@@ -7,12 +7,17 @@
       <th>Name</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let school of schools | filter : searchText;">
+    <tr *ngFor="let school of schools | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }">
       <td> {{ school.name }} </td>
       <td> {{ school.active }} </td>
     </tr>
   </table>
-  <div [hidden]="!shouldShowCreate">
+  <div id = "creator" [hidden]="!shouldShowCreate">
     <app-school-create (schoolChange)="onNewSchool($event)"></app-school-create>
+    <div id = "undo">
+      <button type= "button" class = "button is-danger" (click)="toggleShowCreate()">Cancel</button>
+    </div>
   </div>
 </div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

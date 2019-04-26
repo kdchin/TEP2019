@@ -12,6 +12,25 @@ input[type=text] {
   padding: 8px 20px 8px 35px;
 }
     
+
+#creator {
+  max-width: 400px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 25px;
+}
+
+#undo{
+  position: float;
+  margin-top: -36px;
+  margin-left: 128px;
+}
+
 button.is-info{
   background-color: #489AD8;
 }

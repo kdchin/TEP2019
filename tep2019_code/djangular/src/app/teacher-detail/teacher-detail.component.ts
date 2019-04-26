@@ -27,6 +27,10 @@ export class TeacherDetailComponent implements OnInit {
     this.getTeacher();
   }
 
+  getSchool() {
+    return this.teacher.school;
+  }
+
   getTeacher(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.apiService.fetchOne("teachers", id).subscribe((teacher: TeacherDetail) => this.teacher = teacher);
@@ -41,6 +45,13 @@ export class TeacherDetailComponent implements OnInit {
     return (newValue) => {
       this.teacher[attr] = newValue;
       this.apiService.update('teacher_update', this.teacher).subscribe();
+    }
+  }
+
+  public alerter(teacher: TeacherDetail) {
+    let r = confirm("Are you sure you would like to delete this teacher?");
+    if (r == true) {
+      this.deleteTeacher(teacher)
     }
   }
 

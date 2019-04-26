@@ -1,13 +1,18 @@
 <div *ngIf="orderDetail">
-  <h1 class="title">{{orderDetail.teacher.first_name}} {{orderDetail.teacher.last_name}}'s order from {{orderDetail.checkout_time | date }}</h1>
+  <h1 class="title">{{orderDetail.teacher.first_name}} {{orderDetail.teacher.last_name}}'s order from
+    {{orderDetail.checkout_time | date }}</h1>
   <div class="row">
     <div class="column">
       <div class="card">
         <h3>Order Information</h3>
         <br>
-        <label><h4><b>Checkout Time:</b><br>{{orderDetail.checkout_time | date: "medium"}}</h4></label>
+        <label>
+          <h4><b>Checkout Time:</b><br>{{orderDetail.checkout_time | date: "medium"}}</h4>
+        </label>
         <br>
-        <label><h4><b>Exported for Salesforce:</b><br>{{orderDetail.uploaded}}</h4></label>
+        <label>
+          <h4><b>Exported for Salesforce:</b><br>{{orderDetail.uploaded}}</h4>
+        </label>
       </div>
     </div>
     <div class="column">

@@ -1,6 +1,13 @@
 h1 {
   text-align: center;
-  margin-bottom: 50px;
+}
+
+.section {
+  background-color: #FEEED6;
+  color: black;
+  font-size: 20px;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 div.field {
@@ -28,19 +35,6 @@ button.button.is-primary{
   background-color: #489AD8;
 }
 
-button.back {
-  /* background-image: url("../../assets/blue-back2.png");
-  background-position: 10px; 
-  background-repeat: no-repeat; */
-  /* padding: 7px 20px 8px 35px; */
-  color: #489AD8;
-  border-color: #489AD8;
-}
-
-button.max {
-  width: 40%;
-}
-
 div.columns{
   text-indent: 10px;
 }
@@ -57,7 +51,7 @@ div.has-text-centered{
 }
 
 .divider{
-  width:25px;
+  width:100px;
   height:auto;
   display:inline-block;
 }
@@ -75,7 +69,7 @@ h3{
 }
 
 div.order-items{
-  /* background-color: #CAD5E3; */
+  background-color: #CAD5E3;
   max-width: 400px;
   margin: 0 auto;
 }

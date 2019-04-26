@@ -1,18 +1,21 @@
-<h1 class="title">
-  Create School
-</h1>
-<form (ngSubmit)="onSubmit()" #schoolForm="ngForm">
-  <div class="field">
-    <label class="label">Name</label>
-    <div class="control">
-      <input id="name" class="input" type="text" placeholder="Pittsburgh School" required [(ngModel)]="new_school.name" name="name">
+<div id="creator">
+  <h1 class="title">
+    Create School
+  </h1>
+  <form (ngSubmit)="onSubmit()" #schoolForm="ngForm">
+    <div class="field">
+      <label class="label">Name</label>
+      <div class="control">
+        <input id="name" class="input" type="text" placeholder="Pittsburgh School" required
+          [(ngModel)]="new_school.name" name="name">
+      </div>
     </div>
-  </div>
 
-  <mat-dialog-actions>
-    <div style="margin: 0 auto;">
-      <button class="button is-danger" mat-dialog-close>Cancel</button>
-      <button type="submit" class="button is-info">Create School</button>
-    </div>
-  </mat-dialog-actions>
-</form>
+    <mat-dialog-actions>
+      <div style="margin: 0 auto;">
+        <button class="button is-danger" mat-dialog-close>Cancel</button>
+        <button type="submit" class="button is-info">Create School</button>
+      </div>
+    </mat-dialog-actions>
+  </form>
+</div>

@@ -114,6 +114,13 @@ class ItemSerializer(serializers.ModelSerializer):
                   'max_units', 'qty_per_unit', 'active', 'rank')
 
 
+# TODO incorporate school serializer
+class TeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        fields = ('id', 'first_name', 'last_name',
+                  'email', 'phone', 'school', 'active')
+
 class OrderItemSerializer(serializers.ModelSerializer):
     item = ItemSerializer(many=False, read_only=False)
     order = OrderSerializer(many=False, read_only=False)
