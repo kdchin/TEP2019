@@ -6,10 +6,10 @@
 </div>
 
 <div id="changer2" [hidden]="shouldShowChange">
-  <button type= "button" class = "button" (click)="toggleShowChange()">Change Password</button>
+  <button type="button" class="button" (click)="toggleShowChange()">Change Password</button>
 </div>
 
-<div id = "changer" [hidden]="!shouldShowChange">
+<div id="changer" [hidden]="!shouldShowChange">
   <label class="label">New Password:</label>
   <input class="input" type="text" [(ngModel)]="new_pwd">
   <br><br>
@@ -18,8 +18,8 @@
 <br>
 
 <div [hidden]="shouldShowChange">
-    <button class="button" (click)="randomPwd()">Generate Random Password</button>
-  </div>
+  <button class="button" (click)="randomPwd()">Generate Random Password</button>
+</div>
 
 
 <!-- (click)="toggleShowCreate() -->

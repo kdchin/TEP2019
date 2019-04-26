@@ -30,3 +30,12 @@ input[type=text] {
   margin-top: -36px;
   margin-left: 214px;
 }
+button.is-info{
+  background-color: #489AD8;
+}
+
+td.first-name {
+  color: #33aaff;
+  /* text-decoration: underline; */
+  cursor: pointer;
+}

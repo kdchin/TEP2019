@@ -31,3 +31,6 @@ input[type=text] {
   margin-left: 128px;
 }
 
+button.is-info{
+  background-color: #489AD8;
+}

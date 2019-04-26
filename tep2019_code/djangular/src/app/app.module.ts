@@ -29,9 +29,10 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgxPaginationModule} from 'ngx-pagination';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -71,8 +72,17 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
+    MatTabsModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    ItemCreateComponent,
+    TeacherCreateComponent,
+    SchoolCreateComponent,
   ],
   providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

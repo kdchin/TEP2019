@@ -36,7 +36,7 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = 'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 DEFAULT_FILE_STORAGE = 'config.storage_backends.MediaStorage'
 
 STATICFILES_DIRS = [
@@ -51,18 +51,6 @@ if not DEBUG:
 else:
     STATIC_URL = os.path.join(BASE_DIR, 'static/')
 
-PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = 'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'config.storage_backends.MediaStorage'
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# 'n5bk%f$1a-x%7cfe3kl-!%)m5hu$yfkx6h=_a(x30(+gtlp@5*'
-SECRET_KEY = 'n5bk%f$1a-x%7cfe3kl-!%)m5hu$yfkx6h=_a(x30(+gtlp@5*'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', ''))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 

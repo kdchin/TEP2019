@@ -5,52 +5,55 @@
       <div class="card">
         <h3>Details</h3><br>
         <div id="text">
-        <label>Name:
-          <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')"></app-inline-edit> 
-          <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher('last_name')"></app-inline-edit>
-        </label>
-        <label>Email:
-          <app-inline-edit [(ngModel)]="teacher.email" [onChange]="updateTeacher('email')"></app-inline-edit>
-        </label>
-        <label>Home Address:
-          <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher('address')"></app-inline-edit>
-        </label>
-        <label>
-        <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')" [displayPipe]="phonePipe">
-        </app-inline-edit></label>
-      </div>
+          <label>Name:
+            <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')">
+            </app-inline-edit>
+            <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher('last_name')"></app-inline-edit>
+          </label>
+          <label>Email:
+            <app-inline-edit [(ngModel)]="teacher.email" [onChange]="updateTeacher('email')"></app-inline-edit>
+          </label>
+          <label>Home Address:
+            <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher('address')"></app-inline-edit>
+          </label>
+          <label>
+            <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')" [displayPipe]="phonePipe">
+            </app-inline-edit>
+          </label>
+        </div>
       </div>
     </div>
     <div class="column">
       <div class="card">
         <div id="text">
-        <h3>Additional Information</h3><br>
-        <label>School: {{teacher.school.name }}
-            </label><br>
-        <label>Active:
-          <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher('active')" [displayPipe]="activePipe"
-            [fieldType]="'checkbox'"></app-inline-edit>
-        </label>
-       </div>
+          <h3>Additional Information</h3><br>
+          <label><b>School:</b><br>
+            <p class="school-name">{{teacher.school.name }}</p>
+          </label><br>
+          <label><b>Active:</b><br>
+            <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher('active')"
+              [displayPipe]="activePipe" [fieldType]="'checkbox'"></app-inline-edit>
+          </label>
+        </div>
       </div>
     </div>
     <div class="column">
       <div class="card">
         <h3>Past Orders</h3><br>
-        <div id = "display-table">
+        <div id="display-table">
           <table class="table is-hoverable is-fullwidth">
-              <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                  </tr>
-              </thead>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Time</th>
+              </tr>
+            </thead>
             <tr *ngFor="let order of teacher.orders" routerLink="/orders/{{order.id}}">
               <td>{{order.checkout_time | date}}</td>
               <td>{{order.checkout_time | date: 'shortTime'  }}</td>
             </tr>
           </table>
-       </div>
+        </div>
       </div>
     </div>
   </div>

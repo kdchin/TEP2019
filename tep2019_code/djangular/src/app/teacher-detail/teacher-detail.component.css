@@ -17,8 +17,7 @@ input.readonly {
 }
 
 label{
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 18px;
   text-align: left;
 }
 
@@ -84,6 +83,15 @@ h3 {
   padding: 16px;
   text-align: left;
   height: 420px;
+}
+
+app-inline-edit {
+  /* text-indent: 20px; */
+  display: inline-block;
+}
+
+p.school-name {
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 780px) {

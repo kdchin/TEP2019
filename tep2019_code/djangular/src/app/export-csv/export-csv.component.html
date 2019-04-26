@@ -1,10 +1,12 @@
-<button class="button" (click)="alerterLast()">Export Since Last<br><p>Last Export: <span *ngIf="mostRecent">{{mostRecent.checkout_time | date : 'medium'}}</span><span
-    *ngIf="!mostRecent">None</span></p></button><br>
+<button class="button" (click)="alerterLast()">Export Since Last<br>
+    <p>Last Export: <span *ngIf="mostRecent">{{mostRecent.checkout_time | date : 'medium'}}</span><span
+            *ngIf="!mostRecent">None</span></p>
+</button><br>
 <button class="button" (click)="alerterAll()">Export Whole Year</button>
 
 <br>
 <button class="button" (click)="resetUploaded()">Reset to 'Not Uploaded'</button>
 
-<div id = "csvwarning">
+<div id="csvwarning">
 
 </div>

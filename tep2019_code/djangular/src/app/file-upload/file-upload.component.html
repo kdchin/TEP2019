@@ -1,41 +1,41 @@
-<div id= "waiversection">
+<div id="waiversection">
 
-<div class="file">
-  <label class="file-label" >
-    <!-- <input class="file-input" type="file" name="resume"> -->
-    <input type="file" class="file-input" id="file" name="file" (change)="handleFileInput($event.target.files)">
-    <span class="file-cta" id="filebox">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label">
+  <div class="file">
+    <label class="file-label">
+      <!-- <input class="file-input" type="file" name="resume"> -->
+      <input type="file" class="file-input" id="file" name="file" (change)="handleFileInput($event.target.files)">
+      <span class="file-cta" id="filebox">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
           <span *ngIf="mostRecentUpload">
-              {{formatFileName(mostRecentUpload.file)}}</span><span *ngIf="!mostRecentUpload">Upload a File</span>
-        
-      </span>
-      <div id="waiverchoose">
-          <p>Last Upload
-          <span *ngIf="mostRecentUpload">{{ mostRecentUpload.uploaded_date | date }}</span></p>
-        </div>
-      <br>
-    </span>
-    
-    <div *ngIf="fileToUpload" >
-      <span class="file-name">
-        {{fileToUpload.name}}
-      </span>
-    </div>
-  </label>
-</div>
-<div *ngIf="fileToUpload">
-  <div *ngIf="isPdf()" >
+            {{formatFileName(mostRecentUpload.file)}}</span><span *ngIf="!mostRecentUpload">Upload a File</span>
 
-    <!-- <button class="button is-primary" (click)="uploadToS3()">Upload</button> -->
-    <button class="button is-primary" (click)="uploadFile()">Upload</button>
-    <!-- <button class="button is-primary" (click)="uploadDirect()">Upload</button> -->
+        </span>
+        <div id="waiverchoose">
+          <p>Last Upload
+            <span *ngIf="mostRecentUpload">{{ mostRecentUpload.uploaded_date | date }}</span></p>
+        </div>
+        <br>
+      </span>
+
+      <div *ngIf="fileToUpload">
+        <span class="file-name">
+          {{fileToUpload.name}}
+        </span>
+      </div>
+    </label>
   </div>
-  <div *ngIf="!isPdf()">
-    <div class="notification is-danger">File must be a pdf!</div>
+  <div *ngIf="fileToUpload">
+    <div *ngIf="isPdf()">
+
+      <!-- <button class="button is-primary" (click)="uploadToS3()">Upload</button> -->
+      <button class="button is-primary" (click)="uploadFile()">Upload</button>
+      <!-- <button class="button is-primary" (click)="uploadDirect()">Upload</button> -->
+    </div>
+    <div *ngIf="!isPdf()">
+      <div class="notification is-danger">File must be a pdf!</div>
+    </div>
   </div>
-</div>
 </div>

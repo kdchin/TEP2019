@@ -52,8 +52,8 @@ export class PwdGeneratorComponent implements OnInit {
   public toggleShowChange() {
     this.shouldShowChange = !this.shouldShowChange;
   }
-  
-  public alerter(){
+
+  public alerter() {
     alert("Passwords must be at least 4 characters");
   }
 

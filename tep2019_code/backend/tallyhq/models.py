@@ -50,6 +50,11 @@ class Waiver(models.Model):
     uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
 
 
+class Waiver(models.Model):
+    file = models.FileField(blank=True, default='')
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
+
+
 # Order model: one per teacher visit, summarizes what a teacher got
 class Order(models.Model):
     # date the teacher visited TEP
@@ -78,8 +83,6 @@ class OrderItem(models.Model):
 
     # how many units of an item a teacher took (e.g. 8 (packs))
     units_taken = models.IntegerField(validators=[MinValueValidator(0)])
-
-    
 
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
