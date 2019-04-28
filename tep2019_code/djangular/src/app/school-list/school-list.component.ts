@@ -14,6 +14,7 @@ export class SchoolListComponent implements OnInit {
   searchText = '';
   schools: Array<School> = [];
   shouldShowCreate = false;
+  p;
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {

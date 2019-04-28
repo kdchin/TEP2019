@@ -4,12 +4,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'first_name', 'last_name')
-
-
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
@@ -29,6 +23,11 @@ class TeacherSerializer(serializers.ModelSerializer):
         model = Teacher
         fields = ('id', 'first_name', 'last_name', 'address',
                   'email', 'phone', 'school', 'active')
+        extra_kwargs = {
+            'email': {
+                'validators': []
+            }
+        }
 
     def create(self, validated_data):
         school_data = validated_data.pop('school')
@@ -74,6 +73,11 @@ class TeacherDetailSerializer(serializers.ModelSerializer):
         model = Teacher
         fields = ('id', 'first_name', 'last_name', 'address',
                   'email', 'phone', 'school', 'orders', 'active')
+        extra_kwargs = {
+            'email': {
+                'validators': []
+            }
+        }
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -113,13 +117,6 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'unit_label_name',
                   'max_units', 'qty_per_unit', 'active', 'rank')
 
-
-# TODO incorporate school serializer
-class TeacherSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Teacher
-        fields = ('id', 'first_name', 'last_name',
-                  'email', 'phone', 'school', 'active')
 
 class OrderItemSerializer(serializers.ModelSerializer):
     item = ItemSerializer(many=False, read_only=False)

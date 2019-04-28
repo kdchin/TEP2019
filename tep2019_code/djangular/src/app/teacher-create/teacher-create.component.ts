@@ -14,6 +14,7 @@ export class TeacherCreateComponent implements OnInit {
   new_school = new School('', true);
   new_teacher = new TeacherDetail(null, '', '', '', '', true, null, [], '');
   schools: Array<School> = [];
+  teachers: Array<TeacherDetail> = [];
 
   constructor(private apiService: ApiService, public dialogRef: MatDialogRef<TeacherCreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
@@ -22,6 +23,21 @@ export class TeacherCreateComponent implements OnInit {
 
   ngOnInit() {
     this.getActiveSchools();
+    this.getTeachers();
+  }
+
+  public getTeachers() {
+    this.apiService.fetchAll('teachers').subscribe((data: Array<TeacherDetail>) => {
+      this.teachers = data;
+    });
+  }
+
+  public teacherExists() {
+    for (let i = 0; i < this.teachers.length; i++) {
+      let tch = this.teachers[i];
+      if (tch.email === this.new_teacher.email) return true;
+    }
+    return false;
   }
 
   public getActiveSchools() {
@@ -44,7 +60,8 @@ export class TeacherCreateComponent implements OnInit {
 
 
   public createTeacher() {
-    // TODO: validation
+    if (this.teacherExists()) return;
+    console.log(this.new_teacher);
     this.apiService.create("teachers", this.new_teacher).subscribe((response) => {
       console.log(response);
       this.teacherChange.emit(this.new_teacher);

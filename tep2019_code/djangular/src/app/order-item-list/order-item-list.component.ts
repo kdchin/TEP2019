@@ -10,6 +10,7 @@ import { OrderItem } from '../models';
 export class OrderItemListComponent implements OnInit {
 
   order_items: Array<OrderItem> = [];
+  p;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -34,11 +35,11 @@ export class OrderItemListComponent implements OnInit {
     }
   }
 
-  public alerter(order_item: OrderItem){
+  public alerter(order_item: OrderItem) {
     let r = confirm("Are you sure you would like to delete this Order Item?");
     if (r == true) {
       this.deleteOrderItem(order_item)
-    } 
+    }
   }
 
   public getOrderItems() {

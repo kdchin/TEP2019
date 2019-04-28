@@ -21,9 +21,9 @@ export class DashboardComponent implements OnInit {
 
   // private passwords: Array<ValidationPassword> = []; 
 
-  private teachers: Array<Teacher> = []; 
-  private orders: Array<Order> = [];
-  private schools: Array<School> = [];
+  teachers: Array<Teacher> = [];
+  orders: Array<Order> = [];
+  schools: Array<School> = [];
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -89,5 +89,5 @@ export class DashboardComponent implements OnInit {
     return this.teachers.length;
   }
 
- 
+
 }

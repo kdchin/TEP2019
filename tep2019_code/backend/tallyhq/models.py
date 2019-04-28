@@ -35,19 +35,15 @@ class School(models.Model):
 class Teacher(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
-    email = models.EmailField()
-    phone = models.CharField(max_length=20)
+    # TODO: this is overridden in the serializer, so it should be validated in the view
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=20, blank=True)
     school = models.ForeignKey(School, on_delete=models.CASCADE, null=False)
     active = models.BooleanField(default=True)
     address = models.CharField(max_length=100, blank=True)
 
     class Meta:
         ordering = ('last_name', )
-
-
-class Waiver(models.Model):
-    file = models.FileField(blank=True, default='')
-    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
 
 
 class Waiver(models.Model):

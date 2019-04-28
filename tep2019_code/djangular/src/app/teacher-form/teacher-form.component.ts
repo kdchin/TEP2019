@@ -19,7 +19,7 @@ export class TeacherFormComponent implements OnInit {
   teacher = new Teacher(null, '', '', '', '', true, null, '');
   new_address: string = "";
   all_teachers: Array<Teacher> = [];
-  order = new Order(null, null, false, null, null);
+  order = new Order(null, '', false, null, null);
   school = new School('', false);
   all_schools: Array<School> = [];
   order_items: Array<OrderItem> = [];
@@ -96,7 +96,7 @@ export class TeacherFormComponent implements OnInit {
   }
 
   public getActiveTeachers() {
-    this.apiService.fetchAll('teachers').subscribe((data: Array<Teacher>) => {
+    this.apiService.fetchAll('teacher_singles').subscribe((data: Array<Teacher>) => {
       // TODO: add item order customization
       // TODO: loop over and not have it be an object
       for (let i = 0; i < data.length; i++) {
@@ -108,7 +108,7 @@ export class TeacherFormComponent implements OnInit {
 
   public teacherIsValid() {
     if (!this.teacher.first_name || !this.teacher.last_name
-      || !this.teacher.email || !this.teacher.phone || !this.school) {
+      || !this.teacher.email || !this.school) {
       return false;
     }
     let found_email = false;
@@ -119,8 +119,7 @@ export class TeacherFormComponent implements OnInit {
         found_email = true;
         matches = (other.first_name == this.teacher.first_name
           && other.last_name == this.teacher.last_name
-          && other.school.name == this.school.name
-          && other.phone == this.teacher.phone);
+          && other.school.name == this.school.name);
         break;
       }
     }
@@ -181,8 +180,23 @@ export class TeacherFormComponent implements OnInit {
     return true;
   }
 
+  /*
+  public testOrder() {
+    let school = new School('PALY', true);
+    let teacher = new Teacher(null, 'kydo', 'chin', 'kydochin@gmail.com', '6502136937', true, school, '123 Butte Ave')
+    let order = new Order(null, '', false, null, teacher);
+    console.log("in:", order);
+    this.apiService.create('orders', order).subscribe((data: Order) => {
+      console.log("done:", data);
+    });
+  }
+  */
+
   public createOrderItems() {
+    // this.order.checkout_time = new Date().toISOString();
+    console.log(this.order);
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
+      console.log("got back", data);
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
         if (order_item_with_order.units_taken > 0) {
@@ -194,9 +208,11 @@ export class TeacherFormComponent implements OnInit {
   }
 
   public makeOrderItems(teacher) {
-    teacher.address = this.new_address;
+    // only update address and phone if provided
+    teacher.address = this.new_address ? this.new_address : teacher.address;
+    teacher.phone = this.teacher.phone ? this.teacher.phone : teacher.phone;
     this.order.teacher = teacher;
-    if (this.teacher.address.length > 0) {
+    if (this.new_address.length > 0 || this.teacher.phone.length > 0) {
       this.apiService.update('teacher_update', teacher).subscribe(() => {
         this.createOrderItems();
       });
@@ -210,7 +226,7 @@ export class TeacherFormComponent implements OnInit {
     let decoded = bytes.toString(crypto.enc.Utf8);
     if (!this.orderItemsAreValid() || this.guess !== decoded) return;
     let tchr = this.getTeacher();
-    this.order.waiver = this.recentWaiver;
+    // this.order.waiver = this.recentWaiver;
     if (this.isNewTeacher)
       return;
     this.makeOrderItems(tchr);

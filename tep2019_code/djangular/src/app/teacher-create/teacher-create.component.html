@@ -6,14 +6,14 @@
     <label class="label">First Name</label>
     <div class="control">
       <input id="first_name" class="input" type="text" placeholder="Master" required
-        [(ngModel)]="new_teacher.first_name" name="first_name">
+        [(ngModel)]="new_teacher.first_name" name="first_name" #first_name="ngModel">
     </div>
 
     <div class="field">
       <label class="label">Last Name</label>
       <div class="control">
         <input id="last_name" class="input" type="text" placeholder="ShiFu" required [(ngModel)]="new_teacher.last_name"
-          name="last_name">
+          name="last_name" #last_name="ngModel">
       </div>
     </div>
 
@@ -21,14 +21,17 @@
       <label class="label">Email</label>
       <div class="control">
         <input id="email" class="input" type="text" placeholder="shifu@dreamworks.com" required
-          [(ngModel)]="new_teacher.email" name="email">
+          [(ngModel)]="new_teacher.email" name="email" #email="ngModel">
+      </div>
+      <div class="notification is-danger" *ngIf="email.touched && teacherExists()">
+        A teacher with this email already exists!
       </div>
     </div>
 
     <div class="field">
       <label class="label">Phone Number</label>
       <div class="control">
-        <input id="phone" class="input" type="text" placeholder="412 922 6500" required [(ngModel)]="new_teacher.phone"
+        <input id="phone" class="input" type="text" placeholder="412 922 6500" [(ngModel)]="new_teacher.phone"
           name="phone">
       </div>
     </div>
@@ -37,7 +40,7 @@
   <div class="field">
     <label class="label">Full Address</label>
     <div class="control">
-      <input id="address" class="input" type="text" placeholder="281 Corliss St, Pittsburgh, PA 15220" required
+      <input id="address" class="input" type="text" placeholder="281 Corliss St, Pittsburgh, PA 15220"
         [(ngModel)]="new_teacher.address" name="address">
     </div>
   </div>
@@ -54,7 +57,8 @@
   <mat-dialog-actions>
     <div style="margin: 0 auto;">
       <button class="button is-danger" mat-dialog-close>Cancel</button>
-      <button type="submit" class="button is-info">Create Teacher</button>
+      <button [disabled]="!first_name.touched || !last_name.touched || !email.touched || teacherExists()" type="submit"
+        class="button is-info">Create Teacher</button>
     </div>
   </mat-dialog-actions>
 </form>
