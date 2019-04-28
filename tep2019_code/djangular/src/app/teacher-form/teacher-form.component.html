@@ -3,7 +3,7 @@
     <h1 class="title">Welcome Teachers!</h1>
     <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
       <div class="field">
-        <label class="label">First Name</label>
+        <label class="label" id="required">First Name</label>
         <div class="control">
           <input id="first_name" class="input" type="text" placeholder="Master" [(ngModel)]="teacher.first_name"
             name="first_name" required maxlength="20" #first_name="ngModel">
@@ -22,7 +22,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Last Name</label>
+        <label class="label" id="required">Last Name</label>
         <div class="control">
           <input id="last_name" class="input" type="text" placeholder="ShiFu" [(ngModel)]="teacher.last_name"
             name="last_name" required maxlength="30" #last_name="ngModel">
@@ -40,7 +40,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Work Email</label>
+        <label class="label" id="required">Work Email</label>
         <div class="control">
           <input id="email" class="input" type="email" placeholder="shifu@dreamworks.com" [(ngModel)]="teacher.email"
             name="email" required maxlength="50" #email="ngModel" [email]="true">
@@ -51,7 +51,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Confirm Email</label>
+        <label class="label" id="required">Confirm Email</label>
         <div class="control">
           <input id="validation_email" class="input" type="email" placeholder="shifu@dreamworks.com"
             [(ngModel)]="val_email" name="validation_email" required maxlength="50" #validation_email="ngModel"
@@ -86,7 +86,7 @@
 
       <div class="field">
         <div class="select">
-          <label class="label" for="school">School</label>
+          <label class="label" id="required" for="school">School</label>
           <select class="school" required [(ngModel)]="school" name="school" #school_="ngModel">
             <option *ngFor="let schl of all_schools" [ngValue]="schl">
               {{schl.name}}</option>

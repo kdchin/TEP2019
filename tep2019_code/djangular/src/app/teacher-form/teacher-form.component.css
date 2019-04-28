@@ -2,7 +2,7 @@ h1 {
   text-align: center;
   margin-bottom: 50px;
 }
-
+h
 div.field {
   max-width: 400px;
   margin: 0 auto;
@@ -126,6 +126,11 @@ label.item-label {
 
 label.label {
   margin-left: 40px;
+}
+
+#required:after{
+  content:" *" ;
+  color:red   
 }
 
 p {
