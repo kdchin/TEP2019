@@ -11,6 +11,11 @@ item_list = ItemViewSet.as_view({
     'post': 'create'
 })
 
+teacher_list = TeacherViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
 item_detail = ItemViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',

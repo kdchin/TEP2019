@@ -25,9 +25,15 @@ if(items[0].name)
     return items.filter(
     it => {
            return it.name.toLowerCase().includes(searchText);
-       });
-  }
-}
+       })
+  
+
+if(items[0].shopping_date)
+    return items.filter(
+        it => {
+            return it.teacher.first_name.toLowerCase().includes(searchText);
+        });
+    }}
 
 
 // adapted from https://codeburst.io/create-a-search-pipe-to-dynamically-filter-results-with-angular-4-21fd3a5bec5c

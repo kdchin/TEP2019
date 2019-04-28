@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Order } from '../models';
 
+
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
@@ -34,6 +35,13 @@ export class OrderListComponent implements OnInit {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
       this.orders = data;
     });
+  }
+
+  public alerter(order: Order){
+    let r = confirm("Are you sure you would like to delete this order?");
+    if (r == true) {
+      this.deleteOrder(order)
+    } 
   }
 
 }

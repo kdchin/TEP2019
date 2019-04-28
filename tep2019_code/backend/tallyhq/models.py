@@ -28,7 +28,8 @@ class School(models.Model):
     name = models.CharField(max_length=50)
     active = models.BooleanField(default=True)
 
-    # TODO: maybe add in name as unique?
+    class Meta:
+        ordering = ('name', )
 
 
 class Teacher(models.Model):
@@ -40,7 +41,13 @@ class Teacher(models.Model):
     active = models.BooleanField(default=True)
     address = models.CharField(max_length=100, blank=True)
 
-    # TODO: make email unique
+    class Meta:
+        ordering = ('last_name', )
+
+
+class Waiver(models.Model):
+    file = models.FileField(blank=True, default='')
+    uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
 
 
 class Waiver(models.Model):

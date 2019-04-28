@@ -1,0 +1,114 @@
+<div id = "name">
+  <h1>Welcome, Cat</h1>
+  <h1></h1>
+</div>
+
+
+<div id= "container">
+
+  <div id="left-rectangle">
+    <div id="title-box">
+      <h2><b>Recent Checkouts</b></h2>
+    </div>
+    <div id="display-table">
+      <table class="table is-hoverable is-fullwidth">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Checkout Date</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor="let order of orders | slice:0:10" routerLink="/orders/{{order.id}}">
+            <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
+            <td> {{ order.checkout_time | date}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <button class="button is-danger" id = "button" (click)="deleteOrder(order)" routerLink="orders">See All</button>
+  </div>
+
+  <div id= "middle-rectangle">
+    <div id="title-box">
+      <h2><b>Edit Items</b></h2>
+    </div>
+    <br>
+    <button class="button is-danger" id = "button" routerLink="items">Edit Listed Items</button>
+    <br>
+    <app-file-upload></app-file-upload>
+
+    <div id = "white"></div>
+    <div id="title-box">
+        <!-- <h2><b>Date Range</b></h2>
+        <h3><b>1/1/18 - 12/31/18</b></h3> -->
+        <h2><b>Export CSV</b></h2>
+    </div>
+    <br>
+    <app-export-csv></app-export-csv>    
+  </div>
+  
+
+  <div id= "right-rectangle">
+    <div id="title-box">
+      <h2><b>Daily Info</b></h2>
+    </div>
+
+  
+  <br>
+  <div id="statsbox">
+
+    <div id="numberstats1">
+        <h5><b>{{ getNumSchools() }}</b></h5>
+      </div>
+  
+       <!-- put average shop time stat here -->
+       <div id="numberstats3">
+          <h5><b>{{ getNumTeachers() }}</b></h5>
+      </div>
+  
+      <div id="descriptor3">
+          <h6><b>Schools</b></h6>
+        </div>
+  
+      <div id="descriptor4">
+          <h6><b>Teachers</b></h6>
+      </div>
+    
+
+
+    <br><br><br><br><br>
+    <!-- put teacher visit stat here -->
+    <div id="numberstats1">
+      <h5><b>{{ getNumber() }}</b></h5>
+    </div>
+
+     <!-- put average shop time stat here -->
+     <div id="numberstats2">
+       <h5>.</h5>
+        <!-- <h5><b>{{orders[orders.length-1].checkout_time  | date:'shortTime'}}</b></h5> -->
+        <!-- <h5><b>{{passwords[passwords.length-1].uploaded_date  | date:'shortTime'}}</b></h5> -->
+    </div>
+
+    <div id="descriptor1">
+        <h6><b>Teacher Visits<br>This Year</b></h6>
+      </div>
+
+    <div id="descriptor2">
+        <h6><b>Avg. Shop Time</b></h6>
+    </div>
+
+  </div>
+
+
+
+    <div id = "white2"></div>
+    <div id="title-box">
+        <h2><b>Password</b></h2>
+    </div>
+        <app-pwd-generator></app-pwd-generator>
+        
+        <br>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Item } from '../models';
+
 import { BoolPipe } from '../bool.pipe';
 import * as lodash from "lodash";
 import { MatPaginator, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -44,9 +45,11 @@ export class ItemListComponent implements OnInit {
     this.toggleShowCreate();
   }
 
+
   public onSelect(item: Item) {
     this.selectedItem = item;
   }
+
 
   public toggleShowCreate() {
     this.shouldShowCreate = !this.shouldShowCreate;

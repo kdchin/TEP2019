@@ -1,0 +1,205 @@
+#name {
+    font-size: 45px;
+}
+
+#left-rectangle {
+    width: 350px;
+    height: 650px;
+    background: #CAD5E3;
+    float: left;
+    padding: 15px;
+  }
+
+#middle-rectangle {
+    width: 350px;
+    height: 650px;
+    background: #CAD5E3;
+    float: left;
+    margin-left: 20px;
+    padding: 15px;
+  }
+
+#white{
+    width: 350px;
+    height: 25px;
+    background: white;
+    float: left;
+    margin-top: 25px;
+    margin-left: -15px;
+    margin-bottom: 15px;
+}
+
+#white2{
+    width: 350px;
+    height: 25px;
+    background: white;
+    float: left;
+    margin-top: 25px;
+    margin-left: -15px;
+    margin-bottom: 15px;
+}
+
+#right-rectangle {
+    width: 350px;
+    height: 650px;
+    background: #CAD5E3;
+    float: left;
+    margin-left: 20px;
+    padding: 15px;
+  }
+
+
+
+h2{
+    font-size: 30px;
+    text-align: center;
+    color: black;
+}
+
+h1{
+    color: black;
+    padding-bottom: 10px;
+}
+
+h3{
+    text-align: center;
+    color: black;
+}
+
+h4{
+    font-size: 25px;
+    color: black;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 7px;
+}
+
+#title-box{
+    border-bottom-style: solid;
+    width: 100%;
+}
+
+#button {
+    width: 90%;
+    height: 60px;
+    background: white;
+    color: black;
+    display: block;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+#display-table{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 25px;
+    color: black;
+    background-color: white;
+    display: block;
+    overflow: scroll;
+    max-height: 450px;
+}
+
+#statsbox{
+    background: white;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    min-height: 240px;
+}
+/* 
+#display-table thead {
+    position: sticky;
+    display: block;
+    margin: 0 auto;
+}
+
+#display-table tbody{
+    display:block;
+    width: 100%;
+    margin-top: 47px;
+  } */
+
+tr:nth-child(even) {
+    background-color: #E5E5E5;
+  }
+
+thead{
+    background-color: #E5E5E5;
+}
+
+/* name text */
+td {
+    padding-left: 15px;
+    font-size: 18px;
+    height: 65px;
+    vertical-align: middle;
+}
+
+/* title text */
+th {
+    font-size: 18px;
+}
+
+#stats{
+    padding-top: 25px;
+}
+
+/* stats big number */
+h5{
+    font-size: 30px;
+    color: black;
+}
+
+h6{
+    text-align: center;
+}
+
+/* stats descriptor */
+#descriptor1{
+    font-size: 16px;
+    color: black;
+    float: left;
+    padding-left: 20px;
+}
+#descriptor2{
+    font-size: 16px;
+    color: black;
+    float: left;
+    padding-left: 25px;
+}
+#descriptor3{
+    font-size: 16px;
+    color: black;
+    float: left;
+    padding-left: 38px;
+}
+
+#descriptor4{
+    font-size: 16px;
+    color: black;
+    float: left;
+    padding-left: 72px;
+}
+
+#numberstats1{
+    float: left;
+    padding-left: 60px;
+    padding-top: 10px;
+}
+
+#numberstats2{
+    float:left;
+    padding-left: 110px;
+    padding-top: 10px;
+}
+
+#numberstats3{
+    float:left;
+    padding-left: 119px;
+    padding-top: 10px;
+}
+
+#wrapper {
+    margin: auto;
+}
