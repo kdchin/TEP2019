@@ -1,0 +1,33 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 30%;
+  margin: 0 auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  min-width: 300px;
+}
+
+h2 {
+    text-align: center;
+}
+
+button.button.is-primary{
+    background-color: #489AD8;
+}
+
+input {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+button {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+label {
+    margin-top: 25px;
+    margin-left: 25%;
+}
