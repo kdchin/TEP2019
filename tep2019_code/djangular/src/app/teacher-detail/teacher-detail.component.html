@@ -5,18 +5,18 @@
       <div class="card">
         <h3>Details</h3><br>
         <div id="text">
-          <label>Name:
+          <label><b>Name:</b><br>
             <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')">
             </app-inline-edit>
             <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher('last_name')"></app-inline-edit>
-          </label>
-          <label>Email:
+          </label><br><br>
+          <label><b>Email:</b><br>
             <app-inline-edit [(ngModel)]="teacher.email" [onChange]="updateTeacher('email')"></app-inline-edit>
-          </label>
-          <label>Home Address:
+          </label><br><br>
+          <label><b>Home Address</b><br>
             <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher('address')"></app-inline-edit>
-          </label>
-          <label>
+          </label><br><br>
+          <label><b>Phone Number</b><br>
             <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')" [displayPipe]="phonePipe">
             </app-inline-edit>
           </label>
