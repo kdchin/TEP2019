@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of orders | slice:0:10" routerLink="/orders/{{order.id}}">
+          <tr *ngFor="let order of orders | slice:0:10" routerLink="/checkouts/{{order.id}}">
             <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
             <td> {{ order.checkout_time | date : 'medium'}} </td>
           </tr>

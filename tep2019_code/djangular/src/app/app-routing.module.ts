@@ -17,16 +17,16 @@ import { LoginComponent } from './login';
 import { AuthGuard } from './_guards';
 
 const routes: Routes = [
-  { path: 'form', component: TeacherFormComponent },
+  { path: '', component: TeacherFormComponent },
   { path: 'items', component: ItemListComponent, canActivate: [AuthGuard] },
   { path: 'items/:id', component: ItemDetailComponent, canActivate: [AuthGuard] },
   { path: 'teachers', component: TeacherListComponent, canActivate: [AuthGuard] },
   { path: 'teachers/:id', component: TeacherDetailComponent, canActivate: [AuthGuard] },
-  { path: 'order-items', component: OrderItemListComponent, canActivate: [AuthGuard] },
-  { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard] },
-  { path: 'orders/:id', component: OrderDetailComponent, canActivate: [AuthGuard] },
+  // { path: 'order-items', component: OrderItemListComponent, canActivate: [AuthGuard] },
+  { path: 'checkouts', component: OrderListComponent, canActivate: [AuthGuard] },
+  { path: 'checkouts/:id', component: OrderDetailComponent, canActivate: [AuthGuard] },
   { path: 'schools', component: SchoolListComponent, canActivate: [AuthGuard] },
-  { path: '', component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
 
   // otherwise redirect to home

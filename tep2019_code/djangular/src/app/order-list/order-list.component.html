@@ -8,7 +8,7 @@
       <th>Uploaded</th>
       <th>Waiver</th>
     </tr>
-    <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+    <tr *ngFor="let order of orders" routerLink="/checkouts/{{order.id}}">
       <td> {{ order.checkout_time | date : 'medium' }} </td>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>

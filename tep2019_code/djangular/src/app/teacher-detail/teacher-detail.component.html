@@ -55,7 +55,7 @@
                 <th>Time</th>
               </tr>
             </thead>
-            <tr *ngFor="let order of teacher.orders" routerLink="/orders/{{order.id}}">
+            <tr *ngFor="let order of teacher.orders" routerLink="/checkouts/{{order.id}}">
               <td>{{order.checkout_time | date}}</td>
               <td>{{order.checkout_time | date: 'shortTime'  }}</td>
             </tr>
