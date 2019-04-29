@@ -23,8 +23,8 @@ export class PwdGeneratorComponent implements OnInit {
 
   randomPwd() {
     this.new_pwd = randomWords({ min: 1, max: 3, join: '-', maxLength: 7 });
-    this.submitPassword();
-    this.shouldShowChange = false;
+    // this.submitPassword();
+    this.shouldShowChange = true;
   }
 
   getPwd(digest) {
@@ -36,17 +36,22 @@ export class PwdGeneratorComponent implements OnInit {
     return crypto.AES.encrypt(pwd, this.key).toString();
   }
 
+  test() {
+    alert(this.new_pwd)
+  }
+
   submitPassword() {
     if (this.new_pwd.length >= 5) {
       let pwd = new ValPass(null, this.getDigest(this.new_pwd), new Date());
-      this.apiService.create('validation_passwords', pwd).subscribe();
-      this.val_pass.digest = pwd.digest;
-      this.new_pwd = '';
+      this.apiService.create('validation_passwords', pwd).subscribe(() => {
+        this.val_pass = pwd;
+        this.new_pwd = '';
+      });
     }
     else {
       this.alerter();
     }
-    this.shouldShowChange = !this.shouldShowChange;
+    this.toggleShowChange();
   }
 
   public toggleShowChange() {
