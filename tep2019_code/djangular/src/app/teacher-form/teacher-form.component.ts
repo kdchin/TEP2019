@@ -21,7 +21,7 @@ export class TeacherFormComponent implements OnInit {
   new_address: string = "";
   all_teachers: Array<Teacher> = [];
   order = new Order(null, '', false, null, null);
-  school = new School(null, '', false);
+  school = null;//new School(null, '', false);
   all_schools: Array<School> = [];
   order_items: Array<OrderItem> = [];
   lodash = lodash;
@@ -30,6 +30,8 @@ export class TeacherFormComponent implements OnInit {
   val_pass = new ValPass(null, '', null);
   guess = '';
   key = environment.val_pass_key;
+  went_back = false;
+  submit_pressed = false;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -121,7 +123,7 @@ export class TeacherFormComponent implements OnInit {
         found_email = true;
         matches = (other.first_name == this.teacher.first_name
           && other.last_name == this.teacher.last_name
-          && other.school.name == this.school.name);
+          && (this.school !== null && other.school.name == this.school.name));
         break;
       }
     }
@@ -135,6 +137,7 @@ export class TeacherFormComponent implements OnInit {
   }
 
   public backPage() {
+    this.went_back = true;
     this.current_page--;
     if (this.current_page < 0)
       this.current_page++;
@@ -144,10 +147,11 @@ export class TeacherFormComponent implements OnInit {
     this.isNewTeacher = false;
     this.teacher = new Teacher(null, '', '', '', '', true, null, '');
     this.order = new Order(null, null, false, null, null);
-    this.school = new School(null, '', false);
+    this.school = null;//  new School(null, '', false);
     this.recentWaiver = null;
     this.val_email = "";
     this.order_items = [];
+    this.guess = "";
     this.advancePage();
   }
 
@@ -204,7 +208,7 @@ export class TeacherFormComponent implements OnInit {
   */
 
   public createOrderItems() {
-    // this.order.checkout_time = new Date().toISOString();
+    this.order.checkout_time = new Date().toISOString();
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
@@ -230,10 +234,21 @@ export class TeacherFormComponent implements OnInit {
     }
   }
 
-  public createOrder() {
+  public password_on_focus() {
+    this.submit_pressed = false;
+  }
+
+  public password_matches(guess) {
     let bytes = crypto.AES.decrypt(this.val_pass.digest, this.key);
     let decoded = bytes.toString(crypto.enc.Utf8);
-    if (!this.orderItemsAreValid() || this.guess !== decoded) return;
+    return guess === decoded;
+  }
+
+  public createOrder() {
+    this.submit_pressed = true;
+    if (!this.orderItemsAreValid() || !this.password_matches(this.guess)) {
+      return;
+    }
     let tchr = this.getTeacher();
     // this.order.waiver = this.recentWaiver;
     if (this.isNewTeacher)

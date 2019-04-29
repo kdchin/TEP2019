@@ -9,7 +9,7 @@
       <th>Waiver</th>
     </tr>
     <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
-      <td class="order-time"> {{ order.checkout_time | date : 'medium' }} </td>
+      <td> {{ order.checkout_time | date : 'medium' }} </td>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ order.uploaded }} </td>
       <td> <a href="{{ order.waiver.file }}" target="_blank">View</a> </td>

@@ -34,8 +34,6 @@ button.is-info{
   background-color: #489AD8;
 }
 
-td.first-name {
-  color: #33aaff;
-  /* text-decoration: underline; */
+tr{
   cursor: pointer;
 }

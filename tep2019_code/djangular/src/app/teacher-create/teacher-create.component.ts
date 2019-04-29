@@ -42,13 +42,12 @@ export class TeacherCreateComponent implements OnInit {
 
   public getActiveSchools() {
     this.apiService.fetchAll('schools').subscribe((data: Array<School>) => {
-      // TODO: add item order customization
-      // TODO: loop over and not have it be an object
+      let all_schools = [];
       for (let i = 0; i < data.length; i++) {
         if (data[i].active)
-          this.schools.push(data[i]);
+          all_schools.push(data[i]);
       }
-      if (this.schools.length > 0) this.new_school = this.schools[0];
+      this.schools = all_schools;
     });
   }
 
@@ -61,9 +60,7 @@ export class TeacherCreateComponent implements OnInit {
 
   public createTeacher() {
     if (this.teacherExists()) return;
-    console.log(this.new_teacher);
     this.apiService.create("teachers", this.new_teacher).subscribe((response) => {
-      console.log(response);
       this.teacherChange.emit(this.new_teacher);
       this.new_teacher = new TeacherDetail(null, '', '', '', '', true, null, [], '');
       this.dialogRef.close();
