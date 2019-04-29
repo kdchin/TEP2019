@@ -139,11 +139,15 @@ class OrderItemSerializer(serializers.ModelSerializer):
         school, _ = School.objects.get_or_create(**school_data)
         teacher, _ = Teacher.objects.get_or_create(
             **teacher_data, school=school)
-        order, _ = Order.objects.get_or_create(
-            **order_data,
-            teacher=teacher,
-            waiver=waiver,
-        )
+        try:
+            order, _ = Order.objects.get_or_create(
+                **order_data,
+                teacher=teacher,
+                waiver=waiver,
+            )
+        except Order.MultipleObjectsReturned:
+            order = Order.objects.filter(
+                teacher=teacher).order_by('-checkout_time')[0]
         item, _ = Item.objects.get_or_create(**item_data)
         return OrderItem.objects.create(order=order, item=item, **validated_data)
 

@@ -99,9 +99,6 @@ p.school-name {
   }
 }
 
-td {
-  width: 10em;
-}
 
 #display-table{
   width: 90%;
@@ -112,6 +109,10 @@ td {
   display: block;
   overflow: scroll;
   max-height: 450px;
+}
+
+tr {
+  cursor: pointer;
 }
 
 tr:nth-child(even) {
@@ -131,6 +132,7 @@ thead {
 
 /* name text */
 td {
+  width: 10em;
   padding-left: 15px;
   font-size: 18px;
   height: 65px;

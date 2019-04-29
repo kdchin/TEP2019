@@ -55,6 +55,14 @@ export class ItemListComponent implements OnInit {
     this.shouldShowCreate = !this.shouldShowCreate;
   }
 
+  public updateLabel(i) {
+    return (newVal) => {
+      let item = this.activeItems[i];
+      item.unit_label_name = newVal;
+      this.apiService.update("items", item).subscribe();
+    }
+  }
+
   public updateActive(i: number) {
     return (isNowActive) => {
       // TODO check validity of item

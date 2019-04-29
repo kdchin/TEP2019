@@ -1,4 +1,8 @@
 <h1 class="title">Items</h1>
+<small>Note: You are not allowed to edit items except for their order, label, and inclusion in the form. If you wish to
+  change
+  an item's other properties, please create a new item and deactivate the old one.</small>
+<br><br>
 <button class="button is-info" (click)="openDialog()">New Item</button>
 <mat-tab-group>
   <mat-tab label="Active Items">
@@ -18,7 +22,11 @@
             <app-inline-edit [(ngModel)]="item.rank" [onChange]="updateRank(i)" [fieldType]="'text'"></app-inline-edit>
           </td>
           <td> {{ item.name }} </td>
-          <td> {{ item.unit_label_name }} </td>
+          <!-- <td> {{ item.unit_label_name }} </td> -->
+          <td>
+            <app-inline-edit [(ngModel)]="item.unit_label_name" [onChange]="updateLabel(i)" [fieldType]="'text'">
+            </app-inline-edit>
+          </td>
           <td> {{ item.max_units }} </td>
           <td> {{ item.qty_per_unit }} </td>
           <!-- TODO: this displays kind of weirdly -->

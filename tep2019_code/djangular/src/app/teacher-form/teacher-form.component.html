@@ -96,7 +96,7 @@
       </div>
 
       <div
-        *ngIf="first_name.touched && last_name.touched && email.touched && (school_.touched || school.name) && !teacherIsValid()"
+        *ngIf="first_name.touched && last_name.touched && email.touched && (school_.touched || (school && school.name)) && !teacherIsValid()"
         class="notification is-danger">
         Your information does not match any teachers we have on record. Please double check
         that all the information you entered is correct and contact a TEP employee if you believe this is a
@@ -109,7 +109,7 @@
       proceeding.</small></p>
   <div class="has-text-centered">
     <button class="button is-medium is-primary" (click)="processTeacher()"
-      [disabled]="!first_name.touched || !last_name.touched || !email.touched || !validation_email.touched || val_email !== teacher.email || !teacherIsValid()">GO</button>
+      [disabled]="!went_back && (!first_name.touched || !last_name.touched || !email.touched || !validation_email.touched || val_email !== teacher.email || !teacherIsValid())">GO</button>
   </div>
 </div>
 
@@ -178,7 +178,7 @@
 
 
 <div *ngIf="pages[current_page] === 'checkout'">
-  <h1 class="title">Checkout Sheet</h1>
+  <h1 class="title">Checkout Sheet for {{teacher.first_name}} {{teacher.last_name}}</h1>
   <div class="card">
     <div class="order-items">
       <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
@@ -216,7 +216,10 @@
   <div class="card">
     <div class="section">
       <label style="display: block; text-align: center"><b>Passcode:</b></label>
-      <input class="input" type="password" [(ngModel)]="guess">
+      <input class="input" type="password" [(ngModel)]="guess" #guess_="ngModel" (focus)="password_on_focus()">
+      <div *ngIf="guess_.touched && submit_pressed && !password_matches(guess)" class="notification is-danger">
+        Password does not match.
+      </div>
     </div>
   </div>
 
@@ -224,8 +227,8 @@
     <div class="column">
       <button class="button back is-medium" (click)=backPage()>Back</button>
       <div class="divider"></div>
-      <button [disabled]="!orderItemsAreValid() || !orderItemsNonZero()" class="button is-medium is-primary"
-        (click)=createOrder()>Submit</button>
+      <button [disabled]="!guess_.touched || !orderItemsAreValid() || !orderItemsNonZero()"
+        class="button is-medium is-primary" (click)=createOrder()>Submit</button>
     </div>
   </div>
 </div>
