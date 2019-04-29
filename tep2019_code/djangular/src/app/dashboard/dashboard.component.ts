@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { Order } from '../models';
 import { School } from '../models';
 import { Teacher } from '../models';
+import { AuthenticationService } from '../_services';
 // import {ValidationPassword} from '../models';
 
 
@@ -24,9 +25,13 @@ export class DashboardComponent implements OnInit {
   teachers: Array<Teacher> = [];
   orders: Array<Order> = [];
   schools: Array<School> = [];
-  constructor(private apiService: ApiService) { }
+  currentUser = null;
+  constructor(private apiService: ApiService,
+    private authenticationService: AuthenticationService,
+  ) { }
 
   ngOnInit() {
+    this.currentUser = this.authenticationService.currentUserValue;
     this.getOrders();
     this.getSchools();
     this.getTeachers();
