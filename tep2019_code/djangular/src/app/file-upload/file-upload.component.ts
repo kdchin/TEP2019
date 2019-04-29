@@ -39,6 +39,10 @@ export class FileUploadComponent implements OnInit {
     return this.fileToUpload.name.split('.').pop() === 'pdf';
   }
 
+  cancelUpload() {
+    this.fileToUpload = null;
+  }
+
   uploadFile() {
     if (this.fileToUpload && this.isPdf()) {
       this.apiService.uploadFile(this.fileToUpload).subscribe((data: Waiver) => {
@@ -50,17 +54,6 @@ export class FileUploadComponent implements OnInit {
 
   formatFileName(file) {
     return file.replace(/^.*[\\\/]/, '');
-  }
-
-  uploadToS3() {
-    if (this.fileToUpload && this.isPdf()) {
-      let file = this.fileToUpload;
-      this.apiService.signS3(file.name).subscribe((data: SignedRequest) => {
-        this.apiService.uploadToS3(file, data).subscribe(() => {
-          this.uploadFile(); // store it locally too
-        });
-      });
-    }
   }
 
 }

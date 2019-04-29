@@ -15,13 +15,13 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Checkout Date</th>
+            <th>Checkout Time</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let order of orders | slice:0:10" routerLink="/orders/{{order.id}}">
             <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
-            <td> {{ order.checkout_time | date}} </td>
+            <td> {{ order.checkout_time | date : 'medium'}} </td>
           </tr>
         </tbody>
       </table>
@@ -32,10 +32,8 @@
 
   <div id="middle-rectangle">
     <div id="title-box">
-      <h2><b>Edit Items</b></h2>
+      <h2><b>Waivers</b></h2>
     </div>
-    <br>
-    <button class="button is-danger" id="button" routerLink="items">Edit Listed Items</button>
     <br>
     <app-file-upload></app-file-upload>
 
