@@ -80,8 +80,8 @@ export class DashboardComponent implements OnInit {
 
 
   public getToday() {
-    let today_orders = this.orders.filter(oi => oi.checkout_time == "2011-01-01");
-    this.orders = today_orders;
+    this.today_orders = this.orders.filter(oi => oi.checkout_time == "2019-04-25T00:54:21.565215Z");
+    return this.today_orders;
   }
 
   public getNumber() {
