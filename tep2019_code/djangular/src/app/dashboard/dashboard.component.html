@@ -3,110 +3,96 @@
   <h1></h1>
 </div>
 
-
-<div id="container">
+<div class="container">
 
   <div id="left-rectangle">
-    <div id="title-box">
-      <h2><b>Recent Checkouts</b></h2>
+    <div class="dash-box">
+      <div id="title-box">
+        <h2><b>Recent Checkouts</b></h2>
+      </div>
+      <div id="display-table">
+        <table class="table is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Checkout Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders | slice:0:10" routerLink="/checkouts/{{order.id}}">
+              <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
+              <td> {{ order.checkout_time | date : 'short'}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <button class="button is-danger" id="button" routerLink="orders">See All</button>
     </div>
-    <div id="display-table">
-      <table class="table is-hoverable is-fullwidth">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Checkout Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let order of orders | slice:0:10" routerLink="/checkouts/{{order.id}}">
-            <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
-            <td> {{ order.checkout_time | date : 'medium'}} </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <br>
-    <button class="button is-danger" id="button" routerLink="orders">See All</button>
   </div>
 
   <div id="middle-rectangle">
-    <div id="title-box">
-      <h2><b>Waivers</b></h2>
+    <div class="dash-box">
+      <div id="title-box">
+        <h2><b>Waivers</b></h2>
+      </div>
+      <br>
+      <app-file-upload></app-file-upload>
     </div>
-    <br>
-    <app-file-upload></app-file-upload>
 
-    <div id="white"></div>
-    <div id="title-box">
-      <!-- <h2><b>Date Range</b></h2>
+    <div class="white-spacer"></div>
+
+    <div class="dash-box">
+      <div id="title-box">
+        <!-- <h2><b>Date Range</b></h2>
         <h3><b>1/1/18 - 12/31/18</b></h3> -->
-      <h2><b>Export CSV</b></h2>
+        <h2><b>Export CSV</b></h2>
+      </div>
+      <br>
+      <app-export-csv></app-export-csv>
     </div>
-    <br>
-    <app-export-csv></app-export-csv>
+    <div class="white-spacer"></div>
   </div>
 
 
   <div id="right-rectangle">
-    <div id="title-box">
-      <h2><b>Daily Info</b></h2>
+    <div class="dash-box">
+      <div id="title-box">
+        <h2><b>Daily Info</b></h2>
+      </div>
+      <br>
+      <table class="stats-table">
+        <tr>
+          <td>
+            <h5 class="stat-val"><b>{{ getNumSchools() }}</b></h5>
+            <h6><b>Schools</b></h6>
+          </td>
+          <h5 class="stat-val"><b>{{ getNumTeachers() }}</b></h5>
+          <h6><b>Teachers</b></h6>
+          <td>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <h5 class="stat-val"><b>{{ getNumber() }}</b></h5>
+            <h6><b>Teacher Visits<br>This Year</b></h6>
+          </td>
+          <td>
+            <h5 class="stat-val"><b>-</b></h5>
+            <h6><b>Avg. Shop Time</b></h6>
+          </td>
+        </tr>
+      </table>
     </div>
 
-
-    <br>
-    <div id="statsbox">
-
-      <div id="numberstats1">
-        <h5><b>{{ getNumSchools() }}</b></h5>
+    <div class="white-spacer"></div>
+    <div class="dash-box">
+      <div id="title-box">
+        <h2><b>Password</b></h2>
       </div>
-
-      <!-- put average shop time stat here -->
-      <div id="numberstats3">
-        <h5><b>{{ getNumTeachers() }}</b></h5>
-      </div>
-
-      <div id="descriptor3">
-        <h6><b>Schools</b></h6>
-      </div>
-
-      <div id="descriptor4">
-        <h6><b>Teachers</b></h6>
-      </div>
-
-
-
-      <br><br><br><br><br>
-      <!-- put teacher visit stat here -->
-      <div id="numberstats1">
-        <h5><b>{{ getNumber() }}</b></h5>
-      </div>
-
-      <!-- put average shop time stat here -->
-      <div id="numberstats2">
-        <h5>.</h5>
-        <!-- <h5><b>{{orders[orders.length-1].checkout_time  | date:'shortTime'}}</b></h5> -->
-        <!-- <h5><b>{{passwords[passwords.length-1].uploaded_date  | date:'shortTime'}}</b></h5> -->
-      </div>
-
-      <div id="descriptor1">
-        <h6><b>Teacher Visits<br>This Year</b></h6>
-      </div>
-
-      <div id="descriptor2">
-        <h6><b>Avg. Shop Time</b></h6>
-      </div>
-
+      <app-pwd-generator></app-pwd-generator>
     </div>
-
-
-
-    <div id="white2"></div>
-    <div id="title-box">
-      <h2><b>Password</b></h2>
-    </div>
-    <app-pwd-generator></app-pwd-generator>
-
-    <br>
   </div>
 </div>

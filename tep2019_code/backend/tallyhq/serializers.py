@@ -38,7 +38,6 @@ class TeacherSerializer(serializers.ModelSerializer):
         school_data = validated_data.pop('school')
         school, _ = School.objects.get_or_create(**school_data)
         instance.school = school
-        print("data", validated_data)
         instance.first_name = validated_data.get(
             'first_name', instance.first_name)
         instance.last_name = validated_data.get(

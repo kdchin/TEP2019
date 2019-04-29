@@ -3,55 +3,52 @@
 }
 
 #left-rectangle {
-    width: 350px;
-    height: 650px;
+    width: 30%;
+    /* height: 650px; */
+    height: 100%;
     background: #CAD5E3;
     float: left;
-    padding: 15px;
+    /* padding: 15px; */
   }
 
 #middle-rectangle {
-    width: 350px;
-    height: 650px;
+    width: 30%;
+    /* height: 650px; */
+    height: 100%;
     background: #CAD5E3;
     float: left;
     margin-left: 20px;
-    padding: 15px;
+    /* padding: 15px; */
   }
 
-#white{
-    width: 350px;
-    height: 25px;
-    background: white;
-    float: left;
-    margin-top: 25px;
-    margin-left: -15px;
-    margin-bottom: 15px;
+.dash-box {
+    padding:15px;
 }
-
-#white2{
-    width: 350px;
-    height: 25px;
+  
+.white-spacer{
+    width: 100%;
+    height: 20px;
     background: white;
-    float: left;
-    margin-top: 25px;
-    margin-left: -15px;
-    margin-bottom: 15px;
+    /* margin-top: 25px; */
+    /* margin-left: -15px; */
+    /* margin-bottom: 15px; */
+    /* margin: 25px 0px 15px 0px; */
+    margin: 0px;
 }
 
 #right-rectangle {
-    width: 350px;
-    height: 650px;
+    width: 30%;
+    height: 100%;
     background: #CAD5E3;
     float: left;
     margin-left: 20px;
-    padding: 15px;
+    /* padding: 15px; */
   }
 
 
 
 h2{
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
     color: black;
 }
@@ -67,11 +64,11 @@ h3{
 }
 
 h4{
-    font-size: 25px;
+    font-size: 20px;
     color: black;
     text-align: center;
-    padding-top: 6px;
-    padding-bottom: 7px;
+    padding-top: 4px;
+    padding-bottom: 6px;
 }
 
 #title-box{
@@ -81,16 +78,16 @@ h4{
 
 #button {
     width: 90%;
-    height: 60px;
+    /* height: px; */
     background: white;
     color: black;
     display: block;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #display-table{
-    width: 90%;
+    /* width: 90%; */
     margin: 0 auto;
     margin-top: 25px;
     color: black;
@@ -120,84 +117,49 @@ h4{
     margin-top: 47px;
   } */
 
-tr:nth-child(even) {
+#display-table tr:nth-child(even) {
     background-color: #E5E5E5;
   }
 
-thead{
+#display-table thead{
     background-color: #E5E5E5;
 }
 
 /* name text */
-td {
+#display-table td {
     padding-left: 15px;
-    font-size: 18px;
-    height: 65px;
+    font-size: 14px;
+    /* height: 65px; */
     vertical-align: middle;
 }
 
 /* title text */
-th {
-    font-size: 18px;
+#display-table th {
+    font-size: 15px;
 }
 
-#stats{
-    padding-top: 25px;
+.stat-val {
+    text-align:center;
+}
+
+.stats-table{
+    width: 100%;
+    background: white;
+}
+
+.stats-table .td {
+    padding: 5px;
 }
 
 /* stats big number */
 h5{
-    font-size: 30px;
+    font-size: 25px;
     color: black;
 }
 
 h6{
+    font-size: 14px;
     text-align: center;
-}
-
-/* stats descriptor */
-#descriptor1{
-    font-size: 16px;
-    color: black;
-    float: left;
-    padding-left: 20px;
-}
-#descriptor2{
-    font-size: 16px;
-    color: black;
-    float: left;
-    padding-left: 25px;
-}
-#descriptor3{
-    font-size: 16px;
-    color: black;
-    float: left;
-    padding-left: 38px;
-}
-
-#descriptor4{
-    font-size: 16px;
-    color: black;
-    float: left;
-    padding-left: 72px;
-}
-
-#numberstats1{
-    float: left;
-    padding-left: 60px;
-    padding-top: 10px;
-}
-
-#numberstats2{
-    float:left;
-    padding-left: 110px;
-    padding-top: 10px;
-}
-
-#numberstats3{
-    float:left;
-    padding-left: 119px;
-    padding-top: 10px;
 }
 
 #wrapper {

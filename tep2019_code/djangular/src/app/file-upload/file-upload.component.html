@@ -3,20 +3,20 @@
     <p>Last Upload:
       <span *ngIf="mostRecentUpload">{{ mostRecentUpload.uploaded_date | date }}</span></p>
     <span *ngIf="mostRecentUpload">
-      <a href="{{mostRecentUpload.file}}" target="_blank">View {{formatFileName(mostRecentUpload.file)}}</a></span><span
+      View <a href="{{mostRecentUpload.file}}" target="_blank">{{formatFileName(mostRecentUpload.file)}}</a></span><span
       *ngIf="!mostRecentUpload">No files uploaded yet!</span>
     <br>
   </div>
   <div *ngIf="!fileToUpload" class="file">
     <label class="file-label">
       <!-- <input class="file-input" type="file" name="resume"> -->
-      <input type="file" class="file-input" id="file" name="file" (change)="handleFileInput($event.target.files)">
-      <span class="file-cta" id="filebox">
+      <button class="button">
+        <input type="file" class="file-input" id="file" name="file" (change)="handleFileInput($event.target.files)">
         <span class="file-icon">
           <i class="fas fa-upload"></i>
         </span>
         Upload New Waiver
-      </span>
+      </button>
     </label>
   </div>
   <div *ngIf="fileToUpload">
