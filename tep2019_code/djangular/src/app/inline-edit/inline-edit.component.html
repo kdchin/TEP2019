@@ -11,6 +11,11 @@
         <input class="input is-small" [required]="required" (blur)="onBlur($event)" [name]="value" [(ngModel)]="value"
           [placeholder]="label" />
       </div>
+      <div *ngIf="fieldType === 'select'">
+        <ng-select [items]="items" [(ngModel)]="value" (blur)="onBlur($event)" [name]="value" bindLabel="name"
+          [selectOnTab]="true">
+        </ng-select>
+      </div>
     </div>
   </div>
   <div *ngIf="!editing">

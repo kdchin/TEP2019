@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { TeacherDetail } from '../models';
+import { TeacherDetail, School } from '../models';
 import { ApiService } from '../api.service';
 import { PhonePipe } from '../phone.pipe';
 import { BoolPipe } from '../bool.pipe';
@@ -16,6 +16,8 @@ export class TeacherDetailComponent implements OnInit {
   teacher: TeacherDetail;
   phonePipe = new PhonePipe();
   activePipe = new BoolPipe();
+  all_schools = [];
+  new_school = new School(null, '', true);
 
   constructor(
     private route: ActivatedRoute,
@@ -25,8 +27,20 @@ export class TeacherDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getTeacher();
+    this.getAllSchools();
   }
-
+  public getAllSchools() {
+    this.apiService.fetchAll('schools').subscribe((data: Array<School>) => {
+      // TODO: add item order customization
+      // TODO: loop over and not have it be an object
+      let all_schools = [];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].active)
+          all_schools.push(data[i]);
+      }
+      this.all_schools = all_schools;
+    });
+  }
   getSchool() {
     return this.teacher.school;
   }

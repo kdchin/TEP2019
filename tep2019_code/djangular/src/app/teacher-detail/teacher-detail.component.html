@@ -6,18 +6,23 @@
         <h3>Details</h3><br>
         <div id="text">
           <label><b>Name:</b><br>
-            <app-inline-edit [(ngModel)]="teacher.first_name" [onChange]="updateTeacher('first_name')">
+            <app-inline-edit class="inline-edit-block" [(ngModel)]="teacher.first_name"
+              [onChange]="updateTeacher('first_name')">
             </app-inline-edit>
-            <app-inline-edit [(ngModel)]="teacher.last_name" [onChange]="updateTeacher('last_name')"></app-inline-edit>
+            <app-inline-edit class="inline-edit-block" [(ngModel)]="teacher.last_name"
+              [onChange]="updateTeacher('last_name')"></app-inline-edit>
           </label><br><br>
           <label><b>Email:</b><br>
-            <app-inline-edit [(ngModel)]="teacher.email" [onChange]="updateTeacher('email')"></app-inline-edit>
+            <app-inline-edit class="inline-edit-block" [(ngModel)]="teacher.email" [onChange]="updateTeacher('email')">
+            </app-inline-edit>
           </label><br><br>
           <label><b>Home Address</b><br>
-            <app-inline-edit [(ngModel)]="teacher.address" [onChange]="updateTeacher('address')"></app-inline-edit>
+            <app-inline-edit class="inline-edit-block" [(ngModel)]="teacher.address"
+              [onChange]="updateTeacher('address')"></app-inline-edit>
           </label><br><br>
           <label><b>Phone Number</b><br>
-            <app-inline-edit [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')" [displayPipe]="phonePipe">
+            <app-inline-edit class="inline-edit-block" [(ngModel)]="teacher.phone" [onChange]="updateTeacher('phone')"
+              [displayPipe]="phonePipe">
             </app-inline-edit>
           </label>
         </div>
@@ -28,10 +33,12 @@
         <div id="text">
           <h3>Additional Information</h3><br>
           <label><b>School:</b><br>
-            <p class="school-name">{{teacher.school.name }}</p>
+            <!-- <p class="school-name">{{teacher.school.name }}</p> -->
+            <app-inline-edit [(ngModel)]="teacher.school" [onChange]="updateTeacher('school')" [fieldType]="'select'"
+              [items]="all_schools" [displayAttr]="'name'"></app-inline-edit>
           </label><br>
           <label><b>Active:</b><br>
-            <app-inline-edit [(ngModel)]="teacher.active" [onChange]="updateTeacher('active')"
+            <app-inline-edit class="inline-edit-block" [(ngModel)]="teacher.active" [onChange]="updateTeacher('active')"
               [displayPipe]="activePipe" [fieldType]="'checkbox'"></app-inline-edit>
           </label>
         </div>

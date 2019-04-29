@@ -19,8 +19,10 @@ export class InlineEditComponent implements ControlValueAccessor {
   @Input() onChange: any = Function.prototype;
   @Input() displayPipe: PipeTransform;
   @Input() onTextClick: any = Function.prototype;
-  @Input() fieldType: string = "text"; // right now only supports "text" and "checkbox"
+  @Input() fieldType: string = "text"; // right now only supports "text" and "checkbox", and "select"
   @Input() required: boolean = true;
+  @Input() items: Array<any> = [];
+  @Input() displayAttr: string = "";
   _value: any = null;
   preValue: any = null;
   editing: boolean = false;
@@ -38,6 +40,7 @@ export class InlineEditComponent implements ControlValueAccessor {
   }
 
   public displayValue(v) {
+    if (this.displayAttr && v && this.displayAttr in v) return v[this.displayAttr];
     return this.displayPipe ? this.displayPipe.transform(v) : v;
   }
 
