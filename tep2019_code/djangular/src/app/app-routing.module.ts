@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard] },
   { path: 'orders/:id', component: OrderDetailComponent, canActivate: [AuthGuard] },
   { path: 'schools', component: SchoolListComponent, canActivate: [AuthGuard] },
-  { path: '', component: DashboardComponent},
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
 
   // otherwise redirect to home
