@@ -14,7 +14,7 @@ export class SchoolCreateComponent {
   constructor(private apiService: ApiService, public dialogRef: MatDialogRef<SchoolCreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  new_school = new School('', true);
+  new_school = new School(null, '', true);
 
   public onSubmit() {
     this.createSchool();
@@ -29,7 +29,7 @@ export class SchoolCreateComponent {
       console.log(response);
       this.schoolChange.emit(this.new_school);
       // TODO: reload page
-      this.new_school = new School('', true);
+      this.new_school = new School(null, '', true);
       this.dialogRef.close();
       window.location.reload();
     });

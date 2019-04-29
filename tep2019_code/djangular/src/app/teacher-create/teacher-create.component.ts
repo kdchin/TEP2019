@@ -11,7 +11,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class TeacherCreateComponent implements OnInit {
   @Output() teacherChange = new EventEmitter<TeacherDetail>();
 
-  new_school = new School('', true);
+  new_school = new School(null, '', true);
   new_teacher = new TeacherDetail(null, '', '', '', '', true, null, [], '');
   schools: Array<School> = [];
   teachers: Array<TeacherDetail> = [];

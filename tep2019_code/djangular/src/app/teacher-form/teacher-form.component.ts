@@ -4,6 +4,7 @@ import { Item, Teacher, Order, OrderItem, School, Waiver, ValPass } from '../mod
 import * as lodash from "lodash";
 import * as crypto from 'crypto-js';
 import { environment } from '../../environments/environment';
+import { NgSelectModule, NgOption } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-teacher-form',
@@ -20,7 +21,7 @@ export class TeacherFormComponent implements OnInit {
   new_address: string = "";
   all_teachers: Array<Teacher> = [];
   order = new Order(null, '', false, null, null);
-  school = new School('', false);
+  school = new School(null, '', false);
   all_schools: Array<School> = [];
   order_items: Array<OrderItem> = [];
   lodash = lodash;
@@ -87,11 +88,12 @@ export class TeacherFormComponent implements OnInit {
     this.apiService.fetchAll('schools').subscribe((data: Array<School>) => {
       // TODO: add item order customization
       // TODO: loop over and not have it be an object
+      let all_schools = [];
       for (let i = 0; i < data.length; i++) {
         if (data[i].active)
-          this.all_schools.push(data[i]);
+          all_schools.push(data[i]);
       }
-      if (this.all_schools.length > 0) this.school = this.all_schools[0];
+      this.all_schools = all_schools;
     });
   }
 
@@ -142,7 +144,7 @@ export class TeacherFormComponent implements OnInit {
     this.isNewTeacher = false;
     this.teacher = new Teacher(null, '', '', '', '', true, null, '');
     this.order = new Order(null, null, false, null, null);
-    this.school = new School('', false);
+    this.school = new School(null, '', false);
     this.recentWaiver = null;
     this.val_email = "";
     this.order_items = [];
@@ -172,6 +174,15 @@ export class TeacherFormComponent implements OnInit {
     this.advancePage();
   }
 
+  public orderItemsNonZero() {
+    let found = false;
+    for (let i = 0; i < this.order_items.length; i++) {
+      let oi: OrderItem = this.order_items[i];
+      found = found || oi.units_taken > 0;
+    }
+    return found;
+  }
+
   public orderItemsAreValid() {
     for (let i = 0; i < this.order_items.length; i++) {
       let oi: OrderItem = this.order_items[i];
@@ -194,9 +205,7 @@ export class TeacherFormComponent implements OnInit {
 
   public createOrderItems() {
     // this.order.checkout_time = new Date().toISOString();
-    console.log(this.order);
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
-      console.log("got back", data);
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
         if (order_item_with_order.units_taken > 0) {

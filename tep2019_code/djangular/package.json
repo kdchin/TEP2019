@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@ng-select/ng-select": "^2.18.0",
     "ajv": "^6.10.0",
     "angular5-csv": "^0.2.11",
     "bulma": "^0.7.4",

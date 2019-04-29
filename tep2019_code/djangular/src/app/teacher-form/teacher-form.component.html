@@ -51,7 +51,7 @@
       </div>
 
       <div class="field">
-        <label class="label">Confirm Email</label>
+        <label class="label" id="required">Confirm Email</label>
         <div class="control">
           <input id="validation_email" class="input" type="email" placeholder="shifu@dreamworks.com"
             [(ngModel)]="val_email" name="validation_email" required maxlength="50" #validation_email="ngModel"
@@ -81,10 +81,15 @@
       <div class="field">
         <div class="select">
           <label class="label" id="required" for="school">School</label>
-          <select class="school" required [(ngModel)]="school" name="school" #school_="ngModel">
+          <!-- <select class="school" required [(ngModel)]="school" name="school" #school_="ngModel">
             <option *ngFor="let schl of all_schools" [ngValue]="schl">
               {{schl.name}}</option>
-          </select>
+          </select> -->
+
+          <ng-select [items]="all_schools" [(ngModel)]="school" name="school" #school_="ngModel" bindLabel="name"
+            placeholder="Select school" notFoundText="No schools" [selectOnTab]="true">
+          </ng-select>
+
         </div>
       </div>
       <div *ngIf="school_.invalid && (school_.dirty || school_.touched)" class="notification is-danger">
@@ -215,6 +220,9 @@
       <div *ngIf="!orderItemsAreValid()" class="notification is-danger">
         Some items have more than the max allotted quantity.
       </div>
+      <div *ngIf="!orderItemsNonZero()" class="notification is-danger">
+        Please take at least one item.
+      </div>
     </div>
   </div>
   <br>
@@ -232,7 +240,8 @@
     <div class="column">
       <button class="button back is-medium" (click)=backPage()>Back</button>
       <div class="divider"></div>
-      <button class="button is-medium is-primary" (click)=createOrder()>Submit</button>
+      <button [disabled]="!orderItemsAreValid() || !orderItemsNonZero()" class="button is-medium is-primary"
+        (click)=createOrder()>Submit</button>
     </div>
   </div>
 </div>
