@@ -3,6 +3,8 @@ import { ApiService } from '../api.service';
 import { Order } from '../models';
 import { School } from '../models';
 import { Teacher } from '../models';
+
+
 // import {ValidationPassword} from '../models';
 
 
@@ -23,6 +25,7 @@ export class DashboardComponent implements OnInit {
 
   private teachers: Array<Teacher> = []; 
   private orders: Array<Order> = [];
+  private today_orders: Array<Order> = [];
   private schools: Array<School> = [];
   constructor(private apiService: ApiService) { }
 
@@ -50,7 +53,7 @@ export class DashboardComponent implements OnInit {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
       this.orders = data;
     });
-    // let today_orders = this.orders.filter(oi => oi.checkout_time !== ));
+    
   }
 
   public getSchools() {
@@ -76,6 +79,10 @@ export class DashboardComponent implements OnInit {
   // }
 
 
+  public getToday() {
+    let today_orders = this.orders.filter(oi => oi.checkout_time == "2011-01-01");
+    this.orders = today_orders;
+  }
 
   public getNumber() {
     return this.orders.length;
