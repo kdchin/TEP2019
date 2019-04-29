@@ -79,18 +79,12 @@
       </div>
 
       <div class="field">
-        <div class="select">
-          <label class="label" id="required" for="school">School</label>
-          <!-- <select class="school" required [(ngModel)]="school" name="school" #school_="ngModel">
-            <option *ngFor="let schl of all_schools" [ngValue]="schl">
-              {{schl.name}}</option>
-          </select> -->
+        <label class="label" id="required" for="school">School</label>
+        
+        <ng-select [items]="all_schools" [(ngModel)]="school" name="school" #school_="ngModel" bindLabel="name"
+          placeholder="Select school" notFoundText="No schools" [selectOnTab]="true">
+        </ng-select>
 
-          <ng-select [items]="all_schools" [(ngModel)]="school" name="school" #school_="ngModel" bindLabel="name"
-            placeholder="Select school" notFoundText="No schools" [selectOnTab]="true">
-          </ng-select>
-
-        </div>
       </div>
       <div *ngIf="school_.invalid && (school_.dirty || school_.touched)" class="notification is-danger">
         <div *ngIf="school_.errors.required">
@@ -99,16 +93,6 @@
         <small>If you don't see your school here, please contact a TEP employee</small>
         <!-- TODO: other box-->
 
-      </div>
-
-      <div class="field section" id="checker">
-        <label type="checkbox">
-          <input name="isNewTeacher" [(ngModel)]="isNewTeacher" [placeholder]="false" type="checkbox" />
-          I am new to TEP
-        </label>
-      </div>
-      <div *ngIf="isNewTeacher" class="notification is-danger">
-        Please see a TEP employee to be registered so you can proceed!
       </div>
 
       <div
@@ -121,7 +105,7 @@
 
     </form>
   </div>
-  <p><small>Note: if you have changed your email, phone number, or school, please contact a TEP employee before
+  <p><small><b>Note:</b> If you have changed your email, phone number, or school, please contact a TEP employee before
       proceeding.</small></p>
   <div class="has-text-centered">
     <button class="button is-medium is-primary" (click)="processTeacher()"
@@ -165,7 +149,7 @@
 
 <div *ngIf="pages[current_page] === 'reminders'">
   <h1 class="title">Shopping Reminders</h1>
-  <div class="orange-card">
+  <div class="card">
     <div class="section" id="success">
       Please be aware of the <strong>maximum quantities</strong> of each item and the <strong>units</strong> of each
       item.
@@ -173,7 +157,7 @@
   </div>
   <br>
 
-  <div class="orange-card">
+  <div class="card">
     <div class="section" id="success">
       Please meet a volunteer at the <strong>checkout desk</strong> before moving onto the incentive items. If you have
       any
@@ -210,7 +194,7 @@
                 </select>
                 <!-- <input id="units_taken" class="input" type="text" [(ngModel)]="order_item.units_taken" name="units_taken"> -->
               </div>
-              <button class="button max is-link" (click)="maxOutOrderItem(order_item)">Max:
+              <button class="button is-primary" style="width: 125px;" (click)="maxOutOrderItem(order_item)">Max:
                 {{order_item.item.max_units}}
                 {{ order_item.item.unit_label_name }}</button>
             </div>
@@ -227,11 +211,11 @@
   </div>
   <br>
 
-  <h1 class="title">Please Hand Device to Employee</h1>
+  <h1 class="title" style="margin-top: 25px; margin-bottom: 50px;">Please Hand Device to Employee</h1>
 
-  <div class="orange-card">
+  <div class="card">
     <div class="section">
-      <label class="label" style="text-align: center">Passcode:</label>
+      <label style="display: block; text-align: center"><b>Passcode:</b></label>
       <input class="input" type="password" [(ngModel)]="guess" #guess_="ngModel" (focus)="password_on_focus()">
       <div *ngIf="guess_.touched && submit_pressed && !password_matches(guess)" class="notification is-danger">
         Password does not match.
