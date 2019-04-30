@@ -59,9 +59,10 @@
           <td> {{ item.unit_label_name }} </td>
           <td> {{ item.max_units }} </td>
           <td> {{ item.qty_per_unit }} </td>
-          <!-- TODO: this displays kind of weirdly -->
-          <app-inline-edit [(ngModel)]="item.active" [onChange]="updateActive(i)" [fieldType]="'checkbox'"
-            [displayPipe]="activePipe"></app-inline-edit>
+          <td>
+            <app-inline-edit [(ngModel)]="item.active" [onChange]="updateActive(i)" [fieldType]="'checkbox'"
+              [displayPipe]="activePipe"></app-inline-edit>
+          </td>
         </tr>
       </table>
     </div>

@@ -47,8 +47,8 @@ export class FileUploadComponent implements OnInit {
     if (this.fileToUpload && this.isPdf()) {
       this.apiService.uploadFile(this.fileToUpload).subscribe((data: Waiver) => {
         this.mostRecentUpload = data;
+        this.fileToUpload = null;
       });
-      this.fileToUpload = null;
     }
   }
 

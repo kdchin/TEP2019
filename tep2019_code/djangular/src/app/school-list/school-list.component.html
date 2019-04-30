@@ -1,4 +1,5 @@
 <h1 class="title">All Schools</h1>
+<small>Note: inactive schools will not appear on forms.</small>
 <div>
   <button class="button is-info" (click)="openDialog()">New School</button>
   <input type="text" [(ngModel)]="searchText" placeholder="Search Schools...">
@@ -7,15 +8,22 @@
       <th>Name</th>
       <th>Active</th>
     </tr>
-    <tr *ngFor="let school of schools | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }">
-      <td> {{ school.name }} </td>
-      <td> {{ school.active }} </td>
+    <tr
+      *ngFor="let school of schools | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+      <td>
+        <app-inline-edit [(ngModel)]="school.name" [fieldType]="'text'" [onChange]="updateSchool(i, 'name')">
+        </app-inline-edit>
+      </td>
+      <td>
+        <app-inline-edit [(ngModel)]="school.active" [onChange]="updateSchool(i, 'active')" [fieldType]="'checkbox'"
+          [displayPipe]="activePipe"></app-inline-edit>
+      </td>
     </tr>
   </table>
-  <div id = "creator" [hidden]="!shouldShowCreate">
+  <div id="creator" [hidden]="!shouldShowCreate">
     <app-school-create (schoolChange)="onNewSchool($event)"></app-school-create>
-    <div id = "undo">
-      <button type= "button" class = "button is-danger" (click)="toggleShowCreate()">Cancel</button>
+    <div id="undo">
+      <button type="button" class="button is-danger" (click)="toggleShowCreate()">Cancel</button>
     </div>
   </div>
 </div>

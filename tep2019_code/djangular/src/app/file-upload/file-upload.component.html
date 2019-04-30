@@ -21,20 +21,21 @@
   </div>
   <div *ngIf="fileToUpload">
     <div *ngIf="isPdf()">
-      <button class="button is-primary" (click)="uploadFile()">Upload {{fileToUpload.name}}</button>
+      <button class="button is-link" (click)="uploadFile()">Upload {{fileToUpload.name}}</button>
     </div>
     <div *ngIf="!isPdf()">
       <div class="notification is-danger">File must be a pdf!</div>
       <label class="file-label">
-        <input type="file" class="file-input" id="file" name="file" (change)="handleFileInput($event.target.files)">
-        <span class="file-cta" id="filebox">
+        <!-- <input class="file-input" type="file" name="resume"> -->
+        <button class="button">
+          <input type="file" class="file-input" id="file" name="file" (change)="handleFileInput($event.target.files)">
           <span class="file-icon">
             <i class="fas fa-upload"></i>
           </span>
           Upload New Waiver
-        </span>
+        </button>
       </label>
     </div>
-    <button class="button" (click)="cancelUpload()">Cancel</button>
+    <button class="button is-danger" (click)="cancelUpload()">Cancel</button>
   </div>
 </div>

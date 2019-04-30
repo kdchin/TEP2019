@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { School } from '../models';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { SchoolCreateComponent } from '../school-create/school-create.component';
+import { BoolPipe } from '../bool.pipe';
 
 @Component({
   selector: 'app-school-list',
@@ -15,6 +16,7 @@ export class SchoolListComponent implements OnInit {
   schools: Array<School> = [];
   shouldShowCreate = false;
   p;
+  activePipe = new BoolPipe();
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -29,6 +31,13 @@ export class SchoolListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // this.getItems(); shows double of each item - put it in so user can see new item in table
     });
+  }
+
+  updateSchool(i: number, attr: string) {
+    return (newValue) => {
+      this.schools[i][attr] = newValue;
+      this.apiService.update('schools', this.schools[i]).subscribe();
+    }
   }
 
 

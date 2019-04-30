@@ -11,7 +11,7 @@
         </label>
         <br>
         <label>
-          <h4><b>Exported for Salesforce:</b><br>{{orderDetail.uploaded}}</h4>
+          <h4><b>Exported for Salesforce:</b><br>{{activePipe.transform(orderDetail.uploaded)}}</h4>
         </label>
       </div>
     </div>
@@ -26,10 +26,14 @@
             <tr>
               <th>Item</th>
               <th>Units Taken</th>
+              <th>Amount Per Unit</th>
+              <th>Total Item Count</th>
             </tr>
             <tr *ngFor="let items of orderDetail.order_items">
               <td> {{ items.item.name }} </td>
-              <td> {{ items.units_taken }} </td>
+              <td> {{ items.units_taken }} / {{items.item.max_units }} </td>
+              <td> {{items.item.qty_per_unit}}</td>
+              <td> {{ items.units_taken * items.item.qty_per_unit }} </td>
             </tr>
           </table>
         </div>

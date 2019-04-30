@@ -43,7 +43,7 @@ class Teacher(models.Model):
     address = models.CharField(max_length=100, blank=True)
 
     class Meta:
-        ordering = ('last_name', )
+        ordering = ('last_name', 'first_name',)
 
 
 class Waiver(models.Model):
@@ -69,8 +69,12 @@ class Order(models.Model):
     items = models.ManyToManyField(
         Item, through='OrderItem', related_name='orders')
 
+    class Meta:
+        ordering = ('checkout_time', )
 
 # Associative entity for order and item
+
+
 class OrderItem(models.Model):
     order = models.ForeignKey(
         Order, related_name='order_items', on_delete=models.CASCADE, null=False)

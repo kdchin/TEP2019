@@ -7,14 +7,18 @@
       <label class="label">Name</label>
       <div class="control">
         <input id="name" class="input" type="text" placeholder="Pittsburgh School" required
-          [(ngModel)]="new_school.name" name="name">
+          [(ngModel)]="new_school.name" name="name" #school_name="ngModel">
       </div>
+      <div *ngIf="school_name.touched && schoolExists()" class="notification is-danger">School with the same name
+        already
+        exists.</div>
     </div>
 
     <mat-dialog-actions>
       <div style="margin: 0 auto;">
         <button class="button is-danger" mat-dialog-close>Cancel</button>
-        <button type="submit" class="button is-info">Create School</button>
+        <button [disabled]="!school_name.touched || schoolExists()" type="submit" class="button is-info">Create
+          School</button>
       </div>
     </mat-dialog-actions>
   </form>

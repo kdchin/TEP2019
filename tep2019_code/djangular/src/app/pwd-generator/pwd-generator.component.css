@@ -7,7 +7,7 @@
 }
 
 button {
-    width: 90%;
+    /* width: 90%; */
     /* height: 60px; */
     background: white;
     color: black;
@@ -16,3 +16,10 @@ button {
     font-size: 16px;
 }
 
+
+.file-icon {
+    float: left;
+    /* padding-left: 10px; */
+    /* padding-top:6px; */
+    /* padding-top: 8px; */
+}

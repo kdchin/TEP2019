@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { OrderDetail, OrderDetailItem } from '../models';
 import { ApiService } from '../api.service';
+import { BoolPipe } from '../bool.pipe';
 
 @Component({
   selector: 'app-order-detail',
@@ -12,6 +13,7 @@ import { ApiService } from '../api.service';
 })
 export class OrderDetailComponent implements OnInit {
   orderDetail: OrderDetail;
+  activePipe = new BoolPipe();
 
   constructor(
     private route: ActivatedRoute,

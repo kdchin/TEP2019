@@ -22,7 +22,10 @@ export class PwdGeneratorComponent implements OnInit {
   }
 
   randomPwd() {
-    this.new_pwd = randomWords({ min: 1, max: 3, join: '-', maxLength: 7 });
+    let new_word = randomWords({ min: 1, max: 2, join: '-', minLength: 5, maxLength: 7 });
+    while (new_word.length < 5)
+      new_word = randomWords({ min: 1, max: 2, join: '-', minLength: 5, maxLength: 7 });
+    this.new_pwd = new_word
     // this.submitPassword();
     this.shouldShowChange = true;
   }

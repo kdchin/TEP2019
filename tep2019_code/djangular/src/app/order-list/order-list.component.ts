@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Order } from '../models';
-
+import { BoolPipe } from '../bool.pipe';
 
 @Component({
   selector: 'app-order-list',
@@ -11,6 +11,7 @@ import { Order } from '../models';
 export class OrderListComponent implements OnInit {
   selectedOrder: Order;
 
+  activePipe = new BoolPipe();
   orders: Array<Order> = [];
   constructor(private apiService: ApiService) { }
 
@@ -37,11 +38,11 @@ export class OrderListComponent implements OnInit {
     });
   }
 
-  public alerter(order: Order){
+  public alerter(order: Order) {
     let r = confirm("Are you sure you would like to delete this order?");
     if (r == true) {
       this.deleteOrder(order)
-    } 
+    }
   }
 
 }

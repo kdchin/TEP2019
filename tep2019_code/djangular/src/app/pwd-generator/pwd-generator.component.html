@@ -10,11 +10,18 @@
 </div>
 <div id="changer" [hidden]="!shouldShowChange">
   <label class="label">New Password:</label>
-  <input class="input" type="text" [(ngModel)]="new_pwd">
-  <br><br>
-  <button class="button" (click)="randomPwd()">Generate Random Password</button>
-  <button class="button" (click)="submitPassword()">Update Password</button>
-  <button class="button" (click)="toggleShowChange()">Cancel</button>
+  <div class="field is-grouped">
+    <input class="input" type="text" [(ngModel)]="new_pwd">
+    <button class="button is-primary" (click)="randomPwd()">
+      <span class="file-icon">
+        <i class="fas fa-redo"></i>
+      </span>
+    </button>
+  </div>
+  <div class="field is-grouped">
+    <button class="button is-danger" (click)="toggleShowChange()">Cancel</button>
+    <button class="button is-link" (click)="submitPassword()">Update Password</button>
+  </div>
 </div>
 
 <!-- (click)="toggleShowCreate() -->

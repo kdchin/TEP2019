@@ -1,20 +1,3 @@
-input {
-  position: relative;
-  top: 0em;
-  width: 50%;
-  padding: 10px 15px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 12px;
-}
-
-input.readonly {
-  background-color: #D4D4D4;
-  color: #474747;
-  cursor: default;
-}
 
 label {
   font-size: 18px;
@@ -32,7 +15,7 @@ button.back {
 
 .column {
   float: left;
-  width: 30%;
+  /* width: 30%; */
   padding: 10px;
 }
 
@@ -43,9 +26,9 @@ button.back {
 }
 
 h3 {
-  width: 62%;
-  margin: 0 auto;
-  border-radius: 5px;
+  /* width: 62%; */
+  /* margin: 0 auto; */
+  /* border-radius: 5px; */
   font-size: 24px;
   font-weight: bold;
 }
@@ -77,25 +60,6 @@ table {
   }
 }
 
-#display-table{
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 25px;
-  color: black;
-  background-color: #E5E5E5;
-  display: block;
-  overflow: scroll;
-  max-height: 450px;
-}
-
-tr:nth-child(even) {
-  background-color: #E5E5E5
-}
-
-thead {
-  background-color: #E5E5E5;
-}
-
 span{
   width: 15em;
   margin-right: .5em;
@@ -103,38 +67,6 @@ span{
   font-size: 18px;
 }
 
-.column {
-  float: left;
-  width: 30%;
-  padding: 10px;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-h3 {
-  width: 80%;
-  margin: 0 auto;
-  border-radius: 5px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
-  text-align: left;
-  height: 420px;
-}
-
-@media screen and (max-width: 780px) {
-  .column {
-    width: 100%;
-  }
-}
 
 #display-table{
   width: 90%;
@@ -165,13 +97,13 @@ thead {
 /* name text */
 td {
   padding-left: 15px;
-  font-size: 18px;
-  height: 65px;
+  font-size: 14px;
+  /* height: 65px; */
   vertical-align: middle;
-  width: 10em;
+  /* width: 100%; */
 }
 
 /* title text */
 th {
-  font-size: 18px;
+  font-size: 16px;
 }
