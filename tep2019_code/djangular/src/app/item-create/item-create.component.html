@@ -3,14 +3,14 @@
 </h1>
 <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
   <div class="field">
-    <label class="label">Name</label>
+    <label class="label required">Name</label>
     <div class="control">
       <input id="name" class="input" type="text" placeholder="pencils" required [(ngModel)]="new_item.name" name="name">
     </div>
   </div>
 
   <div class="field">
-    <label class="label">Label Name</label>
+    <label class="label required">Label Name</label>
     <div class="control">
       <input id="unit_label_name" class="input" type="text" placeholder="packs" required
         [(ngModel)]="new_item.unit_label_name" name="unit_label_name">
@@ -18,7 +18,7 @@
   </div>
 
   <div class="field">
-    <label class="label">Max Units</label>
+    <label class="label required">Max Units</label>
     <div class="control">
       <input id="max_units" class="input" type="text" placeholder="10" required [(ngModel)]="new_item.max_units"
         name="max_units">
@@ -26,7 +26,7 @@
   </div>
 
   <div class="field">
-    <label class="label">Quantity Per Unit</label>
+    <label class="label required">Quantity Per Unit</label>
     <div class="control">
       <input id="qty_per_unit" class="input" type="text" placeholder="10" required [(ngModel)]="new_item.qty_per_unit"
         name="qty_per_unit">

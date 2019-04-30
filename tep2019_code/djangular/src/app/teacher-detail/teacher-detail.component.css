@@ -134,12 +134,12 @@ thead {
 td {
   width: 10em;
   padding-left: 15px;
-  font-size: 18px;
-  height: 65px;
+  font-size: 14px;
+  /* height: 65px; */
   vertical-align: middle;
 }
 
 /* title text */
 th {
-  font-size: 18px;
+  font-size: 16px;
 }

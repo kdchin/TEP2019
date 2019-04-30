@@ -3,14 +3,14 @@
 </h1>
 <form (ngSubmit)="onSubmit()" #teacherForm="ngForm">
   <div class="field">
-    <label class="label">First Name</label>
+    <label class="label required">First Name</label>
     <div class="control">
       <input id="first_name" class="input" type="text" placeholder="Master" required
         [(ngModel)]="new_teacher.first_name" name="first_name" #first_name="ngModel">
     </div>
 
     <div class="field">
-      <label class="label">Last Name</label>
+      <label class="label required">Last Name</label>
       <div class="control">
         <input id="last_name" class="input" type="text" placeholder="ShiFu" required [(ngModel)]="new_teacher.last_name"
           name="last_name" #last_name="ngModel">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="field">
-      <label class="label">Email</label>
+      <label class="label required">Email</label>
       <div class="control">
         <input id="email" class="input" type="text" placeholder="shifu@dreamworks.com" required
           [(ngModel)]="new_teacher.email" name="email" #email="ngModel">
@@ -47,7 +47,7 @@
 
   <div class="field">
     <div>
-      <label class="label" for="school">School</label>
+      <label class="label required" for="school">School</label>
       <!-- <select id="school" [(ngModel)]="new_school" name="school">
         <option *ngFor="let schl of schools" [ngValue]="schl">
           {{schl.name}}</option>

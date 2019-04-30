@@ -8,3 +8,8 @@ button {
     margin-left: 15px;
     margin-bottom: 10px;
 }
+
+.required:after{
+  content:" *" ;
+  color:red   
+}

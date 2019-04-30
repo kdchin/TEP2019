@@ -4,7 +4,7 @@
   </h1>
   <form (ngSubmit)="onSubmit()" #schoolForm="ngForm">
     <div class="field">
-      <label class="label">Name</label>
+      <label class="label required">Name</label>
       <div class="control">
         <input id="name" class="input" type="text" placeholder="Pittsburgh School" required
           [(ngModel)]="new_school.name" name="name" #school_name="ngModel">
