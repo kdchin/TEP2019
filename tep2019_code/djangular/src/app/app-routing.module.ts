@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { AuthGuard } from './_guards';
+import { CsvImportComponent } from './csv-import/csv-import.component';
 
 const routes: Routes = [
   { path: '', component: TeacherFormComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'schools', component: SchoolListComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
+  { path: 'import', component: CsvImportComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

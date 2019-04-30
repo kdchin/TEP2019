@@ -34,6 +34,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CsvImportComponent } from './csv-import/csv-import.component';
+import { FileUtil } from './csv-import/file.util';
+import { Constants } from './csv-import/test.constants';
 
 
 @NgModule({
@@ -60,7 +63,8 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
     ExportCsvComponent,
     HomeComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    CsvImportComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +91,8 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
     { provide: MAT_DIALOG_DATA, useValue: [] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // { provide: [FileUtil, Constants], useClass: CsvImportComponent, },
+    FileUtil, Constants
 
     // provider used to create fake backend
     // fakeBackendProvider
