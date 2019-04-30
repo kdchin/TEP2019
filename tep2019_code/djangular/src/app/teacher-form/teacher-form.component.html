@@ -80,7 +80,7 @@
 
       <div class="field">
         <label class="label" id="required" for="school">School</label>
-        
+
         <ng-select [items]="all_schools" [(ngModel)]="school" name="school" #school_="ngModel" bindLabel="name"
           placeholder="Select school" notFoundText="No schools" [selectOnTab]="true">
         </ng-select>
@@ -123,7 +123,8 @@
     <a href="{{recentWaiver.file}}" target="_blank">View waiver in browser</a>
   </div>
   <div *ngIf="recentWaiver">
-    <pdf-viewer [src]="recentWaiver.file" [render-text]="true" style="display: block;"></pdf-viewer>
+    <pdf-viewer [src]="recentWaiver.file" [fit-to-page]="true" [original-size]="false" [render-text]="true"
+      style="display: block;"></pdf-viewer>
   </div>
   <div *ngIf="!recentWaiver">
     - <img src="../../assets/temp_waiver.png" class="center">
@@ -181,6 +182,9 @@
   <h1 class="title">Checkout Sheet for {{teacher.first_name}} {{teacher.last_name}}</h1>
   <div class="card">
     <div class="order-items">
+      <div class="tip">
+        <small><b>Tip:</b>Press max-buttons if you take the max allotted quantities!</small>
+      </div>
       <form *ngFor="let order_item of order_items;" #orderItemForm="ngForm">
         <div class="item-columns">
           <div class="column">
@@ -203,9 +207,6 @@
       </form>
       <div *ngIf="!orderItemsAreValid()" class="notification is-danger">
         Some items have more than the max allotted quantity.
-      </div>
-      <div *ngIf="!orderItemsNonZero()" class="notification is-danger">
-        Please take at least one item.
       </div>
     </div>
   </div>
