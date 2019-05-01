@@ -19,6 +19,11 @@ export class CsvImportComponent implements OnInit {
   school_columns = 1;
   teacher_columns = 6; // give: fname/lname/email/phone/school/address, need: id, fname, lname, email, phone, active, school, orders, address
   schools = [];
+  school_names = [];
+  teachers = [];
+  teacher_valid = [];
+  teacher_edited = [];
+  orig_schools = [];
 
   constructor(private _router: Router,
     private _fileUtil: FileUtil,
@@ -27,11 +32,20 @@ export class CsvImportComponent implements OnInit {
 
   ngOnInit() {
     this.getSchools();
+    this.getTeachers();
   }
 
   getSchools() {
     this.apiService.fetchAll('schools').subscribe((schools: Array<School>) => {
       this.schools = schools;
+      this.school_names = lodash.map(this.schools, school => school.name.toLowerCase());
+    });
+  }
+
+  getTeachers() {
+    this.apiService.fetchAll('teachers').subscribe((teachers: Array<Teacher>) => {
+      this.teachers = lodash.map(teachers, teacher => teacher.email);
+      this.orig_schools = lodash.map(teachers, teacher => teacher.school.name);
     });
   }
 
@@ -64,7 +78,6 @@ export class CsvImportComponent implements OnInit {
 
       this.csvRecords = this._fileUtil.getDataRecordsArrayFromCSVFile(csvRecordsArray,
         headerLength, Constants.validateHeaderAndRecordLengthFlag, Constants.tokenDelimeter);
-      // console.log(this.csvRecords);
 
       if (this.csvRecords == null) {
         //If control reached here it means csv file contains error, reset file.
@@ -94,17 +107,6 @@ export class CsvImportComponent implements OnInit {
     return !this.isEmptyCSV() && this.csvRecords[0].length === this.school_columns;
   }
 
-  // TODO: finish this
-  teachersAreValid() {
-    if (this.isEmptyCSV()) return false;
-    this.apiService.fetchAll('teachers').subscribe((teachers: Array<Teacher>) => {
-      let existing_emails = lodash.map(teachers, teacher => teacher.email);
-      for (let i = 0; i < this.csvRecords.length; i++) {
-        let data = this.csvRecords[i];
-        // let teacher = new Teacher(null, data[1], data[2], data[3]);
-      }
-    });
-  }
 
   columnsAreConsistent(data, expected_length) {
     for (let i = 0; i < data.length; i++) {
@@ -115,22 +117,78 @@ export class CsvImportComponent implements OnInit {
     return true;
   }
 
-  deleteSchool(i: number) {
+
+  // school index is 5
+  changeTeacher(i, newValue: School) {
+    if (newValue) {
+      this.csvRecords[i][5] = newValue.name;
+      this.teacher_valid[i][1] = true;
+      this.teacher_edited[i] = true;
+    }
+  }
+
+  deleteRecord(i: number) {
     if (i < this.csvRecords.length) {
       this.csvRecords.splice(i, 1);
       if (this.csvRecords.length === 0) this.fileReset();
     }
   }
 
+  teacherIsValid(i) {
+    if (this.teacher_valid.length === 0 && this.csvRecords.length === 0) return [true, true];
+    if (this.teacher_valid.length === 0 && this.csvRecords.length > 0) {
+      let valid = [];
+      let edited = [];
+      for (let i = 0; i < this.csvRecords.length; i++) {
+        let email = this.csvRecords[i][2];
+        let school = this.csvRecords[i][5].toLowerCase();
+        valid.push([!this.teachers.includes(email), this.school_names.includes(school)]);
+        edited.push(false);
+      }
+      this.teacher_edited = edited;
+      this.teacher_valid = valid;
+    }
+    return this.teacher_valid[i][0] && this.teacher_valid[i][1];
+  }
+
+  teacherIsEdited(i) {
+    if (this.teacher_valid.length === 0 && this.csvRecords.length > 0) {
+      this.teacherIsValid(i);
+    }
+    return this.teacher_edited[i];
+  }
+
+  teacherSchoolIsValid(i) {
+    if (this.teacher_valid.length === 0 && this.csvRecords.length > 0) {
+      this.teacherIsValid(i);
+    }
+    return this.teacher_valid[i][1];
+  }
+
+  teacherEmailIsValid(i) {
+    if (this.teacher_valid.length === 0 && this.csvRecords.length > 0) {
+      this.teacherIsValid(i);
+    }
+    return this.teacher_valid[i][0];
+  }
+
+  teachersAreValid() {
+    if (this.isEmptyCSV() || !this.columnsAreConsistent(this.csvRecords, this.teacher_columns))
+      return false;
+    for (let i = 0; i < this.csvRecords.length; i++) {
+      if (!this.teacherIsValid(i))
+        return false;
+    }
+    return true;
+  }
+
   schoolIsValid(school_row) {
-    let existing_schools = lodash.map(this.schools, school => school.name.toLowerCase());
-    return !existing_schools.includes(school_row[0].toLowerCase());
+    return !this.school_names.includes(school_row[0].toLowerCase());
   }
 
   schoolsAreValid() {
     if (this.isEmptyCSV() || !this.columnsAreConsistent(this.csvRecords, this.school_columns))
       return false;
-    let existing_schools = lodash.map(this.schools, school => school.name.toLowerCase());
     for (let i = 0; i < this.csvRecords.length; i++) {
       let data = this.csvRecords[i];
       if (!this.schoolIsValid(data))
@@ -139,7 +197,28 @@ export class CsvImportComponent implements OnInit {
     return true;
   }
 
+  getSchool(school_name) {
+    for (let i = 0; i < this.schools.length; i++) {
+      if (this.school_names[i] === school_name.toLowerCase()) {
+        return this.schools[i];
+      }
+    }
+  }
+
   uploadTeachers() {
+    if (!this.teachersAreValid()) {
+      this.fileReset();
+      return;
+    }
+    for (let i = 0; i < this.csvRecords.length; i++) {
+      let data = this.csvRecords[i];
+      let school = this.getSchool(data[5]);
+      let new_teacher = new Teacher(null, data[0], data[1], data[2], data[3], true, school, data[4]);
+      this.apiService.create('teachers', new_teacher).subscribe((result) => {
+        // console.log(result);
+      });
+    }
+    this.fileReset();
   }
 
   uploadSchools() {

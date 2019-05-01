@@ -43,7 +43,7 @@
         <tr *ngFor="let school_row of csvRecords; let i = index">
           <td [ngClass]="{'is-danger': !schoolIsValid(school_row) }">{{school_row[0]}}</td>
           <td>
-            <a (click)="deleteSchool(i)"><span class="file-icon">
+            <a (click)="deleteRecord(i)"><span class="file-icon">
                 <i class="fas fa-trash-alt"></i>
               </span>
             </a>
@@ -63,7 +63,41 @@
         <td>School</td>
       </thead>
       <tbody>
-        <tr *ngFor="let csvRec of csvRecords;let i=index">
+        <tr *ngFor="let teacher_row of csvRecords;let i=index">
+          <td>
+            {{ teacher_row[0]}}
+          </td>
+          <td>
+            {{ teacher_row[1]}}
+          </td>
+          <td [ngClass]="{'is-danger': !teacherEmailIsValid(i)}">
+            {{ teacher_row[2]}}
+          </td>
+          <td>
+            {{ teacher_row[3]}}
+          </td>
+          <td>
+            {{ teacher_row[4]}}
+          </td>
+          <td *ngIf="!teacherSchoolIsValid(i)" class="is-danger school-field">
+            <ng-select [items]="schools" [selectOnTab]="true" bindLabel="name" (change)="changeTeacher(i, $event)">
+            </ng-select>
+            {{ teacher_row[5]}}
+          </td>
+          <td *ngIf="teacherSchoolIsValid(i)" class="school-field">
+            <ng-select *ngIf="teacherIsEdited(i)" [items]="schools" [selectOnTab]="true" bindLabel="name"
+              (change)="changeTeacher(i, $event)">
+            </ng-select>
+            <span *ngIf="teacherIsEdited(i)">original (invalid): </span>{{ orig_schools[i]}}
+            <br>
+            <span *ngIf="teacherIsEdited(i)">now: {{teacher_row[5]}}</span>
+          </td>
+          <td>
+            <a (click)="deleteRecord(i)"><span class="file-icon">
+                <i class="fas fa-trash-alt"></i>
+              </span>
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
