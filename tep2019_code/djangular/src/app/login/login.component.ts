@@ -2,13 +2,13 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
 import { AuthenticationService } from '../_services';
 
+// from http://jasonwatmore.com/post/2018/11/16/angular-7-jwt-authentication-example-tutorial
 @Component({
     templateUrl: 'login.component.html',
     styleUrls: ['login.component.css']
-  })
+})
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;

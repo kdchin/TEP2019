@@ -5,7 +5,7 @@ import { Constants } from './test.constants';
 import { ApiService } from '../api.service';
 import { Teacher, School } from '../models';
 import * as lodash from "lodash";
-
+// from https://javabypatel.blogspot.com/2017/07/read-csv-file-in-angular2.html
 @Component({
   selector: 'app-csv-import',
   templateUrl: './csv-import.component.html',
