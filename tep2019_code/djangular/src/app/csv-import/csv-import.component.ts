@@ -17,7 +17,7 @@ export class CsvImportComponent implements OnInit {
 
   csvRecords = [];
   school_columns = 1;
-  // teacher_columns = 4;
+  teacher_columns = 6; // give: fname/lname/email/phone/school/address, need: id, fname, lname, email, phone, active, school, orders, address
   schools = [];
 
   constructor(private _router: Router,
@@ -82,9 +82,21 @@ export class CsvImportComponent implements OnInit {
     this.csvRecords = [];
   }
 
+  isEmptyCSV() {
+    return this.csvRecords.length === 0;
+  }
+
+  isTeacherCSV() {
+    return !this.isEmptyCSV() && this.csvRecords[0].length === this.teacher_columns;
+  }
+
+  isSchoolCSV() {
+    return !this.isEmptyCSV() && this.csvRecords[0].length === this.school_columns;
+  }
+
   // TODO: finish this
   teachersAreValid() {
-    if (this.csvRecords.length === 0) return false;
+    if (this.isEmptyCSV()) return false;
     this.apiService.fetchAll('teachers').subscribe((teachers: Array<Teacher>) => {
       let existing_emails = lodash.map(teachers, teacher => teacher.email);
       for (let i = 0; i < this.csvRecords.length; i++) {
@@ -94,35 +106,43 @@ export class CsvImportComponent implements OnInit {
     });
   }
 
-  schoolsAreValid() {
-    if (this.csvRecords.length === 0) {
-      alert("CSV is empty");
-      return false;
+  columnsAreConsistent(data, expected_length) {
+    for (let i = 0; i < data.length; i++) {
+      let data = this.csvRecords[i];
+      if (!data || data.length !== expected_length)
+        return false;
     }
+    return true;
+  }
+
+  deleteSchool(i: number) {
+    if (i < this.csvRecords.length) {
+      this.csvRecords.splice(i, 1);
+      if (this.csvRecords.length === 0) this.fileReset();
+    }
+  }
+
+  schoolIsValid(school_row) {
     let existing_schools = lodash.map(this.schools, school => school.name.toLowerCase());
-    let matches = [];
+    return !existing_schools.includes(school_row[0].toLowerCase());
+  }
+
+  schoolsAreValid() {
+    if (this.isEmptyCSV() || !this.columnsAreConsistent(this.csvRecords, this.school_columns))
+      return false;
+    let existing_schools = lodash.map(this.schools, school => school.name.toLowerCase());
     for (let i = 0; i < this.csvRecords.length; i++) {
       let data = this.csvRecords[i];
-      if (data.length !== this.school_columns) {
-        alert(`Number of lines in line ${i} (${data.length}) does not match expected length (${this.school_columns})`);
+      if (!this.schoolIsValid(data))
         return false;
-      } else if (existing_schools.includes(data[0].toLowerCase())) {
-        matches.push(data[0]);
-      }
-      // let teacher = new Teacher(null, data[1], data[2], data[3]);
     }
-    if (matches.length === 0) return true;
-    else {
-      alert(`Upload failed. The following schools already exist:\n${matches.join("\n")}`);
-      return false;
-    }
+    return true;
   }
 
   uploadTeachers() {
   }
 
   uploadSchools() {
-    console.log(this.csvRecords);
     if (!this.schoolsAreValid()) {
       this.fileReset();
       return;

@@ -64,7 +64,8 @@ export class ExportCsvComponent implements OnInit {
       }
     }
     let fDate = (date: Date) => formatDate(date, 'MM-dd-yyyy', 'en-US');
-    new Angular5Csv(data, `${fDate(oldest)} to ${fDate(newest)} Checkouts`);
+    let options = { quoteStrings: '' };
+    new Angular5Csv(data, `${fDate(oldest)} to ${fDate(newest)} Checkouts`, options);
     for (let i = 0; i < orders.length; i++) {
       let newVal = { ...orders[i] };
       if (!newVal.uploaded) {
@@ -88,18 +89,18 @@ export class ExportCsvComponent implements OnInit {
     this.export(this.unuploaded_orders);
   }
 
-  public alerterLast(){
+  public alerterLast() {
     let r = confirm("Are you sure you would like to export since last?");
     if (r == true) {
       this.exportLast()
-    } 
+    }
   }
 
-  public alerterAll(){
+  public alerterAll() {
     let r = confirm("Are you sure you would like to export everything?");
     if (r == true) {
       this.exportAll()
-    } 
+    }
   }
 
   exportAll() {

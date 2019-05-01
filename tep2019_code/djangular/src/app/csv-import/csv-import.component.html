@@ -1,23 +1,71 @@
 <h2 class="title">Import Teacher or School CSV</h2>
 <div class="field is-grouped">
-  <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" class="button is-primary"
+  <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" class="button"
     (change)="fileChangeListener($event)" accept=".csv" value={{selectedImageFile}} />
-  <input type="button" name="Reset" id="txtFileReset" class="button is-danger" (click)="fileReset()" value="Reset" />
+  <div *ngIf="csvRecords.length > 0">
+    <input type="button" name="Reset" id="txtFileReset" class="button is-danger" (click)="fileReset()" value="Reset" />
+  </div>
 </div>
 
-<div *ngIf="csvRecords.length > 0">
-  <button class="button" (click)="uploadTeachers()">Upload Teachers</button>
-  <button class="button" (click)="uploadSchools()">Upload Schools</button>
+<div *ngIf="!isEmptyCSV()">
+  <div *ngIf="isTeacherCSV()">
+    <button class="button is-link" (click)="uploadTeachers()">Upload Teachers</button>
+    <br>
+    <br>
+  </div>
+  <div *ngIf="isSchoolCSV()">
+    <button class="button is-link" (click)="uploadSchools()">Upload Schools</button>
+    <br>
+    <br>
+  </div>
   <h3 class="title">Preview</h3>
-  <table class="table table-responsive table-hover">
-    <tbody>
-      <ng-container *ngFor="let csvRec of csvRecords | slice:0:10;let i=index">
-        <tr>
-          <ng-container *ngFor="let data of csvRec;let j=index">
-            <td>{{data}}</td>
-          </ng-container>
+  <div *ngIf="!isEmptyCSV() && !isSchoolCSV() && !isTeacherCSV()">
+    <div class="notification is-danger">CSV format does not match schools or
+      teachers. School csv's have one column with their name, and Teacher csv's have first name, last name, email,
+      phone,
+      address, and school (school must already exist in the system).
+    </div>
+    <table class="table is-bordered is-striped is-hoverable">
+      <tr *ngFor="let csvRec of csvRecords">
+        <td *ngFor="let data of csvRec">
+          {{data}}
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div *ngIf="isSchoolCSV()">
+    <table class="table is-striped is-bordered is-hoverable">
+      <thead>
+        <td>Name</td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let school_row of csvRecords; let i = index">
+          <td [ngClass]="{'is-danger': !schoolIsValid(school_row) }">{{school_row[0]}}</td>
+          <td>
+            <a (click)="deleteSchool(i)"><span class="file-icon">
+                <i class="fas fa-trash-alt"></i>
+              </span>
+            </a>
+          </td>
         </tr>
-      </ng-container>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="isTeacherCSV()">
+    <table class="table is-striped is-bordered is-hoverable">
+      <thead>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Email</td>
+        <td>Phone</td>
+        <td>Address</td>
+        <td>School</td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let csvRec of csvRecords;let i=index">
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
