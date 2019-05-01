@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   orders: Array<Order> = [];
   schools: Array<School> = [];
   currentUser = null;
+  admin_url = '';
   constructor(private apiService: ApiService,
     private authenticationService: AuthenticationService,
   ) { }
