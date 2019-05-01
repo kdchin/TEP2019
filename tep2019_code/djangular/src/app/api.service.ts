@@ -33,6 +33,9 @@ export class ApiService {
   }
 
   create(type, jsonData) {
+    if (type === 'teachers') {
+      jsonData['address'] = jsonData['address'].replace(/,/g, ';');
+    }
     return this.httpClient.post(`${this.API_URL}/${type}/`, jsonData, httpOptions);
     // return this.httpClient.post(`${this.API_URL}/${type}/`, jsonData);
   }
@@ -42,22 +45,10 @@ export class ApiService {
   }
 
   update(type, jsonData) {
-    return this.httpClient.put(`${this.API_URL}/${type}/${jsonData.id}`, jsonData);
-  }
-
-  signS3(filename) {
-    return this.httpClient.get(`${this.API_URL}/sign_s3?file_name=${filename}`);
-  }
-
-  uploadToS3(file, req_data: SignedRequest) {
-    let formData: FormData = new FormData();
-    console.log(req_data);
-    console.log(file);
-    for (let key in req_data.data.fields) {
-      formData.append(key, req_data.data.fields[key]);
+    if (type === 'teacher_update') {
+      jsonData['address'] = jsonData['address'].replace(/,/g, ';');
     }
-    formData.append('file', file, file.name.replace(/^.*[\\\/]/, ''));
-    return this.httpClient.post(req_data.url, formData);
+    return this.httpClient.put(`${this.API_URL}/${type}/${jsonData.id}`, jsonData);
   }
 
   uploadFile(file) {
