@@ -1,3 +1,34 @@
-<p>
-  delete-db works!
-</p>
+<h1 class="title">Reset Database</h1>
+<div class="notification">This page is for resetting the database. You can reset just the checkouts or everything. Your
+  most recent password and waiver will be preserved. <b>CHANGES MADE ON THIS PAGE ARE PERMANENT. ONLY DO IT IF YOU ARE
+    CERTAIN.</b> After clicking the buttons below, you'll be asked to do some confirmation steps before anything is
+  reset, and a csv of checkout data will be exported.</div>
+<!-- <button (click)="exportSchools()">Schools</button>
+<button (click)="exportTeachers()">Teachers</button>
+<button (click)="exportOrders()">Orders</button> -->
+<div *ngIf="!understands">
+  <label class="checkbox">
+    <input type="checkbox" [(ngModel)]="understands">
+    I understand
+  </label>
+  <br>
+  <br>
+</div>
+<div class="field is-grouped">
+  <button [disabled]="!understands" class="button" (click)="startReset(false)">Reset Checkout Data</button>
+  <button [disabled]="!understands" class="button" (click)="startReset(true)">Reset All Data</button>
+</div>
+<div *ngIf="opened_portal">
+  <br>
+  <span *ngIf="confirm_text !== needed_text">Type to confirm:</span>
+  <input class="input" [(ngModel)]="confirm_text" placeholder="I solemnly swear that I am up to no good">
+  <br>
+  <button [disabled]="confirm_text !== needed_text" class="button is-danger" (click)="reset()"><span
+      *ngIf="is_resetting_all">Reset
+      All</span><span *ngIf="!is_resetting_all">Reset
+      Checkouts</span></button>
+  <br>
+  <small>Note that this will take about 15 seconds, so don't exit the page until it finishes!</small>
+</div>
+<br><br>
+<button class="button is-link" (click)="cancelReset()">Cancel</button>

@@ -30,8 +30,8 @@ const routes: Routes = [
   { path: 'schools', component: SchoolListComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'import', component: CsvImportComponent },
-  { path: 'delete-db', component: DeleteDbComponent },
+  { path: 'import', component: CsvImportComponent, canActivate: [AuthGuard] },
+  { path: 'reset', component: DeleteDbComponent, canActivate: [AuthGuard] },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

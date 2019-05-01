@@ -1,18 +1,18 @@
 <h2 class="title">Import Teacher or School CSV</h2>
 <b>Instructions:</b> Do not include a header row. Schools should be a csv of just school names, one per line:
 <br>
-<table class="table is-bordered csv-example">
-  <tr>Carnegie Mellon University</tr>
-  <tr>University of Pittsburgh</tr>
-</table>
-Teachers should be a csv of: first name, last name, email, phone, address, school. Phone and address are optional, and
+<div class="notification">
+  <p>Carnegie Mellon University</p>
+  <p>University of Pittsburgh</p>
+</div>
+Teachers should be a csv of: first name,last name,email,phone,address,school. Phone and address are optional, and
 can be left blank (but school should always be in the sixth column). School needs to match a school's namel in the
-system.
+system, and you'll be allowed to select schools to match once you choose a file.
 <br>
-<table class="table is-bordered csv-example">
-  <tr>John,Doe,example@gmail.com,4121234567,,Carnegie Mellon University</tr>
-  <tr>Jane,Doe,blahblah@gmail.com,4128888888,1234 Forbes Ave,University of Pittsburgh</tr>
-</table>
+<div class="notification">
+  <p>John,Doe,example@gmail.com,4121234567,,Carnegie Mellon University</p>
+  <p>Jane,Doe,blahblah@gmail.com,4128888888,1234 Forbes Ave,University of Pittsburgh</p>
+</div>
 <div class="field is-grouped">
   <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" class="button"
     (change)="fileChangeListener($event)" accept=".csv" value={{selectedImageFile}} />
