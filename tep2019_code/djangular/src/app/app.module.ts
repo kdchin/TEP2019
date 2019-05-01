@@ -37,6 +37,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { CsvImportComponent } from './csv-import/csv-import.component';
 import { FileUtil } from './csv-import/file.util';
 import { Constants } from './csv-import/test.constants';
+import { DeleteDbComponent } from './delete-db/delete-db.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { Constants } from './csv-import/test.constants';
     HomeComponent,
     LoginComponent,
     DashboardComponent,
-    CsvImportComponent
+    CsvImportComponent,
+    DeleteDbComponent
   ],
   imports: [
     BrowserModule,

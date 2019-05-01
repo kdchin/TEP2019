@@ -56,7 +56,7 @@
 
 
   <div id="right-rectangle">
-    <div class="dash-box">
+    <!-- <div class="dash-box">
       <div id="title-box">
         <h2><b>Daily Info</b></h2>
       </div>
@@ -87,7 +87,7 @@
       </table>
     </div>
 
-    <div class="white-spacer"></div>
+    <div class="white-spacer"></div> -->
     <div class="dash-box">
       <div id="title-box">
         <h2><b>Password</b></h2>
@@ -96,8 +96,19 @@
     </div>
     <div class="white-spacer"></div>
     <div class="dash-box">
-      <a routerLink="/import">Import CSV</a>
-      <!-- <app-csv-import></app-csv-import> -->
+      <div id="title-box">
+        <h2><b>Admin</b></h2>
+      </div>
+      <br>
+      <div class="btn-center">
+        <button class="button" routerLink="/import">Import CSV Portal</button>
+        <br>
+        <br>
+        <a class="button" href="{{admin_url}}" target="_blank">Admin User Portal</a>
+        <br>
+        <br>
+        <button class="button" routerLink="/delete-db">Delete Database Portal</button>
+      </div>
     </div>
   </div>
 </div>

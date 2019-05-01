@@ -2,12 +2,19 @@ from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
 from django.utils import timezone
+import datetime
 
 
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
         fields = ('id', 'name', 'active')
+
+        extra_kwargs = {
+            'name': {
+                'validators': []
+            }
+        }
 
 
 class WaiverSerializer(serializers.ModelSerializer):
@@ -85,7 +92,8 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'checkout_time', 'uploaded', 'waiver', 'teacher')
+        fields = ('id', 'checkout_time', 'uploaded',
+                  'waiver', 'teacher')
 
     def create(self, validated_data):
         teacher_data = validated_data.pop('teacher')

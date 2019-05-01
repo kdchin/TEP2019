@@ -4,6 +4,7 @@ import { Order } from '../models';
 import { School } from '../models';
 import { Teacher } from '../models';
 import { AuthenticationService } from '../_services';
+import { environment } from '../../environments/environment';
 // import {ValidationPassword} from '../models';
 
 
@@ -32,24 +33,14 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authenticationService.currentUserValue;
+    this.admin_url = environment.admin_url;
     this.getOrders();
+    /*
     this.getSchools();
     this.getTeachers();
-    // this.getPasswords();
+    */
   }
 
-  public onSelect(order: Order) {
-    this.selectedOrder = order;
-  }
-
-  // public deleteOrder(order: Order) {
-  //   let new_orders = this.orders.filter(oi => oi.id !== order.id);
-  //   // TODO: error and warn
-  //   if (new_orders.length != this.orders.length - 1)
-  //     return;
-  //   this.orders = new_orders;
-  //   this.apiService.delete("orders", order.id).subscribe();
-  // }
 
   public getOrders() {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
@@ -57,42 +48,31 @@ export class DashboardComponent implements OnInit {
     });
     // let today_orders = this.orders.filter(oi => oi.checkout_time !== ));
   }
-
-  public getSchools() {
-    this.apiService.fetchAll("schools").subscribe((data: Array<School>) => {
-      this.schools = data;
-    });
-  }
-
-  public getTeachers() {
-    this.apiService.fetchAll("teachers").subscribe((data: Array<Teacher>) => {
-      this.teachers = data;
-    });
-  }
-
-  // public getPasswords() {
-  //   this.apiService.fetchAll("validationpasswords").subscribe((data: Array<ValidationPassword>) => {
-  //     this.passwords = data;
-  //   });
-  // }
-
-  // public getPassword(){
-  //   return this.passwords[0].uploaded_date;
-  // }
-
-
-
-  public getNumber() {
-    return this.orders.length;
-  }
-
-  public getNumSchools() {
-    return this.schools.length;
-  }
-
-  public getNumTeachers() {
-    return this.teachers.length;
-  }
+  /*
+    public getSchools() {
+      this.apiService.fetchAll("schools").subscribe((data: Array<School>) => {
+        this.schools = data;
+      });
+    }
+  
+    public getTeachers() {
+      this.apiService.fetchAll("teachers").subscribe((data: Array<Teacher>) => {
+        this.teachers = data;
+      });
+    }
+  
+    public getNumber() {
+      return this.orders.length;
+    }
+  
+    public getNumSchools() {
+      return this.schools.length;
+    }
+  
+    public getNumTeachers() {
+      return this.teachers.length;
+    }
+    */
 
 
 }

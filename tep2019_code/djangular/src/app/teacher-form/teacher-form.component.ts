@@ -148,10 +148,9 @@ export class TeacherFormComponent implements OnInit {
     this.teacher = new Teacher(null, '', '', '', '', true, null, '');
     this.order = new Order(null, null, false, null, null);
     this.school = null;//  new School(null, '', false);
-    this.recentWaiver = null;
     this.val_email = "";
-    this.order_items = [];
     this.guess = "";
+    this.agreedToWaiver = false;
     this.advancePage();
   }
 

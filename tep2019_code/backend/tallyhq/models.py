@@ -25,7 +25,7 @@ class Item(models.Model):
 
 
 class School(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     active = models.BooleanField(default=True)
 
     class Meta:
@@ -63,7 +63,9 @@ class Order(models.Model):
     waiver = models.ForeignKey(Waiver, on_delete=models.CASCADE, null=False)
 
     # teacher associated with the order
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, null=False)
+    teacher = models.ForeignKey(
+        Teacher, on_delete=models.CASCADE, null=False, unique_for_month='checkout_time')
+    # TODO: uniqu for month is bette?
 
     # each order has many items, and many items are in many orders
     items = models.ManyToManyField(

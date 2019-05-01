@@ -16,6 +16,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { AuthGuard } from './_guards';
 import { CsvImportComponent } from './csv-import/csv-import.component';
+import { DeleteDbComponent } from './delete-db/delete-db.component';
 
 const routes: Routes = [
   { path: '', component: TeacherFormComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'import', component: CsvImportComponent },
+  { path: 'delete-db', component: DeleteDbComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
