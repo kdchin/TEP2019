@@ -15,9 +15,9 @@ export class CsvImportComponent implements OnInit {
   @ViewChild('fileImportInput')
   fileImportInput: any;
 
-  csvRecords = [];
   school_columns = 1;
   teacher_columns = 6; // give: fname/lname/email/phone/school/address, need: id, fname, lname, email, phone, active, school, orders, address
+  csvRecords = [];
   schools = [];
   school_names = [];
   teachers = [];
@@ -45,7 +45,6 @@ export class CsvImportComponent implements OnInit {
   getTeachers() {
     this.apiService.fetchAll('teachers').subscribe((teachers: Array<Teacher>) => {
       this.teachers = lodash.map(teachers, teacher => teacher.email);
-      this.orig_schools = lodash.map(teachers, teacher => teacher.school.name);
     });
   }
 
@@ -93,6 +92,8 @@ export class CsvImportComponent implements OnInit {
   fileReset() {
     this.fileImportInput.nativeElement.value = "";
     this.csvRecords = [];
+    this.teacher_valid = [];
+    this.teacher_edited = [];
   }
 
   isEmptyCSV() {
@@ -127,28 +128,46 @@ export class CsvImportComponent implements OnInit {
     }
   }
 
-  deleteRecord(i: number) {
-    if (i < this.csvRecords.length) {
-      this.csvRecords.splice(i, 1);
-      if (this.csvRecords.length === 0) this.fileReset();
-    }
+
+
+  teacherHasDuplicates(i) {
+    let cur_emails = lodash.map(this.csvRecords, data => data[2].toLowerCase());
+    let this_email = this.csvRecords[i][2].toLowerCase();
+    return lodash.sumBy(cur_emails, (email) => email === this_email ? 1 : 0) > 1;
   }
 
   teacherIsValid(i) {
     if (this.teacher_valid.length === 0 && this.csvRecords.length === 0) return [true, true];
     if (this.teacher_valid.length === 0 && this.csvRecords.length > 0) {
+      this.orig_schools = lodash.map(this.csvRecords, data => data[5]);
       let valid = [];
       let edited = [];
       for (let i = 0; i < this.csvRecords.length; i++) {
         let email = this.csvRecords[i][2];
         let school = this.csvRecords[i][5].toLowerCase();
-        valid.push([!this.teachers.includes(email), this.school_names.includes(school)]);
+        valid.push([!this.teachers.includes(email), this.school_names.includes(school), !this.teacherHasDuplicates(i)]);
         edited.push(false);
       }
       this.teacher_edited = edited;
       this.teacher_valid = valid;
     }
-    return this.teacher_valid[i][0] && this.teacher_valid[i][1];
+    return this.teacher_valid[i][0] && this.teacher_valid[i][1] && this.teacher_valid[i][2];
+  }
+
+  recomputeDuplicates() {
+    if (this.teacher_valid.length === 0 && this.csvRecords.length > 0) {
+      this.teacherIsValid(0);
+    }
+    for (let i = 0; i < this.teacher_valid.length; i++) {
+      this.teacher_valid[i][2] = !this.teacherHasDuplicates(i);
+    }
+  }
+
+  teacherIsUnique(i) {
+    if (this.teacher_valid.length === 0 && this.csvRecords.length > 0) {
+      this.teacherIsValid(i);
+    }
+    return this.teacher_valid[i][2];
   }
 
   teacherIsEdited(i) {
@@ -182,8 +201,13 @@ export class CsvImportComponent implements OnInit {
     return true;
   }
 
+  schoolIsDuplicate(school_name) {
+    return lodash.sumBy(lodash.map(this.csvRecords, row => row[0].toLowerCase()), name => name === school_name ? 1 : 0) > 1;
+  }
+
   schoolIsValid(school_row) {
-    return !this.school_names.includes(school_row[0].toLowerCase());
+    let name = school_row[0].toLowerCase();
+    return !this.school_names.includes(name) && !this.schoolIsDuplicate(name);
   }
 
   schoolsAreValid() {
@@ -231,5 +255,21 @@ export class CsvImportComponent implements OnInit {
       this.apiService.create('schools', new_school).subscribe();
     }
     this.fileReset();
+  }
+
+  deleteRecord(i: number) {
+    if (i < this.csvRecords.length) {
+      if (this.isTeacherCSV()) {
+        let isDuplicate = !this.teacher_valid[i][2];
+        this.csvRecords.splice(i, 1);
+        this.teacher_valid.splice(i, 1);
+        this.teacher_edited.splice(i, 1);
+        if (isDuplicate)
+          this.recomputeDuplicates();
+      } else {
+        this.csvRecords.splice(i, 1);
+      }
+      if (this.csvRecords.length === 0) this.fileReset();
+    }
   }
 }

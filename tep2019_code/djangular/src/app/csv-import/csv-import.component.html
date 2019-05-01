@@ -1,4 +1,18 @@
 <h2 class="title">Import Teacher or School CSV</h2>
+<b>Instructions:</b> Do not include a header row. Schools should be a csv of just school names, one per line:
+<br>
+<table class="table is-bordered csv-example">
+  <tr>Carnegie Mellon University</tr>
+  <tr>University of Pittsburgh</tr>
+</table>
+Teachers should be a csv of: first name, last name, email, phone, address, school. Phone and address are optional, and
+can be left blank (but school should always be in the sixth column). School needs to match a school's namel in the
+system.
+<br>
+<table class="table is-bordered csv-example">
+  <tr>John,Doe,example@gmail.com,4121234567,,Carnegie Mellon University</tr>
+  <tr>Jane,Doe,blahblah@gmail.com,4128888888,1234 Forbes Ave,University of Pittsburgh</tr>
+</table>
 <div class="field is-grouped">
   <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" class="button"
     (change)="fileChangeListener($event)" accept=".csv" value={{selectedImageFile}} />
@@ -9,12 +23,12 @@
 
 <div *ngIf="!isEmptyCSV()">
   <div *ngIf="isTeacherCSV()">
-    <button class="button is-link" (click)="uploadTeachers()">Upload Teachers</button>
+    <button [disabled]="!teachersAreValid()" class="button is-link" (click)="uploadTeachers()">Upload Teachers</button>
     <br>
     <br>
   </div>
   <div *ngIf="isSchoolCSV()">
-    <button class="button is-link" (click)="uploadSchools()">Upload Schools</button>
+    <button [disabled]="!schoolsAreValid()" class="button is-link" (click)="uploadSchools()">Upload Schools</button>
     <br>
     <br>
   </div>
@@ -55,6 +69,7 @@
   <div *ngIf="isTeacherCSV()">
     <table class="table is-striped is-bordered is-hoverable">
       <thead>
+        <td>Duplicate?</td>
         <td>First Name</td>
         <td>Last Name</td>
         <td>Email</td>
@@ -64,6 +79,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let teacher_row of csvRecords;let i=index">
+          <td [ngClass]="{'is-danger': !teacherIsUnique(i)}">
+            &nbsp;
+          </td>
           <td>
             {{ teacher_row[0]}}
           </td>
@@ -88,7 +106,7 @@
             <ng-select *ngIf="teacherIsEdited(i)" [items]="schools" [selectOnTab]="true" bindLabel="name"
               (change)="changeTeacher(i, $event)">
             </ng-select>
-            <span *ngIf="teacherIsEdited(i)">original (invalid): </span>{{ orig_schools[i]}}
+            <span *ngIf="teacherIsEdited(i)">original (invalid): {{ orig_schools[i]}}</span>
             <br>
             <span *ngIf="teacherIsEdited(i)">now: {{teacher_row[5]}}</span>
           </td>
