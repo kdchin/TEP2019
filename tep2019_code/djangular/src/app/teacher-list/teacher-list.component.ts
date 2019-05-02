@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { TeacherDetail, OrderTeacher } from '../models';
+import { TeacherDetail } from '../models';
 import { PhonePipe } from '../phone.pipe';
 import { BoolPipe } from '../bool.pipe';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { TeacherCreateComponent } from '../teacher-create/teacher-create.component';
 
 
@@ -13,11 +13,8 @@ import { TeacherCreateComponent } from '../teacher-create/teacher-create.compone
   styleUrls: ['./teacher-list.component.css']
 })
 export class TeacherListComponent implements OnInit {
-  selectedTeacher: TeacherDetail;
-
   searchText = '';
   teachers: Array<TeacherDetail> = [];
-  shouldShowCreate = false;
   phonePipe = new PhonePipe();
   activePipe = new BoolPipe();
   p;
@@ -30,19 +27,18 @@ export class TeacherListComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(TeacherCreateComponent, {
       width: '400px',
+      data: { teachers: this.teachers }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.getItems(); shows double of each item - put it in so user can see new item in table
+      this.onNewTeacher(result);
     });
   }
 
-  public toggleShowCreate() {
-    this.shouldShowCreate = !this.shouldShowCreate;
-  }
-
-  public onSelect(teacher: TeacherDetail) {
-    this.selectedTeacher = teacher;
+  public onNewTeacher(newTeacher: TeacherDetail) {
+    if (!newTeacher) return;
+    this.teachers.push(newTeacher);
+    this.apiService.create("teachers", newTeacher).subscribe();
   }
 
   public updateTeacher(i: number, attr: string) {
@@ -52,11 +48,6 @@ export class TeacherListComponent implements OnInit {
       teacher[attr] = new_value;
       this.apiService.update("teachers", teacher).subscribe();
     }
-  }
-
-  public onNewTeacher(newTeacher: TeacherDetail) {
-    this.teachers.push(newTeacher);
-    this.toggleShowCreate();
   }
 
   public getTeachers() {

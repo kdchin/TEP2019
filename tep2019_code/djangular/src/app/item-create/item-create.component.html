@@ -36,7 +36,8 @@
   <mat-dialog-actions>
     <div style="margin: 0 auto;">
       <button class="button is-danger" mat-dialog-close>Cancel</button>
-      <button type="submit" class="button is-info">Create Item</button>
+      <button type="submit" class="button is-info" [mat-dialog-close]="new_item">Create
+        Item</button>
     </div>
   </mat-dialog-actions>
 </form>

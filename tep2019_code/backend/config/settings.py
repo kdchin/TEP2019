@@ -86,6 +86,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '1000/day',
+        'user': '100000/day'
+    },
 }
 
 
@@ -98,9 +106,6 @@ CORS_ORIGIN_WHITELIST = [
     'tallyhq.s3-website.us-east-2.amazonaws.com',
     'dxf4xxoe63ib2.cloudfront.net',
 ]
-
-# CORS_URLS_REGEX = r'^/api/.*$'
-# CORS_ALLOW_HEADERS = default_headers + ('access-control-allow-origin',)
 
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
@@ -143,10 +148,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('TEP_DB_NAME', ''),

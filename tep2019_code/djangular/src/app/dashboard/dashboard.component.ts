@@ -5,11 +5,7 @@ import { School } from '../models';
 import { Teacher } from '../models';
 import { AuthenticationService } from '../_services';
 import { environment } from '../../environments/environment';
-// import {ValidationPassword} from '../models';
-
-
-import { getLocaleDateTimeFormat, DatePipe } from '@angular/common';
-
+import * as lodash from "lodash";
 
 @Component({
   selector: 'app-dashboard',
@@ -17,15 +13,12 @@ import { getLocaleDateTimeFormat, DatePipe } from '@angular/common';
   styleUrls: ['./dashboard.component.css']
 })
 
-
 export class DashboardComponent implements OnInit {
   selectedOrder: Order;
 
-  // private passwords: Array<ValidationPassword> = []; 
-
-  teachers: Array<Teacher> = [];
   orders: Array<Order> = [];
-  schools: Array<School> = [];
+  num_teachers: number = 0;
+  num_schools: number = 0;
   currentUser = null;
   admin_url = '';
   constructor(private apiService: ApiService,
@@ -36,44 +29,42 @@ export class DashboardComponent implements OnInit {
     this.currentUser = this.authenticationService.currentUserValue;
     this.admin_url = environment.admin_url;
     this.getOrders();
-    /*
     this.getSchools();
     this.getTeachers();
-    */
   }
 
+  mostRecent(data: Array<Order>) {
+    let k = 10;
+    return lodash.sortBy(data, data => data.checkout_time).reverse().slice(0, k);
+  }
 
   public getOrders() {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
-      this.orders = data;
+      this.orders = this.mostRecent(data);
     });
-    // let today_orders = this.orders.filter(oi => oi.checkout_time !== ));
   }
-  /*
-    public getSchools() {
-      this.apiService.fetchAll("schools").subscribe((data: Array<School>) => {
-        this.schools = data;
-      });
-    }
-  
-    public getTeachers() {
-      this.apiService.fetchAll("teachers").subscribe((data: Array<Teacher>) => {
-        this.teachers = data;
-      });
-    }
-  
-    public getNumber() {
-      return this.orders.length;
-    }
-  
-    public getNumSchools() {
-      return this.schools.length;
-    }
-  
-    public getNumTeachers() {
-      return this.teachers.length;
-    }
-    */
+  public getSchools() {
+    this.apiService.fetchAll("schools").subscribe((data: Array<School>) => {
+      this.num_schools = data.length;
+    });
+  }
 
+  public getTeachers() {
+    this.apiService.fetchAll("teachers").subscribe((data: Array<Teacher>) => {
+      this.num_teachers = data.length;
+    });
+  }
+
+  public getNumber() {
+    return this.orders.length;
+  }
+
+  public getNumSchools() {
+    return this.num_schools;
+  }
+
+  public getNumTeachers() {
+    return this.num_teachers;
+  }
 
 }

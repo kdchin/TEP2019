@@ -48,12 +48,8 @@
   <div class="field">
     <div>
       <label class="label required" for="school">School</label>
-      <!-- <select id="school" [(ngModel)]="new_school" name="school">
-        <option *ngFor="let schl of schools" [ngValue]="schl">
-          {{schl.name}}</option>
-      </select> -->
-      <ng-select required [items]="schools" #school_="ngModel" [(ngModel)]="new_school" name="school" bindLabel="name"
-        placeholder="Select school" notFoundText="No schools" [selectOnTab]="true">
+      <ng-select required [items]="schools" #school_="ngModel" [(ngModel)]="new_teacher.school" name="school"
+        bindLabel="name" placeholder="Select school" notFoundText="No schools" [selectOnTab]="true">
       </ng-select>
     </div>
   </div>
@@ -62,7 +58,7 @@
       <button class="button is-danger" mat-dialog-close>Cancel</button>
       <button
         [disabled]="!first_name.touched || !last_name.touched || !email.touched || !school_.touched|| teacherExists()"
-        type="submit" class="button is-info">Create Teacher</button>
+        type="submit" class="button is-info" [mat-dialog-close]="new_teacher">Create Teacher</button>
     </div>
   </mat-dialog-actions>
 </form>

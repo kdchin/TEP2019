@@ -4,7 +4,7 @@ import { Item } from '../models';
 
 import { BoolPipe } from '../bool.pipe';
 import * as lodash from "lodash";
-import { MatPaginator, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ItemCreateComponent } from '../item-create/item-create.component';
 
 
@@ -18,7 +18,6 @@ export class ItemListComponent implements OnInit {
   selectedItem: Item;
   activeItems: Array<Item> = [];
   inactiveItems: Array<Item> = [];
-  shouldShowCreate = false;
   activePipe = new BoolPipe();
   lodash = lodash;
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
@@ -34,15 +33,18 @@ export class ItemListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.getItems(); shows double of each item - put it in so user can see new item in table
+      this.onNewItem(result);
     });
   }
 
   public onNewItem(newItem: Item) {
+    if (!newItem) return;
     newItem.rank = newItem.id ? newItem.id : this.activeItems.length;
-    this.activeItems.push(newItem);
+    let newItems = this.activeItems.slice();
+    newItems.push(newItem);
+    this.activeItems = newItems;
     this.activeItems = this.lodash.sortBy(this.activeItems, 'rank');
-    this.toggleShowCreate();
+    this.apiService.create("items", newItem).subscribe();
   }
 
 
@@ -50,10 +52,6 @@ export class ItemListComponent implements OnInit {
     this.selectedItem = item;
   }
 
-
-  public toggleShowCreate() {
-    this.shouldShowCreate = !this.shouldShowCreate;
-  }
 
   public updateLabel(i) {
     return (newVal) => {

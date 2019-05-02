@@ -3,60 +3,10 @@
   <h1></h1>
 </div>
 
-<div class="container">
+<div class="container columns">
 
-  <div id="left-rectangle">
+  <div id="left-rectangle" class="column">
     <div class="dash-box">
-      <div id="title-box">
-        <h2><b>Recent Checkouts</b></h2>
-      </div>
-      <div id="display-table">
-        <table class="table is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Checkout Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let order of orders | slice:0:10" routerLink="/checkouts/{{order.id}}">
-              <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
-              <td> {{ order.checkout_time | date : 'short'}} </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <button class="button is-danger" id="button" routerLink="/checkouts">See All</button>
-    </div>
-  </div>
-
-  <div id="middle-rectangle">
-    <div class="dash-box">
-      <div id="title-box">
-        <h2><b>Waivers</b></h2>
-      </div>
-      <br>
-      <app-file-upload></app-file-upload>
-    </div>
-
-    <div class="white-spacer"></div>
-
-    <div class="dash-box">
-      <div id="title-box">
-        <!-- <h2><b>Date Range</b></h2>
-        <h3><b>1/1/18 - 12/31/18</b></h3> -->
-        <h2><b>Export CSV</b></h2>
-      </div>
-      <br>
-      <app-export-csv></app-export-csv>
-    </div>
-    <div class="white-spacer"></div>
-  </div>
-
-
-  <div id="right-rectangle">
-    <!-- <div class="dash-box">
       <div id="title-box">
         <h2><b>Daily Info</b></h2>
       </div>
@@ -87,7 +37,57 @@
       </table>
     </div>
 
-    <div class="white-spacer"></div> -->
+    <div class="white-spacer"></div>
+    <div class="dash-box">
+      <div id="title-box">
+        <h2><b>Recent Checkouts</b></h2>
+      </div>
+      <div id="display-table">
+        <table class="table is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Checkout Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders | slice:0:10" routerLink="/checkouts/{{order.id}}">
+              <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
+              <td> {{ order.checkout_time | date : 'short'}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <button class="button is-danger" id="button" routerLink="/checkouts">See All</button>
+    </div>
+  </div>
+
+  <div id="middle-rectangle" class="column">
+    <div class="dash-box">
+      <div id="title-box">
+        <h2><b>Waivers</b></h2>
+      </div>
+      <br>
+      <app-file-upload></app-file-upload>
+    </div>
+
+    <div class="white-spacer"></div>
+
+    <div class="dash-box">
+      <div id="title-box">
+        <!-- <h2><b>Date Range</b></h2>
+        <h3><b>1/1/18 - 12/31/18</b></h3> -->
+        <h2><b>Export CSV</b></h2>
+      </div>
+      <br>
+      <app-export-csv></app-export-csv>
+    </div>
+    <div class="white-spacer"></div>
+  </div>
+
+
+  <div id="right-rectangle" class="column">
     <div class="dash-box">
       <div id="title-box">
         <h2><b>Password</b></h2>
