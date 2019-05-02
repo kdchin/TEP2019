@@ -14,7 +14,6 @@ export class SchoolListComponent implements OnInit {
 
   searchText = '';
   schools: Array<School> = [];
-  shouldShowCreate = false;
   p;
   activePipe = new BoolPipe();
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
@@ -26,10 +25,11 @@ export class SchoolListComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(SchoolCreateComponent, {
       width: '400px',
+      data: { schools: this.schools }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.getItems(); shows double of each item - put it in so user can see new item in table
+      this.onNewSchool(result);
     });
   }
 
@@ -40,15 +40,12 @@ export class SchoolListComponent implements OnInit {
     }
   }
 
-
   public onNewSchool(newSchool: School) {
+    if (!newSchool) return;
     this.schools.push(newSchool);
-    this.toggleShowCreate();
+    this.apiService.create('schools', newSchool).subscribe();
   }
 
-  public toggleShowCreate() {
-    this.shouldShowCreate = !this.shouldShowCreate;
-  }
 
   public getSchools() {
     this.apiService.fetchAll("schools").subscribe((data: Array<School>) => {
