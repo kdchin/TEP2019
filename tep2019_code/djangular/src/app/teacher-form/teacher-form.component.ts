@@ -20,7 +20,7 @@ export class TeacherFormComponent implements OnInit {
   teacher = new Teacher(null, '', '', '', '', true, null, '');
   new_address: string = "";
   all_teachers: Array<Teacher> = [];
-  order = new Order(null, '', false, null, null);
+  order = new Order(null, '', false, null, null, '');
   school = null;//new School(null, '', false);
   all_schools: Array<School> = [];
   order_items: Array<OrderItem> = [];
@@ -146,7 +146,7 @@ export class TeacherFormComponent implements OnInit {
   public finish() {
     this.isNewTeacher = false;
     this.teacher = new Teacher(null, '', '', '', '', true, null, '');
-    this.order = new Order(null, null, false, null, null);
+    this.order = new Order(null, null, false, null, null, '');
     this.school = null;//  new School(null, '', false);
     this.val_email = "";
     this.guess = "";
@@ -194,20 +194,13 @@ export class TeacherFormComponent implements OnInit {
     return true;
   }
 
-  /*
-  public testOrder() {
-    let school = new School('PALY', true);
-    let teacher = new Teacher(null, 'kydo', 'chin', 'kydochin@gmail.com', '6502136937', true, school, '123 Butte Ave')
-    let order = new Order(null, '', false, null, teacher);
-    console.log("in:", order);
-    this.apiService.create('orders', order).subscribe((data: Order) => {
-      console.log("done:", data);
-    });
+  getHash(pwd: string) {
+    return crypto.SHA256(pwd).toString();
   }
-  */
 
   public createOrderItems() {
     this.order.checkout_time = new Date().toISOString();
+    this.order.password_hash = this.getHash(this.guess);
     this.apiService.create('orders', this.order).subscribe((data: Order) => {
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
@@ -216,7 +209,9 @@ export class TeacherFormComponent implements OnInit {
           this.apiService.create('order_items', order_item_with_order).subscribe();
         }
       }
-    });
+      this.advancePage();
+    },
+      (error) => alert("Error creating order. Please see a TEP employee"));
   }
 
   public makeOrderItems(teacher) {
@@ -245,7 +240,7 @@ export class TeacherFormComponent implements OnInit {
 
   public createOrder() {
     this.submit_pressed = true;
-    if (!this.orderItemsAreValid() || !this.password_matches(this.guess)) {
+    if (!this.orderItemsAreValid() || !this.guess || this.guess.length < 5 || !this.password_matches(this.guess)) {
       return;
     }
     let tchr = this.getTeacher();
@@ -253,7 +248,6 @@ export class TeacherFormComponent implements OnInit {
     if (this.isNewTeacher)
       return;
     this.makeOrderItems(tchr);
-    this.advancePage();
   }
 
   public maxOutOrderItem(order_item: OrderItem) {

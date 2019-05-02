@@ -71,8 +71,11 @@ class Order(models.Model):
     items = models.ManyToManyField(
         Item, through='OrderItem', related_name='orders')
 
+    password_hash = models.CharField(max_length=100)
+
     class Meta:
         ordering = ('checkout_time', )
+        unique_together = ('password_hash', 'teacher')
 
 # Associative entity for order and item
 

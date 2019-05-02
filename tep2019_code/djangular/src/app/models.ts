@@ -63,6 +63,7 @@ export class Order {
         public uploaded: boolean,
         public waiver: Waiver,
         public teacher: Teacher,
+        public password_hash?: string,
     ) { }
 }
 

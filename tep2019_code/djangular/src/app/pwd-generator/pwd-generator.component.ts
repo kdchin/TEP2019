@@ -26,7 +26,6 @@ export class PwdGeneratorComponent implements OnInit {
     while (new_word.length < 5)
       new_word = randomWords({ min: 1, max: 2, join: '-', minLength: 5, maxLength: 7 });
     this.new_pwd = new_word
-    // this.submitPassword();
     this.shouldShowChange = true;
   }
 
@@ -39,11 +38,12 @@ export class PwdGeneratorComponent implements OnInit {
     return crypto.AES.encrypt(pwd, this.key).toString();
   }
 
-  test() {
-    alert(this.new_pwd)
+  getHash(pwd: string) {
+    return crypto.SHA256(pwd).toString();
   }
 
   submitPassword() {
+    console.log(this.getHash(this.new_pwd), this.getHash(this.new_pwd).length);
     if (this.new_pwd.length >= 5) {
       let pwd = new ValPass(null, this.getDigest(this.new_pwd), new Date());
       this.apiService.create('validation_passwords', pwd).subscribe(() => {
@@ -52,17 +52,13 @@ export class PwdGeneratorComponent implements OnInit {
       });
     }
     else {
-      this.alerter();
+      alert("Passwords must be at least 5 characters");
     }
     this.toggleShowChange();
   }
 
   public toggleShowChange() {
     this.shouldShowChange = !this.shouldShowChange;
-  }
-
-  public alerter() {
-    alert("Passwords must be at least 4 characters");
   }
 
   getMostRecentPassword() {
