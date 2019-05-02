@@ -92,5 +92,5 @@ class OrderItem(models.Model):
 
 # ValidationPassword: the password that volunteers/TEP employees enter to validate the form
 class ValidationPassword(models.Model):
-    digest = models.CharField(max_length=50)
+    digest = models.CharField(max_length=65)
     uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
