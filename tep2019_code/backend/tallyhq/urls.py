@@ -135,6 +135,6 @@ urlpatterns = [
     path(r'api/users/', user_list, name='user-list'),
     path(r'api/users/<int:pk>', user_detail, name='user-detail'),
     path(r'api/auth/', AuthView.as_view(), name='authenticate'),
-    path(r'api/sign_s3', sign_s3),
+    # path(r'api/sign_s3', sign_s3),
     # path(r'', index, name='index')
 ]

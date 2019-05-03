@@ -15,6 +15,7 @@ export class CsvImportComponent implements OnInit {
   @ViewChild('fileImportInput')
   fileImportInput: any;
 
+  selectedImageFile = '';
   school_columns = 1;
   teacher_columns = 6; // give: fname/lname/email/phone/school/address, need: id, fname, lname, email, phone, active, school, orders, address
   csvRecords = [];
@@ -238,8 +239,8 @@ export class CsvImportComponent implements OnInit {
       let data = this.csvRecords[i];
       let school = this.getSchool(data[5]);
       let new_teacher = new Teacher(null, data[0], data[1], data[2], data[3], true, school, data[4]);
-      this.apiService.create('teachers', new_teacher).subscribe((result) => {
-        // console.log(result);
+      this.apiService.create('teachers', new_teacher).subscribe((result: Teacher) => {
+        this.teachers.push(result.email);
       });
     }
     this.fileReset();
@@ -252,7 +253,10 @@ export class CsvImportComponent implements OnInit {
     }
     for (let i = 0; i < this.csvRecords.length; i++) {
       let new_school = new School(null, this.csvRecords[i][0], true);// schools only have names
-      this.apiService.create('schools', new_school).subscribe();
+      this.apiService.create('schools', new_school).subscribe((result: School) => {
+        this.schools.push(result);
+        this.school_names.push(result.name.toLowerCase())
+      });
     }
     this.fileReset();
   }

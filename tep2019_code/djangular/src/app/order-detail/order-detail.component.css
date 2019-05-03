@@ -3,6 +3,11 @@ label {
   font-size: 18px;
 }
 
+.del {
+  margin-left: 30px;
+  margin-top: 15px;
+}
+
 button.back {
   /* background-image: url("../../assets/blue-back2.png");
   background-position: 10px; 

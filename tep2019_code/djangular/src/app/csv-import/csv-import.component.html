@@ -107,9 +107,8 @@ system, and you'll be allowed to select schools to match once you choose a file.
             <ng-select *ngIf="teacherIsEdited(i)" [items]="schools" [selectOnTab]="true" bindLabel="name"
               (change)="changeTeacher(i, $event)">
             </ng-select>
-            <span *ngIf="teacherIsEdited(i)">original (invalid): {{ orig_schools[i]}}</span>
-            <br>
-            <span *ngIf="teacherIsEdited(i)">now: {{teacher_row[5]}}</span>
+            <span *ngIf="teacherIsEdited(i)">original (invalid): {{ orig_schools[i]}}<br>now: {{teacher_row[5]}}</span>
+            <span *ngIf="!teacherIsEdited(i)">{{teacher_row[5]}}</span>
           </td>
           <td>
             <a (click)="deleteRecord(i)"><span class="file-icon">

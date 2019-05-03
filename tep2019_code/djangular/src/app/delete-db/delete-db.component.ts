@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 })
 export class DeleteDbComponent implements OnInit {
 
+  is_deleting = false;
   understands = false;
   opened_portal = false;
   is_resetting_all = false;
@@ -120,6 +121,7 @@ export class DeleteDbComponent implements OnInit {
   }
 
   exportOrders() {
+    this.is_deleting = true;
     this.apiService.fetchAll('order_details').subscribe((orders: Array<OrderDetail>) => {
       var data = [];
       var oldest = null;
@@ -163,6 +165,7 @@ export class DeleteDbComponent implements OnInit {
 
   finish() {
     alert("deleted!");
+    this.is_deleting = false;
     this.cancelReset();
   }
 
