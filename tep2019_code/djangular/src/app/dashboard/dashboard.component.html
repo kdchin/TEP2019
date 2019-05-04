@@ -11,30 +11,35 @@
         <h2><b>Daily Info</b></h2>
       </div>
       <br>
-      <table class="stats-table">
-        <tr>
-          <td>
-            <h5 class="stat-val"><b>{{ getNumSchools() }}</b></h5>
-            <h6><b>Schools</b></h6>
-          </td>
-          <h5 class="stat-val"><b>{{ getNumTeachers() }}</b></h5>
-          <h6><b>Teachers</b></h6>
-          <td>
+      <div *ngIf="is_loading_schools || is_loading_teachers || is_loading_orders">
+        <a class="button is-loading">Loading</a>
+      </div>
+      <div *ngIf="!is_loading_schools && !is_loading_teachers && !is_loading_orders">
+        <table class="stats-table">
+          <tr>
+            <td>
+              <h5 class="stat-val"><b>{{ getNumSchools() }}</b></h5>
+              <h6><b>Schools</b></h6>
+            </td>
+            <h5 class="stat-val"><b>{{ getNumTeachers() }}</b></h5>
+            <h6><b>Teachers</b></h6>
+            <td>
 
-          </td>
-        </tr>
+            </td>
+          </tr>
 
-        <tr>
-          <td>
-            <h5 class="stat-val"><b>{{ getNumber() }}</b></h5>
-            <h6><b>Teacher Visits<br>This Year</b></h6>
-          </td>
-          <td>
-            <h5 class="stat-val"><b>-</b></h5>
-            <h6><b>Avg. Shop Time</b></h6>
-          </td>
-        </tr>
-      </table>
+          <tr>
+            <td>
+              <h5 class="stat-val"><b>{{ getNumber() }}</b></h5>
+              <h6><b>Teacher Visits<br>This Year</b></h6>
+            </td>
+            <td>
+              <h5 class="stat-val"><b>-</b></h5>
+              <h6><b>Avg. Shop Time</b></h6>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <div class="white-spacer"></div>
@@ -42,7 +47,10 @@
       <div id="title-box">
         <h2><b>Recent Checkouts</b></h2>
       </div>
-      <div id="display-table">
+      <div *ngIf="is_loading_orders">
+        <a class="button is-loading">Loading</a>
+      </div>
+      <div *ngIf="!is_loading_orders" id="display-table">
         <table class="table is-hoverable is-fullwidth">
           <thead>
             <tr>

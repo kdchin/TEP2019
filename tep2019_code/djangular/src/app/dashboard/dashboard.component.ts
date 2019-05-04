@@ -21,6 +21,9 @@ export class DashboardComponent implements OnInit {
   num_schools: number = 0;
   currentUser = null;
   admin_url = '';
+  is_loading_orders = true;
+  is_loading_schools = true;
+  is_loading_teachers = true;
   constructor(private apiService: ApiService,
     private authenticationService: AuthenticationService,
   ) { }
@@ -41,17 +44,20 @@ export class DashboardComponent implements OnInit {
   public getOrders() {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
       this.orders = this.mostRecent(data);
+      this.is_loading_orders = false;
     });
   }
   public getSchools() {
     this.apiService.fetchAll("schools").subscribe((data: Array<School>) => {
       this.num_schools = data.length;
+      this.is_loading_schools = false;
     });
   }
 
   public getTeachers() {
     this.apiService.fetchAll("teachers").subscribe((data: Array<Teacher>) => {
       this.num_teachers = data.length;
+      this.is_loading_teachers = false;
     });
   }
 
