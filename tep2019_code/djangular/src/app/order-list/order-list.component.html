@@ -8,7 +8,8 @@
       <th>Uploaded</th>
       <th>Waiver</th>
     </tr>
-    <tr *ngFor="let order of orders" routerLink="/checkouts/{{order.id}}">
+    <tr *ngFor="let order of orders | paginate: { itemsPerPage: 10, currentPage: p}"
+      routerLink="/checkouts/{{order.id}}">
       <td> {{ order.checkout_time | date : 'medium' }} </td>
       <td> {{ order.teacher.first_name }} {{ order.teacher.last_name}}</td>
       <td> {{ activePipe.transform(order.uploaded) }} </td>
@@ -16,4 +17,5 @@
       <!-- <td><button class=" button is-danger" (click)="alerter(order)">delete</button></td> -->
     </tr>
   </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>

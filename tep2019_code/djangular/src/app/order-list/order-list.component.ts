@@ -13,6 +13,7 @@ export class OrderListComponent implements OnInit {
 
   activePipe = new BoolPipe();
   orders: Array<Order> = [];
+  p;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
