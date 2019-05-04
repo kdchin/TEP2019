@@ -4,7 +4,6 @@ import { Item, Teacher, Order, OrderItem, School, Waiver, ValPass } from '../mod
 import * as lodash from "lodash";
 import * as crypto from 'crypto-js';
 import { environment } from '../../environments/environment';
-import { NgSelectModule, NgOption } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-teacher-form',
@@ -32,6 +31,8 @@ export class TeacherFormComponent implements OnInit {
   key = environment.val_pass_key;
   went_back = false;
   submit_pressed = false;
+  is_loading_teachers = true;
+  is_loading_schools = true;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -96,6 +97,7 @@ export class TeacherFormComponent implements OnInit {
           all_schools.push(data[i]);
       }
       this.all_schools = all_schools;
+      this.is_loading_schools = false;
     });
   }
 
@@ -107,6 +109,7 @@ export class TeacherFormComponent implements OnInit {
         if (data[i].active)
           this.all_teachers.push(data[i]);
       }
+      this.is_loading_teachers = false;
     });
   }
 

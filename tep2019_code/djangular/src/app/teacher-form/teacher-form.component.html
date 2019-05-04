@@ -1,115 +1,120 @@
 <div *ngIf="pages[current_page] === 'welcome'">
   <h1 class="title">Welcome Teachers!</h1>
   <div class="card">
-    <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
-      <div class="field">
-        <label class="label" id="required">First Name</label>
-        <div class="control">
-          <input id="first_name" class="input" type="text" placeholder="Master" [(ngModel)]="teacher.first_name"
-            name="first_name" required maxlength="20" #first_name="ngModel">
+    <div *ngIf="is_loading_schools || is_loading_teachers" class="loading-btn">
+      <button class="button is-loading">Loading</button>
+    </div>
+    <div *ngIf="!is_loading_schools && !is_loading_teachers">
+      <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+        <div class="field">
+          <label class="label" id="required">First Name</label>
+          <div class="control">
+            <input id="first_name" class="input" type="text" placeholder="Master" [(ngModel)]="teacher.first_name"
+              name="first_name" required maxlength="20" #first_name="ngModel">
 
-          <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="notification is-danger">
-            <div *ngIf="first_name.errors.required">
-              First name is required
+            <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="notification is-danger">
+              <div *ngIf="first_name.errors.required">
+                First name is required
+              </div>
+
+              <div *ngIf="first_name.errors.maxlength">
+                First name is too long
+              </div>
+
             </div>
-
-            <div *ngIf="first_name.errors.maxlength">
-              First name is too long
-            </div>
-
           </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label" id="required">Last Name</label>
-        <div class="control">
-          <input id="last_name" class="input" type="text" placeholder="ShiFu" [(ngModel)]="teacher.last_name"
-            name="last_name" required maxlength="30" #last_name="ngModel">
-          <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="notification is-danger">
-            <div *ngIf="last_name.errors.required">
-              Last name is required
+        <div class="field">
+          <label class="label" id="required">Last Name</label>
+          <div class="control">
+            <input id="last_name" class="input" type="text" placeholder="ShiFu" [(ngModel)]="teacher.last_name"
+              name="last_name" required maxlength="30" #last_name="ngModel">
+            <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="notification is-danger">
+              <div *ngIf="last_name.errors.required">
+                Last name is required
+              </div>
+
+              <div *ngIf="last_name.errors.maxlength">
+                Last name is too long
+              </div>
+
             </div>
+          </div>
+        </div>
 
-            <div *ngIf="last_name.errors.maxlength">
-              Last name is too long
+        <div class="field">
+          <label class="label" id="required">Work Email</label>
+          <div class="control">
+            <input id="email" class="input" type="email" placeholder="shifu@dreamworks.com" [(ngModel)]="teacher.email"
+              name="email" required maxlength="50" #email="ngModel" [email]="true">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="notification is-danger">
+              Please enter a valid email address
             </div>
-
           </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label" id="required">Work Email</label>
-        <div class="control">
-          <input id="email" class="input" type="email" placeholder="shifu@dreamworks.com" [(ngModel)]="teacher.email"
-            name="email" required maxlength="50" #email="ngModel" [email]="true">
-          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="notification is-danger">
-            Please enter a valid email address
+        <div class="field">
+          <label class="label" id="required">Confirm Email</label>
+          <div class="control">
+            <input id="validation_email" class="input" type="email" placeholder="shifu@dreamworks.com"
+              [(ngModel)]="val_email" name="validation_email" required maxlength="50" #validation_email="ngModel"
+              [email]="true">
+            <div *ngIf="val_email !== '' && email.value !== val_email" class="notification is-danger">
+              Emails don't match
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label" id="required">Confirm Email</label>
-        <div class="control">
-          <input id="validation_email" class="input" type="email" placeholder="shifu@dreamworks.com"
-            [(ngModel)]="val_email" name="validation_email" required maxlength="50" #validation_email="ngModel"
-            [email]="true">
-          <div *ngIf="val_email !== '' && email.value !== val_email" class="notification is-danger">
-            Emails don't match
+        <div class="field">
+          <label class="label">Mobile Phone Number</label>
+          <div class="control">
+            <input id="phone" class="input" type="text" placeholder="412 922 6500" [(ngModel)]="teacher.phone"
+              name="phone" maxlength="20" #phone="ngModel">
           </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label">Mobile Phone Number</label>
-        <div class="control">
-          <input id="phone" class="input" type="text" placeholder="412 922 6500" [(ngModel)]="teacher.phone"
-            name="phone" maxlength="20" #phone="ngModel">
+        <div class="field">
+          <label class="label">Full Home Address</label>
+          <div class="control">
+            <input id="address" class="input" type="text" placeholder="281 Corliss St, Pittsburgh, PA 15220"
+              [(ngModel)]="new_address" name="address" maxlength="100">
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label">Full Home Address</label>
-        <div class="control">
-          <input id="address" class="input" type="text" placeholder="281 Corliss St, Pittsburgh, PA 15220"
-            [(ngModel)]="new_address" name="address" maxlength="100">
+        <div class="field">
+          <label class="label" id="required" for="school">School</label>
+
+          <ng-select [items]="all_schools" [(ngModel)]="school" name="school" #school_="ngModel" bindLabel="name"
+            placeholder="Select school" notFoundText="No schools" [selectOnTab]="true">
+          </ng-select>
+
         </div>
-      </div>
+        <div *ngIf="school_.invalid && (school_.dirty || school_.touched)" class="notification is-danger">
+          <div *ngIf="school_.errors.required">
+            Please select a school
+          </div>
+          <small>If you don't see your school here, please contact a TEP employee</small>
+          <!-- TODO: other box-->
 
-      <div class="field">
-        <label class="label" id="required" for="school">School</label>
-
-        <ng-select [items]="all_schools" [(ngModel)]="school" name="school" #school_="ngModel" bindLabel="name"
-          placeholder="Select school" notFoundText="No schools" [selectOnTab]="true">
-        </ng-select>
-
-      </div>
-      <div *ngIf="school_.invalid && (school_.dirty || school_.touched)" class="notification is-danger">
-        <div *ngIf="school_.errors.required">
-          Please select a school
         </div>
-        <small>If you don't see your school here, please contact a TEP employee</small>
-        <!-- TODO: other box-->
 
-      </div>
+        <div
+          *ngIf="first_name.touched && last_name.touched && email.touched && (school_.touched || (school && school.name)) && !teacherIsValid()"
+          class="notification is-danger">
+          Your information does not match any teachers we have on record. Please double check
+          that all the information you entered is correct and contact a TEP employee if you believe this is a
+          mistake!
+        </div>
 
-      <div
-        *ngIf="first_name.touched && last_name.touched && email.touched && (school_.touched || (school && school.name)) && !teacherIsValid()"
-        class="notification is-danger">
-        Your information does not match any teachers we have on record. Please double check
-        that all the information you entered is correct and contact a TEP employee if you believe this is a
-        mistake!
-      </div>
-
-    </form>
-  </div>
-  <p><small><b>Note:</b> If you have changed your email, phone number, or school, please contact a TEP employee before
-      proceeding.</small></p>
-  <div class="has-text-centered">
-    <button class="button is-medium is-primary" (click)="processTeacher()"
-      [disabled]="!went_back && (!first_name.touched || !last_name.touched || !email.touched || !validation_email.touched || val_email !== teacher.email || !teacherIsValid())">GO</button>
+      </form>
+    </div>
+    <p><small><b>Note:</b> If you have changed your email, phone number, or school, please contact a TEP employee before
+        proceeding.</small></p>
+    <div class="has-text-centered">
+      <button class="button is-medium is-primary" (click)="processTeacher()"
+        [disabled]="!went_back && (!first_name.touched || !last_name.touched || !email.touched || !validation_email.touched || val_email !== teacher.email || !teacherIsValid())">GO</button>
+    </div>
   </div>
 </div>
 
