@@ -14,6 +14,7 @@ export class OrderListComponent implements OnInit {
   activePipe = new BoolPipe();
   orders: Array<Order> = [];
   p;
+  is_loading = true;
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -36,6 +37,7 @@ export class OrderListComponent implements OnInit {
   public getOrders() {
     this.apiService.fetchAll("orders").subscribe((data: Array<Order>) => {
       this.orders = data;
+      this.is_loading = false;
     });
   }
 

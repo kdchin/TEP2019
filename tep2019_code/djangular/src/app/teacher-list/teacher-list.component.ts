@@ -17,6 +17,7 @@ export class TeacherListComponent implements OnInit {
   teachers: Array<TeacherDetail> = [];
   phonePipe = new PhonePipe();
   activePipe = new BoolPipe();
+  is_loading = true;
   p;
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
@@ -53,6 +54,7 @@ export class TeacherListComponent implements OnInit {
   public getTeachers() {
     this.apiService.fetchAll("teachers").subscribe((data: Array<TeacherDetail>) => {
       this.teachers = data;
+      this.is_loading = false;
     });
   }
 }

@@ -1,6 +1,9 @@
 <h1 class="title">All Schools</h1>
 <div class="notification">Note: inactive schools will not appear on forms.</div>
-<div>
+<div *ngIf="is_loading">
+  <a class="button is-loading">Loading</a>
+</div>
+<div *ngIf="!is_loading">
   <button class="button is-info" (click)="openDialog()">New School</button>
   <input type="text" [(ngModel)]="searchText" placeholder="Search Schools...">
   <table class="table is-hoverable is-fullwidth">
@@ -20,6 +23,5 @@
       </td>
     </tr>
   </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
-
-<pagination-controls (pageChange)="p = $event"></pagination-controls>

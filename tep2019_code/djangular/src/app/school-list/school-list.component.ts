@@ -16,6 +16,7 @@ export class SchoolListComponent implements OnInit {
   schools: Array<School> = [];
   p;
   activePipe = new BoolPipe();
+  is_loading = true;
   constructor(private apiService: ApiService, public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -50,6 +51,7 @@ export class SchoolListComponent implements OnInit {
   public getSchools() {
     this.apiService.fetchAll("schools").subscribe((data: Array<School>) => {
       this.schools = data;
+      this.is_loading = false;
     });
   }
 
