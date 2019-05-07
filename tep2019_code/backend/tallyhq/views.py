@@ -70,12 +70,40 @@ class OrderDetailViewSet(viewsets.ModelViewSet):
     serializer_class = OrderDetailSerializer
 
 
-class ValidationPasswordViewSet(viewsets.ModelViewSet):
+class ValidationPasswordViewSet(APIView):
     """
     Provides basic CRUD functions for the Item model
     """
     queryset = ValidationPassword.objects.all()
-    serializer_class = ValidationPasswordSerializer
+    # serializer_class = ValidationPasswordSerializer
+
+    def get(self, request, format=None):
+        passwords = ValidationPassword.objects.all()
+        serializer = ValidationPasswordSerializer(passwords, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        serializer = ValidationPasswordSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ValidationPasswordDetail(APIView):
+
+    def get_object(self, pk):
+        try:
+            return ValidationPassword.objects.get(pk=pk)
+        except ValidationPassword.DoesNotExist:
+            raise Http404
+
+    def delete(self, request, pk, format=None):
+        waiver = self.get_object(pk)
+        waiver.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class WaiverView(APIView):

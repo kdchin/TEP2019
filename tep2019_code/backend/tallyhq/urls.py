@@ -86,15 +86,15 @@ order_detail_single = OrderDetailViewSet.as_view({
     'delete': 'destroy'
 })
 
-validation_password_list = ValidationPasswordViewSet.as_view({
-    'get': 'list',
-    'post': 'create'
-})
+# validation_password_list = ValidationPasswordViewSet.as_view({
+#     'get': 'list',
+#     'post': 'create'
+# })
 
-validation_password_detail = ValidationPasswordViewSet.as_view({
-    'get': 'retrieve',
-    'delete': 'destroy'
-})
+# validation_password_detail = ValidationPasswordViewSet.as_view({
+#     'get': 'retrieve',
+#     'delete': 'destroy'
+# })
 
 user_list = UserViewSet.as_view({
     'get': 'list',
@@ -129,9 +129,9 @@ urlpatterns = [
     path(r'api/waivers/', WaiverView.as_view()),
     path(r'api/waivers/<int:pk>', WaiverDetailView.as_view()),
     path(r'api/validation_passwords/',
-         validation_password_list, name='val-pass-list'),
+         ValidationPasswordViewSet.as_view(), name='val-pass-list'),
     path(r'api/validation_passwords/<int:pk>',
-         validation_password_detail, name='val-pass-detail'),
+         ValidationPasswordDetail.as_view(), name='val-pass-detail'),
     path(r'api/users/', user_list, name='user-list'),
     path(r'api/users/<int:pk>', user_detail, name='user-detail'),
     path(r'api/auth/', AuthView.as_view(), name='authenticate'),

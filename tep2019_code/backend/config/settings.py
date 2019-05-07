@@ -35,6 +35,7 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
+
 PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 DEFAULT_FILE_STORAGE = 'config.storage_backends.MediaStorage'
@@ -60,6 +61,9 @@ ALLOWED_HOSTS = [
 ]
 
 
+CORS_ALLOW_HEADERS = default_headers + (
+    'val-password',
+)
 # Application definition
 
 INSTALLED_APPS = [

@@ -43,7 +43,7 @@ export class PwdGeneratorComponent implements OnInit {
   }
 
   submitPassword() {
-    console.log(this.getHash(this.new_pwd), this.getHash(this.new_pwd).length);
+    // console.log(this.getHash(this.new_pwd), this.getHash(this.new_pwd).length);
     if (this.new_pwd.length >= 5) {
       let pwd = new ValPass(null, this.getDigest(this.new_pwd), new Date());
       this.apiService.create('validation_passwords', pwd).subscribe(() => {
