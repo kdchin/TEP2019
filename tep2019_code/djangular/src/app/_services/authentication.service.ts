@@ -29,11 +29,13 @@ export class AuthenticationService {
                 "Authorization": `Basic ${btoa(username + ':' + password)}`
             })
         };
+
         return this.http.post<any>(`${environment.api_url}/auth/`, { username, password }, httpOptions)
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    user.authdata = window.btoa(username + ':' + password);
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }

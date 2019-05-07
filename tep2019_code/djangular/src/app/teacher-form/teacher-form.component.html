@@ -112,8 +112,10 @@
     <p><small><b>Note:</b> If you have changed your email, phone number, or school, please contact a TEP employee before
         proceeding.</small></p>
     <div class="has-text-centered">
-      <button class="button is-medium is-primary" (click)="processTeacher()"
-        [disabled]="!went_back && (!first_name.touched || !last_name.touched || !email.touched || !validation_email.touched || val_email !== teacher.email || !teacherIsValid())">GO</button>
+      <button class="button is-medium is-primary"
+        [disabled]="(!went_back && ((first_name && !first_name.touched) || (last_name && !last_name.touched) || (email && !email.touched) || (validation_email && !validation_email.touched) || val_email !== teacher.email || !teacherIsValid()))"
+        (click)="processTeacher()">GO</button>
+      <!-- [disabled]="(!first_name || !last_name || !email || !validation_email) || (!went_back && (!first_name.touched || !last_name.touched || !email.touched || !validation_email.touched || val_email !== teacher.email || !teacherIsValid()))">GO</button> -->
     </div>
   </div>
 </div>

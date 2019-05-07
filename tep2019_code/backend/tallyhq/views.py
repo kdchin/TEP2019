@@ -1,7 +1,8 @@
 from .models import *
 from .serializers import *
 from .authentication import *
-from django.shortcuts import render, HttpResponse, Http404
+from .custom_perms import *
+from django.shortcuts import render, HttpResponse, Http404, get_list_or_404, get_object_or_404
 from rest_framework import viewsets, permissions
 from django.contrib.auth.models import User
 from rest_framework.parsers import FormParser, MultiPartParser
@@ -15,46 +16,42 @@ import boto3
 from botocore.client import Config
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    Provides basic CRUD functions for the User model
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
-
-
 class ItemViewSet(viewsets.ModelViewSet):
     """
     Provides basic CRUD functions for the Item model
     """
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    # TODO: authenticate with admin user (cat)
-    # permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
-    # def perform_create(self, serializer):
-    #     serializer.save(user=self.request.user)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = TeacherDetailSerializer
+    permission_classes = (hasPasswordOrReadOnly |
+                          permissions.IsAuthenticatedOrReadOnly,)
 
 
 class TeacherUpdateViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
+    permission_classes = (hasPasswordOrReadOnly |
+                          permissions.IsAuthenticatedOrReadOnly,)
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    permission_classes = (hasPasswordOrReadOnly |
+                          permissions.IsAuthenticatedOrReadOnly,)
 
 
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
+    permission_classes = (hasPasswordOrReadOnly |
+                          permissions.IsAuthenticatedOrReadOnly,)
 
 
 class SchoolViewSet(viewsets.ModelViewSet):
@@ -63,11 +60,14 @@ class SchoolViewSet(viewsets.ModelViewSet):
     """
     queryset = School.objects.all()
     serializer_class = SchoolSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class OrderDetailViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderDetailSerializer
+    permission_classes = (hasPasswordOrReadOnly |
+                          permissions.IsAuthenticatedOrReadOnly,)
 
 
 class ValidationPasswordViewSet(APIView):
@@ -75,7 +75,7 @@ class ValidationPasswordViewSet(APIView):
     Provides basic CRUD functions for the Item model
     """
     queryset = ValidationPassword.objects.all()
-    # serializer_class = ValidationPasswordSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
     def get(self, request, format=None):
         passwords = ValidationPassword.objects.all()
@@ -94,20 +94,25 @@ class ValidationPasswordViewSet(APIView):
 
 class ValidationPasswordDetail(APIView):
 
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+
     def get_object(self, pk):
         try:
-            return ValidationPassword.objects.get(pk=pk)
+            obj = get_object_or_404(ValidationPassword, pk=pk)
+            self.check_object_permissions(self.request, obj)
+            return obj
         except ValidationPassword.DoesNotExist:
             raise Http404
 
     def delete(self, request, pk, format=None):
-        waiver = self.get_object(pk)
-        waiver.delete()
+        pwd = self.get_object(pk)
+        pwd.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class WaiverView(APIView):
     parser_class = (FileUploadParser,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
     def get(self, request, format=None):
         waivers = Waiver.objects.all()
@@ -127,6 +132,7 @@ class WaiverView(APIView):
 
 class WaiverDetailView(APIView):
     parser_class = (FileUploadParser,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
     def get_object(self, pk):
         try:
@@ -159,6 +165,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
 
 
 class AuthView(APIView):
@@ -167,32 +174,3 @@ class AuthView(APIView):
 
     def post(self, request, *args, **kwargs):
         return Response(self.serializer_class(request.user).data)
-
-
-def sign_s3(request):
-    S3_BUCKET = os.environ.get('S3_BUCKET')
-
-    file_name = request.GET['file_name']
-
-    s3 = boto3.client('s3', os.environ.get('AWS_S3_REGION') or 'us-east-2',
-                      aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
-                      aws_secret_access_key=os.environ.get(
-                          'AWS_SECRET_ACCESS_KEY'),
-                      config=Config(signature_version='s3v4'))
-
-    presigned_post = s3.generate_presigned_post(
-        Bucket=S3_BUCKET,
-        Key=file_name,
-        Fields={"acl": "public-read", "Content-Type": "application/pdf"},
-        Conditions=[
-            {"acl": "public-read"},
-            {"Content-Type": "application/pdf"}
-        ],
-        ExpiresIn=3600
-    )
-
-    result = json.dumps({
-        'data': presigned_post,
-        'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
-    })
-    return HttpResponse(result, content_type="application/json")

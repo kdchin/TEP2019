@@ -108,6 +108,7 @@ export class ValPass {
         public id: number,
         public digest: string,
         public uploaded_date: Date,
+        public hash_digest: string,
     ) { }
 }
 

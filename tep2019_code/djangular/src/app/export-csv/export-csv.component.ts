@@ -70,7 +70,7 @@ export class ExportCsvComponent implements OnInit {
       let newVal = { ...orders[i] };
       if (!newVal.uploaded) {
         newVal.uploaded = true;
-        this.apiService.update('orders', newVal).subscribe();
+        this.apiService.update('order_detail', newVal).subscribe();
       }
     }
   }
@@ -78,10 +78,8 @@ export class ExportCsvComponent implements OnInit {
   resetUploaded() {
     for (let i = 0; i < this.unuploaded_orders.length; i++) {
       let newVal = { ...this.unuploaded_orders[i] };
-      if (newVal.uploaded) {
-        newVal.uploaded = false;
-        this.apiService.update('orders', newVal).subscribe();
-      }
+      newVal.uploaded = false;
+      this.apiService.update('order_detail', newVal).subscribe();
     }
   }
 

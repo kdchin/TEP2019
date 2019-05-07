@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 })
 export class PwdGeneratorComponent implements OnInit {
   shouldShowChange = false;
-  val_pass: ValPass = new ValPass(null, '', new Date());
+  val_pass: ValPass = new ValPass(null, '', new Date(), '');
   new_pwd: string = '';
   key = environment.val_pass_key;
   constructor(private apiService: ApiService) { }
@@ -45,7 +45,7 @@ export class PwdGeneratorComponent implements OnInit {
   submitPassword() {
     // console.log(this.getHash(this.new_pwd), this.getHash(this.new_pwd).length);
     if (this.new_pwd.length >= 5) {
-      let pwd = new ValPass(null, this.getDigest(this.new_pwd), new Date());
+      let pwd = new ValPass(null, this.getDigest(this.new_pwd), new Date(), this.getHash(this.new_pwd));
       this.apiService.create('validation_passwords', pwd).subscribe(() => {
         this.val_pass = pwd;
         this.new_pwd = '';

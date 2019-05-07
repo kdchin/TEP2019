@@ -26,7 +26,7 @@ export class TeacherFormComponent implements OnInit {
   lodash = lodash;
   recentWaiver: Waiver = null;
   agreedToWaiver = false;
-  val_pass = new ValPass(null, '', null);
+  val_pass = new ValPass(null, '', null, '');
   guess = '';
   key = environment.val_pass_key;
   went_back = false;
@@ -204,12 +204,12 @@ export class TeacherFormComponent implements OnInit {
   public createOrderItems() {
     this.order.checkout_time = new Date().toISOString();
     this.order.password_hash = this.getHash(this.guess);
-    this.apiService.create('orders', this.order).subscribe((data: Order) => {
+    this.apiService.create('orders', this.order, this.order.password_hash).subscribe((data: Order) => {
       for (let i = 0; i < this.order_items.length; i++) {
         let order_item_with_order: OrderItem = this.order_items[i];
         if (order_item_with_order.units_taken > 0) {
           order_item_with_order.order = data;
-          this.apiService.create('order_items', order_item_with_order).subscribe();
+          this.apiService.create('order_items', order_item_with_order, this.order.password_hash).subscribe();
         }
       }
       this.advancePage();
@@ -223,7 +223,7 @@ export class TeacherFormComponent implements OnInit {
     teacher.phone = this.teacher.phone ? this.teacher.phone : teacher.phone;
     this.order.teacher = teacher;
     if (this.new_address.length > 0 || this.teacher.phone.length > 0) {
-      this.apiService.update('teacher_update', teacher).subscribe(() => {
+      this.apiService.update('teacher_update', teacher, this.getHash(this.guess)).subscribe(() => {
         this.createOrderItems();
       });
     } else {

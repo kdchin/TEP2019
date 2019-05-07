@@ -177,11 +177,18 @@ class OrderDetailSerializer(serializers.ModelSerializer):
         fields = ('id', 'checkout_time', 'uploaded',
                   'waiver', 'teacher', 'order_items')
 
+    def update(self, instance, validated_data):
+        if (instance.uploaded):
+            return instance
+        instance.uploaded = validated_data.get('uploaded', instance.uploaded)
+        instance.save()
+        return instance
+
 
 class ValidationPasswordSerializer(serializers.ModelSerializer):
     class Meta:
         model = ValidationPassword
-        fields = ('id', 'uploaded_date', 'digest')
+        fields = ('id', 'uploaded_date', 'digest', 'hash_digest')
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -39,12 +39,13 @@ export class ItemListComponent implements OnInit {
 
   public onNewItem(newItem: Item) {
     if (!newItem) return;
-    newItem.rank = newItem.id ? newItem.id : this.activeItems.length;
-    let newItems = this.activeItems.slice();
-    newItems.push(newItem);
-    this.activeItems = newItems;
-    this.activeItems = this.lodash.sortBy(this.activeItems, 'rank');
-    this.apiService.create("items", newItem).subscribe();
+    newItem.rank = 1 + this.activeItems.length;
+    this.apiService.create("items", newItem).subscribe((item: Item) => {
+      let newItems = this.activeItems.slice();
+      newItems.push(item);
+      this.activeItems = newItems;
+      this.activeItems = this.lodash.sortBy(this.activeItems, 'rank');
+    });
   }
 
 

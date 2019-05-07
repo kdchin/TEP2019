@@ -80,15 +80,15 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-        # TODO: is this secure?
-        'rest_framework.permissions.AllowAny',
-    ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    #     # TODO: is this secure?
+    #     'rest_framework.permissions.AllowAny',
+    # ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_THROTTLE_CLASSES': (
         'rest_framework.throttling.AnonRateThrottle',

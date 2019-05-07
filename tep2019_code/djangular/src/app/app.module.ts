@@ -26,7 +26,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PwdGeneratorComponent } from './pwd-generator/pwd-generator.component';
 import { ExportCsvComponent } from './export-csv/export-csv.component';
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -91,9 +91,8 @@ import { DeleteDbComponent } from './delete-db/delete-db.component';
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // { provide: [FileUtil, Constants], useClass: CsvImportComponent, },
     FileUtil, Constants
 
     // provider used to create fake backend

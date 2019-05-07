@@ -94,3 +94,4 @@ class OrderItem(models.Model):
 class ValidationPassword(models.Model):
     digest = models.CharField(max_length=65)
     uploaded_date = models.DateTimeField(auto_now_add=True, blank=True)
+    hash_digest = models.CharField(max_length=65)

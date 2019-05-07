@@ -51,6 +51,10 @@ export class TeacherDetailComponent implements OnInit {
   }
 
   deleteTeacher(teacher: TeacherDetail) {
+    if (this.teacher.orders.length > 0) {
+      alert("Cannot delete this teacher. They have an order in the system. Please delete the order first if you wish to preceed");
+      return;
+    }
     this.apiService.delete("teachers", this.teacher.id).subscribe();
     this.location.back();
   }
