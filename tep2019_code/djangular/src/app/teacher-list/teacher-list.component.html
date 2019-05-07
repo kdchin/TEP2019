@@ -16,6 +16,7 @@
         <th>Address</th>
         <th>School</th>
         <th>Active</th>
+        <th>Visits</th>
       </tr>
       <tr *ngFor="let teacher of teachers | filter: searchText | paginate: { itemsPerPage: 10, currentPage: p }"
         routerLink="/teachers/{{teacher.id}}">
@@ -37,6 +38,9 @@
         <td> {{ teacher.school.name }} </td>
         <td>
           {{ activePipe.transform(teacher.active)}}
+        </td>
+        <td [ngClass]="{'is-danger': teacher.orders.length > 2}">
+          {{ teacher.orders.length }}
         </td>
       </tr>
     </table>
