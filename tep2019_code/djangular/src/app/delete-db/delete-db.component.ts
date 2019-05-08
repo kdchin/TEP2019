@@ -137,7 +137,8 @@ export class DeleteDbComponent implements OnInit {
         for (let j = 0; j < order.order_items.length; j++) {
           let oi = order.order_items[j];
           data.push({
-            teacher: order.teacher.first_name + " " + order.teacher.last_name,
+            teacher_first_name: order.teacher.first_name,
+            teacher_last_name: order.teacher.last_name,
             item_name: oi.item.name,
             item_quantity: oi.item.qty_per_unit * oi.units_taken,
           });
@@ -153,10 +154,10 @@ export class DeleteDbComponent implements OnInit {
       }
       setTimeout(() => {
         this.deletePasswords();
-        this.deleteWaivers();
         if (this.is_resetting_all) {
           this.exportTeachers();
           this.deleteItems();
+          this.deleteWaivers();
         }
         else this.finish();
       }, 10000); // wait 10 seconds before deleting the rest

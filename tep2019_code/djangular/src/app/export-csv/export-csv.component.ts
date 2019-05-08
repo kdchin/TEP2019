@@ -57,7 +57,8 @@ export class ExportCsvComponent implements OnInit {
       for (let j = 0; j < order.order_items.length; j++) {
         let oi = order.order_items[j];
         data.push({
-          teacher: order.teacher.first_name + " " + order.teacher.last_name,
+          teacher_first_name: order.teacher.first_name,
+          teacher_last_name: order.teacher.last_name,
           item_name: oi.item.name,
           item_quantity: oi.item.qty_per_unit * oi.units_taken,
         });
